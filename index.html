@@ -106,9 +106,13 @@ $(document).ready(function(){initNavTree('index.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><b>Status</b> <a href="https://travis-ci.org/OpenChannelSSD/liblightnvm">![Build Status](https://travis-ci.org/OpenChannelSSD/liblightnvm.svg?branch=master)</a> <b>deb</b> <a href="https://bintray.com/openchannelssd/debs/liblightnvm/_latestVersion">![Download deb](https://api.bintray.com/packages/openchannelssd/debs/liblightnvm/images/download.svg)</a> <b>tgz</b> <a href="https://bintray.com/openchannelssd/binaries/liblightnvm/_latestVersion">![Download tgz](https://api.bintray.com/packages/openchannelssd/binaries/liblightnvm/images/download.svg)</a> <b>docs</b> <a href="http://lightnvm.io/liblightnvm">http://lightnvm.io/liblightnvm</a></p>
-<h1>User space I/O library for OpenChannelSSDs &ndash; LightNVM </h1>
+<h1>User space I/O library for Open-channel SSDs </h1>
 <p>liblightnvm is a user space library that manages provisioning of and I/O submission to physical flash. The motivation is to enable I/O-intensive applications to implement their own Flash Translation Layer (FTLs) using the internal application data structures. The design is based on the principle that high-performance I/O applications often use structures that assimilates structures found within a Flash translation layer. This include log-structured data structures that provides their own mechanisms for data placement, garbage collection, and I/O scheduling strategies.</p>
 <p>For example, popular key-value stores often use a form of Log Structured Merge Trees (LSMs) as their base data structure (including RocksDB, MongoDB, Apache Cassandra). The LSM is in itself a form of FTL, which manages data placement and garbage collection. This class of applications can benefit from a direct path to physical flash to take full advantage of the optimizations they do and spend host resources on, instead of missing them through the several levels of indirection that the traditional I/O stack imposes to enable genericity: page cache, VFS, file system, and device physical - logical translation table. liblightnvm exposes append-only primitives using direct physical flash to support this class of applications.</p>
+<h1>Interface and abstractions </h1>
+<h2>Address </h2>
+<h2>Virtual Block </h2>
+<h2>Spanning Block </h2>
 <h1>Contact and Contributions </h1>
 <p>liblightnvm is in active development and pull requests are very welcome.</p>
 <h1>References </h1>
