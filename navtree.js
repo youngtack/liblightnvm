@@ -1,6 +1,8 @@
 var NAVTREE =
 [
   [ "liblightnvm", "index.html", [
+    [ "Introduction", "index.html", null ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", null, [
       [ "Data Structures", "annotated.html", "annotated" ],
       [ "Data Structure Index", "classes.html", null ],

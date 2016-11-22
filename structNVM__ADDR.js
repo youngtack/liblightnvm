@@ -10,6 +10,6 @@ var structNVM__ADDR =
     [ "pg", "structNVM__ADDR.html#afcab9b31d7af6d245212f4c72eb1130f", null ],
     [ "pl", "structNVM__ADDR.html#a8baca6d723d284999552aa1d60a08d57", null ],
     [ "ppa", "structNVM__ADDR.html#a2db8d1e90c20f7f95d9baedddc78f99f", null ],
-    [ "reserved", "structNVM__ADDR.html#a6aa163fc7e84743062993de1c654ad81", null ],
+    [ "rsvd", "structNVM__ADDR.html#a489dcdcf4f323e6c08fef69b21f6f860", null ],
     [ "sec", "structNVM__ADDR.html#adf7e8228a207838bf2aec21dbc16c51b", null ]
 ];

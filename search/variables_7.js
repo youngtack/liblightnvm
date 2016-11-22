@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reserved',['reserved',['../structNVM__ADDR.html#a6aa163fc7e84743062993de1c654ad81',1,'NVM_ADDR']]]
+  ['rsvd',['rsvd',['../structNVM__ADDR.html#a489dcdcf4f323e6c08fef69b21f6f860',1,'NVM_ADDR']]]
 ];

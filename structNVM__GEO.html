@@ -51,6 +51,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -98,7 +99,7 @@ $(document).ready(function(){initNavTree('structNVM__GEO.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -115,7 +116,7 @@ $(document).ready(function(){initNavTree('structNVM__GEO.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>Representation of device geometry.  
+<p>Representation of geometry of devices and spanning blocks.  
  <a href="structNVM__GEO.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="liblightnvm_8h_source.html">liblightnvm.h</a>&gt;</code></p>
@@ -123,37 +124,38 @@ $(document).ready(function(){initNavTree('structNVM__GEO.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:aa50257687f6c85d97d481bdaf241c3e9"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__GEO.html#aa50257687f6c85d97d481bdaf241c3e9">nchannels</a></td></tr>
+<tr class="memdesc:aa50257687f6c85d97d481bdaf241c3e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of channels on device.  <a href="#aa50257687f6c85d97d481bdaf241c3e9">More...</a><br/></td></tr>
 <tr class="separator:aa50257687f6c85d97d481bdaf241c3e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8530190c8486cd6ad40bf7eb5024e4aa"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__GEO.html#a8530190c8486cd6ad40bf7eb5024e4aa">nluns</a></td></tr>
-<tr class="memdesc:a8530190c8486cd6ad40bf7eb5024e4aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of channels on device.  <a href="#a8530190c8486cd6ad40bf7eb5024e4aa">More...</a><br/></td></tr>
+<tr class="memdesc:a8530190c8486cd6ad40bf7eb5024e4aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of luns per channel.  <a href="#a8530190c8486cd6ad40bf7eb5024e4aa">More...</a><br/></td></tr>
 <tr class="separator:a8530190c8486cd6ad40bf7eb5024e4aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a134d83b626a8000bc29dfafa71e3b03d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__GEO.html#a134d83b626a8000bc29dfafa71e3b03d">nplanes</a></td></tr>
-<tr class="memdesc:a134d83b626a8000bc29dfafa71e3b03d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of luns per channel.  <a href="#a134d83b626a8000bc29dfafa71e3b03d">More...</a><br/></td></tr>
+<tr class="memdesc:a134d83b626a8000bc29dfafa71e3b03d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of planes per lun.  <a href="#a134d83b626a8000bc29dfafa71e3b03d">More...</a><br/></td></tr>
 <tr class="separator:a134d83b626a8000bc29dfafa71e3b03d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f5bf78b4d0c7c3d3a548204457f747b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__GEO.html#a4f5bf78b4d0c7c3d3a548204457f747b">nblocks</a></td></tr>
-<tr class="memdesc:a4f5bf78b4d0c7c3d3a548204457f747b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of planes per lun.  <a href="#a4f5bf78b4d0c7c3d3a548204457f747b">More...</a><br/></td></tr>
+<tr class="memdesc:a4f5bf78b4d0c7c3d3a548204457f747b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of blocks per plane.  <a href="#a4f5bf78b4d0c7c3d3a548204457f747b">More...</a><br/></td></tr>
 <tr class="separator:a4f5bf78b4d0c7c3d3a548204457f747b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24df96160268d4e923448cec9832ba1e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__GEO.html#a24df96160268d4e923448cec9832ba1e">npages</a></td></tr>
-<tr class="memdesc:a24df96160268d4e923448cec9832ba1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of blocks per plane.  <a href="#a24df96160268d4e923448cec9832ba1e">More...</a><br/></td></tr>
+<tr class="memdesc:a24df96160268d4e923448cec9832ba1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of pages per block.  <a href="#a24df96160268d4e923448cec9832ba1e">More...</a><br/></td></tr>
 <tr class="separator:a24df96160268d4e923448cec9832ba1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1dc130e9d323ebae0d4eb2e2fd5b95b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__GEO.html#ac1dc130e9d323ebae0d4eb2e2fd5b95b">nsectors</a></td></tr>
-<tr class="memdesc:ac1dc130e9d323ebae0d4eb2e2fd5b95b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of pages per block.  <a href="#ac1dc130e9d323ebae0d4eb2e2fd5b95b">More...</a><br/></td></tr>
+<tr class="memdesc:ac1dc130e9d323ebae0d4eb2e2fd5b95b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of sectors per page.  <a href="#ac1dc130e9d323ebae0d4eb2e2fd5b95b">More...</a><br/></td></tr>
 <tr class="separator:ac1dc130e9d323ebae0d4eb2e2fd5b95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bf941054494a375bb44d49e0181a8f6"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__GEO.html#a4bf941054494a375bb44d49e0181a8f6">nbytes</a></td></tr>
-<tr class="memdesc:a4bf941054494a375bb44d49e0181a8f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of sectors per page.  <a href="#a4bf941054494a375bb44d49e0181a8f6">More...</a><br/></td></tr>
+<tr class="memdesc:a4bf941054494a375bb44d49e0181a8f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of bytes per sector.  <a href="#a4bf941054494a375bb44d49e0181a8f6">More...</a><br/></td></tr>
 <tr class="separator:a4bf941054494a375bb44d49e0181a8f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae45906d714971d0af1adefaeb2f19f9e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__GEO.html#ae45906d714971d0af1adefaeb2f19f9e">tbytes</a></td></tr>
-<tr class="memdesc:ae45906d714971d0af1adefaeb2f19f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of bytes per sector.  <a href="#ae45906d714971d0af1adefaeb2f19f9e">More...</a><br/></td></tr>
+<tr class="memdesc:ae45906d714971d0af1adefaeb2f19f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of bytes on device.  <a href="#ae45906d714971d0af1adefaeb2f19f9e">More...</a><br/></td></tr>
 <tr class="separator:ae45906d714971d0af1adefaeb2f19f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8eca30d90289771a3848d5eb3189782"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__GEO.html#ae8eca30d90289771a3848d5eb3189782">vblk_nbytes</a></td></tr>
-<tr class="memdesc:ae8eca30d90289771a3848d5eb3189782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of bytes on device.  <a href="#ae8eca30d90289771a3848d5eb3189782">More...</a><br/></td></tr>
+<tr class="memdesc:ae8eca30d90289771a3848d5eb3189782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of bytes per virtual block.  <a href="#ae8eca30d90289771a3848d5eb3189782">More...</a><br/></td></tr>
 <tr class="separator:ae8eca30d90289771a3848d5eb3189782"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad384b902388478431c0ac194cd664e15"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__GEO.html#ad384b902388478431c0ac194cd664e15">vpg_nbytes</a></td></tr>
-<tr class="memdesc:ad384b902388478431c0ac194cd664e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of bytes per virtual block.  <a href="#ad384b902388478431c0ac194cd664e15">More...</a><br/></td></tr>
+<tr class="memdesc:ad384b902388478431c0ac194cd664e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of bytes per virtual page.  <a href="#ad384b902388478431c0ac194cd664e15">More...</a><br/></td></tr>
 <tr class="separator:ad384b902388478431c0ac194cd664e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Representation of device geometry. </p>
+<div class="textblock"><p>Representation of geometry of devices and spanning blocks. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a class="anchor" id="a4f5bf78b4d0c7c3d3a548204457f747b"></a>
 <div class="memitem">
@@ -165,7 +167,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Number of planes per lun. </p>
+<p>Number of blocks per plane. </p>
 
 </div>
 </div>
@@ -179,7 +181,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Number of sectors per page. </p>
+<p>Number of bytes per sector. </p>
 
 </div>
 </div>
@@ -193,6 +195,8 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Number of channels on device. </p>
+
 </div>
 </div>
 <a class="anchor" id="a8530190c8486cd6ad40bf7eb5024e4aa"></a>
@@ -205,7 +209,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Number of channels on device. </p>
+<p>Number of luns per channel. </p>
 
 </div>
 </div>
@@ -219,7 +223,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Number of blocks per plane. </p>
+<p>Number of pages per block. </p>
 
 </div>
 </div>
@@ -233,7 +237,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Number of luns per channel. </p>
+<p>Number of planes per lun. </p>
 
 </div>
 </div>
@@ -247,7 +251,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Number of pages per block. </p>
+<p>Number of sectors per page. </p>
 
 </div>
 </div>
@@ -261,7 +265,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Number of bytes per sector. </p>
+<p>Total number of bytes on device. </p>
 
 </div>
 </div>
@@ -275,7 +279,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Total number of bytes on device. </p>
+<p>Number of bytes per virtual block. </p>
 
 </div>
 </div>
@@ -289,7 +293,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Number of bytes per virtual block. </p>
+<p>Number of bytes per virtual page. </p>
 
 </div>
 </div>

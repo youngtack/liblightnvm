@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['disk_5fname_5flen',['DISK_NAME_LEN',['../liblightnvm_8h.html#a6bff7c2d394e07aeba943d67f4a5e28d',1,'liblightnvm.h']]]
+  ['c',['c',['../structNVM__ADDR.html#ac4ceb6858fdbd395f6e256bca7731188',1,'NVM_ADDR']]],
+  ['ch',['ch',['../structNVM__ADDR.html#ac8e1c33ff02d801d8ac487882764b15d',1,'NVM_ADDR']]]
 ];
