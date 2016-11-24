@@ -1,6 +1,7 @@
 var searchData=
 [
   ['nvm_5faddr_5ferase',['nvm_addr_erase',['../liblightnvm_8h.html#a7ee3cf05c67359ac38a34cc0d01857a4',1,'liblightnvm.h']]],
+  ['nvm_5faddr_5ffmt_5fpr',['nvm_addr_fmt_pr',['../liblightnvm_8h.html#a914b40fd8a69ddc0c5d907f4b603134c',1,'liblightnvm.h']]],
   ['nvm_5faddr_5fmark',['nvm_addr_mark',['../liblightnvm_8h.html#a1c0299b33c9dfbb760568c353eac3461',1,'liblightnvm.h']]],
   ['nvm_5faddr_5fpr',['nvm_addr_pr',['../liblightnvm_8h.html#aeafbf2ab51f904703d98857f09b37628',1,'liblightnvm.h']]],
   ['nvm_5faddr_5fread',['nvm_addr_read',['../liblightnvm_8h.html#a247ccaf0b39100fbe61bf8867369490f',1,'liblightnvm.h']]],

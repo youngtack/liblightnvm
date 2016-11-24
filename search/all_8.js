@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['n',['n',['../structNVM__ADDR__FMT.html#a024be0229db2ce5c0e5fdcf4a1d253de',1,'NVM_ADDR_FMT']]],
   ['nblocks',['nblocks',['../structNVM__GEO.html#a4f5bf78b4d0c7c3d3a548204457f747b',1,'NVM_GEO']]],
   ['nbytes',['nbytes',['../structNVM__GEO.html#a4bf941054494a375bb44d49e0181a8f6',1,'NVM_GEO']]],
   ['nchannels',['nchannels',['../structNVM__GEO.html#aa50257687f6c85d97d481bdaf241c3e9',1,'NVM_GEO']]],
@@ -9,6 +10,8 @@ var searchData=
   ['nsectors',['nsectors',['../structNVM__GEO.html#ac1dc130e9d323ebae0d4eb2e2fd5b95b',1,'NVM_GEO']]],
   ['nvm_5faddr',['NVM_ADDR',['../structNVM__ADDR.html',1,'']]],
   ['nvm_5faddr_5ferase',['nvm_addr_erase',['../liblightnvm_8h.html#a7ee3cf05c67359ac38a34cc0d01857a4',1,'liblightnvm.h']]],
+  ['nvm_5faddr_5ffmt',['NVM_ADDR_FMT',['../structNVM__ADDR__FMT.html',1,'']]],
+  ['nvm_5faddr_5ffmt_5fpr',['nvm_addr_fmt_pr',['../liblightnvm_8h.html#a914b40fd8a69ddc0c5d907f4b603134c',1,'liblightnvm.h']]],
   ['nvm_5faddr_5fmark',['nvm_addr_mark',['../liblightnvm_8h.html#a1c0299b33c9dfbb760568c353eac3461',1,'liblightnvm.h']]],
   ['nvm_5faddr_5fpr',['nvm_addr_pr',['../liblightnvm_8h.html#aeafbf2ab51f904703d98857f09b37628',1,'liblightnvm.h']]],
   ['nvm_5faddr_5fread',['nvm_addr_read',['../liblightnvm_8h.html#a247ccaf0b39100fbe61bf8867369490f',1,'liblightnvm.h']]],
@@ -27,8 +30,10 @@ var searchData=
   ['nvm_5fgeo',['NVM_GEO',['../structNVM__GEO.html',1,'']]],
   ['nvm_5fgeo_5fpr',['nvm_geo_pr',['../liblightnvm_8h.html#a8bd6ef0685191cb1bc29078efdc4c922',1,'liblightnvm.h']]],
   ['nvm_5flun_5fbits',['NVM_LUN_BITS',['../liblightnvm_8h.html#a9364911dd193174bb017df0961aa6251',1,'liblightnvm.h']]],
+  ['nvm_5fmagic_5fflag_5fdefault',['NVM_MAGIC_FLAG_DEFAULT',['../liblightnvm_8h.html#aaf26505bf6133e0d6b2ff99dc6bbd52d',1,'liblightnvm.h']]],
   ['nvm_5fmagic_5fflag_5fdual',['NVM_MAGIC_FLAG_DUAL',['../liblightnvm_8h.html#a4e577252cd3c68ff0c924c5b84a5ead4',1,'liblightnvm.h']]],
   ['nvm_5fmagic_5fflag_5fquad',['NVM_MAGIC_FLAG_QUAD',['../liblightnvm_8h.html#a05f4773e4dd8dc912a693e864c340601',1,'liblightnvm.h']]],
+  ['nvm_5fmagic_5fflag_5fscrbl',['NVM_MAGIC_FLAG_SCRBL',['../liblightnvm_8h.html#a06c7ef964265b806a75b92fc8481ae22',1,'liblightnvm.h']]],
   ['nvm_5fmagic_5fflag_5fsngl',['NVM_MAGIC_FLAG_SNGL',['../liblightnvm_8h.html#ab51586223e19b802769db3842a4b13df',1,'liblightnvm.h']]],
   ['nvm_5fpg_5fbits',['NVM_PG_BITS',['../liblightnvm_8h.html#ab997a9edb864d3103a6de05469fa88c5',1,'liblightnvm.h']]],
   ['nvm_5fpl_5fbits',['NVM_PL_BITS',['../liblightnvm_8h.html#afd7e10636283a62b7d0a4900c788a939',1,'liblightnvm.h']]],

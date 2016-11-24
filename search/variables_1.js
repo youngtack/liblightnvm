@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['c',['c',['../structNVM__ADDR.html#ac4ceb6858fdbd395f6e256bca7731188',1,'NVM_ADDR']]],
-  ['ch',['ch',['../structNVM__ADDR.html#ac8e1c33ff02d801d8ac487882764b15d',1,'NVM_ADDR']]]
+  ['blk',['blk',['../structNVM__ADDR.html#a3425be53a1bcdf1049b8a21b228e3074',1,'NVM_ADDR']]],
+  ['blk_5flen',['blk_len',['../structNVM__ADDR__FMT.html#a81539d4cf2c679e898313d094bc55bb8',1,'NVM_ADDR_FMT']]],
+  ['blk_5fofz',['blk_ofz',['../structNVM__ADDR__FMT.html#a4cbb20a10c82eb953e772e108aa0cc14',1,'NVM_ADDR_FMT']]]
 ];

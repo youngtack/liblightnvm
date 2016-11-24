@@ -134,6 +134,9 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__ADDR.html">NVM_ADDR</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulation of generic physical nvm addressing.  <a href="structNVM__ADDR.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__ADDR__FMT.html">NVM_ADDR_FMT</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encoding for address formats.  <a href="structNVM__ADDR__FMT.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNVM__GEO.html">NVM_GEO</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Representation of geometry of devices and spanning blocks.  <a href="structNVM__GEO.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,6 +154,11 @@ Macros</h2></td></tr>
 <tr class="memitem:a05f4773e4dd8dc912a693e864c340601"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a05f4773e4dd8dc912a693e864c340601">NVM_MAGIC_FLAG_QUAD</a>&#160;&#160;&#160;0x2</td></tr>
 <tr class="memdesc:a05f4773e4dd8dc912a693e864c340601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quad-plane (NVM_IO_QUAD_ACCESS)  <a href="#a05f4773e4dd8dc912a693e864c340601">More...</a><br/></td></tr>
 <tr class="separator:a05f4773e4dd8dc912a693e864c340601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06c7ef964265b806a75b92fc8481ae22"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a06c7ef964265b806a75b92fc8481ae22">NVM_MAGIC_FLAG_SCRBL</a>&#160;&#160;&#160;0x200</td></tr>
+<tr class="memdesc:a06c7ef964265b806a75b92fc8481ae22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scrambler ON/OFF: Context sensitive.  <a href="#a06c7ef964265b806a75b92fc8481ae22">More...</a><br/></td></tr>
+<tr class="separator:a06c7ef964265b806a75b92fc8481ae22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf26505bf6133e0d6b2ff99dc6bbd52d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#aaf26505bf6133e0d6b2ff99dc6bbd52d">NVM_MAGIC_FLAG_DEFAULT</a>&#160;&#160;&#160;(<a class="el" href="liblightnvm_8h.html#ab51586223e19b802769db3842a4b13df">NVM_MAGIC_FLAG_SNGL</a> | <a class="el" href="liblightnvm_8h.html#a06c7ef964265b806a75b92fc8481ae22">NVM_MAGIC_FLAG_SCRBL</a>);</td></tr>
+<tr class="separator:aaf26505bf6133e0d6b2ff99dc6bbd52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a4298825ef59a3d40c73f74376b051b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a2a4298825ef59a3d40c73f74376b051b">NVM_BLK_BITS</a>&#160;&#160;&#160;(16)</td></tr>
 <tr class="memdesc:a2a4298825ef59a3d40c73f74376b051b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of bits for block field.  <a href="#a2a4298825ef59a3d40c73f74376b051b">More...</a><br/></td></tr>
 <tr class="separator:a2a4298825ef59a3d40c73f74376b051b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -221,8 +229,11 @@ Functions</h2></td></tr>
 <tr class="memdesc:a247ccaf0b39100fbe61bf8867369490f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read content of nvm at addresses into buf.  <a href="#a247ccaf0b39100fbe61bf8867369490f">More...</a><br/></td></tr>
 <tr class="separator:a247ccaf0b39100fbe61bf8867369490f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeafbf2ab51f904703d98857f09b37628"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#aeafbf2ab51f904703d98857f09b37628">nvm_addr_pr</a> (<a class="el" href="structNVM__ADDR.html">NVM_ADDR</a> addr)</td></tr>
-<tr class="memdesc:aeafbf2ab51f904703d98857f09b37628"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a human readable representation of the given address.  <a href="#aeafbf2ab51f904703d98857f09b37628">More...</a><br/></td></tr>
+<tr class="memdesc:aeafbf2ab51f904703d98857f09b37628"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a humanly readable representation of the given address.  <a href="#aeafbf2ab51f904703d98857f09b37628">More...</a><br/></td></tr>
 <tr class="separator:aeafbf2ab51f904703d98857f09b37628"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a914b40fd8a69ddc0c5d907f4b603134c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a914b40fd8a69ddc0c5d907f4b603134c">nvm_addr_fmt_pr</a> (<a class="el" href="structNVM__ADDR__FMT.html">NVM_ADDR_FMT</a> *fmt)</td></tr>
+<tr class="memdesc:a914b40fd8a69ddc0c5d907f4b603134c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a humanly readable representation of the give address format.  <a href="#a914b40fd8a69ddc0c5d907f4b603134c">More...</a><br/></td></tr>
+<tr class="separator:a914b40fd8a69ddc0c5d907f4b603134c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92fbac13ff176e26b267c8ee80dae880"><td class="memItemLeft" align="right" valign="top"><a class="el" href="liblightnvm_8h.html#a9da499343dc6e9ca1d9e182f64465ed5">NVM_VBLK</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a92fbac13ff176e26b267c8ee80dae880">nvm_vblk_new</a> (void)</td></tr>
 <tr class="separator:a92fbac13ff176e26b267c8ee80dae880"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e9e857b6df986018ff327aac44d0ee1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="liblightnvm_8h.html#a9da499343dc6e9ca1d9e182f64465ed5">NVM_VBLK</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a6e9e857b6df986018ff327aac44d0ee1">nvm_vblk_new_on_dev</a> (<a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a> dev, <a class="el" href="structNVM__ADDR.html">NVM_ADDR</a> addr)</td></tr>
@@ -344,6 +355,18 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aaf26505bf6133e0d6b2ff99dc6bbd52d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NVM_MAGIC_FLAG_DEFAULT&#160;&#160;&#160;(<a class="el" href="liblightnvm_8h.html#ab51586223e19b802769db3842a4b13df">NVM_MAGIC_FLAG_SNGL</a> | <a class="el" href="liblightnvm_8h.html#a06c7ef964265b806a75b92fc8481ae22">NVM_MAGIC_FLAG_SCRBL</a>);</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a4e577252cd3c68ff0c924c5b84a5ead4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -369,6 +392,20 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Quad-plane (NVM_IO_QUAD_ACCESS) </p>
+
+</div>
+</div>
+<a class="anchor" id="a06c7ef964265b806a75b92fc8481ae22"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NVM_MAGIC_FLAG_SCRBL&#160;&#160;&#160;0x200</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scrambler ON/OFF: Context sensitive. </p>
 
 </div>
 </div>
@@ -523,6 +560,30 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a914b40fd8a69ddc0c5d907f4b603134c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void nvm_addr_fmt_pr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structNVM__ADDR__FMT.html">NVM_ADDR_FMT</a> *&#160;</td>
+          <td class="paramname"><em>fmt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a humanly readable representation of the give address format. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fmt</td><td>The address format to porint </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a1c0299b33c9dfbb760568c353eac3461"></a>
 <div class="memitem">
 <div class="memproto">
@@ -588,7 +649,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Prints a human readable representation of the given address. </p>
+<p>Prints a humanly readable representation of the given address. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">addr</td><td>The address to print </td></tr>

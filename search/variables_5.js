@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['nblocks',['nblocks',['../structNVM__GEO.html#a4f5bf78b4d0c7c3d3a548204457f747b',1,'NVM_GEO']]],
-  ['nbytes',['nbytes',['../structNVM__GEO.html#a4bf941054494a375bb44d49e0181a8f6',1,'NVM_GEO']]],
-  ['nchannels',['nchannels',['../structNVM__GEO.html#aa50257687f6c85d97d481bdaf241c3e9',1,'NVM_GEO']]],
-  ['nluns',['nluns',['../structNVM__GEO.html#a8530190c8486cd6ad40bf7eb5024e4aa',1,'NVM_GEO']]],
-  ['npages',['npages',['../structNVM__GEO.html#a24df96160268d4e923448cec9832ba1e',1,'NVM_GEO']]],
-  ['nplanes',['nplanes',['../structNVM__GEO.html#a134d83b626a8000bc29dfafa71e3b03d',1,'NVM_GEO']]],
-  ['nsectors',['nsectors',['../structNVM__GEO.html#ac1dc130e9d323ebae0d4eb2e2fd5b95b',1,'NVM_GEO']]]
+  ['line',['line',['../structNVM__ADDR.html#adb9ba3d8e371b277bcab28d35196672f',1,'NVM_ADDR']]],
+  ['lun',['lun',['../structNVM__ADDR.html#addc452e6c9646d8e6e20bd5928553017',1,'NVM_ADDR']]],
+  ['lun_5flen',['lun_len',['../structNVM__ADDR__FMT.html#a2049ab0a00f761712ed5846f4b2e142a',1,'NVM_ADDR_FMT']]],
+  ['lun_5fofz',['lun_ofz',['../structNVM__ADDR__FMT.html#ab0ae53d819838f9b3cee6a3b0a0a4504',1,'NVM_ADDR_FMT']]]
 ];
