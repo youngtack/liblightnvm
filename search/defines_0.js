@@ -2,7 +2,8 @@ var searchData=
 [
   ['nvm_5fblk_5fbits',['NVM_BLK_BITS',['../liblightnvm_8h.html#a2a4298825ef59a3d40c73f74376b051b',1,'liblightnvm.h']]],
   ['nvm_5fch_5fbits',['NVM_CH_BITS',['../liblightnvm_8h.html#a427233d3954ee78db3cca3add4661cac',1,'liblightnvm.h']]],
-  ['nvm_5fdisk_5fname_5flen',['NVM_DISK_NAME_LEN',['../liblightnvm_8h.html#a070007494f8a51a282ece6fdce7fd937',1,'liblightnvm.h']]],
+  ['nvm_5fdev_5fname_5flen',['NVM_DEV_NAME_LEN',['../liblightnvm_8h.html#a2a2886bbf2aa6d9a66d5c92ce65aada4',1,'liblightnvm.h']]],
+  ['nvm_5fdev_5fpath_5flen',['NVM_DEV_PATH_LEN',['../liblightnvm_8h.html#abd2024cd46c9479750006c1c3c6501d8',1,'liblightnvm.h']]],
   ['nvm_5flun_5fbits',['NVM_LUN_BITS',['../liblightnvm_8h.html#a9364911dd193174bb017df0961aa6251',1,'liblightnvm.h']]],
   ['nvm_5fmagic_5fflag_5fdefault',['NVM_MAGIC_FLAG_DEFAULT',['../liblightnvm_8h.html#aaf26505bf6133e0d6b2ff99dc6bbd52d',1,'liblightnvm.h']]],
   ['nvm_5fmagic_5fflag_5fdual',['NVM_MAGIC_FLAG_DUAL',['../liblightnvm_8h.html#a4e577252cd3c68ff0c924c5b84a5ead4',1,'liblightnvm.h']]],

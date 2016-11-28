@@ -11,7 +11,7 @@ var searchData=
   ['nvm_5fbuf_5fpr',['nvm_buf_pr',['../liblightnvm_8h.html#ab2d8c2634a332e3ca32055b17ef7b83e',1,'liblightnvm.h']]],
   ['nvm_5fdev_5fattr_5fgeo',['nvm_dev_attr_geo',['../liblightnvm_8h.html#a68a918b18128c1fa20cc184f2cff04b4',1,'liblightnvm.h']]],
   ['nvm_5fdev_5fclose',['nvm_dev_close',['../liblightnvm_8h.html#a58a48a928e21222d1fba59ce1eb8038d',1,'liblightnvm.h']]],
-  ['nvm_5fdev_5fopen',['nvm_dev_open',['../liblightnvm_8h.html#a5b7f80190e6e498253cca8797e103633',1,'liblightnvm.h']]],
+  ['nvm_5fdev_5fopen',['nvm_dev_open',['../liblightnvm_8h.html#a0f9a3f542f749e1fac55ce926ffc8176',1,'liblightnvm.h']]],
   ['nvm_5fdev_5fpr',['nvm_dev_pr',['../liblightnvm_8h.html#af0d145fe063af6f60a23f7492b58b799',1,'liblightnvm.h']]],
   ['nvm_5fgeo_5fpr',['nvm_geo_pr',['../liblightnvm_8h.html#a8bd6ef0685191cb1bc29078efdc4c922',1,'liblightnvm.h']]],
   ['nvm_5fsblk_5fattr_5fbgn',['nvm_sblk_attr_bgn',['../liblightnvm_8h.html#a1db1a698f6b72d2d812fcd37a9ffaa3b',1,'liblightnvm.h']]],
