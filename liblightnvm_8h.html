@@ -186,16 +186,16 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:aa1bb3e897c0d6026a30c25c4b75b25ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle for nvm devices.  <a href="#aa1bb3e897c0d6026a30c25c4b75b25ef">More...</a><br/></td></tr>
 <tr class="separator:aa1bb3e897c0d6026a30c25c4b75b25ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9da499343dc6e9ca1d9e182f64465ed5"><td class="memItemLeft" align="right" valign="top">typedef struct nvm_vblk *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a9da499343dc6e9ca1d9e182f64465ed5">NVM_VBLK</a></td></tr>
-<tr class="memdesc:a9da499343dc6e9ca1d9e182f64465ed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual blocks facilitate a libc-like write, pwrite, read, pread interface to perform I/O on blocks on nvm.  <a href="#a9da499343dc6e9ca1d9e182f64465ed5">More...</a><br/></td></tr>
+<tr class="memdesc:a9da499343dc6e9ca1d9e182f64465ed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual blocks facilitate a libc-like write/pwrite, read/pread interface to perform I/O on blocks on nvm.  <a href="#a9da499343dc6e9ca1d9e182f64465ed5">More...</a><br/></td></tr>
 <tr class="separator:a9da499343dc6e9ca1d9e182f64465ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab38e6cb3fb5ec58e50c5d4ac580b81d1"><td class="memItemLeft" align="right" valign="top">typedef struct nvm_sblk *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#ab38e6cb3fb5ec58e50c5d4ac580b81d1">NVM_SBLK</a></td></tr>
-<tr class="memdesc:ab38e6cb3fb5ec58e50c5d4ac580b81d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spanning block.  <a href="#ab38e6cb3fb5ec58e50c5d4ac580b81d1">More...</a><br/></td></tr>
+<tr class="memdesc:ab38e6cb3fb5ec58e50c5d4ac580b81d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spanning block abstraction, facilitates a libc-like write/pwrite, read/pread interface to perform I/O on blocks spanning multiple physical blocks of non-volatile memory.  <a href="#ab38e6cb3fb5ec58e50c5d4ac580b81d1">More...</a><br/></td></tr>
 <tr class="separator:ab38e6cb3fb5ec58e50c5d4ac580b81d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8bd6ef0685191cb1bc29078efdc4c922"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a8bd6ef0685191cb1bc29078efdc4c922">nvm_geo_pr</a> (<a class="el" href="structNVM__GEO.html">NVM_GEO</a> geo)</td></tr>
-<tr class="memdesc:a8bd6ef0685191cb1bc29078efdc4c922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints human readable representation of given geometry.  <a href="#a8bd6ef0685191cb1bc29078efdc4c922">More...</a><br/></td></tr>
+<tr class="memdesc:a8bd6ef0685191cb1bc29078efdc4c922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints human readable representation of the given geometry.  <a href="#a8bd6ef0685191cb1bc29078efdc4c922">More...</a><br/></td></tr>
 <tr class="separator:a8bd6ef0685191cb1bc29078efdc4c922"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f9a3f542f749e1fac55ce926ffc8176"><td class="memItemLeft" align="right" valign="top"><a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a0f9a3f542f749e1fac55ce926ffc8176">nvm_dev_open</a> (const char *dev_path)</td></tr>
 <tr class="memdesc:a0f9a3f542f749e1fac55ce926ffc8176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a handle to given device path.  <a href="#a0f9a3f542f749e1fac55ce926ffc8176">More...</a><br/></td></tr>
@@ -504,7 +504,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Spanning block. </p>
+<p>Spanning block abstraction, facilitates a libc-like write/pwrite, read/pread interface to perform I/O on blocks spanning multiple physical blocks of non-volatile memory. </p>
 
 </div>
 </div>
@@ -518,7 +518,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Virtual blocks facilitate a libc-like write, pwrite, read, pread interface to perform I/O on blocks on nvm. </p>
+<p>Virtual blocks facilitate a libc-like write/pwrite, read/pread interface to perform I/O on blocks on nvm. </p>
 
 </div>
 </div>
@@ -1008,7 +1008,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Prints human readable representation of given geometry. </p>
+<p>Prints human readable representation of the given geometry. </p>
 
 </div>
 </div>
