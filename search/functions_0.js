@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['nvm_5faddr_5ferase',['nvm_addr_erase',['../liblightnvm_8h.html#a7ee3cf05c67359ac38a34cc0d01857a4',1,'liblightnvm.h']]],
+  ['nvm_5faddr_5ferase',['nvm_addr_erase',['../liblightnvm_8h.html#a5894502337b3ce3fd2b6fe6a9d796a4f',1,'liblightnvm.h']]],
   ['nvm_5faddr_5ffmt_5fpr',['nvm_addr_fmt_pr',['../liblightnvm_8h.html#a914b40fd8a69ddc0c5d907f4b603134c',1,'liblightnvm.h']]],
-  ['nvm_5faddr_5fmark',['nvm_addr_mark',['../liblightnvm_8h.html#a1c0299b33c9dfbb760568c353eac3461',1,'liblightnvm.h']]],
+  ['nvm_5faddr_5fmark',['nvm_addr_mark',['../liblightnvm_8h.html#af46190de6f81abd08db81ec6e1a9d177',1,'liblightnvm.h']]],
   ['nvm_5faddr_5fpr',['nvm_addr_pr',['../liblightnvm_8h.html#aeafbf2ab51f904703d98857f09b37628',1,'liblightnvm.h']]],
-  ['nvm_5faddr_5fread',['nvm_addr_read',['../liblightnvm_8h.html#a247ccaf0b39100fbe61bf8867369490f',1,'liblightnvm.h']]],
-  ['nvm_5faddr_5fwrite',['nvm_addr_write',['../liblightnvm_8h.html#af3cddbfb7832c7391f2e2856db9ee702',1,'liblightnvm.h']]],
+  ['nvm_5faddr_5fread',['nvm_addr_read',['../liblightnvm_8h.html#ae70d59765f6872aac0779294904c8486',1,'liblightnvm.h']]],
+  ['nvm_5faddr_5fwrite',['nvm_addr_write',['../liblightnvm_8h.html#acaace0f9e8f1f3812540cbf1683401bd',1,'liblightnvm.h']]],
   ['nvm_5fbuf_5falloc',['nvm_buf_alloc',['../liblightnvm_8h.html#a5aad6f1bcf819c25f711471f41d57fcb',1,'liblightnvm.h']]],
   ['nvm_5fbuf_5ffill',['nvm_buf_fill',['../liblightnvm_8h.html#a16df329c7ba7ab06558e99ba50b28ec9',1,'liblightnvm.h']]],
   ['nvm_5fbuf_5fpr',['nvm_buf_pr',['../liblightnvm_8h.html#ab2d8c2634a332e3ca32055b17ef7b83e',1,'liblightnvm.h']]],

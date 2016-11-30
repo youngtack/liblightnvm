@@ -218,18 +218,18 @@ Functions</h2></td></tr>
 <tr class="memitem:ab2d8c2634a332e3ca32055b17ef7b83e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#ab2d8c2634a332e3ca32055b17ef7b83e">nvm_buf_pr</a> (char *buf, size_t nbytes)</td></tr>
 <tr class="memdesc:ab2d8c2634a332e3ca32055b17ef7b83e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints <code>buf</code> to stdout.  <a href="#ab2d8c2634a332e3ca32055b17ef7b83e">More...</a><br/></td></tr>
 <tr class="separator:ab2d8c2634a332e3ca32055b17ef7b83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c0299b33c9dfbb760568c353eac3461"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a1c0299b33c9dfbb760568c353eac3461">nvm_addr_mark</a> (<a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a> dev, <a class="el" href="structNVM__ADDR.html">NVM_ADDR</a> list[], int len, uint16_t flags)</td></tr>
-<tr class="memdesc:a1c0299b33c9dfbb760568c353eac3461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark addresses good, bad, or host-bad.  <a href="#a1c0299b33c9dfbb760568c353eac3461">More...</a><br/></td></tr>
-<tr class="separator:a1c0299b33c9dfbb760568c353eac3461"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ee3cf05c67359ac38a34cc0d01857a4"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a7ee3cf05c67359ac38a34cc0d01857a4">nvm_addr_erase</a> (<a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a> dev, <a class="el" href="structNVM__ADDR.html">NVM_ADDR</a> list[], int len, uint16_t flags)</td></tr>
-<tr class="memdesc:a7ee3cf05c67359ac38a34cc0d01857a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erase nvm at given addresses.  <a href="#a7ee3cf05c67359ac38a34cc0d01857a4">More...</a><br/></td></tr>
-<tr class="separator:a7ee3cf05c67359ac38a34cc0d01857a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3cddbfb7832c7391f2e2856db9ee702"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#af3cddbfb7832c7391f2e2856db9ee702">nvm_addr_write</a> (<a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a> dev, <a class="el" href="structNVM__ADDR.html">NVM_ADDR</a> list[], int len, const void *buf, uint16_t flags)</td></tr>
-<tr class="memdesc:af3cddbfb7832c7391f2e2856db9ee702"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write content of buf to nvm at address(es)  <a href="#af3cddbfb7832c7391f2e2856db9ee702">More...</a><br/></td></tr>
-<tr class="separator:af3cddbfb7832c7391f2e2856db9ee702"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a247ccaf0b39100fbe61bf8867369490f"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a247ccaf0b39100fbe61bf8867369490f">nvm_addr_read</a> (<a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a> dev, <a class="el" href="structNVM__ADDR.html">NVM_ADDR</a> list[], int len, void *buf, uint16_t flags)</td></tr>
-<tr class="memdesc:a247ccaf0b39100fbe61bf8867369490f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read content of nvm at addresses into buf.  <a href="#a247ccaf0b39100fbe61bf8867369490f">More...</a><br/></td></tr>
-<tr class="separator:a247ccaf0b39100fbe61bf8867369490f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af46190de6f81abd08db81ec6e1a9d177"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#af46190de6f81abd08db81ec6e1a9d177">nvm_addr_mark</a> (<a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a> dev, <a class="el" href="structNVM__ADDR.html">NVM_ADDR</a> addrs[], int naddrs, uint16_t flags)</td></tr>
+<tr class="memdesc:af46190de6f81abd08db81ec6e1a9d177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mark addresses good, bad, or host-bad.  <a href="#af46190de6f81abd08db81ec6e1a9d177">More...</a><br/></td></tr>
+<tr class="separator:af46190de6f81abd08db81ec6e1a9d177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5894502337b3ce3fd2b6fe6a9d796a4f"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a5894502337b3ce3fd2b6fe6a9d796a4f">nvm_addr_erase</a> (<a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a> dev, <a class="el" href="structNVM__ADDR.html">NVM_ADDR</a> addrs[], int naddrs, uint16_t flags)</td></tr>
+<tr class="memdesc:a5894502337b3ce3fd2b6fe6a9d796a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erase nvm at given addresses.  <a href="#a5894502337b3ce3fd2b6fe6a9d796a4f">More...</a><br/></td></tr>
+<tr class="separator:a5894502337b3ce3fd2b6fe6a9d796a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaace0f9e8f1f3812540cbf1683401bd"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#acaace0f9e8f1f3812540cbf1683401bd">nvm_addr_write</a> (struct nvm_dev *dev, <a class="el" href="structNVM__ADDR.html">NVM_ADDR</a> addrs[], int naddrs, const void *buf, const void *meta, uint16_t flags)</td></tr>
+<tr class="memdesc:acaace0f9e8f1f3812540cbf1683401bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write content of buf to nvm at address(es)  <a href="#acaace0f9e8f1f3812540cbf1683401bd">More...</a><br/></td></tr>
+<tr class="separator:acaace0f9e8f1f3812540cbf1683401bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae70d59765f6872aac0779294904c8486"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#ae70d59765f6872aac0779294904c8486">nvm_addr_read</a> (struct nvm_dev *dev, <a class="el" href="structNVM__ADDR.html">NVM_ADDR</a> addrs[], int naddrs, void *buf, void *meta, uint16_t flags)</td></tr>
+<tr class="memdesc:ae70d59765f6872aac0779294904c8486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read content of nvm at addresses into buf.  <a href="#ae70d59765f6872aac0779294904c8486">More...</a><br/></td></tr>
+<tr class="separator:ae70d59765f6872aac0779294904c8486"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeafbf2ab51f904703d98857f09b37628"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#aeafbf2ab51f904703d98857f09b37628">nvm_addr_pr</a> (<a class="el" href="structNVM__ADDR.html">NVM_ADDR</a> addr)</td></tr>
 <tr class="memdesc:aeafbf2ab51f904703d98857f09b37628"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a humanly readable representation of the given address.  <a href="#aeafbf2ab51f904703d98857f09b37628">More...</a><br/></td></tr>
 <tr class="separator:aeafbf2ab51f904703d98857f09b37628"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -247,7 +247,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a90588788fa0d70e53e8075b02e9c756e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNVM__ADDR.html">NVM_ADDR</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a90588788fa0d70e53e8075b02e9c756e">nvm_vblk_attr_addr</a> (<a class="el" href="liblightnvm_8h.html#a9da499343dc6e9ca1d9e182f64465ed5">NVM_VBLK</a> vblk)</td></tr>
 <tr class="separator:a90588788fa0d70e53e8075b02e9c756e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5eb69e7fac68377591b54052888b2047"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#a5eb69e7fac68377591b54052888b2047">nvm_vblk_get</a> (<a class="el" href="liblightnvm_8h.html#a9da499343dc6e9ca1d9e182f64465ed5">NVM_VBLK</a> vblk, <a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a> dev)</td></tr>
-<tr class="memdesc:a5eb69e7fac68377591b54052888b2047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get ownership of an arbitrary flash block from the given device.  <a href="#a5eb69e7fac68377591b54052888b2047">More...</a><br/></td></tr>
+<tr class="memdesc:a5eb69e7fac68377591b54052888b2047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get ownership of an arbitrary flash block on the given device.  <a href="#a5eb69e7fac68377591b54052888b2047">More...</a><br/></td></tr>
 <tr class="separator:a5eb69e7fac68377591b54052888b2047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acec8d0d0e1b615f431dbbb1180e042be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="liblightnvm_8h.html#acec8d0d0e1b615f431dbbb1180e042be">nvm_vblk_gets</a> (<a class="el" href="liblightnvm_8h.html#a9da499343dc6e9ca1d9e182f64465ed5">NVM_VBLK</a> vblk, <a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a> dev, uint32_t ch, uint32_t lun)</td></tr>
 <tr class="memdesc:acec8d0d0e1b615f431dbbb1180e042be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reserves a block on given device using a specific lun.  <a href="#acec8d0d0e1b615f431dbbb1180e042be">More...</a><br/></td></tr>
@@ -523,7 +523,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a7ee3cf05c67359ac38a34cc0d01857a4"></a>
+<a class="anchor" id="a5894502337b3ce3fd2b6fe6a9d796a4f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -537,13 +537,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structNVM__ADDR.html">NVM_ADDR</a>&#160;</td>
-          <td class="paramname"><em>list</em>[], </td>
+          <td class="paramname"><em>addrs</em>[], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>, </td>
+          <td class="paramname"><em>naddrs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -564,8 +564,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dev</td><td>Handle to the device on which to erase </td></tr>
-    <tr><td class="paramname">list</td><td>List of memory address </td></tr>
-    <tr><td class="paramname">len</td><td>Length of memory address list </td></tr>
+    <tr><td class="paramname">addrs</td><td>Array of memory address </td></tr>
+    <tr><td class="paramname">naddrs</td><td>Length of array of memory addresses </td></tr>
     <tr><td class="paramname">flags</td><td>Access mode </td></tr>
   </table>
   </dd>
@@ -598,7 +598,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1c0299b33c9dfbb760568c353eac3461"></a>
+<a class="anchor" id="af46190de6f81abd08db81ec6e1a9d177"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -612,13 +612,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structNVM__ADDR.html">NVM_ADDR</a>&#160;</td>
-          <td class="paramname"><em>list</em>[], </td>
+          <td class="paramname"><em>addrs</em>[], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>, </td>
+          <td class="paramname"><em>naddrs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -639,8 +639,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dev</td><td>Handle to the device on which to mark </td></tr>
-    <tr><td class="paramname">list</td><td>List of memory address </td></tr>
-    <tr><td class="paramname">len</td><td>Length of memory address list </td></tr>
+    <tr><td class="paramname">addrs</td><td>Array of memory address </td></tr>
+    <tr><td class="paramname">naddrs</td><td>Length of memory address array </td></tr>
     <tr><td class="paramname">flags</td><td>0x0 = GOOD, 0x1 = BAD, 0x2 = GROWN_BAD, as well as access mode </td></tr>
   </table>
   </dd>
@@ -673,33 +673,39 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a247ccaf0b39100fbe61bf8867369490f"></a>
+<a class="anchor" id="ae70d59765f6872aac0779294904c8486"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">ssize_t nvm_addr_read </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a>&#160;</td>
+          <td class="paramtype">struct nvm_dev *&#160;</td>
           <td class="paramname"><em>dev</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structNVM__ADDR.html">NVM_ADDR</a>&#160;</td>
-          <td class="paramname"><em>list</em>[], </td>
+          <td class="paramname"><em>addrs</em>[], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>, </td>
+          <td class="paramname"><em>naddrs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>meta</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -720,9 +726,10 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dev</td><td>Handle to the device on which to erase </td></tr>
-    <tr><td class="paramname">list</td><td>List of memory address </td></tr>
-    <tr><td class="paramname">len</td><td>Length of memory address list </td></tr>
-    <tr><td class="paramname">buf</td><td>The buffer which content to write </td></tr>
+    <tr><td class="paramname">addrs</td><td>List of memory address </td></tr>
+    <tr><td class="paramname">naddrs</td><td>Length of array of memory addresses </td></tr>
+    <tr><td class="paramname">buf</td><td>Buffer to store result of read into, must be aligned to device geo.vpage_nbytes and size equal to <code>naddrs * geo.nbytes</code> </td></tr>
+    <tr><td class="paramname">meta</td><td>Buffer to store content of metadata, must be of size equal to device <code>naddrs * geo.meta_nbytes</code> </td></tr>
     <tr><td class="paramname">flags</td><td>Access mode </td></tr>
   </table>
   </dd>
@@ -731,33 +738,39 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af3cddbfb7832c7391f2e2856db9ee702"></a>
+<a class="anchor" id="acaace0f9e8f1f3812540cbf1683401bd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">ssize_t nvm_addr_write </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="liblightnvm_8h.html#aa1bb3e897c0d6026a30c25c4b75b25ef">NVM_DEV</a>&#160;</td>
+          <td class="paramtype">struct nvm_dev *&#160;</td>
           <td class="paramname"><em>dev</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structNVM__ADDR.html">NVM_ADDR</a>&#160;</td>
-          <td class="paramname"><em>list</em>[], </td>
+          <td class="paramname"><em>addrs</em>[], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>len</em>, </td>
+          <td class="paramname"><em>naddrs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>meta</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -778,9 +791,10 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dev</td><td>Handle to the device on which to erase </td></tr>
-    <tr><td class="paramname">list</td><td>List of memory address </td></tr>
-    <tr><td class="paramname">len</td><td>Length of memory address list </td></tr>
-    <tr><td class="paramname">buf</td><td>The buffer which content to write </td></tr>
+    <tr><td class="paramname">addrs</td><td>Array of memory address </td></tr>
+    <tr><td class="paramname">naddrs</td><td>Length of array of memory addresses </td></tr>
+    <tr><td class="paramname">buf</td><td>The buffer which content to write, must be aligned to device geo.vpage_nbytes and size equal to <code>naddrs * geo.nbytes</code> </td></tr>
+    <tr><td class="paramname">meta</td><td>Buffer containing metadata, must be of size equal to device <code>naddrs * geo.meta_nbytes</code> </td></tr>
     <tr><td class="paramname">flags</td><td>Access mode </td></tr>
   </table>
   </dd>
@@ -1381,7 +1395,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get ownership of an arbitrary flash block from the given device. </p>
+<p>Get ownership of an arbitrary flash block on the given device. </p>
 <p>Returns: On success, a flash block is allocated in LightNVM's media manager and vblk is filled up accordingly. On error, -1 is returned, in which case errno is set to indicate the error. </p>
 
 </div>
