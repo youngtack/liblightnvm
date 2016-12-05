@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Getting Started &mdash; liblightnvm 0.0.1 documentation</title>
+  <title>Quick Start &mdash; liblightnvm 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="liblightnvm 0.0.1 documentation" href="index.html"/>
-        <link rel="next" title="NAND Flash Constraints" href="constraints.html"/>
+        <link rel="next" title="Prerequisites" href="prerequisites.html"/>
         <link rel="prev" title="User space I/O library for Open-Channel SSDs" href="index.html"/> 
 
   
@@ -85,18 +85,12 @@
             
             
                 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#nvme-cli-source">nvme-cli &#8211; source</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#qemu-nvme-source">qemu-nvme &#8211; source</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linux-kernel-source">Linux kernel &#8211; source</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linux-kernel-binary">Linux kernel &#8211; binary</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="constraints.html">NAND Flash Constraints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="c.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command-line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python Module</a></li>
 </ul>
 
             
@@ -127,11 +121,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Getting Started</li>
+    <li>Quick Start</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/quick_start.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -141,54 +135,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
-<p>You need a device, this can be an actual physical device such as those listed
-on the LightNVM hardware page. Or it can be virtual device, such as one
-provided by qemu-nvme.</p>
-<p>Next, you need operating system support, for Linux you can use the kernel
-sources available here:</p>
-<blockquote>
-<div><ul class="simple">
-<li><a class="reference external" href="mailto:git&#37;&#52;&#48;github&#46;com">git<span>&#64;</span>github<span>&#46;</span>com</a>:OpenChannelSSD/linux.git</li>
-<li>Specifically branch &#8220;liblnvm&#8221;</li>
-</ul>
-</div></blockquote>
-<p>Lastly, you need liblightnvm itself, clone it from:</p>
-<blockquote>
-<div><ul class="simple">
-<li><a class="reference external" href="https://github.com/OpenChannelSSD/liblightnvm">https://github.com/OpenChannelSSD/liblightnvm</a></li>
-<li>Specifically branch &#8220;master&#8221;</li>
-</ul>
-</div></blockquote>
-<div class="section" id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-condimentum tempor justo a placerat. Sed commodo ornare dolor et hendrerit.</p>
-<div class="section" id="nvme-cli-source">
-<h3>nvme-cli &#8211; source<a class="headerlink" href="#nvme-cli-source" title="Permalink to this headline">¶</a></h3>
-<p>Aenean sit amet imperdiet lacus. Nulla arcu tortor, efficitur sit amet
-pellentesque a, rhoncus id ante.</p>
+  <div class="section" id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<p>Assuming that you have already attached and installed your Open-Channel SSD and
+running Ubuntu Linux (16.04) here is what you need to take liblightnvm for a
+spin:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;deb https://dl.bintray.com/openchannelssd/debs xenial main&quot;</span> <span class="p">|</span> sudo tee -a /etc/apt/sources.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+sudo apt-get update
+sudo apt-get install liblightnvm
+</pre></div>
 </div>
-<div class="section" id="qemu-nvme-source">
-<h3>qemu-nvme &#8211; source<a class="headerlink" href="#qemu-nvme-source" title="Permalink to this headline">¶</a></h3>
-<p>Aenean sit amet imperdiet lacus. Nulla arcu tortor, efficitur sit amet
-pellentesque a, rhoncus id ante.</p>
+<p>Check that it works by querying your device for information:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_info /dev/nvme0n1
+</pre></div>
 </div>
-<div class="section" id="linux-kernel-source">
-<h3>Linux kernel &#8211; source<a class="headerlink" href="#linux-kernel-source" title="Permalink to this headline">¶</a></h3>
-<p>Proin malesuada, nisi vel fermentum vehicula, velit urna lobortis odio,
-consectetur luctus felis tellus ullamcorper arcu. Vivamus dapibus, felis id
-auctor efficitur, nunc justo tincidunt odio, vel laoreet urna erat pulvinar
-libero. Pellentesque convallis risus nec laoreet vulputate.</p>
+<p>Which should output information similar to:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>** Device information  -- nvm_dev_pr **
+dev <span class="o">{</span> path<span class="o">(</span>/dev/nvme0n1<span class="o">)</span>, name<span class="o">(</span>nvme0n1<span class="o">)</span>, fd<span class="o">(</span>3<span class="o">)</span> <span class="o">}</span>
+dev-geo <span class="o">{</span>
+ nchannels<span class="o">(</span>16<span class="o">)</span>, nluns<span class="o">(</span>8<span class="o">)</span>, nplanes<span class="o">(</span>2<span class="o">)</span>, nblocks<span class="o">(</span>1048<span class="o">)</span>,
+ npages<span class="o">(</span>512<span class="o">)</span>, nsectors<span class="o">(</span>4<span class="o">)</span>, nbytes<span class="o">(</span>4096<span class="o">)</span>,
+ meta_nbytes<span class="o">(</span>16<span class="o">)</span>,
+ vpg_nbytes<span class="o">(</span>32768b:32Kb<span class="o">)</span>,
+ vblk_nbytes<span class="o">(</span>16777216b:16Mb<span class="o">)</span>,
+ total_nbytes<span class="o">(</span>2250562863104b:2146304Mb<span class="o">)</span>
+<span class="o">}</span>
+dev-fmt <span class="o">{</span>
+ ch_ofz<span class="o">(</span>0<span class="o">)</span>, ch_len<span class="o">(</span>4<span class="o">)</span>,
+ lun_ofz<span class="o">(</span>7<span class="o">)</span>, lun_len<span class="o">(</span>3<span class="o">)</span>,
+ pl_ofz<span class="o">(</span>6<span class="o">)</span>, pl_len<span class="o">(</span>1<span class="o">)</span>,
+ blk_ofz<span class="o">(</span>19<span class="o">)</span>, blk_len<span class="o">(</span>12<span class="o">)</span>,
+ pg_ofz<span class="o">(</span>10<span class="o">)</span>, pg_len<span class="o">(</span>9<span class="o">)</span>,
+ sec_ofz<span class="o">(</span>4<span class="o">)</span>, sec_len<span class="o">(</span>2<span class="o">)</span>
+<span class="o">}</span>
+</pre></div>
 </div>
-<div class="section" id="linux-kernel-binary">
-<h3>Linux kernel &#8211; binary<a class="headerlink" href="#linux-kernel-binary" title="Permalink to this headline">¶</a></h3>
-<p>Proin sagittis, eros semper tincidunt posuere, nulla dolor eleifend nisi, vel
-mollis dolor turpis sed leo. Etiam pulvinar nisl ut tellus porttitor dapibus.
-Fusce et libero at tellus mollis luctus.</p>
-</div>
-</div>
+<p>the <a class="reference internal" href="prerequisites.html#sec-prereqs"><span class="std std-ref">Prerequisites</span></a> for detailed information about what you need to setup an
+environment.</p>
+<p>With the basics in place, explore the <a class="reference internal" href="c.html#sec-c-api"><span class="std std-ref">C API</span></a>, the <a class="reference internal" href="cli.html#sec-cli"><span class="std std-ref">Command-line Interface</span></a>,
+and the <a class="reference internal" href="python.html#sec-python"><span class="std std-ref">Python Module</span></a>.</p>
 </div>
 
 
@@ -198,7 +184,7 @@ Fusce et libero at tellus mollis luctus.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="constraints.html" class="btn btn-neutral float-right" title="NAND Flash Constraints" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="prerequisites.html" class="btn btn-neutral float-right" title="Prerequisites" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="User space I/O library for Open-Channel SSDs" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
