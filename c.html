@@ -403,8 +403,9 @@
 <dt id="c.nvm_dev_attr_geo">
 <span class="target" id="liblightnvmliblightnvm_8h_1a68a918b18128c1fa20cc184f2cff04b4"></span><a class="reference internal" href="#c.NVM_GEO" title="NVM_GEO">NVM_GEO</a> <code class="descname">nvm_dev_attr_geo</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_attr_geo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the geometry of the given device. </p>
-<p>NOTE: See <a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a> for the specifics</p>
 <p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>See <a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a> for the specifics of the returned geometry</dd>
 <dt><strong>Return</strong></dt>
 <dd>The geometry (<a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a>) of given device handle </dd>
 <dt><strong>Parameters</strong></dt>
@@ -533,8 +534,9 @@
 <dt id="c.nvm_addr_erase">
 <span class="target" id="liblightnvmliblightnvm_8h_1a5894502337b3ce3fd2b6fe6a9d796a4f"></span>ssize_t <code class="descname">nvm_addr_erase</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_erase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Erase nvm at given addresses. </p>
-<p>NOTE: The addresses given to this function are interpreted as block addresses, in contrast to nvm_addr_mark, nvm_addr_write, and nvm_addr_read for which the address is interpreted as a sector address.</p>
 <p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The addresses given to this function are interpreted as block addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_mark</span></code>, <code class="docutils literal"><span class="pre">nvm_addr_write</span></code>, and <code class="docutils literal"><span class="pre">nvm_addr_read</span></code> for which the address is interpreted as a sector address.</dd>
 <dt><strong>Return</strong></dt>
 <dd>On success: 0. On error: -1 and errno set accordingly. </dd>
 <dt><strong>Parameters</strong></dt>
@@ -573,8 +575,9 @@
 <dt id="c.nvm_addr_mark">
 <span class="target" id="liblightnvmliblightnvm_8h_1af46190de6f81abd08db81ec6e1a9d177"></span>ssize_t <code class="descname">nvm_addr_mark</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_mark" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mark addresses good, bad, or host-bad. </p>
-<p>NOTE: The addresses given to this function are interpreted as block addresses, in contrast to nvm_addr_mark, nvm_addr_write, and nvm_addr_read for which the address is interpreted as a sector address.</p>
 <p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The addresses given to this function are interpreted as block addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_write</span></code>, and <code class="docutils literal"><span class="pre">nvm_addr_read</span></code> which interpret addresses and sector addresses.</dd>
 <dt><strong>Return</strong></dt>
 <dd>On success: 0. On error: -1 and errno set accordingly. </dd>
 <dt><strong>Parameters</strong></dt>
@@ -613,8 +616,9 @@
 <dt id="c.nvm_addr_read">
 <span class="target" id="liblightnvmliblightnvm_8h_1ae70d59765f6872aac0779294904c8486"></span>ssize_t <code class="descname">nvm_addr_read</code><span class="sig-paren">(</span>struct nvm_dev *<em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, void *<em>&nbsp;buf</em>, void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_read" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read content of nvm at addresses into buf. </p>
-<p>NOTE: The addresses given to this function are interpreted as sector addresses, in contrast to nvm_addr_mark and nvm_addr_erase for which the address is interpreted as a block address.</p>
 <p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The addresses given to this function are interpreted as sector addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_mark</span></code> and <code class="docutils literal"><span class="pre">nvm_addr_erase</span></code> for which the address is interpreted as a block address.</dd>
 <dt><strong>Return</strong></dt>
 <dd>On success: 0. On error: -1 and errno set accordingly. </dd>
 <dt><strong>Parameters</strong></dt>
@@ -638,8 +642,9 @@
 <dt id="c.nvm_addr_write">
 <span class="target" id="liblightnvmliblightnvm_8h_1acaace0f9e8f1f3812540cbf1683401bd"></span>ssize_t <code class="descname">nvm_addr_write</code><span class="sig-paren">(</span>struct nvm_dev *<em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, const void *<em>&nbsp;buf</em>, const void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_write" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write content of buf to nvm at address(es) </p>
-<p>NOTE: The addresses given to this function are interpreted as sector addresses, in contrast to nvm_addr_mark and nvm_addr_erase for which the address is interpreted as a block address.</p>
 <p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The addresses given to this function are interpreted as sector addresses, in contrast to nvm_addr_mark and nvm_addr_erase for which the address is interpreted as a block address.</dd>
 <dt><strong>Return</strong></dt>
 <dd>On success: 0. On error: -1 and errno set accordingly. </dd>
 <dt><strong>Parameters</strong></dt>
@@ -776,8 +781,9 @@
 <dt id="c.nvm_vblk_pwrite">
 <span class="target" id="liblightnvmliblightnvm_8h_1a61c5a75101c0d9d1f40970efbce29840"></span>ssize_t <code class="descname">nvm_vblk_pwrite</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pwrite" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write &#8216;count&#8217; bytes to &#8216;vblk&#8217; starting at &#8216;offset&#8217; from &#8216;buf&#8217;. </p>
-<p>NOTE: Use this for controlling chunked writing, do NOT use this for random-access.</p>
 <p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>Use this for controlling chunked writing, do NOT use for random access</dd>
 <dt><strong>Return</strong></dt>
 <dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
 </dl>
