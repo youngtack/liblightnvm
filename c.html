@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>C API &mdash; liblightnvm 0.0.1 documentation</title>
+  <title>API &mdash; liblightnvm 0.0.1 documentation</title>
   
 
   
@@ -88,7 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="background.html">Background</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">C API</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#geometry">Geometry</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-geo">NVM_GEO</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-geo-pr">nvm_geo_pr</a></li>
@@ -110,6 +110,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#addressing">Addressing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr">NVM_ADDR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-ret">NVM_RET</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-erase">nvm_addr_erase</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-fmt-pr">nvm_addr_fmt_pr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-mark">nvm_addr_mark</a></li>
@@ -186,7 +187,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>C API</li>
+    <li>API</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -200,8 +201,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="c-api">
-<span id="sec-c-api"></span><h1>C API<a class="headerlink" href="#c-api" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h1>
 <p>Bla bla bla asdfsd</p>
 <div class="toctree-wrapper compound">
 </div>
@@ -309,7 +310,7 @@
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">geo</span></code>: The geometry to get alignment information from </li>
-<li><code class="docutils literal"><span class="pre">nbytes</span></code>: The size of the allocated buffer in bytes </li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code>: The size of the allocated buffer in bytes</li>
 </ul>
 </dd>
 </dl>
@@ -376,7 +377,7 @@
 <dd>A handle to the device </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev_path</span></code>: Path of the device to open e.g. &#8220;/dev/nvme0n1&#8221; </li>
+<li><code class="docutils literal"><span class="pre">dev_path</span></code>: Path of the device to open e.g. &#8220;/dev/nvme0n1&#8221;</li>
 </ul>
 </dd>
 </dl>
@@ -414,7 +415,7 @@
 <dd>The geometry (<a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a>) of given device handle </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain the geometry of </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain the geometry of</li>
 </ul>
 </dd>
 </dl>
@@ -449,7 +450,7 @@
 <span class="target" id="liblightnvmstructNVM__ADDR"></span><em class="property">struct </em><code class="descname">NVM_ADDR</code><a class="headerlink" href="#c.NVM_ADDR" title="Permalink to this definition">¶</a></dt>
 <dd><p>Encapsulation of generic physical nvm addressing. </p>
 <p>The kernel translates the generic physical address represented by this structure to device specific address formats. Although the user need not worry about device specific address formats the user has to know and respect addressing within device specific geometric boundaries.</p>
-<p>For that purpose one can use the <a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a> of an NVM_DEV to obtain device specific geometries. </p>
+<p>For that purpose one can use the <code class="docutils literal"><a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref"><span class="pre">NVM_GEO</span></span></a></code> of an <code class="docutils literal"><span class="pre">NVM_DEV</span></code> to obtain device specific geometries. </p>
 <div class="breathe-sectiondef container">
 <p class="breathe-sectiondef-title rubric">Public Members</p>
 <dl class="variable">
@@ -532,23 +533,48 @@
 </dd></dl>
 
 </div>
+<div class="section" id="nvm-ret">
+<h3>NVM_RET<a class="headerlink" href="#nvm-ret" title="Permalink to this headline">¶</a></h3>
+<dl class="struct">
+<dt id="c.NVM_RET">
+<span class="target" id="liblightnvmstructNVM__RET"></span><em class="property">struct </em><code class="descname">NVM_RET</code><a class="headerlink" href="#c.NVM_RET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encapsulation and representation of lower-level error conditions. </p>
+<div class="breathe-sectiondef container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.NVM_RET::result">
+<span class="target" id="liblightnvmstructNVM__RET_1aaa2f1a0f8594627a465043b2f9a92fea"></span>uint64_t <code class="descname">result</code><a class="headerlink" href="#c.NVM_RET::result" title="Permalink to this definition">¶</a></dt>
+<dd><p>NVMe command error codes. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_RET::status">
+<span class="target" id="liblightnvmstructNVM__RET_1a498b4695274e4a716056d48d7d83054f"></span>uint16_t <code class="descname">status</code><a class="headerlink" href="#c.NVM_RET::status" title="Permalink to this definition">¶</a></dt>
+<dd><p>NVMe command status / completion bits. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
 <div class="section" id="nvm-addr-erase">
 <h3>nvm_addr_erase<a class="headerlink" href="#nvm-addr-erase" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="c.nvm_addr_erase">
-<span class="target" id="liblightnvmliblightnvm_8h_1a5894502337b3ce3fd2b6fe6a9d796a4f"></span>ssize_t <code class="descname">nvm_addr_erase</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_erase" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1ab8f3e0b486113425ed37245ec3cb77d8"></span>ssize_t <code class="descname">nvm_addr_erase</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em>, <a class="reference internal" href="#c.NVM_RET" title="NVM_RET">NVM_RET</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_erase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Erase nvm at given addresses. </p>
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
 <dd>The addresses given to this function are interpreted as block addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_mark</span></code>, <code class="docutils literal"><span class="pre">nvm_addr_write</span></code>, and <code class="docutils literal"><span class="pre">nvm_addr_read</span></code> for which the address is interpreted as a sector address.</dd>
 <dt><strong>Return</strong></dt>
-<dd>On success: 0. On error: -1 and errno set accordingly. </dd>
+<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
 <li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
 <li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
 </ul>
 </dd>
 </dl>
@@ -577,19 +603,20 @@
 <h3>nvm_addr_mark<a class="headerlink" href="#nvm-addr-mark" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="c.nvm_addr_mark">
-<span class="target" id="liblightnvmliblightnvm_8h_1af46190de6f81abd08db81ec6e1a9d177"></span>ssize_t <code class="descname">nvm_addr_mark</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_mark" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1a5a68570c55588a935a9bedf822d2419c"></span>ssize_t <code class="descname">nvm_addr_mark</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em>, <a class="reference internal" href="#c.NVM_RET" title="NVM_RET">NVM_RET</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_mark" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mark addresses good, bad, or host-bad. </p>
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
 <dd>The addresses given to this function are interpreted as block addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_write</span></code>, and <code class="docutils literal"><span class="pre">nvm_addr_read</span></code> which interpret addresses and sector addresses.</dd>
 <dt><strong>Return</strong></dt>
-<dd>On success: 0. On error: -1 and errno set accordingly. </dd>
+<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to mark </li>
 <li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of memory address array </li>
 <li><code class="docutils literal"><span class="pre">flags</span></code>: 0x0 = GOOD, 0x1 = BAD, 0x2 = GROWN_BAD, as well as access mode </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
 </ul>
 </dd>
 </dl>
@@ -618,13 +645,13 @@
 <h3>nvm_addr_read<a class="headerlink" href="#nvm-addr-read" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="c.nvm_addr_read">
-<span class="target" id="liblightnvmliblightnvm_8h_1ae70d59765f6872aac0779294904c8486"></span>ssize_t <code class="descname">nvm_addr_read</code><span class="sig-paren">(</span>struct nvm_dev *<em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, void *<em>&nbsp;buf</em>, void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_read" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1a3a31ab97518078469686e5f7687a1930"></span>ssize_t <code class="descname">nvm_addr_read</code><span class="sig-paren">(</span>struct nvm_dev *<em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, void *<em>&nbsp;buf</em>, void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, <a class="reference internal" href="#c.NVM_RET" title="NVM_RET">NVM_RET</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_read" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read content of nvm at addresses into buf. </p>
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
 <dd>The addresses given to this function are interpreted as sector addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_mark</span></code> and <code class="docutils literal"><span class="pre">nvm_addr_erase</span></code> for which the address is interpreted as a block address.</dd>
 <dt><strong>Return</strong></dt>
-<dd>On success: 0. On error: -1 and errno set accordingly. </dd>
+<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
@@ -633,6 +660,7 @@
 <li><code class="docutils literal"><span class="pre">buf</span></code>: Buffer to store result of read into, must be aligned to device geo.vpage_nbytes and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
 <li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer to store content of metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
 <li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
 </ul>
 </dd>
 </dl>
@@ -644,13 +672,13 @@
 <h3>nvm_addr_write<a class="headerlink" href="#nvm-addr-write" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="c.nvm_addr_write">
-<span class="target" id="liblightnvmliblightnvm_8h_1acaace0f9e8f1f3812540cbf1683401bd"></span>ssize_t <code class="descname">nvm_addr_write</code><span class="sig-paren">(</span>struct nvm_dev *<em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, const void *<em>&nbsp;buf</em>, const void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_write" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1aea7161e30275f6bedcdc5161fc0f580a"></span>ssize_t <code class="descname">nvm_addr_write</code><span class="sig-paren">(</span>struct nvm_dev *<em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, const void *<em>&nbsp;buf</em>, const void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, <a class="reference internal" href="#c.NVM_RET" title="NVM_RET">NVM_RET</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_write" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write content of buf to nvm at address(es) </p>
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
 <dd>The addresses given to this function are interpreted as sector addresses, in contrast to nvm_addr_mark and nvm_addr_erase for which the address is interpreted as a block address.</dd>
 <dt><strong>Return</strong></dt>
-<dd>On success: 0. On error: -1 and errno set accordingly. </dd>
+<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
@@ -659,6 +687,7 @@
 <li><code class="docutils literal"><span class="pre">buf</span></code>: The buffer which content to write, must be aligned to device geo.vpage_nbytes and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
 <li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer containing metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
 <li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
 </ul>
 </dd>
 </dl>
