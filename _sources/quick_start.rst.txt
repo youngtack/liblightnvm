@@ -1,4 +1,5 @@
 .. _sec-quick-start:
+
 =============
  Quick Start
 =============
@@ -43,10 +44,8 @@ Which should output information similar to:
    sec_ofz(4), sec_len(2)
   }
 
-.. tip: If the above does not suffice to get you started then have a look at
-the :ref:`sec-prereqs` for detailed information about what you need to setup an
-environment.
+.. tip:: If the above does not suffice to get you started then have a look at the :ref:`sec-prereqs` for detailed information about what you need to setup an environment.
 
-With the basics in place, explore the :ref:`sec-c-api`, the :ref:`sec-cli`,
-and the :ref:`sec-python`.
+With the basics in place, explore the :ref:`sec-c-api`, the :ref:`sec-cli`, and
+the :ref:`sec-python`.
 
