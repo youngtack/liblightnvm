@@ -1,0 +1,1066 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>C API &mdash; liblightnvm 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="liblightnvm 0.0.1 documentation" href="index.html"/>
+        <link rel="prev" title="NAND Flash Constraints" href="constraints.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> liblightnvm
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constraints.html">NAND Flash Constraints</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#geometry">Geometry</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-geo">NVM_GEO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-geo-pr">nvm_geo_pr</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#buffer-management">Buffer Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-buf-alloc">nvm_buf_alloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-buf-fill">nvm_buf_fill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-buf-pr">nvm_buf_pr</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#device-management">Device Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev">NVM_DEV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-open">nvm_dev_open</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-close">nvm_dev_close</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-attr-geo">nvm_dev_attr_geo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-pr">nvm_dev_pr</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#addressing">Addressing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr">NVM_ADDR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-erase">nvm_addr_erase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-fmt-pr">nvm_addr_fmt_pr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-mark">nvm_addr_mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-pr">nvm_addr_pr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-read">nvm_addr_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-write">nvm_addr_write</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#virtual-block">Virtual Block</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk">NVM_VBLK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-attr-addr">nvm_vblk_attr_addr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-new">nvm_vblk_new</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-new-on-dev">nvm_vblk_new_on_dev</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-free">nvm_vblk_free</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-pr">nvm_vblk_pr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-get">nvm_vblk_get</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-gets">nvm_vblk_gets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-put">nvm_vblk_put</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-erase">nvm_vblk_erase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-pwrite">nvm_vblk_pwrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-pread">nvm_vblk_pread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-read">nvm_vblk_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-write">nvm_vblk_write</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#spanning-block">Spanning Block</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk">NVM_SBLK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-attr-end">nvm_sblk_attr_end</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-attr-geo">nvm_sblk_attr_geo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-attr-pos-read">nvm_sblk_attr_pos_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-attr-pos-write">nvm_sblk_attr_pos_write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-erase">nvm_sblk_erase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-free">nvm_sblk_free</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-new">nvm_sblk_new</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-pad">nvm_sblk_pad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-pr">nvm_sblk_pr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-pread">nvm_sblk_pread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-pwrite">nvm_sblk_pwrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-read">nvm_sblk_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-sblk-write">nvm_sblk_write</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">liblightnvm</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>C API</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/c.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c-api">
+<h1>C API<a class="headerlink" href="#c-api" title="Permalink to this headline">¶</a></h1>
+<p>Bla bla bla asdfsd</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="geometry">
+<h2>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nvm-geo">
+<h3>NVM_GEO<a class="headerlink" href="#nvm-geo" title="Permalink to this headline">¶</a></h3>
+<dl class="struct">
+<dt id="c.NVM_GEO">
+<span class="target" id="liblightnvmstructNVM__GEO"></span><em class="property">struct </em><code class="descname">NVM_GEO</code><a class="headerlink" href="#c.NVM_GEO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Representation of geometry of devices and spanning blocks. </p>
+<div class="breathe-sectiondef container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.NVM_GEO::nchannels">
+<span class="target" id="liblightnvmstructNVM__GEO_1aa50257687f6c85d97d481bdaf241c3e9"></span>size_t <code class="descname">nchannels</code><a class="headerlink" href="#c.NVM_GEO::nchannels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of channels on device. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_GEO::nluns">
+<span class="target" id="liblightnvmstructNVM__GEO_1a8530190c8486cd6ad40bf7eb5024e4aa"></span>size_t <code class="descname">nluns</code><a class="headerlink" href="#c.NVM_GEO::nluns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of luns per channel. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_GEO::nplanes">
+<span class="target" id="liblightnvmstructNVM__GEO_1a134d83b626a8000bc29dfafa71e3b03d"></span>size_t <code class="descname">nplanes</code><a class="headerlink" href="#c.NVM_GEO::nplanes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of planes per lun. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_GEO::nblocks">
+<span class="target" id="liblightnvmstructNVM__GEO_1a4f5bf78b4d0c7c3d3a548204457f747b"></span>size_t <code class="descname">nblocks</code><a class="headerlink" href="#c.NVM_GEO::nblocks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of blocks per plane. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_GEO::npages">
+<span class="target" id="liblightnvmstructNVM__GEO_1a24df96160268d4e923448cec9832ba1e"></span>size_t <code class="descname">npages</code><a class="headerlink" href="#c.NVM_GEO::npages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of pages per block. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_GEO::nsectors">
+<span class="target" id="liblightnvmstructNVM__GEO_1ac1dc130e9d323ebae0d4eb2e2fd5b95b"></span>size_t <code class="descname">nsectors</code><a class="headerlink" href="#c.NVM_GEO::nsectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of sectors per page. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_GEO::nbytes">
+<span class="target" id="liblightnvmstructNVM__GEO_1a4bf941054494a375bb44d49e0181a8f6"></span>size_t <code class="descname">nbytes</code><a class="headerlink" href="#c.NVM_GEO::nbytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of bytes per sector. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_GEO::meta_nbytes">
+<span class="target" id="liblightnvmstructNVM__GEO_1a4ae674055cd9f9b15dc44a2f03b4e87b"></span>size_t <code class="descname">meta_nbytes</code><a class="headerlink" href="#c.NVM_GEO::meta_nbytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of bytes for out-of-bound / metadata. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_GEO::tbytes">
+<span class="target" id="liblightnvmstructNVM__GEO_1ae45906d714971d0af1adefaeb2f19f9e"></span>size_t <code class="descname">tbytes</code><a class="headerlink" href="#c.NVM_GEO::tbytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total number of bytes on device. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_GEO::vblk_nbytes">
+<span class="target" id="liblightnvmstructNVM__GEO_1ae8eca30d90289771a3848d5eb3189782"></span>size_t <code class="descname">vblk_nbytes</code><a class="headerlink" href="#c.NVM_GEO::vblk_nbytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of bytes per virtual block. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_GEO::vpg_nbytes">
+<span class="target" id="liblightnvmstructNVM__GEO_1ad384b902388478431c0ac194cd664e15"></span>size_t <code class="descname">vpg_nbytes</code><a class="headerlink" href="#c.NVM_GEO::vpg_nbytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of bytes per virtual page. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-geo-pr">
+<h3>nvm_geo_pr<a class="headerlink" href="#nvm-geo-pr" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_geo_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1a8bd6ef0685191cb1bc29078efdc4c922"></span>void <code class="descname">nvm_geo_pr</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_GEO" title="NVM_GEO">NVM_GEO</a><em>&nbsp;geo</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_geo_pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints human readable representation of the given geometry. </p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="buffer-management">
+<h2>Buffer Management<a class="headerlink" href="#buffer-management" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nvm-buf-alloc">
+<h3>nvm_buf_alloc<a class="headerlink" href="#nvm-buf-alloc" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_buf_alloc">
+<span class="target" id="liblightnvmliblightnvm_8h_1a5aad6f1bcf819c25f711471f41d57fcb"></span>void* <code class="descname">nvm_buf_alloc</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_GEO" title="NVM_GEO">NVM_GEO</a><em>&nbsp;geo</em>, size_t<em>&nbsp;nbytes</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_buf_alloc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allocate a buffer aligned to match the given geometry. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On succes: a pointer to the allocated memory. On error: NULL. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">geo</span></code>: The geometry to get alignment information from </li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code>: The size of the allocated buffer in bytes </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-buf-fill">
+<h3>nvm_buf_fill<a class="headerlink" href="#nvm-buf-fill" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_buf_fill">
+<span class="target" id="liblightnvmliblightnvm_8h_1a16df329c7ba7ab06558e99ba50b28ec9"></span>void <code class="descname">nvm_buf_fill</code><span class="sig-paren">(</span>char *<em>&nbsp;buf</em>, size_t<em>&nbsp;nbytes</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_buf_fill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills <code class="docutils literal"><span class="pre">buf</span></code> with chars A-Z. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Pointer to the buffer to fill </li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code>: Amount of bytes to fill in buf </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-buf-pr">
+<h3>nvm_buf_pr<a class="headerlink" href="#nvm-buf-pr" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_buf_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1ab2d8c2634a332e3ca32055b17ef7b83e"></span>void <code class="descname">nvm_buf_pr</code><span class="sig-paren">(</span>char *<em>&nbsp;buf</em>, size_t<em>&nbsp;nbytes</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_buf_pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints <code class="docutils literal"><span class="pre">buf</span></code> to stdout. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Pointer to the buffer to print </li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code>: Amount of bytes of buf to print </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="device-management">
+<h2>Device Management<a class="headerlink" href="#device-management" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nvm-dev">
+<h3>NVM_DEV<a class="headerlink" href="#nvm-dev" title="Permalink to this headline">¶</a></h3>
+<dl class="typedef">
+<dt id="c.NVM_DEV">
+<span class="target" id="liblightnvmliblightnvm_8h_1aa1bb3e897c0d6026a30c25c4b75b25ef"></span><em class="property">typedef </em><code class="descname">NVM_DEV</code><a class="headerlink" href="#c.NVM_DEV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle for nvm devices. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-dev-open">
+<h3>nvm_dev_open<a class="headerlink" href="#nvm-dev-open" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_dev_open">
+<span class="target" id="liblightnvmliblightnvm_8h_1a0f9a3f542f749e1fac55ce926ffc8176"></span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a> <code class="descname">nvm_dev_open</code><span class="sig-paren">(</span>const char *<em>&nbsp;dev_path</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a handle to given device path. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>A handle to the device </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev_path</span></code>: Path of the device to open e.g. &#8220;/dev/nvme0n1&#8221; </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-dev-close">
+<h3>nvm_dev_close<a class="headerlink" href="#nvm-dev-close" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_dev_close">
+<span class="target" id="liblightnvmliblightnvm_8h_1a58a48a928e21222d1fba59ce1eb8038d"></span>void <code class="descname">nvm_dev_close</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroys device-handle. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to destroy </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-dev-attr-geo">
+<h3>nvm_dev_attr_geo<a class="headerlink" href="#nvm-dev-attr-geo" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_dev_attr_geo">
+<span class="target" id="liblightnvmliblightnvm_8h_1a68a918b18128c1fa20cc184f2cff04b4"></span><a class="reference internal" href="#c.NVM_GEO" title="NVM_GEO">NVM_GEO</a> <code class="descname">nvm_dev_attr_geo</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_attr_geo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the geometry of the given device. </p>
+<p>NOTE: See <a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a> for the specifics</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>The geometry (<a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a>) of given device handle </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain the geometry of </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-dev-pr">
+<h3>nvm_dev_pr<a class="headerlink" href="#nvm-dev-pr" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_dev_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1af0d145fe063af6f60a23f7492b58b799"></span>void <code class="descname">nvm_dev_pr</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints information about the device associated with the given handle. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle of the device to print information about </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="addressing">
+<h2>Addressing<a class="headerlink" href="#addressing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nvm-addr">
+<h3>NVM_ADDR<a class="headerlink" href="#nvm-addr" title="Permalink to this headline">¶</a></h3>
+<dl class="struct">
+<dt id="c.NVM_ADDR">
+<span class="target" id="liblightnvmstructNVM__ADDR"></span><em class="property">struct </em><code class="descname">NVM_ADDR</code><a class="headerlink" href="#c.NVM_ADDR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encapsulation of generic physical nvm addressing. </p>
+<p>The kernel translates the generic physical address represented by this structure to device specific address formats. Although the user need not worry about device specific address formats the user has to know and respect addressing within device specific geometric boundaries.</p>
+<p>For that purpose one can use the <a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a> of an NVM_DEV to obtain device specific geometries. </p>
+<div class="breathe-sectiondef container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.NVM_ADDR::blk">
+<span class="target" id="liblightnvmstructNVM__ADDR_1a3425be53a1bcdf1049b8a21b228e3074"></span>uint64_t <code class="descname">blk</code><a class="headerlink" href="#c.NVM_ADDR::blk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Block address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_ADDR::pg">
+<span class="target" id="liblightnvmstructNVM__ADDR_1afcab9b31d7af6d245212f4c72eb1130f"></span>uint64_t <code class="descname">pg</code><a class="headerlink" href="#c.NVM_ADDR::pg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Page address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_ADDR::sec">
+<span class="target" id="liblightnvmstructNVM__ADDR_1adf7e8228a207838bf2aec21dbc16c51b"></span>uint64_t <code class="descname">sec</code><a class="headerlink" href="#c.NVM_ADDR::sec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sector address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_ADDR::pl">
+<span class="target" id="liblightnvmstructNVM__ADDR_1a8baca6d723d284999552aa1d60a08d57"></span>uint64_t <code class="descname">pl</code><a class="headerlink" href="#c.NVM_ADDR::pl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plane address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_ADDR::lun">
+<span class="target" id="liblightnvmstructNVM__ADDR_1addc452e6c9646d8e6e20bd5928553017"></span>uint64_t <code class="descname">lun</code><a class="headerlink" href="#c.NVM_ADDR::lun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lun address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_ADDR::ch">
+<span class="target" id="liblightnvmstructNVM__ADDR_1ac8e1c33ff02d801d8ac487882764b15d"></span>uint64_t <code class="descname">ch</code><a class="headerlink" href="#c.NVM_ADDR::ch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Channel address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_ADDR::rsvd">
+<span class="target" id="liblightnvmstructNVM__ADDR_1a489dcdcf4f323e6c08fef69b21f6f860"></span>uint64_t <code class="descname">rsvd</code><a class="headerlink" href="#c.NVM_ADDR::rsvd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reserved. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_ADDR::g">
+<span class="target" id="liblightnvmstructNVM__ADDR_1aa085a70f9001e475038142b117ece2fb"></span>struct <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a>::&#64;0::&#64;2  <code class="descname">g</code><a class="headerlink" href="#c.NVM_ADDR::g" title="Permalink to this definition">¶</a></dt>
+<dd><p>Address packing and geometric accessors. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_ADDR::line">
+<span class="target" id="liblightnvmstructNVM__ADDR_1adb9ba3d8e371b277bcab28d35196672f"></span>uint64_t <code class="descname">line</code><a class="headerlink" href="#c.NVM_ADDR::line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Address line. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_ADDR::is_cached">
+<span class="target" id="liblightnvmstructNVM__ADDR_1abde0fe9d2c74aa6850fca0b7235f8aba"></span>uint64_t <code class="descname">is_cached</code><a class="headerlink" href="#c.NVM_ADDR::is_cached" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cache hint? </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_ADDR::c">
+<span class="target" id="liblightnvmstructNVM__ADDR_1ac4ceb6858fdbd395f6e256bca7731188"></span>struct <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a>::&#64;0::&#64;3  <code class="descname">c</code><a class="headerlink" href="#c.NVM_ADDR::c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_ADDR::ppa">
+<span class="target" id="liblightnvmstructNVM__ADDR_1a2db8d1e90c20f7f95d9baedddc78f99f"></span>uint64_t <code class="descname">ppa</code><a class="headerlink" href="#c.NVM_ADDR::ppa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Address as ppa. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.1">
+<span class="target" id="liblightnvmstructNVM__ADDR_1a76c35275188e82fe4c2926c0b07d9bc2"></span>union <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a>::&#64;0 <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a>::&#64;<code class="descname">1</code><a class="headerlink" href="#c.1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-erase">
+<h3>nvm_addr_erase<a class="headerlink" href="#nvm-addr-erase" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_erase">
+<span class="target" id="liblightnvmliblightnvm_8h_1a5894502337b3ce3fd2b6fe6a9d796a4f"></span>ssize_t <code class="descname">nvm_addr_erase</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_erase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Erase nvm at given addresses. </p>
+<p>NOTE: The addresses given to this function are interpreted as block addresses, in contrast to nvm_addr_mark, nvm_addr_write, and nvm_addr_read for which the address is interpreted as a sector address.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success: 0. On error: -1 and errno set accordingly. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
+<li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
+<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
+<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-fmt-pr">
+<h3>nvm_addr_fmt_pr<a class="headerlink" href="#nvm-addr-fmt-pr" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_fmt_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1a914b40fd8a69ddc0c5d907f4b603134c"></span>void <code class="descname">nvm_addr_fmt_pr</code><span class="sig-paren">(</span>NVM_ADDR_FMT  *<em>&nbsp;fmt</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_fmt_pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a humanly readable representation of the give address format. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">fmt</span></code>: The address format to porint </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-mark">
+<h3>nvm_addr_mark<a class="headerlink" href="#nvm-addr-mark" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_mark">
+<span class="target" id="liblightnvmliblightnvm_8h_1af46190de6f81abd08db81ec6e1a9d177"></span>ssize_t <code class="descname">nvm_addr_mark</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_mark" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark addresses good, bad, or host-bad. </p>
+<p>NOTE: The addresses given to this function are interpreted as block addresses, in contrast to nvm_addr_mark, nvm_addr_write, and nvm_addr_read for which the address is interpreted as a sector address.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success: 0. On error: -1 and errno set accordingly. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to mark </li>
+<li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
+<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of memory address array </li>
+<li><code class="docutils literal"><span class="pre">flags</span></code>: 0x0 = GOOD, 0x1 = BAD, 0x2 = GROWN_BAD, as well as access mode </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-pr">
+<h3>nvm_addr_pr<a class="headerlink" href="#nvm-addr-pr" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1aeafbf2ab51f904703d98857f09b37628"></span>void <code class="descname">nvm_addr_pr</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a humanly readable representation of the given address. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">addr</span></code>: The address to print </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-read">
+<h3>nvm_addr_read<a class="headerlink" href="#nvm-addr-read" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_read">
+<span class="target" id="liblightnvmliblightnvm_8h_1ae70d59765f6872aac0779294904c8486"></span>ssize_t <code class="descname">nvm_addr_read</code><span class="sig-paren">(</span>struct nvm_dev *<em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, void *<em>&nbsp;buf</em>, void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read content of nvm at addresses into buf. </p>
+<p>NOTE: The addresses given to this function are interpreted as sector addresses, in contrast to nvm_addr_mark and nvm_addr_erase for which the address is interpreted as a block address.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success: 0. On error: -1 and errno set accordingly. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
+<li><code class="docutils literal"><span class="pre">addrs</span></code>: List of memory address </li>
+<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Buffer to store result of read into, must be aligned to device geo.vpage_nbytes and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer to store content of metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-write">
+<h3>nvm_addr_write<a class="headerlink" href="#nvm-addr-write" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_write">
+<span class="target" id="liblightnvmliblightnvm_8h_1acaace0f9e8f1f3812540cbf1683401bd"></span>ssize_t <code class="descname">nvm_addr_write</code><span class="sig-paren">(</span>struct nvm_dev *<em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, const void *<em>&nbsp;buf</em>, const void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write content of buf to nvm at address(es) </p>
+<p>NOTE: The addresses given to this function are interpreted as sector addresses, in contrast to nvm_addr_mark and nvm_addr_erase for which the address is interpreted as a block address.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success: 0. On error: -1 and errno set accordingly. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
+<li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
+<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: The buffer which content to write, must be aligned to device geo.vpage_nbytes and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer containing metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="virtual-block">
+<h2>Virtual Block<a class="headerlink" href="#virtual-block" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nvm-vblk">
+<h3>NVM_VBLK<a class="headerlink" href="#nvm-vblk" title="Permalink to this headline">¶</a></h3>
+<dl class="typedef">
+<dt id="c.NVM_VBLK">
+<span class="target" id="liblightnvmliblightnvm_8h_1a9da499343dc6e9ca1d9e182f64465ed5"></span><em class="property">typedef </em><code class="descname">NVM_VBLK</code><a class="headerlink" href="#c.NVM_VBLK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Virtual blocks facilitate a libc-like write/pwrite, read/pread interface to perform I/O on blocks on nvm. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-attr-addr">
+<h3>nvm_vblk_attr_addr<a class="headerlink" href="#nvm-vblk-attr-addr" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_attr_addr">
+<span class="target" id="liblightnvmliblightnvm_8h_1a90588788fa0d70e53e8075b02e9c756e"></span><a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a> <code class="descname">nvm_vblk_attr_addr</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_attr_addr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-new">
+<h3>nvm_vblk_new<a class="headerlink" href="#nvm-vblk-new" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_new">
+<span class="target" id="liblightnvmliblightnvm_8h_1a92fbac13ff176e26b267c8ee80dae880"></span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a> <code class="descname">nvm_vblk_new</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_new" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-new-on-dev">
+<h3>nvm_vblk_new_on_dev<a class="headerlink" href="#nvm-vblk-new-on-dev" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_new_on_dev">
+<span class="target" id="liblightnvmliblightnvm_8h_1a6e9e857b6df986018ff327aac44d0ee1"></span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a> <code class="descname">nvm_vblk_new_on_dev</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_new_on_dev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-free">
+<h3>nvm_vblk_free<a class="headerlink" href="#nvm-vblk-free" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_free">
+<span class="target" id="liblightnvmliblightnvm_8h_1a9ac579cebccd918cfcbaabdde79860e2"></span>void <code class="descname">nvm_vblk_free</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_free" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-pr">
+<h3>nvm_vblk_pr<a class="headerlink" href="#nvm-vblk-pr" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1afa6463e6301fe11b5f4b046946db47db"></span>void <code class="descname">nvm_vblk_pr</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-get">
+<h3>nvm_vblk_get<a class="headerlink" href="#nvm-vblk-get" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_get">
+<span class="target" id="liblightnvmliblightnvm_8h_1a5eb69e7fac68377591b54052888b2047"></span>int <code class="descname">nvm_vblk_get</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em>, <a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get ownership of an arbitrary flash block on the given device. </p>
+<p>Returns: On success, a flash block is allocated in LightNVM&#8217;s media manager and vblk is filled up accordingly. On error, -1 is returned, in which case errno is set to indicate the error. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-gets">
+<h3>nvm_vblk_gets<a class="headerlink" href="#nvm-vblk-gets" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_gets">
+<span class="target" id="liblightnvmliblightnvm_8h_1acec8d0d0e1b615f431dbbb1180e042be"></span>int <code class="descname">nvm_vblk_gets</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em>, <a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, uint32_t<em>&nbsp;ch</em>, uint32_t<em>&nbsp;lun</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_gets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reserves a block on given device using a specific lun. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">vblk</span></code>: Block created with nvm_vblk_new </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle obtained with nvm_dev_open </li>
+<li><code class="docutils literal"><span class="pre">ch</span></code>: Channel from which to reserve via </li>
+<li><code class="docutils literal"><span class="pre">lun</span></code>: Lun from which to reserve via</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-put">
+<h3>nvm_vblk_put<a class="headerlink" href="#nvm-vblk-put" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_put">
+<span class="target" id="liblightnvmliblightnvm_8h_1ad1353ea4c2a23c266e7efce127a21ebd"></span>int <code class="descname">nvm_vblk_put</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put flash block(s) represented by vblk back to dev. </p>
+<p>This action implies that the owner of the flash block previous to this function call no longer owns the flash block, and therefor can no longer submit I/Os to it, or expect that data on it is persisted. The flash block cannot be reclaimed by the previous owner.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-erase">
+<h3>nvm_vblk_erase<a class="headerlink" href="#nvm-vblk-erase" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_erase">
+<span class="target" id="liblightnvmliblightnvm_8h_1a26d1cd0be6faeb8d512932292adc4dcb"></span>ssize_t <code class="descname">nvm_vblk_erase</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_erase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Erase an entire vblk. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-pwrite">
+<h3>nvm_vblk_pwrite<a class="headerlink" href="#nvm-vblk-pwrite" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_pwrite">
+<span class="target" id="liblightnvmliblightnvm_8h_1a61c5a75101c0d9d1f40970efbce29840"></span>ssize_t <code class="descname">nvm_vblk_pwrite</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pwrite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write &#8216;count&#8217; bytes to &#8216;vblk&#8217; starting at &#8216;offset&#8217; from &#8216;buf&#8217;. </p>
+<p>NOTE: Use this for controlling chunked writing, do NOT use this for random-access.</p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-pread">
+<h3>nvm_vblk_pread<a class="headerlink" href="#nvm-vblk-pread" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_pread">
+<span class="target" id="liblightnvmliblightnvm_8h_1ac17c300fc554979b4c90a6e0492862d5"></span>ssize_t <code class="descname">nvm_vblk_pread</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read &#8216;count&#8217; bytes from &#8216;vblk&#8217; starting at &#8216;offset&#8217; into &#8216;buf&#8217;. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-read">
+<h3>nvm_vblk_read<a class="headerlink" href="#nvm-vblk-read" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_read">
+<span class="target" id="liblightnvmliblightnvm_8h_1ae22fa6c24e290ed763efb88bfc82dd8e"></span>ssize_t <code class="descname">nvm_vblk_read</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the entire vblk, storing it into buf. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-write">
+<h3>nvm_vblk_write<a class="headerlink" href="#nvm-vblk-write" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_write">
+<span class="target" id="liblightnvmliblightnvm_8h_1acf78972dc52a3fec951cbbf76036d4fd"></span>ssize_t <code class="descname">nvm_vblk_write</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write &#8216;count&#8217; bytes to &#8216;vblk&#8217; starting at &#8216;offset&#8217; from &#8216;buf&#8217;. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="spanning-block">
+<h2>Spanning Block<a class="headerlink" href="#spanning-block" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nvm-sblk">
+<h3>NVM_SBLK<a class="headerlink" href="#nvm-sblk" title="Permalink to this headline">¶</a></h3>
+<dl class="typedef">
+<dt id="c.NVM_SBLK">
+<span class="target" id="liblightnvmliblightnvm_8h_1ab38e6cb3fb5ec58e50c5d4ac580b81d1"></span><em class="property">typedef </em><code class="descname">NVM_SBLK</code><a class="headerlink" href="#c.NVM_SBLK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spanning block abstraction, facilitates a libc-like write/pwrite, read/pread interface to perform I/O on blocks spanning multiple physical blocks of non-volatile memory. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-attr-end">
+<h3>nvm_sblk_attr_end<a class="headerlink" href="#nvm-sblk-attr-end" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_attr_end">
+<span class="target" id="liblightnvmliblightnvm_8h_1a172b8dbdbfabf114f9233658a4e6b119"></span><a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a> <code class="descname">nvm_sblk_attr_end</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_attr_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the address where the sblk ends. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">sblk</span></code>: The entity to retrieve information from </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-attr-geo">
+<h3>nvm_sblk_attr_geo<a class="headerlink" href="#nvm-sblk-attr-geo" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_attr_geo">
+<span class="target" id="liblightnvmliblightnvm_8h_1add68072a8c052b8b1cfe5ae224c63ac8"></span><a class="reference internal" href="#c.NVM_GEO" title="NVM_GEO">NVM_GEO</a> <code class="descname">nvm_sblk_attr_geo</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_attr_geo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the geometry of the given sblk. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">sblk</span></code>: The entity to retrieve information from </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-attr-pos-read">
+<h3>nvm_sblk_attr_pos_read<a class="headerlink" href="#nvm-sblk-attr-pos-read" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_attr_pos_read">
+<span class="target" id="liblightnvmliblightnvm_8h_1a62bae7651bbeec1f538fdb08362bc00f"></span>size_t <code class="descname">nvm_sblk_attr_pos_read</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_attr_pos_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the current cursor position for read to the sblk. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">sblk</span></code>: The entity to retrieve information from </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-attr-pos-write">
+<h3>nvm_sblk_attr_pos_write<a class="headerlink" href="#nvm-sblk-attr-pos-write" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_attr_pos_write">
+<span class="target" id="liblightnvmliblightnvm_8h_1aac95a0e48959c55a4c02c7a8e0390aeb"></span>size_t <code class="descname">nvm_sblk_attr_pos_write</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_attr_pos_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the current cursor position for writes to the sblk. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">sblk</span></code>: The entity to retrieve information from </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-erase">
+<h3>nvm_sblk_erase<a class="headerlink" href="#nvm-sblk-erase" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_erase">
+<span class="target" id="liblightnvmliblightnvm_8h_1abf8deaa8f2e83ad8bb348a965bcd49ea"></span>ssize_t <code class="descname">nvm_sblk_erase</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_erase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Erase an sblk. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-free">
+<h3>nvm_sblk_free<a class="headerlink" href="#nvm-sblk-free" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_free">
+<span class="target" id="liblightnvmliblightnvm_8h_1a095d86df318ffef7ba8f027d21a60e55"></span>void <code class="descname">nvm_sblk_free</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_free" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroy an sblk. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-new">
+<h3>nvm_sblk_new<a class="headerlink" href="#nvm-sblk-new" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_new">
+<span class="target" id="liblightnvmliblightnvm_8h_1a9f40c6d7810108cde35f7e758fe6e2f3"></span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a> <code class="descname">nvm_sblk_new</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, int<em>&nbsp;ch_bgn</em>, int<em>&nbsp;ch_end</em>, int<em>&nbsp;lun_bgn</em>, int<em>&nbsp;lun_end</em>, int<em>&nbsp;blk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new sblk. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-pad">
+<h3>nvm_sblk_pad<a class="headerlink" href="#nvm-sblk-pad" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_pad">
+<span class="target" id="liblightnvmliblightnvm_8h_1a247d2f25d623e83b02e92814920e41a6"></span>ssize_t <code class="descname">nvm_sblk_pad</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_pad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pad the sblk. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-pr">
+<h3>nvm_sblk_pr<a class="headerlink" href="#nvm-sblk-pr" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1aa44d760d1889df2b5e3d22655103a1c4"></span>void <code class="descname">nvm_sblk_pr</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the sblk in a humanly readable form. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">sblk</span></code>: The entity to print information about </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-pread">
+<h3>nvm_sblk_pread<a class="headerlink" href="#nvm-sblk-pread" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_pread">
+<span class="target" id="liblightnvmliblightnvm_8h_1af0474cfb549bcf3a1d8aca3a46e6f970"></span>ssize_t <code class="descname">nvm_sblk_pread</code><span class="sig-paren">(</span>struct nvm_sblk *<em>&nbsp;sblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_pread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Positioned read from sblk to buffer. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-pwrite">
+<h3>nvm_sblk_pwrite<a class="headerlink" href="#nvm-sblk-pwrite" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">doxygenfunction: Cannot find function &#8220;nvm_sblk_pwrite&#8221; in doxygen xml output for project &#8220;liblightnvm&#8221; from directory: /home/travis/build/OpenChannelSSD/liblightnvm/build/doc/doxy/xml</p>
+</div>
+</div>
+<div class="section" id="nvm-sblk-read">
+<h3>nvm_sblk_read<a class="headerlink" href="#nvm-sblk-read" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_read">
+<span class="target" id="liblightnvmliblightnvm_8h_1a0e8dc76a7c6c1cc414580f4ea0b03280"></span>ssize_t <code class="descname">nvm_sblk_read</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read content from sblk to buffer. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-sblk-write">
+<h3>nvm_sblk_write<a class="headerlink" href="#nvm-sblk-write" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_sblk_write">
+<span class="target" id="liblightnvmliblightnvm_8h_1aa720ffc5f85f6045f4ed1d7d20d041b6"></span>ssize_t <code class="descname">nvm_sblk_write</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write content from buffer to sblk. </p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="constraints.html" class="btn btn-neutral" title="NAND Flash Constraints" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, LightNVM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
