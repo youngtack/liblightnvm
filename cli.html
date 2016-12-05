@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Command-line Interface &mdash; liblightnvm 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="liblightnvm 0.0.1 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> liblightnvm
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constraints.html">NAND Flash Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c.html">C API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="c.html#geometry">Geometry</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-geo">NVM_GEO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-geo-pr">nvm_geo_pr</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#buffer-management">Buffer Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-buf-alloc">nvm_buf_alloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-buf-fill">nvm_buf_fill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-buf-pr">nvm_buf_pr</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#device-management">Device Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-dev">NVM_DEV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-dev-open">nvm_dev_open</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-dev-close">nvm_dev_close</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-dev-attr-geo">nvm_dev_attr_geo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-dev-pr">nvm_dev_pr</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#addressing">Addressing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-addr">NVM_ADDR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-addr-erase">nvm_addr_erase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-addr-fmt-pr">nvm_addr_fmt_pr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-addr-mark">nvm_addr_mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-addr-pr">nvm_addr_pr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-addr-read">nvm_addr_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-addr-write">nvm_addr_write</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#virtual-block">Virtual Block</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk">NVM_VBLK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-attr-addr">nvm_vblk_attr_addr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-new">nvm_vblk_new</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-new-on-dev">nvm_vblk_new_on_dev</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-free">nvm_vblk_free</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-pr">nvm_vblk_pr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-get">nvm_vblk_get</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-gets">nvm_vblk_gets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-put">nvm_vblk_put</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-erase">nvm_vblk_erase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-pwrite">nvm_vblk_pwrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-pread">nvm_vblk_pread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-read">nvm_vblk_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-vblk-write">nvm_vblk_write</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#spanning-block">Spanning Block</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk">NVM_SBLK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-attr-end">nvm_sblk_attr_end</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-attr-geo">nvm_sblk_attr_geo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-attr-pos-read">nvm_sblk_attr_pos_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-attr-pos-write">nvm_sblk_attr_pos_write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-erase">nvm_sblk_erase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-free">nvm_sblk_free</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-new">nvm_sblk_new</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-pad">nvm_sblk_pad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-pr">nvm_sblk_pr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-pread">nvm_sblk_pread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-pwrite">nvm_sblk_pwrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-read">nvm_sblk_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="c.html#nvm-sblk-write">nvm_sblk_write</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">liblightnvm</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Command-line Interface</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/cli.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="command-line-interface">
+<h1>Command-line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h1>
+<p>Bla bla bla asdfsd</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<hr class="docutils" />
+<p>sdfsdf</p>
+<blockquote>
+<div>nvm_addr</div></blockquote>
+<hr class="docutils" />
+<p>sdfdsfsd</p>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, LightNVM.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
