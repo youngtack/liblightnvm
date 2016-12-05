@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NAND Flash Constraints &mdash; liblightnvm 0.0.1 documentation</title>
+  <title>Background &mdash; liblightnvm 0.0.1 documentation</title>
   
 
   
@@ -87,7 +87,12 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">NAND Flash Constraints</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Background</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#device-architecture">Device Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#media-constraints">Media Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#media-access-mode">Media Access Mode</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="c.html">C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command-line Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">Python Module</a></li>
@@ -121,11 +126,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>NAND Flash Constraints</li>
+    <li>Background</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/constraints.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/background.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -135,13 +140,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="nand-flash-constraints">
-<h1>NAND Flash Constraints<a class="headerlink" href="#nand-flash-constraints" title="Permalink to this headline">¶</a></h1>
-<p>Good to know...</p>
+  <div class="section" id="background">
+<span id="sec-background"></span><h1>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h1>
+<p>A collection of notes which are nice to know when working with NAND flash
+devices.</p>
+<div class="section" id="device-architecture">
+<h2>Device Architecture<a class="headerlink" href="#device-architecture" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div>Access mode</div></blockquote>
-<hr class="docutils" />
+<div><ul class="simple">
+<li>device geometry</li>
+<li>parallel units</li>
+<li>throughput and latency</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="media-constraints">
+<h2>Media Constraints<a class="headerlink" href="#media-constraints" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>erase before write</li>
+<li>write granularities / write constraints</li>
+<li>read granularities</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="media-access-mode">
+<h2>Media Access Mode<a class="headerlink" href="#media-access-mode" title="Permalink to this headline">¶</a></h2>
 <p>Single vs multi-plane access mode (dual/quad)</p>
+</div>
 </div>
 
 
