@@ -22,7 +22,7 @@ nvm_dev
 .. code-block:: bash
 
   Usage:
-  nvm_dev /dev/dev_name
+   nvm_dev /dev/dev_name
   
 
 nvm_addr
