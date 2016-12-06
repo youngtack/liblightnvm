@@ -34,6 +34,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="liblightnvm 0.0.1 documentation" href="index.html"/>
+        <link rel="next" title="Python Module" href="python.html"/>
         <link rel="prev" title="C API" href="c.html"/> 
 
   
@@ -89,12 +90,13 @@
 <li class="toctree-l1"><a class="reference internal" href="background.html">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="c.html">C API</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Command-Line Interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#nvm-info">nvm_info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvm-dev">nvm_dev</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvm-addr">nvm_addr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvm-vblk">nvm_vblk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvm-sblk">nvm_sblk</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python Module</a></li>
 </ul>
 
             
@@ -141,24 +143,75 @@
             
   <div class="section" id="command-line-interface">
 <span id="sec-cli"></span><h1>Command-Line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h1>
-<p>Example programs to interact with Open-Channel SSDs</p>
+<p>The command-line interface (CLI) makes most of the <a class="reference internal" href="c.html#sec-c-api"><span class="std std-ref">C API</span></a>
+functionality available from the command-line. The purpose of the CLI are
+manyfold:</p>
+<blockquote>
+<div><ul class="simple">
+<li>The CLI source code serve as example code of using the <a class="reference internal" href="c.html#sec-c-api"><span class="std std-ref">C API</span></a></li>
+<li>The CLI itself provide tools for experimentation and debugging</li>
+<li>A supplement to unit-testing the <a class="reference internal" href="c.html#sec-c-api"><span class="std std-ref">C API</span></a></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This CLI is not meant to be tool for conditioning or initialitization of Open-Channel SSDs, for such purposes see <a class="reference external" href="https://github.com/OpenChannelSSD/lnvm-tools">lvnm-tools</a> and <a class="reference external" href="https://github.com/linux-nvme/nvme-cli">nvme-cli</a></p>
+</div>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="nvm-info">
-<h2>nvm_info<a class="headerlink" href="#nvm-info" title="Permalink to this headline">¶</a></h2>
-<p>List device info</p>
+<div class="section" id="nvm-dev">
+<h2>nvm_dev<a class="headerlink" href="#nvm-dev" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Usage:
+nvm_dev /dev/dev_name
+</pre></div>
+</div>
 </div>
 <div class="section" id="nvm-addr">
 <h2>nvm_addr<a class="headerlink" href="#nvm-addr" title="Permalink to this headline">¶</a></h2>
-<p>Perform read/write/erase on a given address</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Usage:
+ nvm_addr  erase dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr  write dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr write_m dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr   <span class="nb">read</span> dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr read_m dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr  fmt_p dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr  fmt_g dev_path ch lun pl blk pg sec
+ nvm_addr mark_f dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr mark_b dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr mark_g dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="nvm-vblk">
 <h2>nvm_vblk<a class="headerlink" href="#nvm-vblk" title="Permalink to this headline">¶</a></h2>
-<p>Perform read/write/erase on a virtual page address (That cover a block across all planes)</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Usage:
+ nvm_vblk    get dev_path ch lun
+ nvm_vblk    put dev_path ch lun blk
+ nvm_vblk   <span class="nb">read</span> dev_path ch lun blk
+ nvm_vblk  write dev_path ch lun blk
+ nvm_vblk  erase dev_path ch lun blk
+ nvm_vblk  pread dev_path ch lun blk pg
+ nvm_vblk pwrite dev_path ch lun blk pg
+OR using PPA <span class="o">(</span>parts as above are extracted from address<span class="o">)</span>:
+ nvm_vblk    get dev_path ppa
+ nvm_vblk    put dev_path ppa
+ nvm_vblk   <span class="nb">read</span> dev_path ppa
+ nvm_vblk  write dev_path ppa
+ nvm_vblk  erase dev_path ppa
+ nvm_vblk  pread dev_path ppa
+ nvm_vblk pwrite dev_path ppa
+</pre></div>
+</div>
 </div>
 <div class="section" id="nvm-sblk">
 <h2>nvm_sblk<a class="headerlink" href="#nvm-sblk" title="Permalink to this headline">¶</a></h2>
-<p>Perform read/write/erase on a striped address</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>Usage:
+ nvm_sblk  erase dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_sblk  write dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_sblk    pad dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_sblk   <span class="nb">read</span> dev_path ch_bgn ch_end lun_bgn lun_end blk
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -168,6 +221,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="python.html" class="btn btn-neutral float-right" title="Python Module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="c.html" class="btn btn-neutral" title="C API" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
