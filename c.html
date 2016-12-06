@@ -108,6 +108,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-pr">nvm_dev_pr</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#bad-block-management">Bad Block Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt">NVM_BBT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-get">nvm_bbt_get</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-set">nvm_bbt_set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-pr">nvm_bbt_pr</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#addressing">Addressing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr">NVM_ADDR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-ret">NVM_RET</a></li>
@@ -433,6 +440,97 @@
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Handle of the device to print information about </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="bad-block-management">
+<h2>Bad Block Management<a class="headerlink" href="#bad-block-management" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nvm-bbt">
+<h3>NVM_BBT<a class="headerlink" href="#nvm-bbt" title="Permalink to this headline">¶</a></h3>
+<dl class="struct">
+<dt id="c.NVM_BBT">
+<span class="target" id="liblightnvmstructNVM__BBT"></span><em class="property">struct </em><code class="descname">NVM_BBT</code><a class="headerlink" href="#c.NVM_BBT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Representation of bad-block-table. </p>
+<p>Create and initialize by calling <code class="docutils literal"><span class="pre">nvm_bbt_get</span></code> Destroy by calling libc <code class="docutils literal"><span class="pre">free</span></code> Print it with <code class="docutils literal"><span class="pre">nvm_bbt_pr</span></code> Update it by accessing blks[] after <code class="docutils literal"><span class="pre">nvm_bbt_get</span></code> Update device by calling <code class="docutils literal"><span class="pre">nvm_bbt_set</span></code> </p>
+<div class="breathe-sectiondef container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.NVM_BBT::addr">
+<span class="target" id="liblightnvmstructNVM__BBT_1a1f13a3d8693721d55ae554da84c4fa0b"></span><a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a> <code class="descname">addr</code><a class="headerlink" href="#c.NVM_BBT::addr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Address of the LUN the bad block table covers. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_BBT::blks">
+<span class="target" id="liblightnvmstructNVM__BBT_1a4d29e9f5012c9757e569be8a6240fa82"></span>uint8_t* <code class="descname">blks</code><a class="headerlink" href="#c.NVM_BBT::blks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array containing block status for each block in LUN. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.NVM_BBT::nblks">
+<span class="target" id="liblightnvmstructNVM__BBT_1a6b31419850f3ca224e32bed58f2e17fa"></span>uint64_t <code class="descname">nblks</code><a class="headerlink" href="#c.NVM_BBT::nblks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Length of the bad block array. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-bbt-get">
+<h3>nvm_bbt_get<a class="headerlink" href="#nvm-bbt-get" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_bbt_get">
+<span class="target" id="liblightnvmliblightnvm_8h_1adede590ccba0b170e0388e0b75374b33"></span><a class="reference internal" href="#c.NVM_BBT" title="NVM_BBT">NVM_BBT</a>* <code class="descname">nvm_bbt_get</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves a bad block table from device. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>The bad-block-table for given given addr / dev </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to retrieve a bad-block-table from </li>
+<li><code class="docutils literal"><span class="pre">addr</span></code>: Address of the LUN to retrieve bad-block-table for </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-bbt-set">
+<h3>nvm_bbt_set<a class="headerlink" href="#nvm-bbt-set" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_bbt_set">
+<span class="target" id="liblightnvmliblightnvm_8h_1a9e0de97834ac296e45a4c3d327a2c554"></span>ssize_t <code class="descname">nvm_bbt_set</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_BBT" title="NVM_BBT">NVM_BBT</a>  *<em>&nbsp;bbt</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the bad-block-table on given device using the provided bbt. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>0 on success. -1 on err and errno set appropriately. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to update a bad-block-table </li>
+<li><code class="docutils literal"><span class="pre">bbt</span></code>: The bbt to write to device </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-bbt-pr">
+<h3>nvm_bbt_pr<a class="headerlink" href="#nvm-bbt-pr" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_bbt_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1a170b56286c43cee0547f8909c3876bbf"></span>void <code class="descname">nvm_bbt_pr</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_BBT" title="NVM_BBT">NVM_BBT</a>  *<em>&nbsp;bbt</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a humanly readable representation of the given bad-block-table. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">bbt</span></code>: The bad-block-table to print </li>
 </ul>
 </dd>
 </dl>

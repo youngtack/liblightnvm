@@ -74,6 +74,32 @@ nvm_dev_pr
 
 
 
+Bad Block Management
+====================
+
+NVM_BBT
+-------
+
+.. doxygenstruct:: NVM_BBT
+   :members:
+
+nvm_bbt_get
+-----------
+
+.. doxygenfunction:: nvm_bbt_get
+
+nvm_bbt_set
+-----------
+
+.. doxygenfunction:: nvm_bbt_set
+
+nvm_bbt_pr
+----------
+
+.. doxygenfunction:: nvm_bbt_pr
+
+
+
 Addressing
 ==========
 
