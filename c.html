@@ -542,15 +542,15 @@
 <div class="breathe-sectiondef container">
 <p class="breathe-sectiondef-title rubric">Public Members</p>
 <dl class="variable">
-<dt id="c.NVM_RET::result">
-<span class="target" id="liblightnvmstructNVM__RET_1aaa2f1a0f8594627a465043b2f9a92fea"></span>uint64_t <code class="descname">result</code><a class="headerlink" href="#c.NVM_RET::result" title="Permalink to this definition">¶</a></dt>
-<dd><p>NVMe command error codes. </p>
+<dt id="c.NVM_RET::status">
+<span class="target" id="liblightnvmstructNVM__RET_1adbbb37d7c8a99cedd930b8ac61e5fb66"></span>uint64_t <code class="descname">status</code><a class="headerlink" href="#c.NVM_RET::status" title="Permalink to this definition">¶</a></dt>
+<dd><p>NVMe command status / completion bits. </p>
 </dd></dl>
 
 <dl class="variable">
-<dt id="c.NVM_RET::status">
-<span class="target" id="liblightnvmstructNVM__RET_1a498b4695274e4a716056d48d7d83054f"></span>uint16_t <code class="descname">status</code><a class="headerlink" href="#c.NVM_RET::status" title="Permalink to this definition">¶</a></dt>
-<dd><p>NVMe command status / completion bits. </p>
+<dt id="c.NVM_RET::result">
+<span class="target" id="liblightnvmstructNVM__RET_1ab3d72284aae0419a4edda540eff8709e"></span>uint32_t <code class="descname">result</code><a class="headerlink" href="#c.NVM_RET::result" title="Permalink to this definition">¶</a></dt>
+<dd><p>NVMe command error codes. </p>
 </dd></dl>
 
 </div>
@@ -586,7 +586,7 @@
 <h3>nvm_addr_write<a class="headerlink" href="#nvm-addr-write" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="c.nvm_addr_write">
-<span class="target" id="liblightnvmliblightnvm_8h_1aea7161e30275f6bedcdc5161fc0f580a"></span>ssize_t <code class="descname">nvm_addr_write</code><span class="sig-paren">(</span>struct nvm_dev *<em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, const void *<em>&nbsp;buf</em>, const void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, <a class="reference internal" href="#c.NVM_RET" title="NVM_RET">NVM_RET</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_write" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1aaa6149f5895604054a5ca33ad6c779d7"></span>ssize_t <code class="descname">nvm_addr_write</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, const void *<em>&nbsp;buf</em>, const void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, <a class="reference internal" href="#c.NVM_RET" title="NVM_RET">NVM_RET</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_write" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write content of buf to nvm at address(es) </p>
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
@@ -613,7 +613,7 @@
 <h3>nvm_addr_read<a class="headerlink" href="#nvm-addr-read" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="c.nvm_addr_read">
-<span class="target" id="liblightnvmliblightnvm_8h_1a3a31ab97518078469686e5f7687a1930"></span>ssize_t <code class="descname">nvm_addr_read</code><span class="sig-paren">(</span>struct nvm_dev *<em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, void *<em>&nbsp;buf</em>, void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, <a class="reference internal" href="#c.NVM_RET" title="NVM_RET">NVM_RET</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_read" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1ac196169e9a75da30822b22db08ed8ffc"></span>ssize_t <code class="descname">nvm_addr_read</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, void *<em>&nbsp;buf</em>, void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, <a class="reference internal" href="#c.NVM_RET" title="NVM_RET">NVM_RET</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_read" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read content of nvm at addresses into buf. </p>
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
