@@ -12,7 +12,7 @@ manyfold:
  * The CLI itself provide tools for experimentation and debugging
  * A supplement to unit-testing the :ref:`sec-c-api`
 
-.. note:: This CLI is not meant to be tool for conditioning or initialitization of Open-Channel SSDs, for such purposes see `lvnm-tools <https://github.com/OpenChannelSSD/lnvm-tools>`_ and `nvme-cli <https://github.com/linux-nvme/nvme-cli>`_
+.. note:: This CLI is not meant to be tool for conditioning or initialitization of Open-Channel SSDs, for such purposes see `lvnm-tools <https://github.com/OpenChannelSSD/lnvm-tools>`_ and `NVMe CLI <https://github.com/linux-nvme/nvme-cli>`_
 
 .. toctree::
 
