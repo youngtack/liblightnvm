@@ -85,7 +85,11 @@
             
             
                 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hello-world-of-nvm">Hello World of NVM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interact-via-cli">Interact via CLI</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="background.html">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="c.html">C API</a></li>
@@ -145,8 +149,21 @@ sudo apt-get update
 sudo apt-get install liblightnvm
 </pre></div>
 </div>
+<div class="section" id="hello-world-of-nvm">
+<h2>Hello World of NVM<a class="headerlink" href="#hello-world-of-nvm" title="Permalink to this headline">¶</a></h2>
+<p>Include the liblightnvm header in your C/C++ source:</p>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;liblightnvm.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">liblightnvm is also available as a <strong>static</strong> library. So you can add <cite>/usr/lib/liblightnvm.a</cite> to your compiler target instead of linking dynamically.</p>
+</div>
+</div>
+<div class="section" id="interact-via-cli">
+<h2>Interact via CLI<a class="headerlink" href="#interact-via-cli" title="Permalink to this headline">¶</a></h2>
 <p>Check that it works by querying your device for information:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_info /dev/nvme0n1
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_dev info /dev/nvme0n1
 </pre></div>
 </div>
 <p>Which should output information similar to:</p>
@@ -177,6 +194,7 @@ dev-fmt <span class="o">{</span>
 <p>With the basics in place, explore the <a class="reference internal" href="c.html#sec-c-api"><span class="std std-ref">C API</span></a>, the <a class="reference internal" href="cli.html#sec-cli"><span class="std std-ref">Command-Line Interface</span></a>, and
 the <a class="reference internal" href="python.html#sec-python"><span class="std std-ref">Python Module</span></a>. The section on <a class="reference internal" href="background.html#sec-background"><span class="std std-ref">Background</span></a> provide a brief
 glance of useful information on working with SSDs.</p>
+</div>
 </div>
 
 

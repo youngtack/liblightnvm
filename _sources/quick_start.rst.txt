@@ -15,11 +15,26 @@ spin:
   sudo apt-get update
   sudo apt-get install liblightnvm
 
+
+Hello World of NVM
+==================
+
+Include the liblightnvm header in your C/C++ source:
+
+.. code-block:: c
+
+  #include <liblightnvm.h>
+
+.. tip:: liblightnvm is also available as a **static** library. So you can add `/usr/lib/liblightnvm.a` to your compiler target instead of linking dynamically.
+
+Interact via CLI
+================
+
 Check that it works by querying your device for information:
 
 .. code-block:: bash
 
-  nvm_info /dev/nvme0n1
+  nvm_dev info /dev/nvme0n1
 
 Which should output information similar to:
 
