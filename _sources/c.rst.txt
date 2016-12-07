@@ -4,7 +4,7 @@
  C API
 =======
 
-API to interact with an Open-Channel SSD from user-space.
+C API to interact with an Open-Channel SSDs from user space.
 
 .. toctree::
 
