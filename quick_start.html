@@ -86,7 +86,7 @@
             
                 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#hello-world-of-nvm">Hello World of NVM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hello-nvm-device">Hello NVM Device</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#interact-via-cli">Interact via CLI</a></li>
 </ul>
 </li>
@@ -149,15 +149,38 @@ sudo apt-get update
 sudo apt-get install liblightnvm
 </pre></div>
 </div>
-<div class="section" id="hello-world-of-nvm">
-<h2>Hello World of NVM<a class="headerlink" href="#hello-world-of-nvm" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hello-nvm-device">
+<h2>Hello NVM Device<a class="headerlink" href="#hello-nvm-device" title="Permalink to this headline">¶</a></h2>
 <p>Include the liblightnvm header in your C/C++ source:</p>
-<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;liblightnvm.h&gt;</span><span class="cp"></span>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;liblightnvm.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">NVM_DEV</span> <span class="n">dev</span> <span class="o">=</span> <span class="n">nvm_dev_open</span><span class="p">(</span><span class="s">&quot;/dev/nvme0n1&quot;</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">dev</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">perror</span><span class="p">(</span><span class="s">&quot;nvm_dev_open&quot;</span><span class="p">);</span>
+		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">nvm_dev_pr</span><span class="p">(</span><span class="n">dev</span><span class="p">);</span>
+	<span class="n">nvm_dev_close</span><span class="p">(</span><span class="n">dev</span><span class="p">);</span>
+
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then compile it using your e.g. <cite>gcc</cite>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>gcc hw.c -llightnvm -o hw
 </pre></div>
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">liblightnvm is also available as a <strong>static</strong> library. So you can add <cite>/usr/lib/liblightnvm.a</cite> to your compiler target instead of linking dynamically.</p>
+</div>
+<p>Now, go ahead and run it:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>chmod +x hw
+./hw
+</pre></div>
 </div>
 </div>
 <div class="section" id="interact-via-cli">

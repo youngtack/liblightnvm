@@ -13,7 +13,7 @@ Here is what you need:
 The following sections describe how to and options for meeting started
 prerequisites.
 
-An Open-Channel SDD
+An Open-Channel SSD
 ===================
 
 Physical

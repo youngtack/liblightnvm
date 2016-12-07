@@ -15,17 +15,28 @@ spin:
   sudo apt-get update
   sudo apt-get install liblightnvm
 
-
-Hello World of NVM
-==================
+Hello NVM Device
+================
 
 Include the liblightnvm header in your C/C++ source:
 
-.. code-block:: c
+.. literalinclude:: hw.c
+   :language: c
 
-  #include <liblightnvm.h>
+Then compile it using your e.g. `gcc`:
+
+.. code-block:: bash
+
+  gcc hw.c -llightnvm -o hw
 
 .. tip:: liblightnvm is also available as a **static** library. So you can add `/usr/lib/liblightnvm.a` to your compiler target instead of linking dynamically.
+
+Now, go ahead and run it:
+
+.. code-block:: bash
+
+  chmod +x hw
+  ./hw
 
 Interact via CLI
 ================
