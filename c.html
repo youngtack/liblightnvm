@@ -487,15 +487,16 @@
 <h3>nvm_bbt_get<a class="headerlink" href="#nvm-bbt-get" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="c.nvm_bbt_get">
-<span class="target" id="liblightnvmliblightnvm_8h_1adede590ccba0b170e0388e0b75374b33"></span><a class="reference internal" href="#c.NVM_BBT" title="NVM_BBT">NVM_BBT</a>* <code class="descname">nvm_bbt_get</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_get" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1ae26ffaaa7ea01b9f6ed4036840974847"></span><a class="reference internal" href="#c.NVM_BBT" title="NVM_BBT">NVM_BBT</a>* <code class="descname">nvm_bbt_get</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addr</em>, <a class="reference internal" href="#c.NVM_RET" title="NVM_RET">NVM_RET</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves a bad block table from device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>The bad-block-table for given given addr / dev </dd>
+<dd>Pointer to the bad-block-table for the given LUN addr on dev. NULL on error, errno set accordingly and ret filled with lower-level result codes. </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to retrieve a bad-block-table from </li>
 <li><code class="docutils literal"><span class="pre">addr</span></code>: Address of the LUN to retrieve bad-block-table for </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
 </ul>
 </dd>
 </dl>
@@ -507,15 +508,16 @@
 <h3>nvm_bbt_set<a class="headerlink" href="#nvm-bbt-set" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="c.nvm_bbt_set">
-<span class="target" id="liblightnvmliblightnvm_8h_1a9e0de97834ac296e45a4c3d327a2c554"></span>ssize_t <code class="descname">nvm_bbt_set</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_BBT" title="NVM_BBT">NVM_BBT</a>  *<em>&nbsp;bbt</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_set" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1a538cedd2797cdc978a55c318016a2a04"></span>int <code class="descname">nvm_bbt_set</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_BBT" title="NVM_BBT">NVM_BBT</a>  *<em>&nbsp;bbt</em>, <a class="reference internal" href="#c.NVM_RET" title="NVM_RET">NVM_RET</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_set" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates the bad-block-table on given device using the provided bbt. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>0 on success. -1 on err and errno set appropriately. </dd>
+<dd>0 on success. NULL on error, errno set accordingly and ret filled with lower-level result codes. </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to update a bad-block-table </li>
 <li><code class="docutils literal"><span class="pre">bbt</span></code>: The bbt to write to device </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
 </ul>
 </dd>
 </dl>
