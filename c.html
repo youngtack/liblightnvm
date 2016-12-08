@@ -112,6 +112,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt">NVM_BBT</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-get">nvm_bbt_get</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-set">nvm_bbt_set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-mark">nvm_bbt_mark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-pr">nvm_bbt_pr</a></li>
 </ul>
 </li>
@@ -517,6 +518,31 @@
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to update a bad-block-table </li>
 <li><code class="docutils literal"><span class="pre">bbt</span></code>: The bbt to write to device </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-bbt-mark">
+<h3>nvm_bbt_mark<a class="headerlink" href="#nvm-bbt-mark" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_bbt_mark">
+<span class="target" id="liblightnvmliblightnvm_8h_1ab4ccd3c4adfd2cae8ecf8fb802ed8eff"></span>int <code class="descname">nvm_bbt_mark</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em>, <a class="reference internal" href="#c.NVM_RET" title="NVM_RET">NVM_RET</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_mark" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark addresses good, bad, or host-bad. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The addresses given to this function are interpreted as block addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_write</span></code>, and <code class="docutils literal"><span class="pre">nvm_addr_read</span></code> which interpret addresses and sector addresses.</dd>
+<dt><strong>Return</strong></dt>
+<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to mark </li>
+<li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
+<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of memory address array </li>
+<li><code class="docutils literal"><span class="pre">flags</span></code>: 0x0 = GOOD, 0x1 = BAD, 0x2 = GROWN_BAD, as well as access mode </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
 </ul>
 </dd>
