@@ -77,9 +77,10 @@ nvm_sblk
 
 .. code-block:: bash
 
+  NVM spanning block (nvm_sblk_*)
   Usage:
-   nvm_sblk  erase dev_path ch_bgn ch_end lun_bgn lun_end blk
-   nvm_sblk  write dev_path ch_bgn ch_end lun_bgn lun_end blk
-   nvm_sblk    pad dev_path ch_bgn ch_end lun_bgn lun_end blk
-   nvm_sblk   read dev_path ch_bgn ch_end lun_bgn lun_end blk
+   nvm_sblk    erase dev_path ch_bgn ch_end lun_bgn lun_end blk
+   nvm_sblk    write dev_path ch_bgn ch_end lun_bgn lun_end blk
+   nvm_sblk      pad dev_path ch_bgn ch_end lun_bgn lun_end blk
+   nvm_sblk     read dev_path ch_bgn ch_end lun_bgn lun_end blk
   
