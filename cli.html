@@ -92,6 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#nvm-dev">nvm_dev</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvm-bbt">nvm_bbt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvm-addr">nvm_addr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvm-lba">nvm_lba</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvm-vblk">nvm_vblk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvm-sblk">nvm_sblk</a></li>
 </ul>
@@ -192,9 +193,18 @@ Usage:
 </pre></div>
 </div>
 </div>
+<div class="section" id="nvm-lba">
+<h2>nvm_lba<a class="headerlink" href="#nvm-lba" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>NVM logical-block-address <span class="o">(</span>nvm_lba_*<span class="o">)</span>
+Usage:
+ nvm_lba   pwrite dev_path count offset
+ nvm_lba    pread dev_path count offset
+</pre></div>
+</div>
+</div>
 <div class="section" id="nvm-vblk">
 <h2>nvm_vblk<a class="headerlink" href="#nvm-vblk" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>NVM Virtual Block <span class="o">(</span>nvm_vblk_*<span class="o">)</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>NVM virtual block <span class="o">(</span>nvm_vblk_*<span class="o">)</span>
 Usage:
  nvm_vblk    erase dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
  nvm_vblk    write dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>

@@ -116,7 +116,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-pr">nvm_bbt_pr</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#addressing">Addressing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#physical-addressing">Physical Addressing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr">NVM_ADDR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-ret">NVM_RET</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-erase">nvm_addr_erase</a></li>
@@ -126,6 +126,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-pr">nvm_addr_pr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-fmt-pr">nvm_addr_fmt_pr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-check">nvm_addr_check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-gen2dev">nvm_addr_gen2dev</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#logical-addressing">Logical Addressing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-lba-pwrite">nvm_lba_pwrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-lba-pread">nvm_lba_pread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-gen2lba">nvm_addr_gen2lba</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-lba2gen">nvm_addr_lba2gen</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#virtual-block">Virtual Block</a><ul>
@@ -222,7 +230,7 @@
 <dt id="c.NVM_GEO">
 <span class="target" id="liblightnvmstructNVM__GEO"></span><em class="property">struct </em><code class="descname">NVM_GEO</code><a class="headerlink" href="#c.NVM_GEO" title="Permalink to this definition">¶</a></dt>
 <dd><p>Representation of geometry of devices and spanning blocks. </p>
-<div class="breathe-sectiondef container">
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Members</p>
 <dl class="variable">
 <dt id="c.NVM_GEO::nchannels">
@@ -460,7 +468,7 @@
 <span class="target" id="liblightnvmstructNVM__BBT"></span><em class="property">struct </em><code class="descname">NVM_BBT</code><a class="headerlink" href="#c.NVM_BBT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Representation of bad-block-table. </p>
 <p>Create and initialize by calling <code class="docutils literal"><span class="pre">nvm_bbt_get</span></code> Destroy by calling libc <code class="docutils literal"><span class="pre">free</span></code> Print it with <code class="docutils literal"><span class="pre">nvm_bbt_pr</span></code> Update it by accessing blks[] after <code class="docutils literal"><span class="pre">nvm_bbt_get</span></code> Update device by calling <code class="docutils literal"><span class="pre">nvm_bbt_set</span></code> </p>
-<div class="breathe-sectiondef container">
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Members</p>
 <dl class="variable">
 <dt id="c.NVM_BBT::addr">
@@ -569,8 +577,8 @@
 
 </div>
 </div>
-<div class="section" id="addressing">
-<h2>Addressing<a class="headerlink" href="#addressing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="physical-addressing">
+<h2>Physical Addressing<a class="headerlink" href="#physical-addressing" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="nvm-addr">
 <h3>NVM_ADDR<a class="headerlink" href="#nvm-addr" title="Permalink to this headline">¶</a></h3>
 <dl class="struct">
@@ -579,7 +587,7 @@
 <dd><p>Encapsulation of generic physical nvm addressing. </p>
 <p>The kernel translates the generic physical address represented by this structure to device specific address formats. Although the user need not worry about device specific address formats the user has to know and respect addressing within device specific geometric boundaries.</p>
 <p>For that purpose one can use the <code class="docutils literal"><a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref"><span class="pre">NVM_GEO</span></span></a></code> of an <code class="docutils literal"><span class="pre">NVM_DEV</span></code> to obtain device specific geometries. </p>
-<div class="breathe-sectiondef container">
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Members</p>
 <dl class="variable">
 <dt id="c.NVM_ADDR::blk">
@@ -667,7 +675,7 @@
 <dt id="c.NVM_RET">
 <span class="target" id="liblightnvmstructNVM__RET"></span><em class="property">struct </em><code class="descname">NVM_RET</code><a class="headerlink" href="#c.NVM_RET" title="Permalink to this definition">¶</a></dt>
 <dd><p>Encapsulation and representation of lower-level error conditions. </p>
-<div class="breathe-sectiondef container">
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Members</p>
 <dl class="variable">
 <dt id="c.NVM_RET::status">
@@ -840,6 +848,65 @@
 </dd>
 </dl>
 </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-gen2dev">
+<h3>nvm_addr_gen2dev<a class="headerlink" href="#nvm-addr-gen2dev" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_gen2dev">
+<span class="target" id="liblightnvmliblightnvm_8h_1a2ec833113d376c22a7f023fa132c8b98"></span><a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a> <code class="descname">nvm_addr_gen2dev</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_gen2dev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert nvm_address from generic format to device specific format. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Address formatted to device </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device which address format to convert to </li>
+<li><code class="docutils literal"><span class="pre">addr</span></code>: The address to convert </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="logical-addressing">
+<h2>Logical Addressing<a class="headerlink" href="#logical-addressing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nvm-lba-pwrite">
+<h3>nvm_lba_pwrite<a class="headerlink" href="#nvm-lba-pwrite" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_lba_pwrite">
+<span class="target" id="liblightnvmliblightnvm_8h_1af836a7cd11934b639936a16059e6a165"></span>ssize_t <code class="descname">nvm_lba_pwrite</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, off_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_lba_pwrite" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: Doc. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-lba-pread">
+<h3>nvm_lba_pread<a class="headerlink" href="#nvm-lba-pread" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_lba_pread">
+<span class="target" id="liblightnvmliblightnvm_8h_1a3d3d63dd2b37f64ddcaa5b41c4b71287"></span>ssize_t <code class="descname">nvm_lba_pread</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, off_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_lba_pread" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: Doc. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-gen2lba">
+<h3>nvm_addr_gen2lba<a class="headerlink" href="#nvm-addr-gen2lba" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_gen2lba">
+<span class="target" id="liblightnvmliblightnvm_8h_1a32d01e062a1c687d4466fb577570ea20"></span>size_t <code class="descname">nvm_addr_gen2lba</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_gen2lba" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: Doc + Implement. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-lba2gen">
+<h3>nvm_addr_lba2gen<a class="headerlink" href="#nvm-addr-lba2gen" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_lba2gen">
+<span class="target" id="liblightnvmliblightnvm_8h_1ac48be2a691611fe0811a226fbd750a39"></span><a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a> <code class="descname">nvm_addr_lba2gen</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, size_t<em>&nbsp;lba</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_lba2gen" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: Doc + Implement. </p>
 </dd></dl>
 
 </div>
