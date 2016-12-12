@@ -275,36 +275,6 @@
 </dd></dl>
 
 <dl class="variable">
-<dt id="c.NVM_GEO::page_nbytes">
-<span class="target" id="liblightnvmstructNVM__GEO_1ac194bcd19c72f64b0725b566417b6cd0"></span>size_t <code class="descname">page_nbytes</code><a class="headerlink" href="#c.NVM_GEO::page_nbytes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of bytes in a page. </p>
-</dd></dl>
-
-<dl class="variable">
-<dt id="c.NVM_GEO::block_nbytes">
-<span class="target" id="liblightnvmstructNVM__GEO_1a9da5da5a63c7c7b4810d0286abfc63ab"></span>size_t <code class="descname">block_nbytes</code><a class="headerlink" href="#c.NVM_GEO::block_nbytes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of bytes in a block. </p>
-</dd></dl>
-
-<dl class="variable">
-<dt id="c.NVM_GEO::plane_nbytes">
-<span class="target" id="liblightnvmstructNVM__GEO_1ae4d7afac7b0554740f70ab28d204d6d8"></span>size_t <code class="descname">plane_nbytes</code><a class="headerlink" href="#c.NVM_GEO::plane_nbytes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of bytes in plane. </p>
-</dd></dl>
-
-<dl class="variable">
-<dt id="c.NVM_GEO::lun_nbytes">
-<span class="target" id="liblightnvmstructNVM__GEO_1a746957da3edc0e99e793c157f3bda548"></span>size_t <code class="descname">lun_nbytes</code><a class="headerlink" href="#c.NVM_GEO::lun_nbytes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of bytes in a LUN. </p>
-</dd></dl>
-
-<dl class="variable">
-<dt id="c.NVM_GEO::channel_nbytes">
-<span class="target" id="liblightnvmstructNVM__GEO_1a6bb8ad4a71c804c883c8f7690824ceda"></span>size_t <code class="descname">channel_nbytes</code><a class="headerlink" href="#c.NVM_GEO::channel_nbytes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of bytes in a channel. </p>
-</dd></dl>
-
-<dl class="variable">
 <dt id="c.NVM_GEO::meta_nbytes">
 <span class="target" id="liblightnvmstructNVM__GEO_1a4ae674055cd9f9b15dc44a2f03b4e87b"></span>size_t <code class="descname">meta_nbytes</code><a class="headerlink" href="#c.NVM_GEO::meta_nbytes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of bytes for out-of-bound / metadata. </p>
@@ -909,7 +879,12 @@
 <dl class="function">
 <dt id="c.nvm_lba_pwrite">
 <span class="target" id="liblightnvmliblightnvm_8h_1af836a7cd11934b639936a16059e6a165"></span>ssize_t <code class="descname">nvm_lba_pwrite</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, off_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_lba_pwrite" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: Doc. </p>
+<dd><p>Write up to <code class="docutils literal"><span class="pre">count</span></code> bytes from the buffer starting at <code class="docutils literal"><span class="pre">buf</span></code> to the given device <code class="docutils literal"><span class="pre">dev</span></code> at given <code class="docutils literal"><span class="pre">offset</span></code>. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>This is equivalent to libc pread/pwrite except it takes the opaque NVM_DEV instead of a FD. </dd>
+</dl>
+</p>
 </dd></dl>
 
 </div>
@@ -918,7 +893,12 @@
 <dl class="function">
 <dt id="c.nvm_lba_pread">
 <span class="target" id="liblightnvmliblightnvm_8h_1a3d3d63dd2b37f64ddcaa5b41c4b71287"></span>ssize_t <code class="descname">nvm_lba_pread</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, off_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_lba_pread" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: Doc. </p>
+<dd><p>Read up to <code class="docutils literal"><span class="pre">count</span></code> bytes from the given <code class="docutils literal"><span class="pre">device</span></code> starting at the given <code class="docutils literal"><span class="pre">offset</span></code> into the given buffer starting at <code class="docutils literal"><span class="pre">buf</span></code>. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>This is equivalent to libc pread/pwrite except it takes the opaque NVM_DEV instead of a FD. </dd>
+</dl>
+</p>
 </dd></dl>
 
 </div>
@@ -927,7 +907,7 @@
 <dl class="function">
 <dt id="c.nvm_addr_gen2lba">
 <span class="target" id="liblightnvmliblightnvm_8h_1a32d01e062a1c687d4466fb577570ea20"></span>size_t <code class="descname">nvm_addr_gen2lba</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, <a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_gen2lba" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: Doc + Implement. </p>
+<dd><p>Maps the given generically formatted physical address to LBA offset. </p>
 </dd></dl>
 
 </div>
@@ -936,7 +916,7 @@
 <dl class="function">
 <dt id="c.nvm_addr_lba2gen">
 <span class="target" id="liblightnvmliblightnvm_8h_1ac48be2a691611fe0811a226fbd750a39"></span><a class="reference internal" href="#c.NVM_ADDR" title="NVM_ADDR">NVM_ADDR</a> <code class="descname">nvm_addr_lba2gen</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, size_t<em>&nbsp;lba</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_lba2gen" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: Doc + Implement. </p>
+<dd><p>Maps the given LBA offset to the corresponding generically formatted physical address. </p>
 </dd></dl>
 
 </div>
