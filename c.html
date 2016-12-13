@@ -1115,6 +1115,16 @@
 <dt id="c.nvm_sblk_erase">
 <span class="target" id="liblightnvmliblightnvm_8h_1abf8deaa8f2e83ad8bb348a965bcd49ea"></span>ssize_t <code class="descname">nvm_sblk_erase</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_erase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Erase an sblk. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success, the number of bytes erased is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">sblk</span></code>: The sblk to erase </li>
+</ul>
+</dd>
+</dl>
+</p>
 </dd></dl>
 
 </div>
@@ -1123,7 +1133,21 @@
 <dl class="function">
 <dt id="c.nvm_sblk_write">
 <span class="target" id="liblightnvmliblightnvm_8h_1aa720ffc5f85f6045f4ed1d7d20d041b6"></span>ssize_t <code class="descname">nvm_sblk_write</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write content from buffer to sblk. </p>
+<dd><p>Write to an sblk. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>buf must be aligned to device geometry, see <a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a> and nvm_buf_alloc count must be a multiple of min-size, see <a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a> do not mix use of nvm_sblk_pwrite with nvm_sblk_write on the same sblk</dd>
+<dt><strong>Return</strong></dt>
+<dd>On success, the number of bytes written is returned and sblk internal position is updated. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">sblk</span></code>: The sblk to write to </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Write content starting at buf </li>
+<li><code class="docutils literal"><span class="pre">count</span></code>: The number of bytes to write </li>
+</ul>
+</dd>
+</dl>
+</p>
 </dd></dl>
 
 </div>
@@ -1132,7 +1156,7 @@
 <dl class="function">
 <dt id="c.nvm_sblk_read">
 <span class="target" id="liblightnvmliblightnvm_8h_1a0e8dc76a7c6c1cc414580f4ea0b03280"></span>ssize_t <code class="descname">nvm_sblk_read</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read content from sblk to buffer. </p>
+<dd><p>Read from an sblk. </p>
 </dd></dl>
 
 </div>
@@ -1141,7 +1165,7 @@
 <dl class="function">
 <dt id="c.nvm_sblk_pread">
 <span class="target" id="liblightnvmliblightnvm_8h_1af0474cfb549bcf3a1d8aca3a46e6f970"></span>ssize_t <code class="descname">nvm_sblk_pread</code><span class="sig-paren">(</span>struct nvm_sblk *<em>&nbsp;sblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_pread" title="Permalink to this definition">¶</a></dt>
-<dd><p>Positioned read from sblk to buffer. </p>
+<dd><p>Read from an sblk at given offset. </p>
 </dd></dl>
 
 </div>
@@ -1150,7 +1174,22 @@
 <dl class="function">
 <dt id="c.nvm_sblk_pwrite">
 <span class="target" id="liblightnvmliblightnvm_8h_1a90898c388880f2c4210f995c63855fbb"></span>ssize_t <code class="descname">nvm_sblk_pwrite</code><span class="sig-paren">(</span>struct nvm_sblk *<em>&nbsp;sblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_pwrite" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write content from buffer to sblk. </p>
+<dd><p>Write to an sblk at a given offset. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>buf must be aligned to device geometry, see <a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a> and nvm_buf_alloc count must be a multiple of min-size, see <a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a> offset must be a multiple of min-size, see <a class="reference internal" href="#liblightnvmstructNVM__GEO"><span class="std std-ref">NVM_GEO</span></a> do not mix use of nvm_sblk_pwrite with nvm_sblk_write on the same sblk</dd>
+<dt><strong>Return</strong></dt>
+<dd>On success, the number of bytes written is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">sblk</span></code>: The sblk to write to </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Write content starting at buf </li>
+<li><code class="docutils literal"><span class="pre">count</span></code>: The number of bytes to write </li>
+<li><code class="docutils literal"><span class="pre">offset</span></code>: Start writing offset bytes within sblk </li>
+</ul>
+</dd>
+</dl>
+</p>
 </dd></dl>
 
 </div>
@@ -1159,7 +1198,19 @@
 <dl class="function">
 <dt id="c.nvm_sblk_pad">
 <span class="target" id="liblightnvmliblightnvm_8h_1a247d2f25d623e83b02e92814920e41a6"></span>ssize_t <code class="descname">nvm_sblk_pad</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_pad" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pad the sblk. </p>
+<dd><p>Pad the sblk with synthetic data. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>Assumes that you have used nvm_sblk_write and now want to fill the remaining sblk in order to meet sblk constraints</dd>
+<dt><strong>Return</strong></dt>
+<dd>On success, the number of bytes padded is returned and sblk internal position is updated. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">sblk</span></code>: The sblk to pad </li>
+</ul>
+</dd>
+</dl>
+</p>
 </dd></dl>
 
 </div>
@@ -1168,7 +1219,22 @@
 <dl class="function">
 <dt id="c.nvm_sblk_new">
 <span class="target" id="liblightnvmliblightnvm_8h_1a9f40c6d7810108cde35f7e758fe6e2f3"></span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a> <code class="descname">nvm_sblk_new</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_DEV" title="NVM_DEV">NVM_DEV</a><em>&nbsp;dev</em>, int<em>&nbsp;ch_bgn</em>, int<em>&nbsp;ch_end</em>, int<em>&nbsp;lun_bgn</em>, int<em>&nbsp;lun_end</em>, int<em>&nbsp;blk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_new" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new sblk. </p>
+<dd><p>Allocate an sblk and initialize it. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success, an opaque pointer to the initialized sblk is returned. On error, NULL and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which the sblk resides </li>
+<li><code class="docutils literal"><span class="pre">ch_bgn</span></code>: Beginning of the channel span, as inclusive index </li>
+<li><code class="docutils literal"><span class="pre">ch_end</span></code>: End of the channel span, as inclusive index </li>
+<li><code class="docutils literal"><span class="pre">lun_bgn</span></code>: Beginning of the lun span, as inclusive index </li>
+<li><code class="docutils literal"><span class="pre">lun_end</span></code>: End of the lun span, as inclusive index </li>
+<li><code class="docutils literal"><span class="pre">blk</span></code>: Block index</li>
+</ul>
+</dd>
+</dl>
+</p>
 </dd></dl>
 
 </div>
@@ -1178,6 +1244,14 @@
 <dt id="c.nvm_sblk_free">
 <span class="target" id="liblightnvmliblightnvm_8h_1a095d86df318ffef7ba8f027d21a60e55"></span>void <code class="descname">nvm_sblk_free</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_SBLK" title="NVM_SBLK">NVM_SBLK</a><em>&nbsp;sblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_sblk_free" title="Permalink to this definition">¶</a></dt>
 <dd><p>Destroy an sblk. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">sblk</span></code>: The sblk to destroy </li>
+</ul>
+</dd>
+</dl>
+</p>
 </dd></dl>
 
 </div>
