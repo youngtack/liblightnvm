@@ -946,7 +946,7 @@
 <dd><p>Erase an entire vblk. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+<dd>On success, the number of bytes erased is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
 </dl>
 </p>
 </dd></dl>
@@ -957,10 +957,10 @@
 <dl class="function">
 <dt id="c.nvm_vblk_write">
 <span class="target" id="liblightnvmliblightnvm_8h_1acf78972dc52a3fec951cbbf76036d4fd"></span>ssize_t <code class="descname">nvm_vblk_write</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write &#8216;count&#8217; bytes to &#8216;vblk&#8217; starting at &#8216;offset&#8217; from &#8216;buf&#8217;. </p>
+<dd><p>Write to vblk. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+<dd>On success, the number of bytes written is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
 </dl>
 </p>
 </dd></dl>
@@ -971,10 +971,10 @@
 <dl class="function">
 <dt id="c.nvm_vblk_read">
 <span class="target" id="liblightnvmliblightnvm_8h_1ae22fa6c24e290ed763efb88bfc82dd8e"></span>ssize_t <code class="descname">nvm_vblk_read</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read the entire vblk, storing it into buf. </p>
+<dd><p>Read from a vblk. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+<dd>On success, the number of bytes read is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
 </dl>
 </p>
 </dd></dl>
@@ -985,12 +985,12 @@
 <dl class="function">
 <dt id="c.nvm_vblk_pwrite">
 <span class="target" id="liblightnvmliblightnvm_8h_1a61c5a75101c0d9d1f40970efbce29840"></span>ssize_t <code class="descname">nvm_vblk_pwrite</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pwrite" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write &#8216;count&#8217; bytes to &#8216;vblk&#8217; starting at &#8216;offset&#8217; from &#8216;buf&#8217;. </p>
+<dd><p>Write to a vblk at given offset. </p>
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
-<dd>Use this for controlling chunked writing, do NOT use for random access</dd>
+<dd>Use this for controlling &#8220;chunked&#8221; writing, do NOT use for random access</dd>
 <dt><strong>Return</strong></dt>
-<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+<dd>On success, the number of bytes written is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
 </dl>
 </p>
 </dd></dl>
@@ -1001,10 +1001,10 @@
 <dl class="function">
 <dt id="c.nvm_vblk_pread">
 <span class="target" id="liblightnvmliblightnvm_8h_1ac17c300fc554979b4c90a6e0492862d5"></span>ssize_t <code class="descname">nvm_vblk_pread</code><span class="sig-paren">(</span><a class="reference internal" href="#c.NVM_VBLK" title="NVM_VBLK">NVM_VBLK</a><em>&nbsp;vblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pread" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read &#8216;count&#8217; bytes from &#8216;vblk&#8217; starting at &#8216;offset&#8217; into &#8216;buf&#8217;. </p>
+<dd><p>Read from a vblk at given offset. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>On success 0, on error -1 and <em>errno</em> set appropriately. </dd>
+<dd>On success, the number of bytes read is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
 </dl>
 </p>
 </dd></dl>
