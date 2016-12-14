@@ -506,7 +506,7 @@
 <dd><p>Retrieves a bad block table from device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>Pointer to the bad-block-table for the given LUN addr on dev. NULL on error, errno set accordingly and ret filled with lower-level result codes. </dd>
+<dd>On success, a pointer to the bad-block-table is returned. On error, NULL is returned, errno set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to retrieve a bad-block-table from </li>
@@ -527,7 +527,7 @@
 <dd><p>Updates the bad-block-table on given device using the provided bbt. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>0 on success. NULL on error, errno set accordingly and ret filled with lower-level result codes. </dd>
+<dd>On success, the number of updated entries is returned. On error, -1 is returned, errno set to indicate the error and ret filled with with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to update a bad-block-table </li>
@@ -550,7 +550,7 @@
 <dt><strong>Note</strong></dt>
 <dd>The addresses given to this function are interpreted as block addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_write</span></code>, and <code class="docutils literal"><span class="pre">nvm_addr_read</span></code> which interpret addresses and sector addresses.</dd>
 <dt><strong>Return</strong></dt>
-<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
+<dd>On success, 0 is returned. On error, -1 is returned, errno set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to mark </li>
