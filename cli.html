@@ -164,6 +164,8 @@ variables:</p>
 <div><ul class="simple">
 <li>NVM_CLI_NOVERIFY &#8211; When set, address verification is disabled</li>
 <li>NVM_BUF_PR &#8211; When set, read commands will dump the buffer to stdout</li>
+<li>NVM_CLI_BUF_PR &#8211; When set, read/write commands will dump buffer to stdout</li>
+<li>NVM_CLI_META_PR &#8211; When set, read/write commands will dump meta to stdout</li>
 </ul>
 </div></blockquote>
 <div class="toctree-wrapper compound">
@@ -244,6 +246,7 @@ Usage:
  nvm_sblk    write dev_path ch_bgn ch_end lun_bgn lun_end blk
  nvm_sblk      pad dev_path ch_bgn ch_end lun_bgn lun_end blk
  nvm_sblk     <span class="nb">read</span> dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_sblk chunked_w dev_path ch_bgn ch_end lun_bgn lun_end blk
 </pre></div>
 </div>
 </div>
