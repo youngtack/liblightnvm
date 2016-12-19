@@ -94,7 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#nvm-addr">nvm_addr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvm-lba">nvm_lba</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nvm-vblk">nvm_vblk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#nvm-sblk">nvm_sblk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvm-dblk">nvm_dblk</a></li>
 </ul>
 </li>
 </ul>
@@ -175,7 +175,7 @@ variables:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>NVM Device <span class="o">(</span>nvm_dev_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span>0<span class="o">)</span>, minor<span class="o">(</span>0<span class="o">)</span>, patch<span class="o">(</span>1<span class="o">)</span> <span class="o">}</span>
 
 Usage:
- nvm_dev     info dev_path
+ nvm_dev       info dev_path
 </pre></div>
 </div>
 </div>
@@ -184,13 +184,13 @@ Usage:
 <div class="highlight-bash"><div class="highlight"><pre><span></span>NVM bad-block-table <span class="o">(</span>nvm_bbt_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span>0<span class="o">)</span>, minor<span class="o">(</span>0<span class="o">)</span>, patch<span class="o">(</span>1<span class="o">)</span> <span class="o">}</span>
 
 Usage:
- nvm_bbt      get dev_path ch lun
- nvm_bbt    set_f dev_path ch lun
- nvm_bbt    set_b dev_path ch lun
- nvm_bbt    set_g dev_path ch lun
- nvm_bbt   mark_f dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_bbt   mark_b dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_bbt   mark_g dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_bbt        get dev_path ch lun
+ nvm_bbt      set_f dev_path ch lun
+ nvm_bbt      set_b dev_path ch lun
+ nvm_bbt      set_g dev_path ch lun
+ nvm_bbt     mark_f dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_bbt     mark_b dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_bbt     mark_g dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
 </pre></div>
 </div>
 </div>
@@ -199,16 +199,16 @@ Usage:
 <div class="highlight-bash"><div class="highlight"><pre><span></span>NVM address <span class="o">(</span>nvm_addr_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span>0<span class="o">)</span>, minor<span class="o">(</span>0<span class="o">)</span>, patch<span class="o">(</span>1<span class="o">)</span> <span class="o">}</span>
 
 Usage:
- nvm_addr    erase dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr    write dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr     <span class="nb">read</span> dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr  write_m dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr   read_m dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr  hex2gen dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr  gen2hex dev_path ch lun pl blk pg sec
- nvm_addr  hex2lba dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr  gen2lba dev_path ch lun pl blk pg sec
- nvm_addr  lba2gen dev_path lba <span class="o">[</span>lba...<span class="o">]</span>
+ nvm_addr      erase dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr      write dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr       <span class="nb">read</span> dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr   write_wm dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr    read_wm dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr    hex2gen dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr    gen2hex dev_path ch lun pl blk pg sec
+ nvm_addr    hex2lba dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr    gen2lba dev_path ch lun pl blk pg sec
+ nvm_addr    lba2gen dev_path lba <span class="o">[</span>lba...<span class="o">]</span>
 </pre></div>
 </div>
 </div>
@@ -217,36 +217,38 @@ Usage:
 <div class="highlight-bash"><div class="highlight"><pre><span></span>NVM logical-block-address <span class="o">(</span>nvm_lba_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span>0<span class="o">)</span>, minor<span class="o">(</span>0<span class="o">)</span>, patch<span class="o">(</span>1<span class="o">)</span> <span class="o">}</span>
 
 Usage:
- nvm_lba   pwrite dev_path count offset
- nvm_lba    pread dev_path count offset
+ nvm_lba     pwrite dev_path count offset
+ nvm_lba      pread dev_path count offset
 </pre></div>
 </div>
 </div>
 <div class="section" id="nvm-vblk">
 <h2>nvm_vblk<a class="headerlink" href="#nvm-vblk" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>NVM virtual block <span class="o">(</span>nvm_vblk_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span>0<span class="o">)</span>, minor<span class="o">(</span>0<span class="o">)</span>, patch<span class="o">(</span>1<span class="o">)</span> <span class="o">}</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>NVM Virtual Block <span class="o">(</span>nvm_vblk_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span>0<span class="o">)</span>, minor<span class="o">(</span>0<span class="o">)</span>, patch<span class="o">(</span>1<span class="o">)</span> <span class="o">}</span>
 
 Usage:
- nvm_vblk    erase dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_vblk    write dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_vblk     <span class="nb">read</span> dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_vblk   pwrite dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_vblk    pread dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_vblk     gets dev_path ch lun
- nvm_vblk      put dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_vblk      erase dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_vblk       <span class="nb">read</span> dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_vblk      write dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_vblk        pad dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_vblk span_erase dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_vblk  span_read dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_vblk span_write dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_vblk   span_pad dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_vblk write_chnk dev_path ch_bgn ch_end lun_bgn lun_end blk
 </pre></div>
 </div>
 </div>
-<div class="section" id="nvm-sblk">
-<h2>nvm_sblk<a class="headerlink" href="#nvm-sblk" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>NVM spanning block <span class="o">(</span>nvm_sblk_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span>0<span class="o">)</span>, minor<span class="o">(</span>0<span class="o">)</span>, patch<span class="o">(</span>1<span class="o">)</span> <span class="o">}</span>
+<div class="section" id="nvm-dblk">
+<h2>nvm_dblk<a class="headerlink" href="#nvm-dblk" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>NVM deprecated block <span class="o">(</span>nvm_dblk_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span>0<span class="o">)</span>, minor<span class="o">(</span>0<span class="o">)</span>, patch<span class="o">(</span>1<span class="o">)</span> <span class="o">}</span>
 
 Usage:
- nvm_sblk    erase dev_path ch_bgn ch_end lun_bgn lun_end blk
- nvm_sblk    write dev_path ch_bgn ch_end lun_bgn lun_end blk
- nvm_sblk      pad dev_path ch_bgn ch_end lun_bgn lun_end blk
- nvm_sblk     <span class="nb">read</span> dev_path ch_bgn ch_end lun_bgn lun_end blk
- nvm_sblk chunked_w dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_dblk      erase dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_dblk      write dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_dblk       <span class="nb">read</span> dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_dblk     pwrite dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_dblk      pread dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
 </pre></div>
 </div>
 </div>
