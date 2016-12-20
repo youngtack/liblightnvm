@@ -204,8 +204,6 @@
   <div class="section" id="c-api">
 <span id="sec-c-api"></span><h1>C API<a class="headerlink" href="#c-api" title="Permalink to this headline">¶</a></h1>
 <p>C API to interact with an Open-Channel SSDs from user space.</p>
-<div class="toctree-wrapper compound">
-</div>
 <div class="section" id="geometry">
 <h2>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="nvm-geo">
@@ -549,6 +547,8 @@
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
 <dd>The addresses given to this function are interpreted as block addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_write</span></code>, and <code class="docutils literal"><span class="pre">nvm_addr_read</span></code> which interpret addresses and sector addresses.</dd>
+<dt><strong>See</strong></dt>
+<dd><code class="docutils literal"><span class="pre">enum</span> <span class="pre">nvm_bbt_state</span></code></dd>
 <dt><strong>Return</strong></dt>
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
