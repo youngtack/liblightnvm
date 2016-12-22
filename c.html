@@ -125,8 +125,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-read">nvm_addr_read</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-write">nvm_addr_write</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-check">nvm_addr_check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-gen2dev">nvm_addr_gen2dev</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-dev2gen">nvm_addr_dev2gen</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-gen2lba">nvm_addr_gen2lba</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-lba2gen">nvm_addr_lba2gen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-gen2off">nvm_addr_gen2off</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-off2gen">nvm_addr_off2gen</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-pr">nvm_addr_pr</a></li>
 </ul>
 </li>
@@ -825,6 +829,46 @@
 </dd></dl>
 
 </div>
+<div class="section" id="nvm-addr-gen2dev">
+<h3>nvm_addr_gen2dev<a class="headerlink" href="#nvm-addr-gen2dev" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_gen2dev">
+<span class="target" id="liblightnvmliblightnvm_8h_1add18460eeec07ae8ce6b9f471ca83a9e"></span>uint64_t <code class="descname">nvm_addr_gen2dev</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_gen2dev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given physical address generic-format to device-format. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Physical address on device-format </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device which address format to convert to </li>
+<li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on generic-format to convert </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-dev2gen">
+<h3>nvm_addr_dev2gen<a class="headerlink" href="#nvm-addr-dev2gen" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_dev2gen">
+<span class="target" id="liblightnvmliblightnvm_8h_1a7dd099dc686dac92081bd7c4c37a5895"></span>struct <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a> <code class="descname">nvm_addr_dev2gen</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, uint64_t<em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_dev2gen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given physical address on device-format to generic-format. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Physical address on generic-format </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device which address format to convert from </li>
+<li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on device-format to convert </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="section" id="nvm-addr-gen2lba">
 <h3>nvm_addr_gen2lba<a class="headerlink" href="#nvm-addr-gen2lba" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -858,6 +902,46 @@
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to device which mapping information to use </li>
 <li><code class="docutils literal"><span class="pre">off</span></code>: Logical address as LBA offset to convert </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-gen2off">
+<h3>nvm_addr_gen2off<a class="headerlink" href="#nvm-addr-gen2off" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_gen2off">
+<span class="target" id="liblightnvmliblightnvm_8h_1a480ec1815404e58f793ea59794fa912f"></span>uint64_t <code class="descname">nvm_addr_gen2off</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_gen2off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given physical address on generic-format to byte offset. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Logical address as byte offset </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to device which mapping information to use </li>
+<li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on generic-format to convert </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-off2gen">
+<h3>nvm_addr_off2gen<a class="headerlink" href="#nvm-addr-off2gen" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_off2gen">
+<span class="target" id="liblightnvmliblightnvm_8h_1aee7bdce116af860a64aaea40c99152eb"></span>struct <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a> <code class="descname">nvm_addr_off2gen</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, uint64_t<em>&nbsp;off</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_off2gen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given byte offset to physical address on generic-format. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Physical address on generic-format </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to device which mapping information to use </li>
+<li><code class="docutils literal"><span class="pre">off</span></code>: Logical address as byte offset to convert </li>
 </ul>
 </dd>
 </dl>
