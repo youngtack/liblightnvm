@@ -189,11 +189,11 @@ Usage:
  nvm_bbt      set_g dev_path ch lun
  nvm_bbt      set_d dev_path ch lun
  nvm_bbt      set_h dev_path ch lun
- nvm_bbt     mark_f dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_bbt     mark_b dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_bbt     mark_g dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_bbt     mark_d dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_bbt     mark_h dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_bbt     mark_f dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_bbt     mark_b dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_bbt     mark_g dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_bbt     mark_d dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_bbt     mark_h dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
 </pre></div>
 </div>
 </div>
@@ -202,13 +202,16 @@ Usage:
 <div class="highlight-bash"><div class="highlight"><pre><span></span>NVM address <span class="o">(</span>nvm_addr_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span>0<span class="o">)</span>, minor<span class="o">(</span>0<span class="o">)</span>, patch<span class="o">(</span>1<span class="o">)</span> <span class="o">}</span>
 
 Usage:
- nvm_addr      erase dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr      write dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr       <span class="nb">read</span> dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr   write_wm dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr    read_wm dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_addr   from_hex dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_addr      erase dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_addr      write dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_addr       <span class="nb">read</span> dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_addr   write_wm dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_addr    read_wm dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_addr   from_hex dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
  nvm_addr   from_geo dev_path ch lun pl blk pg sec
+ nvm_addr    gen2dev dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_addr    gen2lba dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_addr    gen2off dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
 </pre></div>
 </div>
 </div>
@@ -227,10 +230,10 @@ Usage:
 <div class="highlight-bash"><div class="highlight"><pre><span></span>NVM Virtual Block <span class="o">(</span>nvm_vblk_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span>0<span class="o">)</span>, minor<span class="o">(</span>0<span class="o">)</span>, patch<span class="o">(</span>1<span class="o">)</span> <span class="o">}</span>
 
 Usage:
- nvm_vblk      erase dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_vblk       <span class="nb">read</span> dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_vblk      write dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
- nvm_vblk        pad dev_path ppa <span class="o">[</span>ppa...<span class="o">]</span>
+ nvm_vblk      erase dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_vblk       <span class="nb">read</span> dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_vblk      write dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_vblk        pad dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
  nvm_vblk span_erase dev_path ch_bgn ch_end lun_bgn lun_end blk
  nvm_vblk  span_read dev_path ch_bgn ch_end lun_bgn lun_end blk
  nvm_vblk span_write dev_path ch_bgn ch_end lun_bgn lun_end blk
