@@ -104,6 +104,10 @@ nvm_vblk
    nvm_vblk       read dev_path addr [addr...]
    nvm_vblk      write dev_path addr [addr...]
    nvm_vblk        pad dev_path addr [addr...]
+   nvm_vblk  set_erase dev_path addr [addr...]
+   nvm_vblk   set_read dev_path addr [addr...]
+   nvm_vblk  set_write dev_path addr [addr...]
+   nvm_vblk    set_pad dev_path addr [addr...]
    nvm_vblk line_erase dev_path ch_bgn ch_end lun_bgn lun_end blk
    nvm_vblk  line_read dev_path ch_bgn ch_end lun_bgn lun_end blk
    nvm_vblk line_write dev_path ch_bgn ch_end lun_bgn lun_end blk
