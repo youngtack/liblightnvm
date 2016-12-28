@@ -89,7 +89,12 @@
 <li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Background</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#device-architecture">Device Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#media-constraints">Media Constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#media-constraints">Media Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#writes">Writes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reads">Reads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alignment">Alignment</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#media-access-mode">Media Access Mode</a></li>
 </ul>
 </li>
@@ -155,13 +160,25 @@ devices.</p>
 </div>
 <div class="section" id="media-constraints">
 <h2>Media Constraints<a class="headerlink" href="#media-constraints" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
-<li>erase before write</li>
-<li>write granularities / write constraints</li>
-<li>read granularities</li>
-</ul>
-</div></blockquote>
+<div class="section" id="writes">
+<h3>Writes<a class="headerlink" href="#writes" title="Permalink to this headline">¶</a></h3>
+<p>Writes can be done at the granularity of a single physical page. In the example
+geometry this means a minimum of four sector addresses must be constructed,
+ordered from lowest to highest.</p>
+<p>For a write to succeed then the page must reside in an erased block. This
+constraint is often referred to as erase-before-write. Consequentially, one
+cannot &#8220;update&#8221; a given flash page.</p>
+</div>
+<div class="section" id="reads">
+<h3>Reads<a class="headerlink" href="#reads" title="Permalink to this headline">¶</a></h3>
+<p>Reads can be done at the granularity of a single sector. In the example
+geometry this means a minimum of one sector address must be constructed.</p>
+<p>For a read to success it must reside within a fully written block, sometimes
+also referred to as a &#8220;closed block&#8221;.</p>
+</div>
+<div class="section" id="alignment">
+<h3>Alignment<a class="headerlink" href="#alignment" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 <div class="section" id="media-access-mode">
 <h2>Media Access Mode<a class="headerlink" href="#media-access-mode" title="Permalink to this headline">¶</a></h2>
