@@ -1025,6 +1025,8 @@
 <span class="target" id="liblightnvmliblightnvm_8h_1ad61923687309e99e0999344fcdab71c8"></span>ssize_t <code class="descname">nvm_vblk_erase</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_erase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Erase a virtual block. </p>
 <p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>Erasing a vblk will reset internal position pointers</dd>
 <dt><strong>Return</strong></dt>
 <dd>On success, the number of bytes erased is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
 <dt><strong>Parameters</strong></dt>
