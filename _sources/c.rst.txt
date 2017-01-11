@@ -117,6 +117,11 @@ nvm_bbt
 .. doxygenstruct:: nvm_bbt
    :members:
 
+nvm_bbt_alloc_cp
+----------------
+
+.. doxygenfunction:: nvm_bbt_alloc_cp
+
 nvm_bbt_free
 ------------
 
