@@ -56,6 +56,11 @@ nvm_dev_close
 
 .. doxygenfunction:: nvm_dev_close
 
+nvm_dev_get_bbts_cached
+-----------------------
+
+.. doxygenfunction:: nvm_dev_get_bbts_cached
+
 nvm_dev_get_erase_naddrs_max
 ----------------------------
 
@@ -91,6 +96,11 @@ nvm_dev_pr
 
 .. doxygenfunction:: nvm_dev_pr
 
+nvm_dev_set_bbts_cached
+-----------------------
+
+.. doxygenfunction:: nvm_dev_set_bbts_cached
+
 nvm_dev_set_erase_naddrs_max
 ----------------------------
 
@@ -121,6 +131,11 @@ nvm_bbt_alloc_cp
 ----------------
 
 .. doxygenfunction:: nvm_bbt_alloc_cp
+
+nvm_bbt_flush
+-------------
+
+.. doxygenfunction:: nvm_bbt_flush
 
 nvm_bbt_free
 ------------

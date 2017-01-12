@@ -103,6 +103,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#device-management">Device Management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev">nvm_dev</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-close">nvm_dev_close</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-bbts-cached">nvm_dev_get_bbts_cached</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-erase-naddrs-max">nvm_dev_get_erase_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-geo">nvm_dev_get_geo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-pmode">nvm_dev_get_pmode</a></li>
@@ -110,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-write-naddrs-max">nvm_dev_get_write_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-open">nvm_dev_open</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-pr">nvm_dev_pr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-bbts-cached">nvm_dev_set_bbts_cached</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-erase-naddrs-max">nvm_dev_set_erase_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-read-naddrs-max">nvm_dev_set_read_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-write-naddrs-max">nvm_dev_set_write_naddrs_max</a></li>
@@ -118,6 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#bad-block-management">Bad Block Management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt">nvm_bbt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-alloc-cp">nvm_bbt_alloc_cp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-flush">nvm_bbt_flush</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-free">nvm_bbt_free</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-get">nvm_bbt_get</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-mark">nvm_bbt_mark</a></li>
@@ -407,6 +410,25 @@
 </dd></dl>
 
 </div>
+<div class="section" id="nvm-dev-get-bbts-cached">
+<h3>nvm_dev_get_bbts_cached<a class="headerlink" href="#nvm-dev-get-bbts-cached" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_dev_get_bbts_cached">
+<span class="target" id="liblightnvmliblightnvm_8h_1aa3558e9de3b643622fcb6d3678fec50d"></span>int <code class="descname">nvm_dev_get_bbts_cached</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_get_bbts_cached" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether caching is enabled for bad-block-tables on the device. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>0 = cache disabled 1 = cache enabled</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain maximum for </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="section" id="nvm-dev-get-erase-naddrs-max">
 <h3>nvm_dev_get_erase_naddrs_max<a class="headerlink" href="#nvm-dev-get-erase-naddrs-max" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -535,6 +557,27 @@
 </dd></dl>
 
 </div>
+<div class="section" id="nvm-dev-set-bbts-cached">
+<h3>nvm_dev_set_bbts_cached<a class="headerlink" href="#nvm-dev-set-bbts-cached" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_dev_set_bbts_cached">
+<span class="target" id="liblightnvmliblightnvm_8h_1a1918f6acec6f8308d69137bfb8c9d5e1"></span>int <code class="descname">nvm_dev_set_bbts_cached</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, int<em>&nbsp;bbts_cached</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_set_bbts_cached" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets whether retrieval and changes to bad-block-tables should be cached. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>0 = cache disabled 1 = cache enabled</dd>
+<dt><strong>Return</strong></dt>
+<dd>0 on success, -1 on error and errno set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to bad-block-table caching for</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="section" id="nvm-dev-set-erase-naddrs-max">
 <h3>nvm_dev_set_erase_naddrs_max<a class="headerlink" href="#nvm-dev-set-erase-naddrs-max" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -647,6 +690,14 @@
 <span class="target" id="liblightnvmliblightnvm_8h_1a341957842cd30286e6933aefc93884b5"></span>struct <a class="reference internal" href="#c.nvm_bbt" title="nvm_bbt">nvm_bbt</a>* <code class="descname">nvm_bbt_alloc_cp</code><span class="sig-paren">(</span>const struct  <a class="reference internal" href="#c.nvm_bbt" title="nvm_bbt">nvm_bbt</a>  *<em>&nbsp;bbt</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_alloc_cp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Allocate a copy of the given bbt. </p>
 </dd></dl>
+
+</div>
+<div class="section" id="nvm-bbt-flush">
+<h3>nvm_bbt_flush<a class="headerlink" href="#nvm-bbt-flush" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_bbt_flush">
+<span class="target" id="liblightnvmliblightnvm_8h_1a8b9b1792eefc95cd2933799e6057b0b2"></span>int <code class="descname">nvm_bbt_flush</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addr</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_flush" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </div>
 <div class="section" id="nvm-bbt-free">
