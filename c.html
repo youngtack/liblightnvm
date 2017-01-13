@@ -102,15 +102,15 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#device-management">Device Management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev">nvm_dev</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-open">nvm_dev_open</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-close">nvm_dev_close</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-pr">nvm_dev_pr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-bbts-cached">nvm_dev_get_bbts_cached</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-erase-naddrs-max">nvm_dev_get_erase_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-geo">nvm_dev_get_geo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-pmode">nvm_dev_get_pmode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-read-naddrs-max">nvm_dev_get_read_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-write-naddrs-max">nvm_dev_get_write_naddrs_max</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-open">nvm_dev_open</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-pr">nvm_dev_pr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-bbts-cached">nvm_dev_set_bbts_cached</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-erase-naddrs-max">nvm_dev_set_erase_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-read-naddrs-max">nvm_dev_set_read_naddrs_max</a></li>
@@ -119,21 +119,24 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#bad-block-management">Bad Block Management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt">nvm_bbt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-alloc-cp">nvm_bbt_alloc_cp</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-flush">nvm_bbt_flush</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-free">nvm_bbt_free</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-get">nvm_bbt_get</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-mark">nvm_bbt_mark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-pr">nvm_bbt_pr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-set">nvm_bbt_set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-mark">nvm_bbt_mark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-flush">nvm_bbt_flush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-flush-all">nvm_bbt_flush_all</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-alloc-cp">nvm_bbt_alloc_cp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-free">nvm_bbt_free</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-pr">nvm_bbt_pr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-state-pr">nvm_bbt_state_pr</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#physical-addressing">Physical Addressing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr">nvm_addr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-erase">nvm_addr_erase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-read">nvm_addr_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-write">nvm_addr_write</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-check">nvm_addr_check</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-dev2gen">nvm_addr_dev2gen</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-erase">nvm_addr_erase</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-gen2dev">nvm_addr_gen2dev</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-gen2lba">nvm_addr_gen2lba</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-gen2off">nvm_addr_gen2off</a></li>
@@ -141,8 +144,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-off2gen">nvm_addr_off2gen</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-pr">nvm_addr_pr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-prn">nvm_addr_prn</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-read">nvm_addr_read</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-write">nvm_addr_write</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#logical-addressing">Logical Addressing</a><ul>
@@ -152,22 +153,22 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#virtual-block">Virtual Block</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk">nvm_vblk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-erase">nvm_vblk_erase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-pread">nvm_vblk_pread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-read">nvm_vblk_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-pwrite">nvm_vblk_pwrite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-write">nvm_vblk_write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-pad">nvm_vblk_pad</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-alloc">nvm_vblk_alloc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-alloc-line">nvm_vblk_alloc_line</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-erase">nvm_vblk_erase</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-free">nvm_vblk_free</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-pr">nvm_vblk_pr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-get-addrs">nvm_vblk_get_addrs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-get-dev">nvm_vblk_get_dev</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-get-naddrs">nvm_vblk_get_naddrs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-get-nbytes">nvm_vblk_get_nbytes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-get-pos-read">nvm_vblk_get_pos_read</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-get-pos-write">nvm_vblk_get_pos_write</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-pad">nvm_vblk_pad</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-pr">nvm_vblk_pr</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-pread">nvm_vblk_pread</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-pwrite">nvm_vblk_pwrite</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-read">nvm_vblk_read</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-write">nvm_vblk_write</a></li>
 </ul>
 </li>
 </ul>
@@ -393,6 +394,25 @@
 </dd></dl>
 
 </div>
+<div class="section" id="nvm-dev-open">
+<h3>nvm_dev_open<a class="headerlink" href="#nvm-dev-open" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_dev_open">
+<span class="target" id="liblightnvmliblightnvm_8h_1adce9240457c84bf95e34ed9bb3cdf05e"></span>struct <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>* <code class="descname">nvm_dev_open</code><span class="sig-paren">(</span>const char *<em>&nbsp;dev_path</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a handle to given device path. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>A handle to the device </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev_path</span></code>: Path of the device to open e.g. &#8220;/dev/nvme0n1&#8221;</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="section" id="nvm-dev-close">
 <h3>nvm_dev_close<a class="headerlink" href="#nvm-dev-close" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -403,6 +423,23 @@
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to destroy </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-dev-pr">
+<h3>nvm_dev_pr<a class="headerlink" href="#nvm-dev-pr" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_dev_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1ae40775e6f08ef63ed89e42a5c47c0400"></span>void <code class="descname">nvm_dev_pr</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints information about the device associated with the given handle. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle of the device to print information about </li>
 </ul>
 </dd>
 </dl>
@@ -514,42 +551,6 @@
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain maximum for </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-dev-open">
-<h3>nvm_dev_open<a class="headerlink" href="#nvm-dev-open" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_dev_open">
-<span class="target" id="liblightnvmliblightnvm_8h_1adce9240457c84bf95e34ed9bb3cdf05e"></span>struct <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>* <code class="descname">nvm_dev_open</code><span class="sig-paren">(</span>const char *<em>&nbsp;dev_path</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_open" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a handle to given device path. </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>A handle to the device </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev_path</span></code>: Path of the device to open e.g. &#8220;/dev/nvme0n1&#8221;</li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-dev-pr">
-<h3>nvm_dev_pr<a class="headerlink" href="#nvm-dev-pr" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_dev_pr">
-<span class="target" id="liblightnvmliblightnvm_8h_1ae40775e6f08ef63ed89e42a5c47c0400"></span>void <code class="descname">nvm_dev_pr</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_pr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prints information about the device associated with the given handle. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle of the device to print information about </li>
 </ul>
 </dd>
 </dl>
@@ -683,40 +684,6 @@
 </dd></dl>
 
 </div>
-<div class="section" id="nvm-bbt-alloc-cp">
-<h3>nvm_bbt_alloc_cp<a class="headerlink" href="#nvm-bbt-alloc-cp" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_bbt_alloc_cp">
-<span class="target" id="liblightnvmliblightnvm_8h_1a341957842cd30286e6933aefc93884b5"></span>struct <a class="reference internal" href="#c.nvm_bbt" title="nvm_bbt">nvm_bbt</a>* <code class="descname">nvm_bbt_alloc_cp</code><span class="sig-paren">(</span>const struct  <a class="reference internal" href="#c.nvm_bbt" title="nvm_bbt">nvm_bbt</a>  *<em>&nbsp;bbt</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_alloc_cp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Allocate a copy of the given bbt. </p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-bbt-flush">
-<h3>nvm_bbt_flush<a class="headerlink" href="#nvm-bbt-flush" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_bbt_flush">
-<span class="target" id="liblightnvmliblightnvm_8h_1a8b9b1792eefc95cd2933799e6057b0b2"></span>int <code class="descname">nvm_bbt_flush</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addr</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_flush" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="nvm-bbt-free">
-<h3>nvm_bbt_free<a class="headerlink" href="#nvm-bbt-free" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_bbt_free">
-<span class="target" id="liblightnvmliblightnvm_8h_1aeeef11a1285a6fa2695a3367afdb3770"></span>void <code class="descname">nvm_bbt_free</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_bbt" title="nvm_bbt">nvm_bbt</a>  *<em>&nbsp;bbt</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_free" title="Permalink to this definition">¶</a></dt>
-<dd><p>Destroys a given bad-block-table. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">bbt</span></code>: The bad-block-table to destroy </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
 <div class="section" id="nvm-bbt-get">
 <h3>nvm_bbt_get<a class="headerlink" href="#nvm-bbt-get" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -730,7 +697,28 @@
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to retrieve a bad-block-table from </li>
 <li><code class="docutils literal"><span class="pre">addr</span></code>: Address of the LUN to retrieve bad-block-table for </li>
-<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-bbt-set">
+<h3>nvm_bbt_set<a class="headerlink" href="#nvm-bbt-set" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_bbt_set">
+<span class="target" id="liblightnvmliblightnvm_8h_1a6931a3845f299650c4de5a152a2c875d"></span>int <code class="descname">nvm_bbt_set</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, const struct  <a class="reference internal" href="#c.nvm_bbt" title="nvm_bbt">nvm_bbt</a>  *<em>&nbsp;bbt</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the bad-block-table on given device using the provided bbt. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to update a bad-block-table </li>
+<li><code class="docutils literal"><span class="pre">bbt</span></code>: The bbt to write to device </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result </li>
 </ul>
 </dd>
 </dl>
@@ -765,6 +753,83 @@
 </dd></dl>
 
 </div>
+<div class="section" id="nvm-bbt-flush">
+<h3>nvm_bbt_flush<a class="headerlink" href="#nvm-bbt-flush" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_bbt_flush">
+<span class="target" id="liblightnvmliblightnvm_8h_1a8b9b1792eefc95cd2933799e6057b0b2"></span>int <code class="descname">nvm_bbt_flush</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addr</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_flush" title="Permalink to this definition">¶</a></dt>
+<dd><p>Persist the bad-block-table at <code class="docutils literal"><span class="pre">addr</span></code> on device and deallocate managed memory for the given bad-block-table describing the LUN at <code class="docutils literal"><span class="pre">addr</span></code>. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle of the device to which the bbts are associated </li>
+<li><code class="docutils literal"><span class="pre">addr</span></code>: Address of the LUN to retrieve bad-block-table for </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-bbt-flush-all">
+<h3>nvm_bbt_flush_all<a class="headerlink" href="#nvm-bbt-flush-all" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_bbt_flush_all">
+<span class="target" id="liblightnvmliblightnvm_8h_1a11f997960939bcad35c78c497702d0c8"></span>int <code class="descname">nvm_bbt_flush_all</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_flush_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Persist all bad-block-tables associated with the given <code class="docutils literal"><span class="pre">dev</span></code> </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle of the device to which the bbts are associated </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-bbt-alloc-cp">
+<h3>nvm_bbt_alloc_cp<a class="headerlink" href="#nvm-bbt-alloc-cp" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_bbt_alloc_cp">
+<span class="target" id="liblightnvmliblightnvm_8h_1a341957842cd30286e6933aefc93884b5"></span>struct <a class="reference internal" href="#c.nvm_bbt" title="nvm_bbt">nvm_bbt</a>* <code class="descname">nvm_bbt_alloc_cp</code><span class="sig-paren">(</span>const struct  <a class="reference internal" href="#c.nvm_bbt" title="nvm_bbt">nvm_bbt</a>  *<em>&nbsp;bbt</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_alloc_cp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allocate a copy of the given bad-block-table. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success, a pointer to a write-able copy of the given bbt is returned. On error, NULL is returned and errno set to indicate the error </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">bbt</span></code>: Pointer to the bad-block-table to copy </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-bbt-free">
+<h3>nvm_bbt_free<a class="headerlink" href="#nvm-bbt-free" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_bbt_free">
+<span class="target" id="liblightnvmliblightnvm_8h_1aeeef11a1285a6fa2695a3367afdb3770"></span>void <code class="descname">nvm_bbt_free</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_bbt" title="nvm_bbt">nvm_bbt</a>  *<em>&nbsp;bbt</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_free" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroys a given bad-block-table. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">bbt</span></code>: The bad-block-table to destroy </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="section" id="nvm-bbt-pr">
 <h3>nvm_bbt_pr<a class="headerlink" href="#nvm-bbt-pr" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -775,27 +840,6 @@
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">bbt</span></code>: The bad-block-table to print </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-bbt-set">
-<h3>nvm_bbt_set<a class="headerlink" href="#nvm-bbt-set" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_bbt_set">
-<span class="target" id="liblightnvmliblightnvm_8h_1a6931a3845f299650c4de5a152a2c875d"></span>int <code class="descname">nvm_bbt_set</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, const struct  <a class="reference internal" href="#c.nvm_bbt" title="nvm_bbt">nvm_bbt</a>  *<em>&nbsp;bbt</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_bbt_set" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the bad-block-table on given device using the provided bbt. </p>
-<p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>On success, the number of updated entries is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with with lower-level result codes </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to update a bad-block-table </li>
-<li><code class="docutils literal"><span class="pre">bbt</span></code>: The bbt to write to device </li>
-<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
 </ul>
 </dd>
 </dl>
@@ -905,6 +949,85 @@
 </dd></dl>
 
 </div>
+<div class="section" id="nvm-addr-erase">
+<h3>nvm_addr_erase<a class="headerlink" href="#nvm-addr-erase" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_erase">
+<span class="target" id="liblightnvmliblightnvm_8h_1a1b77997985a372c961d79d09340b4108"></span>ssize_t <code class="descname">nvm_addr_erase</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_erase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Erase nvm at given addresses. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The addresses given to this function are interpreted as block addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_mark</span></code>, <code class="docutils literal"><span class="pre">nvm_addr_write</span></code>, and <code class="docutils literal"><span class="pre">nvm_addr_read</span></code> for which the address is interpreted as a sector address.</dd>
+<dt><strong>Return</strong></dt>
+<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
+<li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
+<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
+<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-read">
+<h3>nvm_addr_read<a class="headerlink" href="#nvm-addr-read" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_read">
+<span class="target" id="liblightnvmliblightnvm_8h_1a6a7ea06fc56c5492a758542849c366ef"></span>ssize_t <code class="descname">nvm_addr_read</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, void *<em>&nbsp;buf</em>, void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read content of nvm at addresses into buf. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The addresses given to this function are interpreted as sector addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_mark</span></code> and <code class="docutils literal"><span class="pre">nvm_addr_erase</span></code> for which the address is interpreted as a block address.</dd>
+<dt><strong>Return</strong></dt>
+<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
+<li><code class="docutils literal"><span class="pre">addrs</span></code>: List of memory address </li>
+<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Buffer to store result of read into, must be aligned to device geo.vpage_nbytes and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer to store content of metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-write">
+<h3>nvm_addr_write<a class="headerlink" href="#nvm-addr-write" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_addr_write">
+<span class="target" id="liblightnvmliblightnvm_8h_1a3e1e58dc35ba7482dfafc7bec0464d94"></span>ssize_t <code class="descname">nvm_addr_write</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, const void *<em>&nbsp;buf</em>, const void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write content of buf to nvm at address(es) </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The addresses given to this function are interpreted as sector addresses, in contrast to nvm_addr_mark and nvm_addr_erase for which the address is interpreted as a block address.</dd>
+<dt><strong>Return</strong></dt>
+<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
+<li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
+<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: The buffer which content to write, must be aligned to device geo.vpage_nbytes and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer containing metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="section" id="nvm-addr-check">
 <h3>nvm_addr_check<a class="headerlink" href="#nvm-addr-check" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -938,31 +1061,6 @@
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: The device which address format to convert from </li>
 <li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on device-format to convert </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-addr-erase">
-<h3>nvm_addr_erase<a class="headerlink" href="#nvm-addr-erase" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_addr_erase">
-<span class="target" id="liblightnvmliblightnvm_8h_1a1b77997985a372c961d79d09340b4108"></span>ssize_t <code class="descname">nvm_addr_erase</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_erase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Erase nvm at given addresses. </p>
-<p><dl class="docutils">
-<dt><strong>Note</strong></dt>
-<dd>The addresses given to this function are interpreted as block addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_mark</span></code>, <code class="docutils literal"><span class="pre">nvm_addr_write</span></code>, and <code class="docutils literal"><span class="pre">nvm_addr_read</span></code> for which the address is interpreted as a sector address.</dd>
-<dt><strong>Return</strong></dt>
-<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
-<li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
-<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
-<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
-<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
 </ul>
 </dd>
 </dl>
@@ -1096,60 +1194,6 @@
 </dd></dl>
 
 </div>
-<div class="section" id="nvm-addr-read">
-<h3>nvm_addr_read<a class="headerlink" href="#nvm-addr-read" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_addr_read">
-<span class="target" id="liblightnvmliblightnvm_8h_1a6a7ea06fc56c5492a758542849c366ef"></span>ssize_t <code class="descname">nvm_addr_read</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, void *<em>&nbsp;buf</em>, void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read content of nvm at addresses into buf. </p>
-<p><dl class="docutils">
-<dt><strong>Note</strong></dt>
-<dd>The addresses given to this function are interpreted as sector addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_mark</span></code> and <code class="docutils literal"><span class="pre">nvm_addr_erase</span></code> for which the address is interpreted as a block address.</dd>
-<dt><strong>Return</strong></dt>
-<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
-<li><code class="docutils literal"><span class="pre">addrs</span></code>: List of memory address </li>
-<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
-<li><code class="docutils literal"><span class="pre">buf</span></code>: Buffer to store result of read into, must be aligned to device geo.vpage_nbytes and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
-<li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer to store content of metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
-<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
-<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-addr-write">
-<h3>nvm_addr_write<a class="headerlink" href="#nvm-addr-write" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_addr_write">
-<span class="target" id="liblightnvmliblightnvm_8h_1a3e1e58dc35ba7482dfafc7bec0464d94"></span>ssize_t <code class="descname">nvm_addr_write</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, const void *<em>&nbsp;buf</em>, const void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write content of buf to nvm at address(es) </p>
-<p><dl class="docutils">
-<dt><strong>Note</strong></dt>
-<dd>The addresses given to this function are interpreted as sector addresses, in contrast to nvm_addr_mark and nvm_addr_erase for which the address is interpreted as a block address.</dd>
-<dt><strong>Return</strong></dt>
-<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
-<li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
-<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
-<li><code class="docutils literal"><span class="pre">buf</span></code>: The buffer which content to write, must be aligned to device geo.vpage_nbytes and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
-<li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer containing metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
-<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
-<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
 </div>
 <div class="section" id="logical-addressing">
 <h2>Logical Addressing<a class="headerlink" href="#logical-addressing" title="Permalink to this headline">¶</a></h2>
@@ -1202,6 +1246,113 @@
 </dd></dl>
 
 </div>
+<div class="section" id="nvm-vblk-erase">
+<h3>nvm_vblk_erase<a class="headerlink" href="#nvm-vblk-erase" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_erase">
+<span class="target" id="liblightnvmliblightnvm_8h_1ad61923687309e99e0999344fcdab71c8"></span>ssize_t <code class="descname">nvm_vblk_erase</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_erase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Erase a virtual block. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>Erasing a vblk will reset internal position pointers</dd>
+<dt><strong>Return</strong></dt>
+<dd>On success, the number of bytes erased is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">vblk</span></code>: The virtual block to erase </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-pread">
+<h3>nvm_vblk_pread<a class="headerlink" href="#nvm-vblk-pread" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_pread">
+<span class="target" id="liblightnvmliblightnvm_8h_1a57c35c8050d0593ff26053958b5a8adf"></span>ssize_t <code class="descname">nvm_vblk_pread</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read from a virtual block at given offset. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-read">
+<h3>nvm_vblk_read<a class="headerlink" href="#nvm-vblk-read" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_read">
+<span class="target" id="liblightnvmliblightnvm_8h_1a7c6feddfd061158168de5ca63ac44275"></span>ssize_t <code class="descname">nvm_vblk_read</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read from a virtual block. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-pwrite">
+<h3>nvm_vblk_pwrite<a class="headerlink" href="#nvm-vblk-pwrite" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_pwrite">
+<span class="target" id="liblightnvmliblightnvm_8h_1a97d743b3a7a4c3db4b359c74dbf8237c"></span>ssize_t <code class="descname">nvm_vblk_pwrite</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pwrite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write to a virtual block at a given offset. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>buf must be aligned to device geometry, see struct <a class="reference internal" href="#liblightnvmstructnvm__geo"><span class="std std-ref">nvm_geo</span></a> and nvm_buf_alloc count must be a multiple of min-size, see struct <a class="reference internal" href="#liblightnvmstructnvm__geo"><span class="std std-ref">nvm_geo</span></a> offset must be a multiple of min-size, see struct <a class="reference internal" href="#liblightnvmstructnvm__geo"><span class="std std-ref">nvm_geo</span></a> do not mix use of nvm_vblk_pwrite with nvm_vblk_write on the same virtual block</dd>
+<dt><strong>Return</strong></dt>
+<dd>On success, the number of bytes written is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">vblk</span></code>: The virtual block to write to </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Write content starting at buf </li>
+<li><code class="docutils literal"><span class="pre">count</span></code>: The number of bytes to write </li>
+<li><code class="docutils literal"><span class="pre">offset</span></code>: Start writing offset bytes within virtual block </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-write">
+<h3>nvm_vblk_write<a class="headerlink" href="#nvm-vblk-write" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_write">
+<span class="target" id="liblightnvmliblightnvm_8h_1a85d3d7291444aec42241baa5ced95a39"></span>ssize_t <code class="descname">nvm_vblk_write</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write to a virtual block. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>buf must be aligned to device geometry, see struct <a class="reference internal" href="#liblightnvmstructnvm__geo"><span class="std std-ref">nvm_geo</span></a> and nvm_buf_alloc count must be a multiple of min-size, see struct <a class="reference internal" href="#liblightnvmstructnvm__geo"><span class="std std-ref">nvm_geo</span></a> do not mix use of nvm_vblk_pwrite with nvm_vblk_write on the same virtual block</dd>
+<dt><strong>Return</strong></dt>
+<dd>On success, the number of bytes written is returned and vblk internal position is updated. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">vblk</span></code>: The virtual block to write to </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Write content starting at buf </li>
+<li><code class="docutils literal"><span class="pre">count</span></code>: The number of bytes to write </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-pad">
+<h3>nvm_vblk_pad<a class="headerlink" href="#nvm-vblk-pad" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_pad">
+<span class="target" id="liblightnvmliblightnvm_8h_1afb47188711a2ec1dd1fa7b2754b4a57c"></span>ssize_t <code class="descname">nvm_vblk_pad</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pad" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pad the virtual block with synthetic data. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>Assumes that you have used nvm_vblk_write and now want to fill the remaining virtual block in order to meet block write-before-read constraints</dd>
+<dt><strong>Return</strong></dt>
+<dd>On success, the number of bytes padded is returned and internal position is updated. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">vblk</span></code>: The virtual block to pad </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="section" id="nvm-vblk-alloc">
 <h3>nvm_vblk_alloc<a class="headerlink" href="#nvm-vblk-alloc" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -1247,27 +1398,6 @@
 </dd></dl>
 
 </div>
-<div class="section" id="nvm-vblk-erase">
-<h3>nvm_vblk_erase<a class="headerlink" href="#nvm-vblk-erase" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_vblk_erase">
-<span class="target" id="liblightnvmliblightnvm_8h_1ad61923687309e99e0999344fcdab71c8"></span>ssize_t <code class="descname">nvm_vblk_erase</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_erase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Erase a virtual block. </p>
-<p><dl class="docutils">
-<dt><strong>Note</strong></dt>
-<dd>Erasing a vblk will reset internal position pointers</dd>
-<dt><strong>Return</strong></dt>
-<dd>On success, the number of bytes erased is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">vblk</span></code>: The virtual block to erase </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
 <div class="section" id="nvm-vblk-free">
 <h3>nvm_vblk_free<a class="headerlink" href="#nvm-vblk-free" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -1278,6 +1408,23 @@
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">vblk</span></code>: The virtual block to destroy </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-pr">
+<h3>nvm_vblk_pr<a class="headerlink" href="#nvm-vblk-pr" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_vblk_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1af7a10ed9f4afdf308e43901a3cf3c1ae"></span>void <code class="descname">nvm_vblk_pr</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the virtual block in a humanly readable form. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">vblk</span></code>: The entity to print information about </li>
 </ul>
 </dd>
 </dl>
@@ -1380,109 +1527,6 @@
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">vblk</span></code>: The entity to retrieve information from </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-vblk-pad">
-<h3>nvm_vblk_pad<a class="headerlink" href="#nvm-vblk-pad" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_vblk_pad">
-<span class="target" id="liblightnvmliblightnvm_8h_1afb47188711a2ec1dd1fa7b2754b4a57c"></span>ssize_t <code class="descname">nvm_vblk_pad</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pad" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pad the virtual block with synthetic data. </p>
-<p><dl class="docutils">
-<dt><strong>Note</strong></dt>
-<dd>Assumes that you have used nvm_vblk_write and now want to fill the remaining virtual block in order to meet block write-before-read constraints</dd>
-<dt><strong>Return</strong></dt>
-<dd>On success, the number of bytes padded is returned and internal position is updated. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">vblk</span></code>: The virtual block to pad </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-vblk-pr">
-<h3>nvm_vblk_pr<a class="headerlink" href="#nvm-vblk-pr" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_vblk_pr">
-<span class="target" id="liblightnvmliblightnvm_8h_1af7a10ed9f4afdf308e43901a3cf3c1ae"></span>void <code class="descname">nvm_vblk_pr</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print the virtual block in a humanly readable form. </p>
-<p><dl class="docutils">
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">vblk</span></code>: The entity to print information about </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-vblk-pread">
-<h3>nvm_vblk_pread<a class="headerlink" href="#nvm-vblk-pread" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_vblk_pread">
-<span class="target" id="liblightnvmliblightnvm_8h_1a57c35c8050d0593ff26053958b5a8adf"></span>ssize_t <code class="descname">nvm_vblk_pread</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pread" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read from a virtual block at given offset. </p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-vblk-pwrite">
-<h3>nvm_vblk_pwrite<a class="headerlink" href="#nvm-vblk-pwrite" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_vblk_pwrite">
-<span class="target" id="liblightnvmliblightnvm_8h_1a97d743b3a7a4c3db4b359c74dbf8237c"></span>ssize_t <code class="descname">nvm_vblk_pwrite</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, size_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_pwrite" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write to a virtual block at a given offset. </p>
-<p><dl class="docutils">
-<dt><strong>Note</strong></dt>
-<dd>buf must be aligned to device geometry, see struct <a class="reference internal" href="#liblightnvmstructnvm__geo"><span class="std std-ref">nvm_geo</span></a> and nvm_buf_alloc count must be a multiple of min-size, see struct <a class="reference internal" href="#liblightnvmstructnvm__geo"><span class="std std-ref">nvm_geo</span></a> offset must be a multiple of min-size, see struct <a class="reference internal" href="#liblightnvmstructnvm__geo"><span class="std std-ref">nvm_geo</span></a> do not mix use of nvm_vblk_pwrite with nvm_vblk_write on the same virtual block</dd>
-<dt><strong>Return</strong></dt>
-<dd>On success, the number of bytes written is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">vblk</span></code>: The virtual block to write to </li>
-<li><code class="docutils literal"><span class="pre">buf</span></code>: Write content starting at buf </li>
-<li><code class="docutils literal"><span class="pre">count</span></code>: The number of bytes to write </li>
-<li><code class="docutils literal"><span class="pre">offset</span></code>: Start writing offset bytes within virtual block </li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-vblk-read">
-<h3>nvm_vblk_read<a class="headerlink" href="#nvm-vblk-read" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_vblk_read">
-<span class="target" id="liblightnvmliblightnvm_8h_1a7c6feddfd061158168de5ca63ac44275"></span>ssize_t <code class="descname">nvm_vblk_read</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read from a virtual block. </p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-vblk-write">
-<h3>nvm_vblk_write<a class="headerlink" href="#nvm-vblk-write" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="c.nvm_vblk_write">
-<span class="target" id="liblightnvmliblightnvm_8h_1a85d3d7291444aec42241baa5ced95a39"></span>ssize_t <code class="descname">nvm_vblk_write</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write to a virtual block. </p>
-<p><dl class="docutils">
-<dt><strong>Note</strong></dt>
-<dd>buf must be aligned to device geometry, see struct <a class="reference internal" href="#liblightnvmstructnvm__geo"><span class="std std-ref">nvm_geo</span></a> and nvm_buf_alloc count must be a multiple of min-size, see struct <a class="reference internal" href="#liblightnvmstructnvm__geo"><span class="std std-ref">nvm_geo</span></a> do not mix use of nvm_vblk_pwrite with nvm_vblk_write on the same virtual block</dd>
-<dt><strong>Return</strong></dt>
-<dd>On success, the number of bytes written is returned and vblk internal position is updated. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
-<dt><strong>Parameters</strong></dt>
-<dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">vblk</span></code>: The virtual block to write to </li>
-<li><code class="docutils literal"><span class="pre">buf</span></code>: Write content starting at buf </li>
-<li><code class="docutils literal"><span class="pre">count</span></code>: The number of bytes to write </li>
 </ul>
 </dd>
 </dl>
