@@ -741,7 +741,7 @@
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to mark </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle </li>
 <li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of memory address array </li>
 <li><code class="docutils literal"><span class="pre">flags</span></code>: 0x0 = GOOD, 0x1 = BAD, 0x2 = GROWN_BAD, as well as access mode </li>
@@ -764,8 +764,8 @@
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle of the device to which the bbts are associated </li>
-<li><code class="docutils literal"><span class="pre">addr</span></code>: Address of the LUN to retrieve bad-block-table for </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle </li>
+<li><code class="docutils literal"><span class="pre">addr</span></code>: Address of the LUN to flush bad-block-table for </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result </li>
 </ul>
 </dd>
@@ -785,7 +785,7 @@
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle of the device to which the bbts are associated </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result </li>
 </ul>
 </dd>
