@@ -184,10 +184,10 @@ sudo make install
 <p>Then use the following flags to setup a device:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>-device nvme,drive<span class="o">=</span><span class="nv">$DRIVE_NAME</span>,<span class="se">\</span>
 <span class="nv">serial</span><span class="o">=</span>deadbeef,<span class="se">\</span>
-<span class="nv">namespaces</span><span class="o">=</span>1,<span class="se">\</span>
-<span class="nv">mdts</span><span class="o">=</span>10,<span class="se">\</span>
-<span class="nv">nlbaf</span><span class="o">=</span>5,<span class="se">\</span>
-<span class="nv">lba_index</span><span class="o">=</span>3<span class="se">\</span>
+<span class="nv">namespaces</span><span class="o">=</span><span class="m">1</span>,<span class="se">\</span>
+<span class="nv">mdts</span><span class="o">=</span><span class="m">10</span>,<span class="se">\</span>
+<span class="nv">nlbaf</span><span class="o">=</span><span class="m">5</span>,<span class="se">\</span>
+<span class="nv">lba_index</span><span class="o">=</span><span class="m">3</span><span class="se">\</span>
 <span class="nv">lbbtable</span><span class="o">=</span><span class="nv">$DRIVE_BBT</span>,<span class="se">\</span>
 <span class="nv">lmetadata</span><span class="o">=</span><span class="nv">$DRIVE_METADATA</span>,<span class="se">\</span>
 <span class="nv">lmetasize</span><span class="o">=</span><span class="nv">$DRIVE_METASIZE</span>
