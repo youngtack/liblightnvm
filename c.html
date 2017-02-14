@@ -958,9 +958,9 @@
 <dd></dd></dl>
 
 <dl class="variable">
-<dt id="c.nvm_cmd::user">
-<span class="target" id="liblightnvmstructnvm__cmd_1a4e38e0e7cb714f9fdc75a5c5192481b7"></span>struct <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>::&#64;0::&#64;2  <code class="descname">user</code><a class="headerlink" href="#c.nvm_cmd::user" title="Permalink to this definition">¶</a></dt>
-<dd><p>Common fields for user commands. </p>
+<dt id="c.nvm_cmd::vuser">
+<span class="target" id="liblightnvmstructnvm__cmd_1a7f4c7d05b001023ec876c82071402b6b"></span>struct <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>::&#64;0::nvm_cmd_vuser  <code class="descname">vuser</code><a class="headerlink" href="#c.nvm_cmd::vuser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Common fields for vector user commands. </p>
 </dd></dl>
 
 <dl class="variable">
@@ -1004,10 +1004,70 @@
 <dd></dd></dl>
 
 <dl class="variable">
-<dt id="c.nvm_cmd::admin">
-<span class="target" id="liblightnvmstructnvm__cmd_1a4af4543d7da8cfe2a5f9b93e56c97f89"></span>struct <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>::&#64;0::&#64;3  <code class="descname">admin</code><a class="headerlink" href="#c.nvm_cmd::admin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Common fields for admin commands. </p>
+<dt id="c.nvm_cmd::vadmin">
+<span class="target" id="liblightnvmstructnvm__cmd_1a245880468bd538cd01fbb6a0832d9abf"></span>struct <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>::&#64;0::nvm_cmd_vadmin  <code class="descname">vadmin</code><a class="headerlink" href="#c.nvm_cmd::vadmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Common fields for vector admin commands. </p>
 </dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::rsvd1">
+<span class="target" id="liblightnvmstructnvm__cmd_1a91b1137effc37b13f8e18931bf48a8e4"></span>uint16_t <code class="descname">rsvd1</code><a class="headerlink" href="#c.nvm_cmd::rsvd1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::cdw10">
+<span class="target" id="liblightnvmstructnvm__cmd_1a52392499d17f656994bdf1e85dc5c208"></span>uint32_t <code class="descname">cdw10</code><a class="headerlink" href="#c.nvm_cmd::cdw10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::cdw11">
+<span class="target" id="liblightnvmstructnvm__cmd_1afffa145a8856cae03409f706113d615a"></span>uint32_t <code class="descname">cdw11</code><a class="headerlink" href="#c.nvm_cmd::cdw11" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::cdw12">
+<span class="target" id="liblightnvmstructnvm__cmd_1a6baaec451c78aeb112ab6bf03c3549a8"></span>uint32_t <code class="descname">cdw12</code><a class="headerlink" href="#c.nvm_cmd::cdw12" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::admin">
+<span class="target" id="liblightnvmstructnvm__cmd_1ad28534282c8fce592071c9a02def116a"></span>struct <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>::&#64;0::<a class="reference internal" href="#c.nvm_cmd_admin" title="nvm_cmd_admin">nvm_cmd_admin</a>  <code class="descname">admin</code><a class="headerlink" href="#c.nvm_cmd::admin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::nblocks">
+<span class="target" id="liblightnvmstructnvm__cmd_1aec2a3e52571f17d09ce92dd355ed71f2"></span>uint16_t <code class="descname">nblocks</code><a class="headerlink" href="#c.nvm_cmd::nblocks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::slba">
+<span class="target" id="liblightnvmstructnvm__cmd_1a697fe555106a805bf414f838dbbfaf27"></span>uint64_t <code class="descname">slba</code><a class="headerlink" href="#c.nvm_cmd::slba" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::dsmgmt">
+<span class="target" id="liblightnvmstructnvm__cmd_1a486ce1c531ec20cc71b83c3b10b65e7b"></span>uint32_t <code class="descname">dsmgmt</code><a class="headerlink" href="#c.nvm_cmd::dsmgmt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::reftag">
+<span class="target" id="liblightnvmstructnvm__cmd_1a5a34aef4cf339703a7cb9f7c18164c81"></span>uint32_t <code class="descname">reftag</code><a class="headerlink" href="#c.nvm_cmd::reftag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::apptag">
+<span class="target" id="liblightnvmstructnvm__cmd_1abae911a6a8b00d8468a5e8959bcab26d"></span>uint16_t <code class="descname">apptag</code><a class="headerlink" href="#c.nvm_cmd::apptag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::appmask">
+<span class="target" id="liblightnvmstructnvm__cmd_1af9266d85c5b23ee9fb6b9f586686565d"></span>uint16_t <code class="descname">appmask</code><a class="headerlink" href="#c.nvm_cmd::appmask" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_cmd::user">
+<span class="target" id="liblightnvmstructnvm__cmd_1ae403b7bb23ecb4913f4d6b9f83edab93"></span>struct <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>::&#64;0::<a class="reference internal" href="#c.nvm_cmd_user" title="nvm_cmd_user">nvm_cmd_user</a>  <code class="descname">user</code><a class="headerlink" href="#c.nvm_cmd::user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="variable">
 <dt>
@@ -1132,7 +1192,7 @@
 
 <dl class="variable">
 <dt id="c.nvm_addr::g">
-<span class="target" id="liblightnvmstructnvm__addr_1a9e88db53db8e72e922bdf1e3dd74d52c"></span>struct <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;4::&#64;6  <code class="descname">g</code><a class="headerlink" href="#c.nvm_addr::g" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvmstructnvm__addr_1a9809cbb7ade56ba200a94e91bb005fcb"></span>struct <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;2::&#64;4  <code class="descname">g</code><a class="headerlink" href="#c.nvm_addr::g" title="Permalink to this definition">¶</a></dt>
 <dd><p>Address packing and geometric accessors. </p>
 </dd></dl>
 
@@ -1150,7 +1210,7 @@
 
 <dl class="variable">
 <dt id="c.nvm_addr::c">
-<span class="target" id="liblightnvmstructnvm__addr_1a7245ef90a5040608d8847448f00ff887"></span>struct <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;4::&#64;7  <code class="descname">c</code><a class="headerlink" href="#c.nvm_addr::c" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvmstructnvm__addr_1ab8bae733138f0815803d19109c6a86d1"></span>struct <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;2::&#64;5  <code class="descname">c</code><a class="headerlink" href="#c.nvm_addr::c" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="variable">
@@ -1160,8 +1220,8 @@
 </dd></dl>
 
 <dl class="variable">
-<dt id="c.5">
-<span class="target" id="liblightnvmstructnvm__addr_1a6fa2711e9bb08294417c6a0fb7cdb198"></span>union <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;4 <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;<code class="descname">5</code><a class="headerlink" href="#c.5" title="Permalink to this definition">¶</a></dt>
+<dt id="c.3">
+<span class="target" id="liblightnvmstructnvm__addr_1af2b339094c979d05b254d33e8a8cd5a6"></span>union <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;2 <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;<code class="descname">3</code><a class="headerlink" href="#c.3" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
