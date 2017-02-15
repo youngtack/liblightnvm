@@ -305,6 +305,18 @@
 <dd><p>Total number of bytes in geometry. </p>
 </dd></dl>
 
+<dl class="variable">
+<dt id="c.nvm_geo::vblk_nbytes">
+<span class="target" id="liblightnvmstructnvm__geo_1a4b0829108bd69a14cf075ec27134bbaf"></span>size_t <code class="descname">vblk_nbytes</code><a class="headerlink" href="#c.nvm_geo::vblk_nbytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of bytes per virtual block. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_geo::vpg_nbytes">
+<span class="target" id="liblightnvmstructnvm__geo_1a7ec525b6d69dcbd3e3c48df5fa335ce2"></span>size_t <code class="descname">vpg_nbytes</code><a class="headerlink" href="#c.nvm_geo::vpg_nbytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of bytes per virtual page. </p>
+</dd></dl>
+
 </div>
 </dd></dl>
 
@@ -329,7 +341,7 @@
 <dd><p>Allocate a buffer aligned to match the given geometry. </p>
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
-<dd>nbytes must be greater than zero and a multiple of minimal granularity</dd>
+<dd>nbytes must be greater than zero and a multiple of geo.vpage_nbytes</dd>
 <dt><strong>Return</strong></dt>
 <dd>A pointer to the allocated memory. On error: NULL is returned and <code class="docutils literal"><span class="pre">errno</span></code> set appropriatly </dd>
 <dt><strong>Parameters</strong></dt>
@@ -395,15 +407,14 @@
 <h3>nvm_dev_open<a class="headerlink" href="#nvm-dev-open" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
 <dt id="c.nvm_dev_open">
-<span class="target" id="liblightnvmliblightnvm_8h_1af14a2285a5ba2e49352327a57f412348"></span>struct <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>* <code class="descname">nvm_dev_open</code><span class="sig-paren">(</span>const char *<em>&nbsp;dev_path</em>, int<em>&nbsp;flags</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_open" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1adce9240457c84bf95e34ed9bb3cdf05e"></span>struct <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>* <code class="descname">nvm_dev_open</code><span class="sig-paren">(</span>const char *<em>&nbsp;dev_path</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_open" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a handle to given device path. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>A handle to the device </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev_path</span></code>: Path of the device to open e.g. &#8220;/dev/nvme0n1&#8221; </li>
-<li><code class="docutils literal"><span class="pre">flags</span></code>: Flags such as setting specific backend</li>
+<li><code class="docutils literal"><span class="pre">dev_path</span></code>: Path of the device to open e.g. &#8220;/dev/nvme0n1&#8221;</li>
 </ul>
 </dd>
 </dl>
@@ -1260,7 +1271,7 @@
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
 <li><code class="docutils literal"><span class="pre">addrs</span></code>: List of memory address </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
-<li><code class="docutils literal"><span class="pre">buf</span></code>: Buffer to store result of read into, must be aligned to device granularity min read and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.sector_nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Buffer to store result of read into, must be aligned to device geo.vpage_nbytes and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
 <li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer to store content of metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
 <li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
@@ -1287,7 +1298,7 @@
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
 <li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
-<li><code class="docutils literal"><span class="pre">buf</span></code>: The buffer which content to write, must be aligned to device geometry of minimal write granularity and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: The buffer which content to write, must be aligned to device geo.vpage_nbytes and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
 <li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer containing metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
 <li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
