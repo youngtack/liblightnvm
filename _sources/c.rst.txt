@@ -91,6 +91,11 @@ nvm_dev_get_meta_mode
 
 .. doxygenfunction:: nvm_dev_get_meta_mode
 
+nvm_dev_get_nsid
+----------------
+
+.. doxygenfunction:: nvm_dev_get_nsid
+
 nvm_dev_get_pmode
 -----------------
 

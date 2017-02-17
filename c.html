@@ -110,6 +110,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-erase-naddrs-max">nvm_dev_get_erase_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-geo">nvm_dev_get_geo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-meta-mode">nvm_dev_get_meta_mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-nsid">nvm_dev_get_nsid</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-pmode">nvm_dev_get_pmode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-read-naddrs-max">nvm_dev_get_read_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-write-naddrs-max">nvm_dev_get_write_naddrs_max</a></li>
@@ -535,6 +536,25 @@
 <dt id="c.nvm_dev_get_meta_mode">
 <span class="target" id="liblightnvmliblightnvm_8h_1a4d05f2aac18cced35ad4b71cfa9bc3ed"></span>int <code class="descname">nvm_dev_get_meta_mode</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_get_meta_mode" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</div>
+<div class="section" id="nvm-dev-get-nsid">
+<h3>nvm_dev_get_nsid<a class="headerlink" href="#nvm-dev-get-nsid" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_dev_get_nsid">
+<span class="target" id="liblightnvmliblightnvm_8h_1ad7a9e2276caee020827a95dac52e0b4b"></span>int <code class="descname">nvm_dev_get_nsid</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_get_nsid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the NVME namespace identifier. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success, NVME namespace identifier is returned. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain the NVME namespace of</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
 
 </div>
 <div class="section" id="nvm-dev-get-pmode">
