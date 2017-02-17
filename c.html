@@ -427,7 +427,7 @@
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to destroy </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 </ul>
 </dd>
 </dl>
@@ -464,7 +464,7 @@
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle of the device to print information about </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 </ul>
 </dd>
 </dl>
@@ -483,7 +483,7 @@
 <dd>0 = cache disabled 1 = cache enabled</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain maximum for </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 </ul>
 </dd>
 </dl>
@@ -501,7 +501,7 @@
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain maximum for </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 </ul>
 </dd>
 </dl>
@@ -522,7 +522,7 @@
 <dd>The geometry (struct <a class="reference internal" href="#liblightnvmstructnvm__geo"><span class="std std-ref">nvm_geo</span></a>) of given device handle </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain the geometry of</li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code></li>
 </ul>
 </dd>
 </dl>
@@ -535,7 +535,18 @@
 <dl class="function">
 <dt id="c.nvm_dev_get_meta_mode">
 <span class="target" id="liblightnvmliblightnvm_8h_1a4d05f2aac18cced35ad4b71cfa9bc3ed"></span>int <code class="descname">nvm_dev_get_meta_mode</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_get_meta_mode" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the &#8216;meta-mode&#8217; of the given device. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success, meta-mode is returned </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
 
 </div>
 <div class="section" id="nvm-dev-get-nsid">
@@ -543,13 +554,13 @@
 <dl class="function">
 <dt id="c.nvm_dev_get_nsid">
 <span class="target" id="liblightnvmliblightnvm_8h_1ad7a9e2276caee020827a95dac52e0b4b"></span>int <code class="descname">nvm_dev_get_nsid</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_get_nsid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the NVME namespace identifier. </p>
+<dd><p>Returns the NVME namespace identifier of the given device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>On success, NVME namespace identifier is returned. </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain the NVME namespace of</li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code></li>
 </ul>
 </dd>
 </dl>
@@ -565,10 +576,10 @@
 <dd><p>Returns the default plane_mode of the given device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>On success, pmode flag is returned. </dd>
+<dd>On success, pmode flag is returned </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain the default plane mode for </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 </ul>
 </dd>
 </dl>
@@ -585,7 +596,7 @@
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain maximum for </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 </ul>
 </dd>
 </dl>
@@ -602,7 +613,7 @@
 <p><dl class="docutils">
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to obtain maximum for </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 </ul>
 </dd>
 </dl>
@@ -617,13 +628,12 @@
 <span class="target" id="liblightnvmliblightnvm_8h_1a1918f6acec6f8308d69137bfb8c9d5e1"></span>int <code class="descname">nvm_dev_set_bbts_cached</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, int<em>&nbsp;bbts_cached</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_set_bbts_cached" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets whether retrieval and changes to bad-block-tables should be cached. </p>
 <p><dl class="docutils">
-<dt><strong>Note</strong></dt>
-<dd>0 = cache disabled 1 = cache enabled</dd>
 <dt><strong>Return</strong></dt>
 <dd>0 on success, -1 on error and errno set to indicate the error. </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to bad-block-table caching for</li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">bbts_cached</span></code>: 1 = cache enabled, 0 = cache disabled</li>
 </ul>
 </dd>
 </dl>
@@ -642,7 +652,7 @@
 <dd>0 on success, -1 on error and errno set to indicate the error. </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to set maximum for </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: The maximum</li>
 </ul>
 </dd>
@@ -670,7 +680,7 @@
 <dd>0 on success, -1 on error and errno set to indicate the error. </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to set maximum for </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: The maximum</li>
 </ul>
 </dd>
@@ -690,7 +700,7 @@
 <dd>0 on success, -1 on error and errno set to indicate the error. </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device to set maximum for </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: The maximum</li>
 </ul>
 </dd>
@@ -755,7 +765,7 @@
 <dd>On success, a pointer to the bad-block-table is returned. On error, NULL is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to retrieve a bad-block-table from </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">addr</span></code>: Address of the LUN to retrieve bad-block-table for </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result </li>
 </ul>
@@ -776,7 +786,7 @@
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which to update a bad-block-table </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">bbt</span></code>: The bbt to write to device </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result </li>
 </ul>
@@ -801,7 +811,7 @@
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of memory address array </li>
 <li><code class="docutils literal"><span class="pre">flags</span></code>: 0x0 = GOOD, 0x1 = BAD, 0x2 = GROWN_BAD, as well as access mode </li>
@@ -824,7 +834,7 @@
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">addr</span></code>: Address of the LUN to flush bad-block-table for </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result </li>
 </ul>
@@ -845,7 +855,7 @@
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result </li>
 </ul>
 </dd>
@@ -1123,44 +1133,48 @@
 </div>
 <div class="section" id="nvm-cmd-admin">
 <h3>nvm_cmd_admin<a class="headerlink" href="#nvm-cmd-admin" title="Permalink to this headline">¶</a></h3>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">doxygenstruct: Cannot find class &#8220;nvm_cmd_admin&#8221; in doxygen xml output for project &#8220;liblightnvm&#8221; from directory: /home/travis/build/OpenChannelSSD/liblightnvm/build/doc/doxy/xml</p>
-</div>
+<dl class="struct">
+<dt id="c.nvm_cmd_admin">
+<span class="target" id="liblightnvmstructnvm__cmd__admin"></span><em class="property">struct </em><code class="descname">nvm_cmd_admin</code><a class="headerlink" href="#c.nvm_cmd_admin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="nvm-cmd-user">
 <h3>nvm_cmd_user<a class="headerlink" href="#nvm-cmd-user" title="Permalink to this headline">¶</a></h3>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">doxygenstruct: Cannot find class &#8220;nvm_cmd_user&#8221; in doxygen xml output for project &#8220;liblightnvm&#8221; from directory: /home/travis/build/OpenChannelSSD/liblightnvm/build/doc/doxy/xml</p>
-</div>
+<dl class="struct">
+<dt id="c.nvm_cmd_user">
+<span class="target" id="liblightnvmstructnvm__cmd__user"></span><em class="property">struct </em><code class="descname">nvm_cmd_user</code><a class="headerlink" href="#c.nvm_cmd_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="nvm-cmd-vadmin">
 <h3>nvm_cmd_vadmin<a class="headerlink" href="#nvm-cmd-vadmin" title="Permalink to this headline">¶</a></h3>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">doxygenstruct: Cannot find class &#8220;nvm_cmd_vadmin&#8221; in doxygen xml output for project &#8220;liblightnvm&#8221; from directory: /home/travis/build/OpenChannelSSD/liblightnvm/build/doc/doxy/xml</p>
-</div>
+<dl class="struct">
+<dt id="c.nvm_cmd_vadmin">
+<span class="target" id="liblightnvmstructnvm__cmd__vadmin"></span><em class="property">struct </em><code class="descname">nvm_cmd_vadmin</code><a class="headerlink" href="#c.nvm_cmd_vadmin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="nvm-cmd-vuser">
 <h3>nvm_cmd_vuser<a class="headerlink" href="#nvm-cmd-vuser" title="Permalink to this headline">¶</a></h3>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">doxygenstruct: Cannot find class &#8220;nvm_cmd_vuser&#8221; in doxygen xml output for project &#8220;liblightnvm&#8221; from directory: /home/travis/build/OpenChannelSSD/liblightnvm/build/doc/doxy/xml</p>
-</div>
+<dl class="struct">
+<dt id="c.nvm_cmd_vuser">
+<span class="target" id="liblightnvmstructnvm__cmd__vuser"></span><em class="property">struct </em><code class="descname">nvm_cmd_vuser</code><a class="headerlink" href="#c.nvm_cmd_vuser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="id1">
 <h3>nvm_cmd_vadmin<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt id="c.nvm_cmd_vadmin">
-<span class="target" id="liblightnvmliblightnvm_8h_1a5a2f13a2610219c48912aaeebd2e42ad"></span>int <code class="descname">nvm_cmd_vadmin</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_cmd_vadmin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Execute an vector admin command. </p>
+<dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1a5a2f13a2610219c48912aaeebd2e42ad"></span>int <code class="descname">nvm_cmd_vadmin</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span></dt>
+<dd><p>Execute a vector admin command on the given device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Device the execute the command upon </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">cmd</span></code>: The command to execute </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to struct to fill with lower-level result-codes</li>
 </ul>
@@ -1173,15 +1187,15 @@
 <div class="section" id="id2">
 <h3>nvm_cmd_vuser<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt id="c.nvm_cmd_vuser">
-<span class="target" id="liblightnvmliblightnvm_8h_1a4046ca3060078da049535435fc90e95b"></span>int <code class="descname">nvm_cmd_vuser</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_cmd_vuser" title="Permalink to this definition">¶</a></dt>
-<dd><p>Execute a vector user command. </p>
+<dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1a4046ca3060078da049535435fc90e95b"></span>int <code class="descname">nvm_cmd_vuser</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span></dt>
+<dd><p>Execute a vector user command on the given device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Device the execute the command upon </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">cmd</span></code>: The command to execute </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to struct to fill with lower-level result-codes</li>
 </ul>
@@ -1194,15 +1208,15 @@
 <div class="section" id="id3">
 <h3>nvm_cmd_admin<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt id="c.nvm_cmd_admin">
-<span class="target" id="liblightnvmliblightnvm_8h_1a130a85e2eacbf799c8aee9081eee72ae"></span>int <code class="descname">nvm_cmd_admin</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_cmd_admin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Execute an admin command. </p>
+<dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1a130a85e2eacbf799c8aee9081eee72ae"></span>int <code class="descname">nvm_cmd_admin</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span></dt>
+<dd><p>Execute an admin command on the given device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Device the execute the command upon </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">cmd</span></code>: The command to execute </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to struct to fill with lower-level result-codes</li>
 </ul>
@@ -1215,15 +1229,15 @@
 <div class="section" id="id4">
 <h3>nvm_cmd_user<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt id="c.nvm_cmd_user">
-<span class="target" id="liblightnvmliblightnvm_8h_1ab3e2e38522bf1d90de637c8a45cb672e"></span>int <code class="descname">nvm_cmd_user</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_cmd_user" title="Permalink to this definition">¶</a></dt>
-<dd><p>Execute an user command. </p>
+<dt>
+<span class="target" id="liblightnvmliblightnvm_8h_1ab3e2e38522bf1d90de637c8a45cb672e"></span>int <code class="descname">nvm_cmd_user</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span></dt>
+<dd><p>Execute an user command on the given device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Device the execute the command upon </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">cmd</span></code>: The command to execute </li>
 <li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to struct to fill with lower-level result-codes</li>
 </ul>
@@ -1348,7 +1362,7 @@
 <dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
 <li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
@@ -1373,7 +1387,7 @@
 <dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">addrs</span></code>: List of memory address </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
 <li><code class="docutils literal"><span class="pre">buf</span></code>: Buffer to store result of read into, must be aligned to device granularity min read and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.sector_nbytes</span></code> </li>
@@ -1400,7 +1414,7 @@
 <dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to the device on which to erase </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
 <li><code class="docutils literal"><span class="pre">buf</span></code>: The buffer which content to write, must be aligned to device geometry of minimal write granularity and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
@@ -1445,7 +1459,7 @@
 <dd>Physical address on generic-format </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device which address format to convert from </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on device-format to convert </li>
 </ul>
 </dd>
@@ -1465,7 +1479,7 @@
 <dd>Physical address on device-format </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device which address format to convert to </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on generic-format to convert </li>
 </ul>
 </dd>
@@ -1485,7 +1499,7 @@
 <dd>Logical address as LBA offset </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to device which mapping information to use </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on generic-format to convert </li>
 </ul>
 </dd>
@@ -1505,7 +1519,7 @@
 <dd>Logical address as byte offset </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to device which mapping information to use </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on generic-format to convert </li>
 </ul>
 </dd>
@@ -1525,7 +1539,7 @@
 <dd>Physical address on generic-format </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to device which mapping information to use </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">off</span></code>: Logical address as LBA offset to convert </li>
 </ul>
 </dd>
@@ -1545,7 +1559,7 @@
 <dd>Physical address on generic-format </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: Handle to device which mapping information to use </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">off</span></code>: Logical address as byte offset to convert </li>
 </ul>
 </dd>
@@ -1750,7 +1764,7 @@
 <dd>On success, an opaque pointer to the initialized virtual block is returned. On error, NULL and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which the virtual block resides </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">addrs</span></code>: Set of block-addresses forming the virtual block </li>
 <li><code class="docutils literal"><span class="pre">naddrs</span></code>: The number of addresses in the address-set</li>
 </ul>
@@ -1771,7 +1785,7 @@
 <dd>On success, an opaque pointer to the initialized virtual block is returned. On error, NULL and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error. </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal"><span class="pre">dev</span></code>: The device on which the virtual block resides </li>
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
 <li><code class="docutils literal"><span class="pre">ch_bgn</span></code>: Beginning of the channel span, as inclusive index </li>
 <li><code class="docutils literal"><span class="pre">ch_end</span></code>: End of the channel span, as inclusive index </li>
 <li><code class="docutils literal"><span class="pre">lun_bgn</span></code>: Beginning of the LUN span, as inclusive index </li>
