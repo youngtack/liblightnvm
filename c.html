@@ -739,15 +739,39 @@
 </dd></dl>
 
 <dl class="variable">
-<dt id="c.nvm_bbt::blks">
-<span class="target" id="liblightnvmstructnvm__bbt_1a99508e52173934f18a875daae4ac7bb0"></span>uint8_t* <code class="descname">blks</code><a class="headerlink" href="#c.nvm_bbt::blks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Array containing block status for each block in LUN. </p>
+<dt id="c.nvm_bbt::nblks">
+<span class="target" id="liblightnvmstructnvm__bbt_1abfd11ee021cbd2dfbad04a38f536eceb"></span>uint64_t <code class="descname">nblks</code><a class="headerlink" href="#c.nvm_bbt::nblks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Total # of blocks in lun. </p>
 </dd></dl>
 
 <dl class="variable">
-<dt id="c.nvm_bbt::nblks">
-<span class="target" id="liblightnvmstructnvm__bbt_1abfd11ee021cbd2dfbad04a38f536eceb"></span>uint64_t <code class="descname">nblks</code><a class="headerlink" href="#c.nvm_bbt::nblks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Length of the bad block array. </p>
+<dt id="c.nvm_bbt::nbad">
+<span class="target" id="liblightnvmstructnvm__bbt_1a48bc17e09f954513f57e2b78a0c4bf06"></span>uint32_t <code class="descname">nbad</code><a class="headerlink" href="#c.nvm_bbt::nbad" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>of manufacturer marked bad blocks</em></p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_bbt::ngbad">
+<span class="target" id="liblightnvmstructnvm__bbt_1a7d17d898fb9d71abcb0ec55393dda423"></span>uint32_t <code class="descname">ngbad</code><a class="headerlink" href="#c.nvm_bbt::ngbad" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>of grown bad blocks</em></p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_bbt::ndmrk">
+<span class="target" id="liblightnvmstructnvm__bbt_1af53027b58b577c5523d777ff33467093"></span>uint32_t <code class="descname">ndmrk</code><a class="headerlink" href="#c.nvm_bbt::ndmrk" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>of device reserved/marked blocks</em></p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_bbt::nhmrk">
+<span class="target" id="liblightnvmstructnvm__bbt_1ab81bb90aebffc217c789bf5e09745ce9"></span>uint32_t <code class="descname">nhmrk</code><a class="headerlink" href="#c.nvm_bbt::nhmrk" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>of of host reserved/marked blocks</em></p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_bbt::blks">
+<span class="target" id="liblightnvmstructnvm__bbt_1a99508e52173934f18a875daae4ac7bb0"></span>uint8_t* <code class="descname">blks</code><a class="headerlink" href="#c.nvm_bbt::blks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array containing block status for each block in LUN. </p>
 </dd></dl>
 
 </div>
