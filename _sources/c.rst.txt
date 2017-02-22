@@ -106,6 +106,11 @@ nvm_dev_get_read_naddrs_max
 
 .. doxygenfunction:: nvm_dev_get_read_naddrs_max
 
+nvm_dev_get_verid
+-----------------
+
+.. doxygenfunction:: nvm_dev_get_verid
+
 nvm_dev_get_write_naddrs_max
 ----------------------------
 
@@ -201,30 +206,6 @@ nvm_cmd
 -------
 
 .. doxygenstruct:: nvm_cmd
-   :members:
-
-nvm_cmd_admin
--------------
-
-.. doxygenstruct:: nvm_cmd_admin
-   :members:
-
-nvm_cmd_user
-------------
-
-.. doxygenstruct:: nvm_cmd_user
-   :members:
-
-nvm_cmd_vadmin
---------------
-
-.. doxygenstruct:: nvm_cmd_vadmin
-   :members:
-
-nvm_cmd_vuser
--------------
-
-.. doxygenstruct:: nvm_cmd_vuser
    :members:
 
 nvm_cmd_vadmin

@@ -87,6 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="c.html">C API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command-Line Interface</a></li>
 </ul>
@@ -135,13 +136,30 @@
             
   <div class="section" id="user-space-i-o-library-for-open-channel-ssds">
 <h1>User space I/O library for Open-Channel SSDs<a class="headerlink" href="#user-space-i-o-library-for-open-channel-ssds" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to the liblightnvm documentation!</p>
+<p>liblightnvm provides the means to interact with and obtain information about
+Open-Channel SSDs from user space.</p>
+<p>The core of the library provides an interface for performing vectorized I/O
+using physical addressing. Command-construction is encapsulated, including
+mapping a general physical addressing format to device specific. Thereby
+allowing the user to focus on performing read/write on the vector space. The
+interface is useful for experimenting with the vectorized I/O as provided by
+Open-Channel SSDs.
+However, the library also support pealing of these abstractions and let the
+user construct and submit &#8220;raw&#8221; commands.</p>
+<p>For application integration, the &#8220;virtual block&#8221; interface provides
+a libc-like <code class="docutils literal"><span class="pre">write</span></code>/<code class="docutils literal"><span class="pre">read</span></code>/<code class="docutils literal"><span class="pre">pread</span></code> interface, encapsulating concerns of
+optimizing command construction for utilization of parallel units on an
+Open-Channel SSD.  A virtual block can be created to span all parallel units or
+a subset thereof.</p>
+<p>liblightnvm provides access to the user via a public C API, and a command-line
+interface (CLI). The CLI is a thin wrapper around what the C API exposes and is
+intended to provide easy access to what liblightnvm has to offer.</p>
 <p>Here you can jump right into the <a class="reference internal" href="quick_start.html#sec-quick-start"><span class="std std-ref">Quick Start</span></a> or take detailed look
 at the <a class="reference internal" href="prerequisites.html#sec-prereqs"><span class="std std-ref">Prerequisites</span></a> for using liblightnvm. <a class="reference internal" href="background.html#sec-background"><span class="std std-ref">Background</span></a>
 information is available, introducing common pitfalls when working with flash
 memories.</p>
-<p>With the basics in place you can explore the <a class="reference internal" href="c.html#sec-c-api"><span class="std std-ref">C API</span></a>, the
-<a class="reference internal" href="cli.html#sec-cli"><span class="std std-ref">Command-Line Interface</span></a> and the <a class="reference internal" href="python.html#sec-python"><span class="std std-ref">Python Module</span></a>.</p>
+<p>With the basics in place you can explore the <a class="reference internal" href="c.html#sec-c-api"><span class="std std-ref">C API</span></a> and the
+<a class="reference internal" href="cli.html#sec-cli"><span class="std std-ref">Command-Line Interface</span></a>.</p>
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -160,6 +178,11 @@ memories.</p>
 <li class="toctree-l2"><a class="reference internal" href="background.html#device-architecture">Device Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="background.html#media-constraints">Media Constraints</a></li>
 <li class="toctree-l2"><a class="reference internal" href="background.html#references">REFERENCES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#obtaining-device-information">Obtaining device information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#physical-addressing">Physical Addressing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="c.html">C API</a><ul>

@@ -35,7 +35,7 @@
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="liblightnvm 0.0.1 documentation" href="index.html"/>
         <link rel="next" title="Command-Line Interface" href="cli.html"/>
-        <link rel="prev" title="Background" href="background.html"/> 
+        <link rel="prev" title="Tutorial Introduction" href="tutorial.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -88,6 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">C API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#geometry">Geometry</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-geo">nvm_geo</a></li>
@@ -113,6 +114,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-nsid">nvm_dev_get_nsid</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-pmode">nvm_dev_get_pmode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-read-naddrs-max">nvm_dev_get_read_naddrs_max</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-verid">nvm_dev_get_verid</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-get-write-naddrs-max">nvm_dev_get_write_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-bbts-cached">nvm_dev_set_bbts_cached</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-erase-naddrs-max">nvm_dev_set_erase_naddrs_max</a></li>
@@ -136,14 +138,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#low-level-command-execution">Low-Level Command Execution</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-cmd">nvm_cmd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-cmd-admin">nvm_cmd_admin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nvm-cmd-user">nvm_cmd_user</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-cmd-vadmin">nvm_cmd_vadmin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-cmd-vuser">nvm_cmd_vuser</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">nvm_cmd_vadmin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">nvm_cmd_vuser</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">nvm_cmd_admin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">nvm_cmd_user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-cmd-admin">nvm_cmd_admin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-cmd-user">nvm_cmd_user</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-cmd-pr">nvm_cmd_pr</a></li>
 </ul>
 </li>
@@ -594,6 +592,25 @@
 <span class="target" id="liblightnvmliblightnvm_8h_1abaa5dfab484dd4e078c8d3c46ea7dc5f"></span>int <code class="descname">nvm_dev_get_read_naddrs_max</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_get_read_naddrs_max" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the maximum number of addresses to use for reads, that is, when invoking nvm_addr_read. </p>
 <p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-dev-get-verid">
+<h3>nvm_dev_get_verid<a class="headerlink" href="#nvm-dev-get-verid" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="c.nvm_dev_get_verid">
+<span class="target" id="liblightnvmliblightnvm_8h_1a6bf49b1c26863a5f0e8eeb6bfee13a4a"></span>int <code class="descname">nvm_dev_get_verid</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_get_verid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the verid of the given device. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success, verid is returned </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
@@ -1155,43 +1172,11 @@
 </dd></dl>
 
 </div>
-<div class="section" id="nvm-cmd-admin">
-<h3>nvm_cmd_admin<a class="headerlink" href="#nvm-cmd-admin" title="Permalink to this headline">¶</a></h3>
-<dl class="struct">
-<dt id="c.nvm_cmd_admin">
-<span class="target" id="liblightnvmstructnvm__cmd__admin"></span><em class="property">struct </em><code class="descname">nvm_cmd_admin</code><a class="headerlink" href="#c.nvm_cmd_admin" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="nvm-cmd-user">
-<h3>nvm_cmd_user<a class="headerlink" href="#nvm-cmd-user" title="Permalink to this headline">¶</a></h3>
-<dl class="struct">
-<dt id="c.nvm_cmd_user">
-<span class="target" id="liblightnvmstructnvm__cmd__user"></span><em class="property">struct </em><code class="descname">nvm_cmd_user</code><a class="headerlink" href="#c.nvm_cmd_user" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
 <div class="section" id="nvm-cmd-vadmin">
 <h3>nvm_cmd_vadmin<a class="headerlink" href="#nvm-cmd-vadmin" title="Permalink to this headline">¶</a></h3>
-<dl class="struct">
-<dt id="c.nvm_cmd_vadmin">
-<span class="target" id="liblightnvmstructnvm__cmd__vadmin"></span><em class="property">struct </em><code class="descname">nvm_cmd_vadmin</code><a class="headerlink" href="#c.nvm_cmd_vadmin" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="nvm-cmd-vuser">
-<h3>nvm_cmd_vuser<a class="headerlink" href="#nvm-cmd-vuser" title="Permalink to this headline">¶</a></h3>
-<dl class="struct">
-<dt id="c.nvm_cmd_vuser">
-<span class="target" id="liblightnvmstructnvm__cmd__vuser"></span><em class="property">struct </em><code class="descname">nvm_cmd_vuser</code><a class="headerlink" href="#c.nvm_cmd_vuser" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-<div class="section" id="id1">
-<h3>nvm_cmd_vadmin<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt>
-<span class="target" id="liblightnvmliblightnvm_8h_1a5a2f13a2610219c48912aaeebd2e42ad"></span>int <code class="descname">nvm_cmd_vadmin</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span></dt>
+<dt id="c.nvm_cmd_vadmin">
+<span class="target" id="liblightnvmliblightnvm_8h_1a5a2f13a2610219c48912aaeebd2e42ad"></span>int <code class="descname">nvm_cmd_vadmin</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_cmd_vadmin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a vector admin command on the given device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
@@ -1208,11 +1193,11 @@
 </dd></dl>
 
 </div>
-<div class="section" id="id2">
-<h3>nvm_cmd_vuser<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="nvm-cmd-vuser">
+<h3>nvm_cmd_vuser<a class="headerlink" href="#nvm-cmd-vuser" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt>
-<span class="target" id="liblightnvmliblightnvm_8h_1a4046ca3060078da049535435fc90e95b"></span>int <code class="descname">nvm_cmd_vuser</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span></dt>
+<dt id="c.nvm_cmd_vuser">
+<span class="target" id="liblightnvmliblightnvm_8h_1a4046ca3060078da049535435fc90e95b"></span>int <code class="descname">nvm_cmd_vuser</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_cmd_vuser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute a vector user command on the given device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
@@ -1229,11 +1214,11 @@
 </dd></dl>
 
 </div>
-<div class="section" id="id3">
-<h3>nvm_cmd_admin<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="nvm-cmd-admin">
+<h3>nvm_cmd_admin<a class="headerlink" href="#nvm-cmd-admin" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt>
-<span class="target" id="liblightnvmliblightnvm_8h_1a130a85e2eacbf799c8aee9081eee72ae"></span>int <code class="descname">nvm_cmd_admin</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span></dt>
+<dt id="c.nvm_cmd_admin">
+<span class="target" id="liblightnvmliblightnvm_8h_1a130a85e2eacbf799c8aee9081eee72ae"></span>int <code class="descname">nvm_cmd_admin</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_cmd_admin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute an admin command on the given device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
@@ -1250,11 +1235,11 @@
 </dd></dl>
 
 </div>
-<div class="section" id="id4">
-<h3>nvm_cmd_user<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="nvm-cmd-user">
+<h3>nvm_cmd_user<a class="headerlink" href="#nvm-cmd-user" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
-<dt>
-<span class="target" id="liblightnvmliblightnvm_8h_1ab3e2e38522bf1d90de637c8a45cb672e"></span>int <code class="descname">nvm_cmd_user</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span></dt>
+<dt id="c.nvm_cmd_user">
+<span class="target" id="liblightnvmliblightnvm_8h_1ab3e2e38522bf1d90de637c8a45cb672e"></span>int <code class="descname">nvm_cmd_user</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_cmd" title="nvm_cmd">nvm_cmd</a>  *<em>&nbsp;cmd</em>, struct  nvm_ret  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_cmd_user" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute an user command on the given device. </p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
@@ -1971,7 +1956,7 @@
         <a href="cli.html" class="btn btn-neutral float-right" title="Command-Line Interface" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="background.html" class="btn btn-neutral" title="Background" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tutorial.html" class="btn btn-neutral" title="Tutorial Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
