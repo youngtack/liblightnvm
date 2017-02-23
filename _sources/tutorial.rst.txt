@@ -182,10 +182,20 @@ Write
 -----
 
 The two primary constraints for issuing writes are that they must be at the
-granularity of a full flash page and contigous within a block.
+granularity of a full flash page and contiguous within a block.
 
-For the geometry in figure X, a full flash page is four sectors of each 4096 bytes,
-a command satisfying the minimum-write constraint thus contains four addresses with a payload of 16384 bytes of data. The command can constructed via the CLI as::
+.. NOTE :: C API for performing write using vectorized IO with addressing at
+    sector-level is done using ``nvm_addr_write``, note that the payload must
+    be aligned to sector size, the helper function ``nvm_buf_alloc`` is
+    provided for convenience
+
+Minimum write
+~~~~~~~~~~~~~
+
+For the geometry in figure X, a full flash page is four sectors of each 4096
+bytes, a command satisfying the minimum-write constraint thus contains four
+addresses with a payload of 16384 bytes of data. The command can constructed
+via the CLI as::
 
     nvm_addr write /dev/nvme0n1 \
     0x000000000000000a 0x000000010000000a 0x000000020000000a 0x000000030000000a
@@ -230,6 +240,9 @@ Yielding without error::
 
 The plane-mode allows for multiple writes to be done in parallel across the
 planes.
+
+Maximum write
+~~~~~~~~~~~~~
 
 An improvement of round-trip-time can be obtained by increasing the amount of
 work done by a single command, that is, increase the number of addresses.
@@ -291,11 +304,6 @@ Successfully yielding::
 Using vectorized IO we have with a single command successfully written a
 payload of 64 x 4096 bytes = 256 KB.
 
-.. NOTE :: C API for performing write using vectorized IO with addressing at
-    sector-level is done using ``nvm_addr_write``, note that the payload must
-    be aligned to sector size, the helper function ``nvm_buf_alloc`` is
-    provided for convenience
-
 Read
 ----
 
@@ -350,129 +358,7 @@ stdout, yielding::
   i[32,63]:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
   i[64,95]:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
   i[96,127]:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-  i[128,159]:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-  i[160,191]:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-  i[192,223]:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-  i[224,255]:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-  i[256,287]:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-  i[288,319]:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-  i[320,351]:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-  i[352,383]:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-  i[384,415]:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-  i[416,447]:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-  i[448,479]:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-  i[480,511]:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-  i[512,543]:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-  i[544,575]:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-  i[576,607]:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-  i[608,639]:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-  i[640,671]:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-  i[672,703]:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-  i[704,735]:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-  i[736,767]:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-  i[768,799]:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-  i[800,831]:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-  i[832,863]:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-  i[864,895]:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-  i[896,927]:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-  i[928,959]:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-  i[960,991]:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-  i[992,1023]:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-  i[1024,1055]:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-  i[1056,1087]:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-  i[1088,1119]:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-  i[1120,1151]:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-  i[1152,1183]:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-  i[1184,1215]:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-  i[1216,1247]:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-  i[1248,1279]:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-  i[1280,1311]:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-  i[1312,1343]:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-  i[1344,1375]:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-  i[1376,1407]:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-  i[1408,1439]:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-  i[1440,1471]:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-  i[1472,1503]:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-  i[1504,1535]:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-  i[1536,1567]:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-  i[1568,1599]:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-  i[1600,1631]:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-  i[1632,1663]:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-  i[1664,1695]:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-  i[1696,1727]:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-  i[1728,1759]:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-  i[1760,1791]:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-  i[1792,1823]:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-  i[1824,1855]:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-  i[1856,1887]:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-  i[1888,1919]:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-  i[1920,1951]:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-  i[1952,1983]:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-  i[1984,2015]:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-  i[2016,2047]:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-  i[2048,2079]:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-  i[2080,2111]:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-  i[2112,2143]:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-  i[2144,2175]:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-  i[2176,2207]:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-  i[2208,2239]:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-  i[2240,2271]:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-  i[2272,2303]:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-  i[2304,2335]:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-  i[2336,2367]:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-  i[2368,2399]:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-  i[2400,2431]:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-  i[2432,2463]:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-  i[2464,2495]:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-  i[2496,2527]:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-  i[2528,2559]:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-  i[2560,2591]:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-  i[2592,2623]:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-  i[2624,2655]:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-  i[2656,2687]:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-  i[2688,2719]:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-  i[2720,2751]:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-  i[2752,2783]:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-  i[2784,2815]:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-  i[2816,2847]:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-  i[2848,2879]:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-  i[2880,2911]:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-  i[2912,2943]:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-  i[2944,2975]:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-  i[2976,3007]:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-  i[3008,3039]:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-  i[3040,3071]:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-  i[3072,3103]:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-  i[3104,3135]:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-  i[3136,3167]:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-  i[3168,3199]:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-  i[3200,3231]:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-  i[3232,3263]:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-  i[3264,3295]:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-  i[3296,3327]:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-  i[3328,3359]:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-  i[3360,3391]:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-  i[3392,3423]:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-  i[3424,3455]:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-  i[3456,3487]:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-  i[3488,3519]:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-  i[3520,3551]:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-  i[3552,3583]:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-  i[3584,3615]:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-  i[3616,3647]:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-  i[3648,3679]:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-  i[3680,3711]:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-  i[3712,3743]:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-  i[3744,3775]:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-  i[3776,3807]:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-  i[3808,3839]:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-  i[3840,3871]:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-  i[3872,3903]:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-  i[3904,3935]:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-  i[3936,3967]:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-  i[3968,3999]:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-  i[4000,4031]:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-  i[4032,4063]:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
+               ... output for bytes 128 - 4063 omitted for brevity ...
   i[4064,4095]:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
   ** NVM_BUF_PR - END **
 
@@ -581,7 +467,7 @@ Successfully yielding::
   (0x000001030006000a){ ch(00), lun(00), pl(1), blk(0010), pg(006), sec(3) }
 
 It is worth mentioning that the vectorized reads can be non-contiguous not only
-within a block but also scattered accross different different blocks, in
+within a block but also scattered across different different blocks, in
 different LUNs, and channels.
 
 However, when using plane-mode ensure that addresses are constructed across
@@ -590,10 +476,181 @@ planes and all sectors are read as in the example above.
 Virtual Block
 =============
 
-TODO
+The physical addressing interface ``nvm_addr`` provides full control over the
+construction of vectorized IO commands. It is known that with great power comes
+great responsibility, responsibility which increase the cognitive load on the
+developer when integrating vectorized IO directly at the application level.
+
+liblightnvm introduces a pure software abstraction, a virtual block, to reduce
+the cognitive load for application developers.
+
+A virtual block behaves as a physical, that is, the constraints of working with
+NAND media also apply to a virtual block. However, the abstraction encapsulates
+the command and address construction of parallel vectorized IO and exposes a
+flat address space which is read/written in a manner equivalent to the
+read/write primitives offered by libc.
+
+A virtual block will at a minimum consist of the given block address across all
+planes. So it by default encapsulates concerns regarding plane-mode
+constraints.
+
+We erase, write, and read the virtual block::
+
+  nvm_vblk set_erase /dev/nvme1n1 0x0000000000000002
+  nvm_vblk set_write /dev/nvme1n1 0x0000000000000002
+  nvm_vblk set_read /dev/nvme1n1 0x0000000000000002
+
+Yielding::
+
+  ** nvm_vblk_erase(...):
+  vblk {
+   nbytes(16777216b:16Mb),
+  }
+  vblk-naddrs(1) {
+   00: (0x0000000000000002){ ch(00), lun(00), pl(0), blk(0002), pg(000), sec(0) }
+  }
+  Ran nvm_vblk_erase, elapsed wall-clock: 0.025978
+  ** nvm_vblk_write(...):
+  vblk {
+   nbytes(16777216b:16Mb),
+  }
+  vblk-naddrs(1) {
+   00: (0x0000000000000002){ ch(00), lun(00), pl(0), blk(0002), pg(000), sec(0) }
+  }
+  Ran nvm_buf_alloc, elapsed wall-clock: 0.023954
+  Ran nvm_vblk_write, elapsed wall-clock: 0.934091
+  ** nvm_vblk_read(...):
+  vblk {
+   nbytes(16777216b:16Mb),
+  }
+  vblk-naddrs(1) {
+   00: (0x0000000000000002){ ch(00), lun(00), pl(0), blk(0002), pg(000), sec(0) }
+  }
+  Ran nvm_buf_alloc, elapsed wall-clock: 0.000014
+  Ran nvm_vblk_read, elapsed wall-clock: 0.153033
+
+Using physical block sets
+-------------------------
+
+To obtain parallel IO, in addition to plane-mode, we construct a virtual block
+consisting of multiple physical blocks on distinct parallel units (LUNs). As an
+example, we create a virtual block, consisting of a block from the first LUN of
+each channel on the device::
+
+	(0x0000000000000002){ ch(00), lun(00), pl(0), blk(0002), pg(000), sec(0) }
+	(0x0a0700000000014d){ ch(10), lun(07), pl(0), blk(0333), pg(000), sec(0) }
+	(0x0301000000000014){ ch(03), lun(01), pl(0), blk(0020), pg(000), sec(0) }
+	(0x0500000000000190){ ch(05), lun(00), pl(0), blk(0400), pg(000), sec(0) }
+
+We erase, write and read the virtual block::
+
+  nvm_vblk set_erase /dev/nvme1n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
+  nvm_vblk set_write /dev/nvme1n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
+  nvm_vblk set_read /dev/nvme1n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
+
+Yielding::
+
+  ** nvm_vblk_erase(...):
+  vblk {
+   nbytes(67108864b:64Mb),
+  }
+  vblk-naddrs(4) {
+   00: (0x0000000000000002){ ch(00), lun(00), pl(0), blk(0002), pg(000), sec(0) }
+   01: (0x0a0700000000014d){ ch(10), lun(07), pl(0), blk(0333), pg(000), sec(0) }
+   02: (0x0301000000000014){ ch(03), lun(01), pl(0), blk(0020), pg(000), sec(0) }
+   03: (0x0500000000000190){ ch(05), lun(00), pl(0), blk(0400), pg(000), sec(0) }
+  }
+  Ran nvm_vblk_erase, elapsed wall-clock: 0.027606
+  ** nvm_vblk_write(...):
+  vblk {
+   nbytes(67108864b:64Mb),
+  }
+  vblk-naddrs(4) {
+   00: (0x0000000000000002){ ch(00), lun(00), pl(0), blk(0002), pg(000), sec(0) }
+   01: (0x0a0700000000014d){ ch(10), lun(07), pl(0), blk(0333), pg(000), sec(0) }
+   02: (0x0301000000000014){ ch(03), lun(01), pl(0), blk(0020), pg(000), sec(0) }
+   03: (0x0500000000000190){ ch(05), lun(00), pl(0), blk(0400), pg(000), sec(0) }
+  }
+  Ran nvm_buf_alloc, elapsed wall-clock: 0.071390
+  Ran nvm_vblk_write, elapsed wall-clock: 0.980600
+  ** nvm_vblk_read(...):
+  vblk {
+   nbytes(67108864b:64Mb),
+  }
+  vblk-naddrs(4) {
+   00: (0x0000000000000002){ ch(00), lun(00), pl(0), blk(0002), pg(000), sec(0) }
+   01: (0x0a0700000000014d){ ch(10), lun(07), pl(0), blk(0333), pg(000), sec(0) }
+   02: (0x0301000000000014){ ch(03), lun(01), pl(0), blk(0020), pg(000), sec(0) }
+   03: (0x0500000000000190){ ch(05), lun(00), pl(0), blk(0400), pg(000), sec(0) }
+  }
+  Ran nvm_buf_alloc, elapsed wall-clock: 0.000012
+  Ran nvm_vblk_read, elapsed wall-clock: 0.167836
+
+This demonstrates a weak-scaling experiment, increasing the workload
+proportionally with the parallel units consumes approxiately the same amount of
+wall-clock time, thus achieving near linear speedup by utilizing parallel units
+on the device.
+
+Using physical block line
+-------------------------
 
 Bad-Block-Table
 ===============
 
-TODO
+The state of the underlying media is exposed to the user through the
+bad-block-interface (BBT). A bad-block table exists for each LUN, retrieving
+the BBT for LUN 3 on channel 2 is done by executing::
 
+  nvm_bbt get /dev/nvme0n1 2 3 | grep -vi free
+
+The command outputs the entire table so we filter out the less interesting free
+entries, thus yielding::
+
+  ** nvm_bbt_get(...):
+  bbt {
+   addr(0x0203000000000000){ ch(02), lun(03), pl(0), blk(0000), pg(000), sec(0) }
+   nblks(2040),
+   npl_blks(1020) {
+    blk(0041): [  BAD(1)  BAD(1) ]
+   },
+    nbad(1),
+    ngbad(0),
+    ndmrk(0),
+    nhmrk(0)
+   }
+  }
+
+A given block can be in one of the following states: FREE, BAD, GROWN BAD,
+DEVICE MARKED/RESERVED, and HOST MARKED/RESERVED. State can be changed by e.g.
+marking block 42 as HOST RESERVED::
+
+  sudo nvm_bbt mark_f /dev/nvme0n1 0x0203000000000042
+
+Yielding::
+
+  ** nvm_bbt_mark(...):
+  (0x020300000000002a){ ch(02), lun(03), pl(0), blk(0042), pg(000), sec(0) }
+
+.. NOTE :: Only the system administrator is able to make state changes to the
+  BBT
+
+Retrieving the BBT after the state change yields::
+
+  ** nvm_bbt_get(...):
+  bbt {
+   addr(0x0203000000000000){ ch(02), lun(03), pl(0), blk(0000), pg(000), sec(0) }
+   nblks(2040),
+   npl_blks(1020) {
+    blk(0041): [  BAD(1)  BAD(1) ]
+    blk(0042): [ HMRK(8) HMRK(8) ]
+   },
+    nbad(1),
+    ngbad(0),
+    ndmrk(0),
+    nhmrk(1)
+   }
+  }
+
+.. NOTE :: C API for retrieving and modifying the BBT is done using
+  ``nvm_bbt_get`` which return a ``const struct nvm_bbt*``. To modify it, make
+  a copy with ``nvm_bbt_alloc_cp``, and persist it with ``nvm_bbt_set``.
