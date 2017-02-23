@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Obtaining device information &mdash; liblightnvm 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="liblightnvm 0.0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Tutorial Introduction" href="index.html"/>
+        <link rel="next" title="Physical Addressing" href="nvm_addr.html"/>
+        <link rel="prev" title="Tutorial Introduction" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> liblightnvm
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background.html">Background</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial Introduction</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Obtaining device information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_addr.html">Physical Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_addr_vio.html">Vectorized IO to NAND media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">Virtual Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">Bad-Block-Table</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../capi/index.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">Command-Line Interface</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">liblightnvm</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Tutorial Introduction</a> &raquo;</li>
+      
+    <li>Obtaining device information</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorial/nvm_dev.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="obtaining-device-information">
+<h1>Obtaining device information<a class="headerlink" href="#obtaining-device-information" title="Permalink to this headline">¶</a></h1>
+<p>To begin with, knowing the physical geometry of a device is essential for
+working with physical addressing. Device information is obtained by invoking:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">nvm_dev</span> <span class="n">info</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">nvme0n1</span>
+</pre></div>
+</div>
+<p>Which will yield device information as shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dev</span> <span class="p">{</span>
+ <span class="n">verid</span><span class="p">(</span><span class="mh">0x02</span><span class="p">),</span> <span class="n">beid</span><span class="p">(</span><span class="mh">0x01</span><span class="p">),</span>
+ <span class="n">path</span><span class="p">(</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">nvme0n1</span><span class="p">),</span> <span class="n">name</span><span class="p">(</span><span class="n">nvme0n1</span><span class="p">),</span> <span class="n">fd</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+ <span class="n">ssw</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">pmode</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+ <span class="n">erase_naddrs_max</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">read_naddrs_max</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span> <span class="n">write_naddrs_max</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span>
+ <span class="n">meta_mode</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+ <span class="n">bbts_cached</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">},</span>
+<span class="n">dev</span><span class="o">-</span><span class="n">geo</span> <span class="p">{</span>
+ <span class="n">nchannels</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="n">nluns</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">nplanes</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+ <span class="n">nblocks</span><span class="p">(</span><span class="mi">1020</span><span class="p">),</span> <span class="n">npages</span><span class="p">(</span><span class="mi">512</span><span class="p">),</span> <span class="n">nsectors</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+ <span class="n">page_nbytes</span><span class="p">(</span><span class="mi">16384</span><span class="p">),</span> <span class="n">sector_nbytes</span><span class="p">(</span><span class="mi">4096</span><span class="p">),</span> <span class="n">meta_nbytes</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span>
+ <span class="n">tbytes</span><span class="p">(</span><span class="mi">2190433320960</span><span class="n">b</span><span class="p">:</span><span class="mi">2088960</span><span class="n">Mb</span><span class="p">),</span>
+<span class="p">}</span>
+<span class="n">dev</span><span class="o">-</span><span class="n">ppaf</span> <span class="p">{</span>
+  <span class="n">ch_off</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span>  <span class="n">ch_len</span><span class="p">(</span><span class="mi">04</span><span class="p">),</span>
+ <span class="n">lun_off</span><span class="p">(</span><span class="mi">22</span><span class="p">),</span> <span class="n">lun_len</span><span class="p">(</span><span class="mi">03</span><span class="p">),</span>
+  <span class="n">pl_off</span><span class="p">(</span><span class="mi">02</span><span class="p">),</span>  <span class="n">pl_len</span><span class="p">(</span><span class="mi">01</span><span class="p">),</span>
+ <span class="n">blk_off</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">blk_len</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+  <span class="n">pg_off</span><span class="p">(</span><span class="mi">03</span><span class="p">),</span>  <span class="n">pg_len</span><span class="p">(</span><span class="mi">09</span><span class="p">),</span>
+ <span class="n">sec_off</span><span class="p">(</span><span class="mi">00</span><span class="p">),</span> <span class="n">sec_len</span><span class="p">(</span><span class="mi">02</span><span class="p">),</span>
+<span class="p">}</span>
+<span class="n">dev</span><span class="o">-</span><span class="n">ppaf_mask</span> <span class="p">{</span>
+  <span class="n">ch</span><span class="p">(</span><span class="mi">0000000000000000000000000000000000011110000000000000000000000000</span><span class="p">),</span>
+ <span class="n">lun</span><span class="p">(</span><span class="mi">0000000000000000000000000000000000000001110000000000000000000000</span><span class="p">),</span>
+  <span class="n">pl</span><span class="p">(</span><span class="mi">0000000000000000000000000000000000000000000000000000000000000100</span><span class="p">),</span>
+ <span class="n">blk</span><span class="p">(</span><span class="mi">0000000000000000000000000000000000000000001111111111000000000000</span><span class="p">),</span>
+  <span class="n">pg</span><span class="p">(</span><span class="mi">0000000000000000000000000000000000000000000000000000111111111000</span><span class="p">),</span>
+ <span class="n">sec</span><span class="p">(</span><span class="mi">0000000000000000000000000000000000000000000000000000000000000011</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The parts involved from the C API are: <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> to obtain a device
+handle, <code class="docutils literal"><span class="pre">nvm_dev_pr</span></code> to produce the output above, and lastly
+<code class="docutils literal"><span class="pre">nvm_dev_close</span></code> to terminate the handle properly.</p>
+<p>When using the C API, values and structures are retrieved using the attribute
+getters <code class="docutils literal"><span class="pre">nvm_dev_get_*</span></code> e.g. use <code class="docutils literal"><span class="pre">nvm_dev_get_geo</span></code> to obtain the geometry
+of a given device.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="nvm_addr.html" class="btn btn-neutral float-right" title="Physical Addressing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Tutorial Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, LightNVM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

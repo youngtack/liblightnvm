@@ -88,8 +88,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prerequisites.html">Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../background.html">Background</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../c.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capi/index.html">C API</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Command-Line Interface</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="nvm_dev.html">nvm_dev</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">nvm_bbt</a></li>
@@ -200,7 +200,7 @@ E.g. construct a virtual block spanning the physical blocks:</p>
 </div>
 <div class="section" id="erase">
 <h3>Erase<a class="headerlink" href="#erase" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk set_erase /dev/nvme1n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk set_erase /dev/nvme0n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_erase<span class="o">(</span>...<span class="o">)</span>:
@@ -219,7 +219,7 @@ Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.025311
 </div>
 <div class="section" id="write">
 <h3>Write<a class="headerlink" href="#write" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk set_write /dev/nvme1n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk set_write /dev/nvme0n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_write<span class="o">(</span>...<span class="o">)</span>:
@@ -239,7 +239,7 @@ Ran nvm_vblk_write, elapsed wall-clock: <span class="m">1</span>.093068
 </div>
 <div class="section" id="read">
 <h3>Read<a class="headerlink" href="#read" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk set_read /dev/nvme1n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk set_read /dev/nvme0n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_read<span class="o">(</span>...<span class="o">)</span>:
@@ -264,7 +264,7 @@ Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.339066
 LUN[0,3]. That is, Block ten in the first four LUNs of channel 0.</p>
 <div class="section" id="id1">
 <h3>Erase<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk line_erase /dev/nvme1n1 <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">3</span> <span class="m">10</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk line_erase /dev/nvme0n1 <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">3</span> <span class="m">10</span>
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_erase<span class="o">(</span>...<span class="o">)</span>:
@@ -283,7 +283,7 @@ Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.025311
 </div>
 <div class="section" id="id2">
 <h3>Write<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk line_write /dev/nvme1n1 <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">3</span> <span class="m">10</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk line_write /dev/nvme0n1 <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">3</span> <span class="m">10</span>
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_write<span class="o">(</span>...<span class="o">)</span>:
@@ -303,7 +303,7 @@ Ran nvm_vblk_write, elapsed wall-clock: <span class="m">1</span>.093068
 </div>
 <div class="section" id="id3">
 <h3>Read<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk line_read /dev/nvme1n1 <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">3</span> <span class="m">10</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk line_read /dev/nvme0n1 <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">3</span> <span class="m">10</span>
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_read<span class="o">(</span>...<span class="o">)</span>:

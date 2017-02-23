@@ -49,8 +49,8 @@ Contents:
    quick_start
    prerequisites
    background
-   tutorial
-   c
+   tutorial/index.rst
+   capi/index.rst
    cli/index.rst
 
 Indices and tables

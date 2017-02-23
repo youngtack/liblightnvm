@@ -1,0 +1,60 @@
+Bad-Block-Table
+===============
+
+The state of the underlying media is exposed to the user through the
+bad-block-interface (BBT). A bad-block table exists for each LUN, retrieving
+the BBT for LUN 3 on channel 2 is done by executing::
+
+  nvm_bbt get /dev/nvme0n1 2 3 | grep -vi free
+
+The command outputs the entire table so we filter out the less interesting free
+entries, thus yielding::
+
+  ** nvm_bbt_get(...):
+  bbt {
+   addr(0x0203000000000000){ ch(02), lun(03), pl(0), blk(0000), pg(000), sec(0) }
+   nblks(2040),
+   npl_blks(1020) {
+    blk(0041): [  BAD(1)  BAD(1) ]
+   },
+    nbad(1),
+    ngbad(0),
+    ndmrk(0),
+    nhmrk(0)
+   }
+  }
+
+A given block can be in one of the following states: FREE, BAD, GROWN BAD,
+DEVICE MARKED/RESERVED, and HOST MARKED/RESERVED. State can be changed by e.g.
+marking block 42 as HOST RESERVED::
+
+  sudo nvm_bbt mark_f /dev/nvme0n1 0x0203000000000042
+
+Yielding::
+
+  ** nvm_bbt_mark(...):
+  (0x020300000000002a){ ch(02), lun(03), pl(0), blk(0042), pg(000), sec(0) }
+
+.. NOTE :: Only the system administrator is able to make state changes to the
+  BBT
+
+Retrieving the BBT after the state change yields::
+
+  ** nvm_bbt_get(...):
+  bbt {
+   addr(0x0203000000000000){ ch(02), lun(03), pl(0), blk(0000), pg(000), sec(0) }
+   nblks(2040),
+   npl_blks(1020) {
+    blk(0041): [  BAD(1)  BAD(1) ]
+    blk(0042): [ HMRK(8) HMRK(8) ]
+   },
+    nbad(1),
+    ngbad(0),
+    ndmrk(0),
+    nhmrk(1)
+   }
+  }
+
+.. NOTE :: C API for retrieving and modifying the BBT is done using
+  ``nvm_bbt_get`` which return a ``const struct nvm_bbt*``. To modify it, make
+  a copy with ``nvm_bbt_alloc_cp``, and persist it with ``nvm_bbt_set``.
