@@ -11,10 +11,10 @@ Update block state
 
 Set state of block 42 in LUN 2 in channel 1 as **grown bad**.
 
-.. literalinclude:: nvm_bbt_mark_g.cmd
+.. literalinclude:: nvm_bbt_00_mark_g.cmd
    :language: bash
 
-.. literalinclude:: nvm_bbt_mark_g.out
+.. literalinclude:: nvm_bbt_00_mark_g.out
    :language: bash
 
 .. NOTE :: SYSADMIN priviliges are required to modify the BBT.
@@ -26,8 +26,8 @@ Retrieve block state
 
 Retrieve the entire block state for all blocks in LUN 2 in Channel 1
 
-.. literalinclude:: nvm_bbt_get.cmd
+.. literalinclude:: nvm_bbt_01_get.cmd
    :language: bash
 
-.. literalinclude:: nvm_bbt_get.out
+.. literalinclude:: nvm_bbt_01_get.out
    :language: bash

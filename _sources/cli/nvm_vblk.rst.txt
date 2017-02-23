@@ -33,28 +33,28 @@ E.g. construct a virtual block spanning the physical blocks::
 Erase
 ~~~~~
 
-.. literalinclude:: nvm_vblk_set_erase.cmd
+.. literalinclude:: nvm_vblk_set_00_erase.cmd
    :language: bash
 
-.. literalinclude:: nvm_vblk_set_erase.out
+.. literalinclude:: nvm_vblk_set_00_erase.out
    :language: bash
 
 Write
 ~~~~~
 
-.. literalinclude:: nvm_vblk_set_write.cmd
+.. literalinclude:: nvm_vblk_set_01_write.cmd
    :language: bash
 
-.. literalinclude:: nvm_vblk_set_write.out
+.. literalinclude:: nvm_vblk_set_01_write.out
    :language: bash
 
 Read
 ~~~~
 
-.. literalinclude:: nvm_vblk_set_read.cmd
+.. literalinclude:: nvm_vblk_set_02_read.cmd
    :language: bash
 
-.. literalinclude:: nvm_vblk_set_read.out
+.. literalinclude:: nvm_vblk_set_02_read.out
    :language: bash
 
 Virtual Block Line
@@ -66,26 +66,26 @@ LUN[0,3]. That is, Block ten in the first four LUNs of channel 0.
 Erase
 ~~~~~
 
-.. literalinclude:: nvm_vblk_line_erase.cmd
+.. literalinclude:: nvm_vblk_line_00_erase.cmd
    :language: bash
 
-.. literalinclude:: nvm_vblk_line_erase.out
+.. literalinclude:: nvm_vblk_line_00_erase.out
    :language: bash
 
 Write
 ~~~~~
 
-.. literalinclude:: nvm_vblk_line_write.cmd
+.. literalinclude:: nvm_vblk_line_01_write.cmd
    :language: bash
 
-.. literalinclude:: nvm_vblk_line_write.out
+.. literalinclude:: nvm_vblk_line_01_write.out
    :language: bash
 
 Read
 ~~~~
 
-.. literalinclude:: nvm_vblk_line_read.cmd
+.. literalinclude:: nvm_vblk_line_02_read.cmd
    :language: bash
 
-.. literalinclude:: nvm_vblk_line_read.out
+.. literalinclude:: nvm_vblk_line_02_read.out
    :language: bash
