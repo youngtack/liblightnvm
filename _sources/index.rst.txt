@@ -44,13 +44,14 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   :includehidden:
 
    quick_start
    prerequisites
    background
    tutorial
    c
-   cli
+   cli/index.rst
 
 Indices and tables
 ==================

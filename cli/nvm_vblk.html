@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nvm_vblk &mdash; liblightnvm 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="liblightnvm 0.0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Command-Line Interface" href="index.html"/>
+        <link rel="prev" title="nvm_lba" href="nvm_lba.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> liblightnvm
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../c.html">C API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Command-Line Interface</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nvm_dev.html">nvm_dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">nvm_bbt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_addr.html">nvm_addr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nvm_vblk</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-block-set">Virtual Block Set</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#erase">Erase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#write">Write</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#read">Read</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#virtual-block-line">Virtual Block Line</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Erase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Write</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Read</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">liblightnvm</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Command-Line Interface</a> &raquo;</li>
+      
+    <li>nvm_vblk</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/cli/nvm_vblk.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nvm-vblk">
+<span id="sec-cli-vblk"></span><h1>nvm_vblk<a class="headerlink" href="#nvm-vblk" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>NVM Virtual Block <span class="o">(</span>nvm_vblk_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span><span class="m">0</span><span class="o">)</span>, minor<span class="o">(</span><span class="m">0</span><span class="o">)</span>, patch<span class="o">(</span><span class="m">1</span><span class="o">)</span> <span class="o">}</span>
+
+Usage:
+ nvm_vblk      erase dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_vblk       <span class="nb">read</span> dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_vblk      write dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_vblk        pad dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_vblk  set_erase dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_vblk   set_read dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_vblk  set_write dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_vblk    set_pad dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_vblk line_erase dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_vblk  line_read dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_vblk line_write dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_vblk   line_pad dev_path ch_bgn ch_end lun_bgn lun_end blk
+ nvm_vblk line_to_file dev_path ch_bgn ch_end lun_bgn lun_end blk
+</pre></div>
+</div>
+<p>A virtual block behaves as a physical, that is, the constraints of working with
+NAND media also apply to a virtual block. However, the abstraction encapsulates
+the command and address construction of parallel vectorized IO and exposes a
+flat address space which is read/written in a manner equivalent to the
+read/write primitives offered by libc.</p>
+<p>A virtual block will at a minimum consist of the given block address across all
+planes. So it by default encapsulates concerns regarding plane-mode
+constraints.</p>
+<p>Virtual blocks can be created as an arbitrary set of physical blocks, or using
+a fixed block across parallel units. The latter is denoted as a block line.</p>
+<div class="section" id="virtual-block-set">
+<h2>Virtual Block Set<a class="headerlink" href="#virtual-block-set" title="Permalink to this headline">¶</a></h2>
+<p>Construct a virtual block using an arbitrary set of physical block addresses.
+E.g. construct a virtual block spanning the physical blocks:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mh">0x0000000000000002</span><span class="p">){</span> <span class="n">ch</span><span class="p">(</span><span class="mi">00</span><span class="p">),</span> <span class="n">lun</span><span class="p">(</span><span class="mi">00</span><span class="p">),</span> <span class="n">pl</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">blk</span><span class="p">(</span><span class="mi">0002</span><span class="p">),</span> <span class="n">pg</span><span class="p">(</span><span class="mi">000</span><span class="p">),</span> <span class="n">sec</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">(</span><span class="mh">0x0a0700000000014d</span><span class="p">){</span> <span class="n">ch</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">lun</span><span class="p">(</span><span class="mi">07</span><span class="p">),</span> <span class="n">pl</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">blk</span><span class="p">(</span><span class="mi">0333</span><span class="p">),</span> <span class="n">pg</span><span class="p">(</span><span class="mi">000</span><span class="p">),</span> <span class="n">sec</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">(</span><span class="mh">0x0301000000000014</span><span class="p">){</span> <span class="n">ch</span><span class="p">(</span><span class="mi">03</span><span class="p">),</span> <span class="n">lun</span><span class="p">(</span><span class="mi">01</span><span class="p">),</span> <span class="n">pl</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">blk</span><span class="p">(</span><span class="mi">0020</span><span class="p">),</span> <span class="n">pg</span><span class="p">(</span><span class="mi">000</span><span class="p">),</span> <span class="n">sec</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
+<span class="p">(</span><span class="mh">0x0500000000000190</span><span class="p">){</span> <span class="n">ch</span><span class="p">(</span><span class="mi">05</span><span class="p">),</span> <span class="n">lun</span><span class="p">(</span><span class="mi">00</span><span class="p">),</span> <span class="n">pl</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">blk</span><span class="p">(</span><span class="mi">0400</span><span class="p">),</span> <span class="n">pg</span><span class="p">(</span><span class="mi">000</span><span class="p">),</span> <span class="n">sec</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="erase">
+<h3>Erase<a class="headerlink" href="#erase" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk set_erase /dev/nvme1n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_erase<span class="o">(</span>...<span class="o">)</span>:
+vblk <span class="o">{</span>
+ nbytes<span class="o">(</span>67108864b:64Mb<span class="o">)</span>,
+<span class="o">}</span>
+vblk-naddrs<span class="o">(</span><span class="m">4</span><span class="o">)</span> <span class="o">{</span>
+ <span class="m">00</span>: <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">01</span>: <span class="o">(</span>0x000100000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">01</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">02</span>: <span class="o">(</span>0x000200000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">02</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">03</span>: <span class="o">(</span>0x000300000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">03</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">}</span>
+Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.025311
+</pre></div>
+</div>
+</div>
+<div class="section" id="write">
+<h3>Write<a class="headerlink" href="#write" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk set_write /dev/nvme1n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_write<span class="o">(</span>...<span class="o">)</span>:
+vblk <span class="o">{</span>
+ nbytes<span class="o">(</span>67108864b:64Mb<span class="o">)</span>,
+<span class="o">}</span>
+vblk-naddrs<span class="o">(</span><span class="m">4</span><span class="o">)</span> <span class="o">{</span>
+ <span class="m">00</span>: <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">01</span>: <span class="o">(</span>0x000100000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">01</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">02</span>: <span class="o">(</span>0x000200000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">02</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">03</span>: <span class="o">(</span>0x000300000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">03</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">}</span>
+Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.065044
+Ran nvm_vblk_write, elapsed wall-clock: <span class="m">1</span>.093068
+</pre></div>
+</div>
+</div>
+<div class="section" id="read">
+<h3>Read<a class="headerlink" href="#read" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk set_read /dev/nvme1n1 0x0000000000000002 0x0a0700000000014d 0x0301000000000014 0x0500000000000190
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_read<span class="o">(</span>...<span class="o">)</span>:
+vblk <span class="o">{</span>
+ nbytes<span class="o">(</span>67108864b:64Mb<span class="o">)</span>,
+<span class="o">}</span>
+vblk-naddrs<span class="o">(</span><span class="m">4</span><span class="o">)</span> <span class="o">{</span>
+ <span class="m">00</span>: <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">01</span>: <span class="o">(</span>0x000100000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">01</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">02</span>: <span class="o">(</span>0x000200000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">02</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">03</span>: <span class="o">(</span>0x000300000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">03</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">}</span>
+Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.000012
+Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.339066
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="virtual-block-line">
+<h2>Virtual Block Line<a class="headerlink" href="#virtual-block-line" title="Permalink to this headline">¶</a></h2>
+<p>Construct a virtual block using block 10 in the ranges channel[0,0] and
+LUN[0,3]. That is, Block ten in the first four LUNs of channel 0.</p>
+<div class="section" id="id1">
+<h3>Erase<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk line_erase /dev/nvme1n1 <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">3</span> <span class="m">10</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_erase<span class="o">(</span>...<span class="o">)</span>:
+vblk <span class="o">{</span>
+ nbytes<span class="o">(</span>67108864b:64Mb<span class="o">)</span>,
+<span class="o">}</span>
+vblk-naddrs<span class="o">(</span><span class="m">4</span><span class="o">)</span> <span class="o">{</span>
+ <span class="m">00</span>: <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">01</span>: <span class="o">(</span>0x000100000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">01</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">02</span>: <span class="o">(</span>0x000200000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">02</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">03</span>: <span class="o">(</span>0x000300000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">03</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">}</span>
+Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.025311
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Write<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk line_write /dev/nvme1n1 <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">3</span> <span class="m">10</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_write<span class="o">(</span>...<span class="o">)</span>:
+vblk <span class="o">{</span>
+ nbytes<span class="o">(</span>67108864b:64Mb<span class="o">)</span>,
+<span class="o">}</span>
+vblk-naddrs<span class="o">(</span><span class="m">4</span><span class="o">)</span> <span class="o">{</span>
+ <span class="m">00</span>: <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">01</span>: <span class="o">(</span>0x000100000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">01</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">02</span>: <span class="o">(</span>0x000200000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">02</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">03</span>: <span class="o">(</span>0x000300000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">03</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">}</span>
+Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.065044
+Ran nvm_vblk_write, elapsed wall-clock: <span class="m">1</span>.093068
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Read<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk line_read /dev/nvme1n1 <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">3</span> <span class="m">10</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_read<span class="o">(</span>...<span class="o">)</span>:
+vblk <span class="o">{</span>
+ nbytes<span class="o">(</span>67108864b:64Mb<span class="o">)</span>,
+<span class="o">}</span>
+vblk-naddrs<span class="o">(</span><span class="m">4</span><span class="o">)</span> <span class="o">{</span>
+ <span class="m">00</span>: <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">01</span>: <span class="o">(</span>0x000100000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">01</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">02</span>: <span class="o">(</span>0x000200000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">02</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+ <span class="m">03</span>: <span class="o">(</span>0x000300000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">03</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">}</span>
+Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.000012
+Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.339066
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="nvm_lba.html" class="btn btn-neutral" title="nvm_lba" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, LightNVM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

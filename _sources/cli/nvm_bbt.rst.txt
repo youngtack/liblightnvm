@@ -1,0 +1,33 @@
+.. _sec-cli-bbt:
+
+nvm_bbt
+=======
+
+.. literalinclude:: nvm_bbt_usage.out
+   :language: bash
+
+Update block state
+------------------
+
+Set state of block 42 in LUN 2 in channel 1 as **grown bad**.
+
+.. literalinclude:: nvm_bbt_mark_g.cmd
+   :language: bash
+
+.. literalinclude:: nvm_bbt_mark_g.out
+   :language: bash
+
+.. NOTE :: SYSADMIN priviliges are required to modify the BBT.
+
+.. SEEALSO:: See :ref:`sec-cli-addr` on how to construct the ``addr`` parameter
+
+Retrieve bad-block-table
+------------------------
+
+Retrieve the entire block state for all blocks in LUN 2 in Channel 1
+
+.. literalinclude:: nvm_bbt_get.cmd
+   :language: bash
+
+.. literalinclude:: nvm_bbt_get.out
+   :language: bash

@@ -1,0 +1,91 @@
+.. _sec-cli-vblk:
+
+nvm_vblk
+========
+
+.. literalinclude:: nvm_vblk_usage.out
+   :language: bash
+
+A virtual block behaves as a physical, that is, the constraints of working with
+NAND media also apply to a virtual block. However, the abstraction encapsulates
+the command and address construction of parallel vectorized IO and exposes a
+flat address space which is read/written in a manner equivalent to the
+read/write primitives offered by libc.
+
+A virtual block will at a minimum consist of the given block address across all
+planes. So it by default encapsulates concerns regarding plane-mode
+constraints.
+
+Virtual blocks can be created as an arbitrary set of physical blocks, or using
+a fixed block across parallel units. The latter is denoted as a block line.
+
+Virtual Block Set
+-----------------
+
+Construct a virtual block using an arbitrary set of physical block addresses.
+E.g. construct a virtual block spanning the physical blocks::
+
+  (0x0000000000000002){ ch(00), lun(00), pl(0), blk(0002), pg(000), sec(0) }
+  (0x0a0700000000014d){ ch(10), lun(07), pl(0), blk(0333), pg(000), sec(0) }
+  (0x0301000000000014){ ch(03), lun(01), pl(0), blk(0020), pg(000), sec(0) }
+  (0x0500000000000190){ ch(05), lun(00), pl(0), blk(0400), pg(000), sec(0) }
+
+Erase
+~~~~~
+
+.. literalinclude:: nvm_vblk_set_erase.cmd
+   :language: bash
+
+.. literalinclude:: nvm_vblk_set_erase.out
+   :language: bash
+
+Write
+~~~~~
+
+.. literalinclude:: nvm_vblk_set_write.cmd
+   :language: bash
+
+.. literalinclude:: nvm_vblk_set_write.out
+   :language: bash
+
+Read
+~~~~
+
+.. literalinclude:: nvm_vblk_set_read.cmd
+   :language: bash
+
+.. literalinclude:: nvm_vblk_set_read.out
+   :language: bash
+
+Virtual Block Line
+------------------
+
+Construct a virtual block using block 10 in the ranges channel[0,0] and
+LUN[0,3]. That is, Block ten in the first four LUNs of channel 0.
+
+Erase
+~~~~~
+
+.. literalinclude:: nvm_vblk_line_erase.cmd
+   :language: bash
+
+.. literalinclude:: nvm_vblk_line_erase.out
+   :language: bash
+
+Write
+~~~~~
+
+.. literalinclude:: nvm_vblk_line_write.cmd
+   :language: bash
+
+.. literalinclude:: nvm_vblk_line_write.out
+   :language: bash
+
+Read
+~~~~
+
+.. literalinclude:: nvm_vblk_line_read.cmd
+   :language: bash
+
+.. literalinclude:: nvm_vblk_line_read.out
+   :language: bash
