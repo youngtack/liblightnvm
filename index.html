@@ -87,9 +87,8 @@
 <li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="background.html">Background</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="capi/index.html">C API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cli/index.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command-Line Interface</a></li>
 </ul>
 
             
@@ -136,30 +135,13 @@
             
   <div class="section" id="user-space-i-o-library-for-open-channel-ssds">
 <h1>User space I/O library for Open-Channel SSDs<a class="headerlink" href="#user-space-i-o-library-for-open-channel-ssds" title="Permalink to this headline">¶</a></h1>
-<p>liblightnvm provides the means to interact with and obtain information about
-Open-Channel SSDs from user space.</p>
-<p>The core of the library provides an interface for performing vectorized I/O
-using physical addressing. Command-construction is encapsulated, including
-mapping a general physical addressing format to device specific. Thereby
-allowing the user to focus on performing read/write on the vector space. The
-interface is useful for experimenting with the vectorized I/O as provided by
-Open-Channel SSDs.
-However, the library also support pealing of these abstractions and let the
-user construct and submit &#8220;raw&#8221; commands.</p>
-<p>For application integration, the &#8220;virtual block&#8221; interface provides
-a libc-like <code class="docutils literal"><span class="pre">write</span></code>/<code class="docutils literal"><span class="pre">read</span></code>/<code class="docutils literal"><span class="pre">pread</span></code> interface, encapsulating concerns of
-optimizing command construction for utilization of parallel units on an
-Open-Channel SSD.  A virtual block can be created to span all parallel units or
-a subset thereof.</p>
-<p>liblightnvm provides access to the user via a public C API, and a command-line
-interface (CLI). The CLI is a thin wrapper around what the C API exposes and is
-intended to provide easy access to what liblightnvm has to offer.</p>
+<p>Welcome to the liblightnvm documentation!</p>
 <p>Here you can jump right into the <a class="reference internal" href="quick_start.html#sec-quick-start"><span class="std std-ref">Quick Start</span></a> or take detailed look
 at the <a class="reference internal" href="prerequisites.html#sec-prereqs"><span class="std std-ref">Prerequisites</span></a> for using liblightnvm. <a class="reference internal" href="background.html#sec-background"><span class="std std-ref">Background</span></a>
 information is available, introducing common pitfalls when working with flash
 memories.</p>
-<p>With the basics in place you can explore the <a class="reference internal" href="capi/index.html#sec-c-api"><span class="std std-ref">C API</span></a> and the
-<a class="reference internal" href="cli/index.html#sec-cli"><span class="std std-ref">Command-Line Interface</span></a>.</p>
+<p>With the basics in place you can explore the <a class="reference internal" href="c.html#sec-c-api"><span class="std std-ref">C API</span></a>, the
+<a class="reference internal" href="cli.html#sec-cli"><span class="std std-ref">Command-Line Interface</span></a> and the <a class="reference internal" href="python.html#sec-python"><span class="std std-ref">Python Module</span></a>.</p>
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -180,31 +162,23 @@ memories.</p>
 <li class="toctree-l2"><a class="reference internal" href="background.html#references">REFERENCES</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/nvm_dev.html">Obtaining device information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/nvm_addr.html">Physical Addressing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/nvm_addr_vio.html">Vectorized IO to NAND media</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/nvm_vblk.html">Virtual Block</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/nvm_bbt.html">Bad-Block-Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c.html">C API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="c.html#geometry">Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#buffer-management">Buffer Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#device-management">Device Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#bad-block-management">Bad Block Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#low-level-command-execution">Low-Level Command Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#physical-addressing">Physical Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#logical-addressing">Logical Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c.html#virtual-block">Virtual Block</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="capi/index.html">C API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="capi/nvm_geo.html">nvm_geo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="capi/nvm_buf.html">nvm_buf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="capi/nvm_dev.html">nvm_dev</a></li>
-<li class="toctree-l2"><a class="reference internal" href="capi/nvm_bbt.html">nvm_bbt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="capi/nvm_cmd.html">nvm_cmd</a></li>
-<li class="toctree-l2"><a class="reference internal" href="capi/nvm_addr.html">nvm_addr</a></li>
-<li class="toctree-l2"><a class="reference internal" href="capi/nvm_lba.html">nvm_lba</a></li>
-<li class="toctree-l2"><a class="reference internal" href="capi/nvm_vblk.html">nvm_vblk</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="cli/index.html">Command-Line Interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli/nvm_dev.html">nvm_dev</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/nvm_bbt.html">nvm_bbt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/nvm_addr.html">nvm_addr</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/nvm_lba.html">nvm_lba</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli/nvm_vblk.html">nvm_vblk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command-Line Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#nvm-dev">nvm_dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#nvm-bbt">nvm_bbt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#nvm-addr">nvm_addr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#nvm-lba">nvm_lba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html#nvm-vblk">nvm_vblk</a></li>
 </ul>
 </li>
 </ul>
