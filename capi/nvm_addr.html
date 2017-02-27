@@ -1,0 +1,574 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nvm_addr &mdash; liblightnvm 0.0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="liblightnvm 0.0.1 documentation" href="../index.html"/>
+        <link rel="up" title="C API" href="index.html"/>
+        <link rel="next" title="nvm_lba" href="nvm_lba.html"/>
+        <link rel="prev" title="nvm_cmd" href="nvm_cmd.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> liblightnvm
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/index.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prereqs/index.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nvm_geo.html">nvm_geo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_buf.html">nvm_buf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_dev.html">nvm_dev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">nvm_bbt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nvm_addr</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">nvm_addr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-erase">nvm_addr_erase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-read">nvm_addr_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-write">nvm_addr_write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-check">nvm_addr_check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-dev2gen">nvm_addr_dev2gen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-gen2dev">nvm_addr_gen2dev</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-gen2lba">nvm_addr_gen2lba</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-gen2off">nvm_addr_gen2off</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-lba2gen">nvm_addr_lba2gen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-off2gen">nvm_addr_off2gen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-pr">nvm_addr_pr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr-prn">nvm_addr_prn</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">nvm_vblk</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/index.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">liblightnvm</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">C API</a> &raquo;</li>
+      
+    <li>nvm_addr</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/capi/nvm_addr.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nvm-addr">
+<h1>nvm_addr<a class="headerlink" href="#nvm-addr" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>nvm_addr<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<dl class="struct">
+<dt id="c.nvm_addr">
+<span class="target" id="liblightnvmstructnvm__addr"></span><em class="property">struct </em><code class="descname">nvm_addr</code><a class="headerlink" href="#c.nvm_addr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encapsulation of generic physical nvm addressing. </p>
+<p>Although the user need not worry about device specific address formats the user has to know and respect addressing within device specific geometric boundaries.</p>
+<p>For that purpose one can use the <code class="docutils literal"><span class="pre">struct</span> <a class="reference internal" href="nvm_geo.html#liblightnvmstructnvm__geo"><span class="std std-ref"><span class="pre">nvm_geo</span></span></a></code> of an <code class="docutils literal"><span class="pre">struct</span> <a class="reference internal" href="nvm_dev.html#liblightnvmstructnvm__dev"><span class="std std-ref"><span class="pre">nvm_dev</span></span></a></code> to obtain device specific geometries. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.nvm_addr::blk">
+<span class="target" id="liblightnvmstructnvm__addr_1a2cf2b9213e60ea112ced2fbc01010a1e"></span>uint64_t <code class="descname">blk</code><a class="headerlink" href="#c.nvm_addr::blk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Block address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_addr::pg">
+<span class="target" id="liblightnvmstructnvm__addr_1a1a8528fb9f2d7dbbf9407be00caccaba"></span>uint64_t <code class="descname">pg</code><a class="headerlink" href="#c.nvm_addr::pg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Page address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_addr::sec">
+<span class="target" id="liblightnvmstructnvm__addr_1ae14fa3225942f6153ecfb3a23f6faf20"></span>uint64_t <code class="descname">sec</code><a class="headerlink" href="#c.nvm_addr::sec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sector address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_addr::pl">
+<span class="target" id="liblightnvmstructnvm__addr_1af438cf03bb9bedfcae773e61c595be49"></span>uint64_t <code class="descname">pl</code><a class="headerlink" href="#c.nvm_addr::pl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plane address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_addr::lun">
+<span class="target" id="liblightnvmstructnvm__addr_1a9c7583b5aa40f35c56ea0b3379c78fe4"></span>uint64_t <code class="descname">lun</code><a class="headerlink" href="#c.nvm_addr::lun" title="Permalink to this definition">¶</a></dt>
+<dd><p>LUN address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_addr::ch">
+<span class="target" id="liblightnvmstructnvm__addr_1ad040380153fc5f8fc36a88fd1af854b8"></span>uint64_t <code class="descname">ch</code><a class="headerlink" href="#c.nvm_addr::ch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Channel address. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_addr::rsvd">
+<span class="target" id="liblightnvmstructnvm__addr_1ad84fc8fa58bd2a0e64bdbad8f25927da"></span>uint64_t <code class="descname">rsvd</code><a class="headerlink" href="#c.nvm_addr::rsvd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reserved. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_addr::g">
+<span class="target" id="liblightnvmstructnvm__addr_1a4edb21a84226a540df65ecbc87731224"></span>struct <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;6::&#64;8  <code class="descname">g</code><a class="headerlink" href="#c.nvm_addr::g" title="Permalink to this definition">¶</a></dt>
+<dd><p>Address packing and geometric accessors. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_addr::line">
+<span class="target" id="liblightnvmstructnvm__addr_1abdf0985f0aa4735543ca9774d8005cbf"></span>uint64_t <code class="descname">line</code><a class="headerlink" href="#c.nvm_addr::line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Address line. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_addr::is_cached">
+<span class="target" id="liblightnvmstructnvm__addr_1aee664db84a723ccd91dca7b34cf4a730"></span>uint64_t <code class="descname">is_cached</code><a class="headerlink" href="#c.nvm_addr::is_cached" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cache hint? </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_addr::c">
+<span class="target" id="liblightnvmstructnvm__addr_1aecf3b30d68741d331e8a690b3a791b23"></span>struct <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;6::&#64;9  <code class="descname">c</code><a class="headerlink" href="#c.nvm_addr::c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.nvm_addr::ppa">
+<span class="target" id="liblightnvmstructnvm__addr_1af8c61ffaabf8869d6974df13ab2ea495"></span>uint64_t <code class="descname">ppa</code><a class="headerlink" href="#c.nvm_addr::ppa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Address as ppa. </p>
+</dd></dl>
+
+<dl class="variable">
+<dt id="c.7">
+<span class="target" id="liblightnvmstructnvm__addr_1ab7a0e421ea2d4969a6f559a2a0fdcd59"></span>union <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;6 <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>::&#64;<code class="descname">7</code><a class="headerlink" href="#c.7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-erase">
+<h2>nvm_addr_erase<a class="headerlink" href="#nvm-addr-erase" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_erase">
+<span class="target" id="liblightnvmliblightnvm_8h_1a1b77997985a372c961d79d09340b4108"></span>ssize_t <code class="descname">nvm_addr_erase</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, uint16_t<em>&nbsp;flags</em>, struct  <a class="reference internal" href="nvm_ret.html#c.nvm_ret" title="nvm_ret">nvm_ret</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_erase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Erase nvm at given addresses. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The addresses given to this function are interpreted as block addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_mark</span></code>, <code class="docutils literal"><span class="pre">nvm_addr_write</span></code>, and <code class="docutils literal"><span class="pre">nvm_addr_read</span></code> for which the address is interpreted as a sector address.</dd>
+<dt><strong>Return</strong></dt>
+<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
+<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
+<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-read">
+<h2>nvm_addr_read<a class="headerlink" href="#nvm-addr-read" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_read">
+<span class="target" id="liblightnvmliblightnvm_8h_1a6a7ea06fc56c5492a758542849c366ef"></span>ssize_t <code class="descname">nvm_addr_read</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, void *<em>&nbsp;buf</em>, void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, struct  <a class="reference internal" href="nvm_ret.html#c.nvm_ret" title="nvm_ret">nvm_ret</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read content of nvm at addresses into buf. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The addresses given to this function are interpreted as sector addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_mark</span></code> and <code class="docutils literal"><span class="pre">nvm_addr_erase</span></code> for which the address is interpreted as a block address.</dd>
+<dt><strong>Return</strong></dt>
+<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">addrs</span></code>: List of memory address </li>
+<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Buffer to store result of read into, must be aligned to device granularity min read and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.sector_nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer to store content of metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-write">
+<h2>nvm_addr_write<a class="headerlink" href="#nvm-addr-write" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_write">
+<span class="target" id="liblightnvmliblightnvm_8h_1a3e1e58dc35ba7482dfafc7bec0464d94"></span>ssize_t <code class="descname">nvm_addr_write</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addrs[]</em>, int<em>&nbsp;naddrs</em>, const void *<em>&nbsp;buf</em>, const void *<em>&nbsp;meta</em>, uint16_t<em>&nbsp;flags</em>, struct  <a class="reference internal" href="nvm_ret.html#c.nvm_ret" title="nvm_ret">nvm_ret</a>  *<em>&nbsp;ret</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write content of buf to nvm at address(es) </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>The addresses given to this function are interpreted as sector addresses, in contrast to nvm_addr_mark and nvm_addr_erase for which the address is interpreted as a block address.</dd>
+<dt><strong>Return</strong></dt>
+<dd>0 on success. On error: returns -1, sets <code class="docutils literal"><span class="pre">errno</span></code> accordingly, and fills <code class="docutils literal"><span class="pre">ret</span></code> with lower-level result and status codes </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">addrs</span></code>: Array of memory address </li>
+<li><code class="docutils literal"><span class="pre">naddrs</span></code>: Length of array of memory addresses </li>
+<li><code class="docutils literal"><span class="pre">buf</span></code>: The buffer which content to write, must be aligned to device geometry of minimal write granularity and size equal to <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">meta</span></code>: Buffer containing metadata, must be of size equal to device <code class="docutils literal"><span class="pre">naddrs</span> <span class="pre">*</span> <span class="pre">geo.meta_nbytes</span></code> </li>
+<li><code class="docutils literal"><span class="pre">flags</span></code>: Access mode </li>
+<li><code class="docutils literal"><span class="pre">ret</span></code>: Pointer to structure in which to store lower-level status and result. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-check">
+<h2>nvm_addr_check<a class="headerlink" href="#nvm-addr-check" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_check">
+<span class="target" id="liblightnvmliblightnvm_8h_1a159547b8ca24e872b999877407bffda9"></span>int <code class="descname">nvm_addr_check</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addr</em>, const struct  <a class="reference internal" href="nvm_geo.html#c.nvm_geo" title="nvm_geo">nvm_geo</a>  *<em>&nbsp;geo</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether the given address exceeds bounds of the given geometry. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>A mask of exceeded boundaries </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">addr</span></code>: The addr to check </li>
+<li><code class="docutils literal"><span class="pre">geo</span></code>: The geometric bounds to check the given address against </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-dev2gen">
+<h2>nvm_addr_dev2gen<a class="headerlink" href="#nvm-addr-dev2gen" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_dev2gen">
+<span class="target" id="liblightnvmliblightnvm_8h_1a7dd099dc686dac92081bd7c4c37a5895"></span>struct <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a> <code class="descname">nvm_addr_dev2gen</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, uint64_t<em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_dev2gen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given physical address on device-format to generic-format. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Physical address on generic-format </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on device-format to convert </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-gen2dev">
+<h2>nvm_addr_gen2dev<a class="headerlink" href="#nvm-addr-gen2dev" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_gen2dev">
+<span class="target" id="liblightnvmliblightnvm_8h_1add18460eeec07ae8ce6b9f471ca83a9e"></span>uint64_t <code class="descname">nvm_addr_gen2dev</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_gen2dev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given physical address generic-format to device-format. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Physical address on device-format </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on generic-format to convert </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-gen2lba">
+<h2>nvm_addr_gen2lba<a class="headerlink" href="#nvm-addr-gen2lba" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_gen2lba">
+<span class="target" id="liblightnvmliblightnvm_8h_1af7269ce2b8cd9d32b033e79f8439f2e5"></span>uint64_t <code class="descname">nvm_addr_gen2lba</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_gen2lba" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given physical address on generic-format to LBA offset. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Logical address as LBA offset </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on generic-format to convert </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-gen2off">
+<h2>nvm_addr_gen2off<a class="headerlink" href="#nvm-addr-gen2off" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_gen2off">
+<span class="target" id="liblightnvmliblightnvm_8h_1a480ec1815404e58f793ea59794fa912f"></span>uint64_t <code class="descname">nvm_addr_gen2off</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_gen2off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given physical address on generic-format to byte offset. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Logical address as byte offset </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">addr</span></code>: The physical address on generic-format to convert </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-lba2gen">
+<h2>nvm_addr_lba2gen<a class="headerlink" href="#nvm-addr-lba2gen" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_lba2gen">
+<span class="target" id="liblightnvmliblightnvm_8h_1a9cb32c309e0d6b7c23a455fa97d303be"></span>struct <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a> <code class="descname">nvm_addr_lba2gen</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, uint64_t<em>&nbsp;off</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_lba2gen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given LBA offset to physical address on generic-format. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Physical address on generic-format </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">off</span></code>: Logical address as LBA offset to convert </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-off2gen">
+<h2>nvm_addr_off2gen<a class="headerlink" href="#nvm-addr-off2gen" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_off2gen">
+<span class="target" id="liblightnvmliblightnvm_8h_1aee7bdce116af860a64aaea40c99152eb"></span>struct <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a> <code class="descname">nvm_addr_off2gen</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, uint64_t<em>&nbsp;off</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_off2gen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a given byte offset to physical address on generic-format. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>Physical address on generic-format </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">off</span></code>: Logical address as byte offset to convert </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-pr">
+<h2>nvm_addr_pr<a class="headerlink" href="#nvm-addr-pr" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1a7be914f85027e87b98d1d80148874ff7"></span>void <code class="descname">nvm_addr_pr</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a><em>&nbsp;addr</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a humanly readable representation of the given address. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">addr</span></code>: The address to print </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-addr-prn">
+<h2>nvm_addr_prn<a class="headerlink" href="#nvm-addr-prn" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_addr_prn">
+<span class="target" id="liblightnvmliblightnvm_8h_1a68d50a6ea5c4d5e6c65ba27e674bffca"></span>void <code class="descname">nvm_addr_prn</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_addr" title="nvm_addr">nvm_addr</a>  *<em>&nbsp;addr</em>, unsigned int<em>&nbsp;naddrs</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_addr_prn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a humanly readable representation of the given list of addresses. </p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="nvm_lba.html" class="btn btn-neutral float-right" title="nvm_lba" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="nvm_cmd.html" class="btn btn-neutral" title="nvm_cmd" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, LightNVM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
