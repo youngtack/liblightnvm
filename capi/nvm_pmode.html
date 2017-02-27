@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>nvm_ver &mdash; liblightnvm 0.0.1 documentation</title>
+  <title>nvm_pmode &mdash; liblightnvm 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="liblightnvm 0.0.1 documentation" href="../index.html"/>
         <link rel="up" title="Miscellaneous" href="misc.html"/>
-        <link rel="next" title="nvm_meta" href="nvm_meta.html"/>
-        <link rel="prev" title="nvm_ret" href="nvm_ret.html"/> 
+        <link rel="next" title="nvm_bounds" href="nvm_bounds.html"/>
+        <link rel="prev" title="nvm_mode" href="nvm_mode.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -101,16 +101,14 @@
 <li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba - LBA Interface</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="misc.html">Miscellaneous</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="nvm_ret.html">nvm_ret</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">nvm_ver</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#nvm-ver-major">nvm_ver_major</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nvm-ver-minor">nvm_ver_minor</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nvm-ver-patch">nvm_ver_patch</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nvm-ver-pr">nvm_ver_pr</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="nvm_ver.html">nvm_ver</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nvm_meta.html">nvm_meta</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nvm_mode.html">nvm_mode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="nvm_pmode.html">nvm_pmode</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">nvm_pmode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">nvm_pmode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nvm-pmode-str">nvm_pmode_str</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="nvm_bounds.html">nvm_bounds</a></li>
 </ul>
 </li>
@@ -153,11 +151,11 @@
       
           <li><a href="misc.html">Miscellaneous</a> &raquo;</li>
       
-    <li>nvm_ver</li>
+    <li>nvm_pmode</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/capi/nvm_ver.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/capi/nvm_pmode.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -167,53 +165,52 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="nvm-ver">
-<span id="sec-capi-nvm-ver"></span><h1>nvm_ver<a class="headerlink" href="#nvm-ver" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="nvm-ver-major">
-<h2>nvm_ver_major<a class="headerlink" href="#nvm-ver-major" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="c.nvm_ver_major">
-<span class="target" id="liblightnvmliblightnvm_8h_1aa4466103089a0ba08e23ea94e429ec13"></span>int <code class="descname">nvm_ver_major</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_ver_major" title="Permalink to this definition">¶</a></dt>
-<dd><p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the &#8220;major&#8221; version of the library </dd>
-</dl>
-</p>
+  <div class="section" id="nvm-pmode">
+<span id="sec-capi-nvm-pmode"></span><h1>nvm_pmode<a class="headerlink" href="#nvm-pmode" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>nvm_pmode<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="c.nvm_pmode">
+<span class="target" id="liblightnvmliblightnvm_8h_1a4d6747181aee0d88fa6663bce470eb07"></span><em class="property">enum </em><code class="descname">nvm_pmode</code><a class="headerlink" href="#c.nvm_pmode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plane-mode access for IO. </p>
+<p><em>Values:</em></p>
+<dl class="enumvalue">
+<dt id="c.NVM_FLAG_PMODE_SNGL">
+<span class="target" id="liblightnvmliblightnvm_8h_1a4d6747181aee0d88fa6663bce470eb07adc64703ef96d3a2cb403fb577b4ef1b1"></span><code class="descname">NVM_FLAG_PMODE_SNGL</code> = 0x0<a class="headerlink" href="#c.NVM_FLAG_PMODE_SNGL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Single-plane. </p>
+</dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.NVM_FLAG_PMODE_DUAL">
+<span class="target" id="liblightnvmliblightnvm_8h_1a4d6747181aee0d88fa6663bce470eb07a1d02bead038d37a6ebe62a1d3fa6b9aa"></span><code class="descname">NVM_FLAG_PMODE_DUAL</code> = 0x1<a class="headerlink" href="#c.NVM_FLAG_PMODE_DUAL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dual-plane (NVM_IO_DUAL_ACCESS) </p>
+</dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.NVM_FLAG_PMODE_QUAD">
+<span class="target" id="liblightnvmliblightnvm_8h_1a4d6747181aee0d88fa6663bce470eb07ac3d984398a952635422918c3bd3b0632"></span><code class="descname">NVM_FLAG_PMODE_QUAD</code> = 0x2<a class="headerlink" href="#c.NVM_FLAG_PMODE_QUAD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quad-plane (NVM_IO_QUAD_ACCESS) </p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
-<div class="section" id="nvm-ver-minor">
-<h2>nvm_ver_minor<a class="headerlink" href="#nvm-ver-minor" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nvm-pmode-str">
+<h2>nvm_pmode_str<a class="headerlink" href="#nvm-pmode-str" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="c.nvm_ver_minor">
-<span class="target" id="liblightnvmliblightnvm_8h_1ad44a458c7ca1933978b04b5e215fe081"></span>int <code class="descname">nvm_ver_minor</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_ver_minor" title="Permalink to this definition">¶</a></dt>
-<dd><p><dl class="docutils">
+<dt id="c.nvm_pmode_str">
+<span class="target" id="liblightnvmliblightnvm_8h_1a6c54464f5d7a8a240c92e30f602cceb5"></span>const char* <code class="descname">nvm_pmode_str</code><span class="sig-paren">(</span>int<em>&nbsp;pmode</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_pmode_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain string representation of the given plane-mode. </p>
+<p><dl class="docutils">
 <dt><strong>Return</strong></dt>
-<dd>the &#8220;minor&#8221; version of the library </dd>
+<dd>On success, string representation of the given plane-mode. On error, &#8220;UNKN&#8221;. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">pmode</span></code>: The plane-mode to obtain string representation of</li>
+</ul>
+</dd>
 </dl>
 </p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-ver-patch">
-<h2>nvm_ver_patch<a class="headerlink" href="#nvm-ver-patch" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="c.nvm_ver_patch">
-<span class="target" id="liblightnvmliblightnvm_8h_1a67d9bd2088d56cf0d5c5ce8dee858649"></span>int <code class="descname">nvm_ver_patch</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_ver_patch" title="Permalink to this definition">¶</a></dt>
-<dd><p><dl class="docutils">
-<dt><strong>Return</strong></dt>
-<dd>the &#8220;patch&#8221; version of the library </dd>
-</dl>
-</p>
-</dd></dl>
-
-</div>
-<div class="section" id="nvm-ver-pr">
-<h2>nvm_ver_pr<a class="headerlink" href="#nvm-ver-pr" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="c.nvm_ver_pr">
-<span class="target" id="liblightnvmliblightnvm_8h_1ad11691ce2b6faa5bfb2b2ae261d9b538"></span>void <code class="descname">nvm_ver_pr</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_ver_pr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prints version information about the library. </p>
 </dd></dl>
 
 </div>
@@ -226,10 +223,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="nvm_meta.html" class="btn btn-neutral float-right" title="nvm_meta" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="nvm_bounds.html" class="btn btn-neutral float-right" title="nvm_bounds" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nvm_ret.html" class="btn btn-neutral" title="nvm_ret" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="nvm_mode.html" class="btn btn-neutral" title="nvm_mode" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>nvm_buf &mdash; liblightnvm 0.0.1 documentation</title>
+  <title>nvm_buf - Buffer Allocation &mdash; liblightnvm 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="liblightnvm 0.0.1 documentation" href="../index.html"/>
         <link rel="up" title="C API" href="index.html"/>
-        <link rel="next" title="nvm_dev" href="nvm_dev.html"/>
-        <link rel="prev" title="nvm_geo" href="nvm_geo.html"/> 
+        <link rel="next" title="nvm_addr - Addressing" href="nvm_addr.html"/>
+        <link rel="prev" title="nvm_geo - Geometry" href="nvm_geo.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -91,19 +91,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">C API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="nvm_geo.html">nvm_geo</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">nvm_buf</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nvm_dev.html">nvm_dev - Device Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_geo.html">nvm_geo - Geometry</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nvm_buf - Buffer Allocation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-buf-alloc">nvm_buf_alloc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-buf-fill">nvm_buf_fill</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-buf-pr">nvm_buf_pr</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_dev.html">nvm_dev</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">nvm_bbt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_addr.html">nvm_addr</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">nvm_vblk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_addr.html">nvm_addr - Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">nvm_bbt - Bad-Block-Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">nvm_vblk - Virtual Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd - Raw Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba - LBA Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="header.html">Public Header</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">Command-Line Interface</a></li>
@@ -140,7 +142,7 @@
       
           <li><a href="index.html">C API</a> &raquo;</li>
       
-    <li>nvm_buf</li>
+    <li>nvm_buf - Buffer Allocation</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -154,8 +156,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="nvm-buf">
-<h1>nvm_buf<a class="headerlink" href="#nvm-buf" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="nvm-buf-buffer-allocation">
+<span id="sec-capi-nvm-buf"></span><h1>nvm_buf - Buffer Allocation<a class="headerlink" href="#nvm-buf-buffer-allocation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="nvm-buf-alloc">
 <h2>nvm_buf_alloc<a class="headerlink" href="#nvm-buf-alloc" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
@@ -223,10 +225,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="nvm_dev.html" class="btn btn-neutral float-right" title="nvm_dev" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="nvm_addr.html" class="btn btn-neutral float-right" title="nvm_addr - Addressing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nvm_geo.html" class="btn btn-neutral" title="nvm_geo" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="nvm_geo.html" class="btn btn-neutral" title="nvm_geo - Geometry" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>nvm_bbt &mdash; liblightnvm 0.0.1 documentation</title>
+  <title>nvm_bbt - Bad-Block-Table &mdash; liblightnvm 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="liblightnvm 0.0.1 documentation" href="../index.html"/>
         <link rel="up" title="C API" href="index.html"/>
-        <link rel="next" title="nvm_cmd" href="nvm_cmd.html"/>
-        <link rel="prev" title="nvm_dev" href="nvm_dev.html"/> 
+        <link rel="next" title="nvm_vblk - Virtual Block" href="nvm_vblk.html"/>
+        <link rel="prev" title="nvm_addr - Addressing" href="nvm_addr.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -91,11 +91,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">C API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="nvm_geo.html">nvm_geo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_buf.html">nvm_buf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_dev.html">nvm_dev</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">nvm_bbt</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">nvm_bbt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_dev.html">nvm_dev - Device Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_geo.html">nvm_geo - Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_buf.html">nvm_buf - Buffer Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_addr.html">nvm_addr - Addressing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nvm_bbt - Bad-Block-Table</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt">nvm_bbt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-state">nvm_bbt_state</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-get">nvm_bbt_get</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-set">nvm_bbt_set</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-mark">nvm_bbt_mark</a></li>
@@ -107,10 +109,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-bbt-state-pr">nvm_bbt_state_pr</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_addr.html">nvm_addr</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">nvm_vblk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">nvm_vblk - Virtual Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd - Raw Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba - LBA Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="header.html">Public Header</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">Command-Line Interface</a></li>
@@ -147,7 +150,7 @@
       
           <li><a href="index.html">C API</a> &raquo;</li>
       
-    <li>nvm_bbt</li>
+    <li>nvm_bbt - Bad-Block-Table</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -161,10 +164,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="nvm-bbt">
-<h1>nvm_bbt<a class="headerlink" href="#nvm-bbt" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>nvm_bbt<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="nvm-bbt-bad-block-table">
+<span id="sec-capi-nvm-bbt"></span><h1>nvm_bbt - Bad-Block-Table<a class="headerlink" href="#nvm-bbt-bad-block-table" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nvm-bbt">
+<h2>nvm_bbt<a class="headerlink" href="#nvm-bbt" title="Permalink to this headline">¶</a></h2>
 <dl class="struct">
 <dt id="c.nvm_bbt">
 <span class="target" id="liblightnvmstructnvm__bbt"></span><em class="property">struct </em><code class="descname">nvm_bbt</code><a class="headerlink" href="#c.nvm_bbt" title="Permalink to this definition">¶</a></dt>
@@ -229,6 +232,46 @@
 </dd></dl>
 
 </div>
+<div class="section" id="nvm-bbt-state">
+<h2>nvm_bbt_state<a class="headerlink" href="#nvm-bbt-state" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="c.nvm_bbt_state">
+<span class="target" id="liblightnvmliblightnvm_8h_1a98f61b94e6ccf5e687fa5be150b9d003"></span><em class="property">enum </em><code class="descname">nvm_bbt_state</code><a class="headerlink" href="#c.nvm_bbt_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Representation of valid values of bad-block-table states. </p>
+<p><em>Values:</em></p>
+<dl class="enumvalue">
+<dt id="c.NVM_BBT_FREE">
+<span class="target" id="liblightnvmliblightnvm_8h_1a98f61b94e6ccf5e687fa5be150b9d003ab10831c00bebb2201412105f95dddebd"></span><code class="descname">NVM_BBT_FREE</code> = 0x0<a class="headerlink" href="#c.NVM_BBT_FREE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Block is free AKA good. </p>
+</dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.NVM_BBT_BAD">
+<span class="target" id="liblightnvmliblightnvm_8h_1a98f61b94e6ccf5e687fa5be150b9d003a0ff1d5d329422e484a6407867197f3c1"></span><code class="descname">NVM_BBT_BAD</code> = 0x1<a class="headerlink" href="#c.NVM_BBT_BAD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Block is bad. </p>
+</dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.NVM_BBT_GBAD">
+<span class="target" id="liblightnvmliblightnvm_8h_1a98f61b94e6ccf5e687fa5be150b9d003a96557572e91470e8dacf68e882eddc4f"></span><code class="descname">NVM_BBT_GBAD</code> = 0x2<a class="headerlink" href="#c.NVM_BBT_GBAD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Block has grown bad. </p>
+</dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.NVM_BBT_DMRK">
+<span class="target" id="liblightnvmliblightnvm_8h_1a98f61b94e6ccf5e687fa5be150b9d003a9adafd8e2f694a6192fdce1e03b62951"></span><code class="descname">NVM_BBT_DMRK</code> = 0x4<a class="headerlink" href="#c.NVM_BBT_DMRK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Block has been marked by device side. </p>
+</dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.NVM_BBT_HMRK">
+<span class="target" id="liblightnvmliblightnvm_8h_1a98f61b94e6ccf5e687fa5be150b9d003a79b43392d6f18d1e064d59912c6e42c0"></span><code class="descname">NVM_BBT_HMRK</code> = 0x8<a class="headerlink" href="#c.NVM_BBT_HMRK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Block has been marked by host side. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="nvm-bbt-get">
 <h2>nvm_bbt_get<a class="headerlink" href="#nvm-bbt-get" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
@@ -281,7 +324,7 @@
 <dt><strong>Note</strong></dt>
 <dd>The addresses given to this function are interpreted as block addresses, in contrast to <code class="docutils literal"><span class="pre">nvm_addr_write</span></code>, and <code class="docutils literal"><span class="pre">nvm_addr_read</span></code> which interpret addresses and sector addresses.</dd>
 <dt><strong>See</strong></dt>
-<dd><code class="docutils literal"><span class="pre">enum</span> <span class="pre">nvm_bbt_state</span></code></dd>
+<dd><code class="docutils literal"><span class="pre">enum</span> <a class="reference internal" href="#liblightnvmliblightnvm_8h_1a98f61b94e6ccf5e687fa5be150b9d003"><span class="std std-ref"><span class="pre">nvm_bbt_state</span></span></a></code></dd>
 <dt><strong>Return</strong></dt>
 <dd>On success, 0 is returned. On error, -1 is returned, <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error and ret filled with lower-level result codes </dd>
 <dt><strong>Parameters</strong></dt>
@@ -410,10 +453,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="nvm_cmd.html" class="btn btn-neutral float-right" title="nvm_cmd" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="nvm_vblk.html" class="btn btn-neutral float-right" title="nvm_vblk - Virtual Block" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nvm_dev.html" class="btn btn-neutral" title="nvm_dev" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="nvm_addr.html" class="btn btn-neutral" title="nvm_addr - Addressing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>nvm_addr &mdash; liblightnvm 0.0.1 documentation</title>
+  <title>nvm_addr - Addressing &mdash; liblightnvm 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="liblightnvm 0.0.1 documentation" href="../index.html"/>
         <link rel="up" title="C API" href="index.html"/>
-        <link rel="next" title="nvm_lba" href="nvm_lba.html"/>
-        <link rel="prev" title="nvm_cmd" href="nvm_cmd.html"/> 
+        <link rel="next" title="nvm_bbt - Bad-Block-Table" href="nvm_bbt.html"/>
+        <link rel="prev" title="nvm_buf - Buffer Allocation" href="nvm_buf.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -91,13 +91,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">C API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="nvm_geo.html">nvm_geo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_buf.html">nvm_buf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_dev.html">nvm_dev</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">nvm_bbt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">nvm_addr</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">nvm_addr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_dev.html">nvm_dev - Device Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_geo.html">nvm_geo - Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_buf.html">nvm_buf - Buffer Allocation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nvm_addr - Addressing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-addr">nvm_addr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-erase">nvm_addr_erase</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-read">nvm_addr_read</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-write">nvm_addr_write</a></li>
@@ -112,8 +110,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-addr-prn">nvm_addr_prn</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">nvm_vblk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">nvm_bbt - Bad-Block-Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">nvm_vblk - Virtual Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd - Raw Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba - LBA Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="header.html">Public Header</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">Command-Line Interface</a></li>
@@ -150,7 +152,7 @@
       
           <li><a href="index.html">C API</a> &raquo;</li>
       
-    <li>nvm_addr</li>
+    <li>nvm_addr - Addressing</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -164,10 +166,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="nvm-addr">
-<h1>nvm_addr<a class="headerlink" href="#nvm-addr" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>nvm_addr<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="nvm-addr-addressing">
+<span id="sec-capi-nvm-addr"></span><h1>nvm_addr - Addressing<a class="headerlink" href="#nvm-addr-addressing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nvm-addr">
+<h2>nvm_addr<a class="headerlink" href="#nvm-addr" title="Permalink to this headline">¶</a></h2>
 <dl class="struct">
 <dt id="c.nvm_addr">
 <span class="target" id="liblightnvmstructnvm__addr"></span><em class="property">struct </em><code class="descname">nvm_addr</code><a class="headerlink" href="#c.nvm_addr" title="Permalink to this definition">¶</a></dt>
@@ -510,10 +512,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="nvm_lba.html" class="btn btn-neutral float-right" title="nvm_lba" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="nvm_bbt.html" class="btn btn-neutral float-right" title="nvm_bbt - Bad-Block-Table" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nvm_cmd.html" class="btn btn-neutral" title="nvm_cmd" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="nvm_buf.html" class="btn btn-neutral" title="nvm_buf - Buffer Allocation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

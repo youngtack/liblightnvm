@@ -94,8 +94,9 @@
 <li class="toctree-l2"><a class="reference internal" href="nvm_addr.html">Physical Addressing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nvm_addr_vio.html">Vectorized IO to NAND media</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Virtual Block</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#virtual-block-set">Virtual Block Set</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#virtual-block-line">Virtual Block Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plane-span">Plane Span</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#block-set">Block Set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#block-line">Block Line</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">Bad-Block-Table</a></li>
@@ -154,15 +155,26 @@
 <h1>Virtual Block<a class="headerlink" href="#virtual-block" title="Permalink to this headline">¶</a></h1>
 <p>The physical addressing interface <code class="docutils literal"><span class="pre">nvm_addr</span></code> provides full control over the
 construction of vectorized IO commands. It is known that with great power comes
-great responsibility, responsibility which increase the cognitive load on the
-developer when integrating vectorized IO directly at the application level.</p>
-<p>liblightnvm introduces a pure software abstraction, a virtual block, to reduce
-the cognitive load for application developers.</p>
+great responsibility. Responsibility which increase the cognitive load on the
+developer when integrating vectorized IO at the application level.</p>
+<p>liblightnvm, therefore, introduces a pure software abstraction, a virtual
+block, to reduce the cognitive load for application developers.</p>
 <p>A virtual block behaves as a physical, that is, the constraints of working with
 NAND media also apply to a virtual block. However, the abstraction encapsulates
 the command and address construction of parallel vectorized IO and exposes a
 flat address space which is read/written in a manner equivalent to the
 read/write primitives offered by libc.</p>
+<p>The minimum construction encapsulates managing address-construction across
+planes and setting plane hints. See section <a class="reference internal" href="#sec-tut-vblk-plane"><span class="std std-ref">Plane Span</span></a>.
+Increased utilization of parallel units in a device is achieved by constructing
+a virtual block as either a <a class="reference internal" href="#sec-tut-vblk-set"><span class="std std-ref">Block Set</span></a> or a
+<a class="reference internal" href="#sec-tut-vblk-line"><span class="std std-ref">Block Line</span></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">C API documentation of the virtual block is available in <span class="xref std std-ref">sec-capi-vblk</span></p>
+</div>
+<div class="section" id="plane-span">
+<span id="sec-tut-vblk-plane"></span><h2>Plane Span<a class="headerlink" href="#plane-span" title="Permalink to this headline">¶</a></h2>
 <p>A virtual block will at a minimum consist of the given block address across all
 planes. So it by default encapsulates concerns regarding plane-mode
 constraints.</p>
@@ -203,8 +215,9 @@ Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.000012
 Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.143062
 </pre></div>
 </div>
-<div class="section" id="virtual-block-set">
-<h2>Virtual Block Set<a class="headerlink" href="#virtual-block-set" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="block-set">
+<span id="sec-tut-vblk-set"></span><h2>Block Set<a class="headerlink" href="#block-set" title="Permalink to this headline">¶</a></h2>
 <p>To obtain parallel IO, in addition to plane-mode, we construct a virtual block
 consisting of multiple physical blocks on distinct parallel units (LUNs):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mh">0x0000000000000002</span><span class="p">){</span> <span class="n">ch</span><span class="p">(</span><span class="mi">00</span><span class="p">),</span> <span class="n">lun</span><span class="p">(</span><span class="mi">00</span><span class="p">),</span> <span class="n">pl</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">blk</span><span class="p">(</span><span class="mi">0002</span><span class="p">),</span> <span class="n">pg</span><span class="p">(</span><span class="mi">000</span><span class="p">),</span> <span class="n">sec</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
@@ -263,9 +276,25 @@ Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.156588
 proportionally with the parallel units consumes approximately the same amount
 of wall-clock time, thus achieving near linear speedup by utilizing parallel
 units on the device.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The difference between the plane span and the block set is merely
+that the virtual block creation uses multiple block-addresses instead of one</p>
 </div>
-<div class="section" id="virtual-block-line">
-<h2>Virtual Block Line<a class="headerlink" href="#virtual-block-line" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="block-line">
+<span id="sec-tut-vblk-line"></span><h2>Block Line<a class="headerlink" href="#block-line" title="Permalink to this headline">¶</a></h2>
+<p>The block line provides convenient construction of a virtual block spanning
+<strong>lines</strong> of physical blocks. With a block line, the block index is fixed and
+one can specify true subsets of the parallel units.
+For example, block 10 on all parallel units on the given device, which in this
+case has 16 channels with each eight LUNs:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_vblk line_erase /dev/nvme0n1 <span class="m">0</span> <span class="m">15</span> <span class="m">0</span> <span class="m">7</span> <span class="m">10</span>
+nvm_vblk line_write /dev/nvme0n1 <span class="m">0</span> <span class="m">15</span> <span class="m">0</span> <span class="m">7</span> <span class="m">10</span>
+nvm_vblk line_read /dev/nvme0n1 <span class="m">0</span> <span class="m">15</span> <span class="m">0</span> <span class="m">7</span> <span class="m">10</span>
+</pre></div>
+</div>
+<p>Yielding:</p>
 </div>
 </div>
 

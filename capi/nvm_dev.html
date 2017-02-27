@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>nvm_dev &mdash; liblightnvm 0.0.1 documentation</title>
+  <title>nvm_dev - Device Management &mdash; liblightnvm 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="liblightnvm 0.0.1 documentation" href="../index.html"/>
         <link rel="up" title="C API" href="index.html"/>
-        <link rel="next" title="nvm_bbt" href="nvm_bbt.html"/>
-        <link rel="prev" title="nvm_buf" href="nvm_buf.html"/> 
+        <link rel="next" title="nvm_geo - Geometry" href="nvm_geo.html"/>
+        <link rel="prev" title="C API" href="index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -91,10 +91,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">C API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="nvm_geo.html">nvm_geo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_buf.html">nvm_buf</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">nvm_dev</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">nvm_dev</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nvm_dev - Device Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev">nvm_dev</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-open">nvm_dev_open</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-close">nvm_dev_close</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-openf">nvm_dev_openf</a></li>
@@ -111,15 +109,20 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-bbts-cached">nvm_dev_set_bbts_cached</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-erase-naddrs-max">nvm_dev_set_erase_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-meta-mode">nvm_dev_set_meta_mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-pmode">nvm_dev_set_pmode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-read-naddrs-max">nvm_dev_set_read_naddrs_max</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-dev-set-write-naddrs-max">nvm_dev_set_write_naddrs_max</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">nvm_bbt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_addr.html">nvm_addr</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">nvm_vblk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_geo.html">nvm_geo - Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_buf.html">nvm_buf - Buffer Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_addr.html">nvm_addr - Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">nvm_bbt - Bad-Block-Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">nvm_vblk - Virtual Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd - Raw Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba - LBA Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="header.html">Public Header</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../cli/index.html">Command-Line Interface</a></li>
@@ -156,7 +159,7 @@
       
           <li><a href="index.html">C API</a> &raquo;</li>
       
-    <li>nvm_dev</li>
+    <li>nvm_dev - Device Management</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -170,10 +173,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="nvm-dev">
-<h1>nvm_dev<a class="headerlink" href="#nvm-dev" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>nvm_dev<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="nvm-dev-device-management">
+<span id="sec-capi-nvm-dev"></span><h1>nvm_dev - Device Management<a class="headerlink" href="#nvm-dev-device-management" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nvm-dev">
+<h2>nvm_dev<a class="headerlink" href="#nvm-dev" title="Permalink to this headline">¶</a></h2>
 <dl class="struct">
 <dt id="c.nvm_dev">
 <span class="target" id="liblightnvmstructnvm__dev"></span><em class="property">struct </em><code class="descname">nvm_dev</code><a class="headerlink" href="#c.nvm_dev" title="Permalink to this definition">¶</a></dt>
@@ -471,6 +474,26 @@
 </dd></dl>
 
 </div>
+<div class="section" id="nvm-dev-set-pmode">
+<h2>nvm_dev_set_pmode<a class="headerlink" href="#nvm-dev-set-pmode" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_dev_set_pmode">
+<span class="target" id="liblightnvmliblightnvm_8h_1a3805b60fb03909a44a4668a12eb7800b"></span>int <code class="descname">nvm_dev_set_pmode</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, int<em>&nbsp;pmode</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_set_pmode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the default plane-mode for the given device. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>0 on success, -1 on error and errno set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">pmode</span></code>: Default plane-mode</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="section" id="nvm-dev-set-read-naddrs-max">
 <h2>nvm_dev_set_read_naddrs_max<a class="headerlink" href="#nvm-dev-set-read-naddrs-max" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
@@ -520,10 +543,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="nvm_bbt.html" class="btn btn-neutral float-right" title="nvm_bbt" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="nvm_geo.html" class="btn btn-neutral float-right" title="nvm_geo - Geometry" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nvm_buf.html" class="btn btn-neutral" title="nvm_buf" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="C API" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
