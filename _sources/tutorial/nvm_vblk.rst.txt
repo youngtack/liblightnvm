@@ -91,3 +91,36 @@ Yielding:
 
 .. literalinclude:: nvm_vblk_line_00.out
    :language: bash
+   :lines: 1-6
+
+.. code-block:: none
+
+   ... block address output omitted for brevity ...
+
+.. literalinclude:: nvm_vblk_line_00.out
+   :language: bash
+   :lines: 133-136
+
+.. literalinclude:: nvm_vblk_line_00.out
+   :language: bash
+   :lines: 137-142
+
+.. code-block:: none
+
+   ... block address output omitted for brevity ...
+
+.. literalinclude:: nvm_vblk_line_00.out
+   :language: bash
+   :lines: 269-272
+
+.. literalinclude:: nvm_vblk_line_00.out
+   :language: bash
+   :lines: 274-279
+
+.. code-block:: none
+
+   ... block address output omitted for brevity ...
+
+.. literalinclude:: nvm_vblk_line_00.out
+   :language: bash
+   :lines: 406-409
