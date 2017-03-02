@@ -45,6 +45,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -112,8 +113,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">liblightnvm</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">liblightnvm</a>
+        
       </nav>
 
 
@@ -122,25 +125,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="index.html">Command-Line Interface</a> &raquo;</li>
-      
-    <li>Environment Variables</li>
+        
+      <li>Environment Variables</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/cli/nvm_env.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -154,7 +174,11 @@
 <dd>When set, disables address verification</dd>
 <dt>NVM_CLI_PMODE</dt>
 <dd><p class="first">Control the plane-hint of <code class="docutils literal"><span class="pre">nvm_addr</span></code> and <code class="docutils literal"><span class="pre">nvm_vblk</span></code>, values are:</p>
-<p class="last">Disabled(0), DUAL(1), and QUAD(2)</p>
+<p class="last">Disabled(0x0), DUAL(0x1), and QUAD(0x2)</p>
+</dd>
+<dt>NVM_CLI_BE_ID</dt>
+<dd><p class="first">Defaults to NVM_BE_ANY, controls which transport backend to use</p>
+<p class="last">NVM_BE_IOCTL(0x1), NVM_BE_IOCTL_SYSFS(0x2)</p>
 </dd>
 <dt>NVM_CLI_BUF_PR</dt>
 <dd>When set, read/write commands will dump data to stdout</dd>
@@ -171,6 +195,9 @@ stdout</dd>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -214,7 +241,8 @@ stdout</dd>
             VERSION:'0.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

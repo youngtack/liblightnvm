@@ -45,6 +45,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -126,8 +127,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">liblightnvm</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">liblightnvm</a>
+        
       </nav>
 
 
@@ -136,25 +139,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="index.html">Tutorial Introduction</a> &raquo;</li>
-      
-    <li>Vectorized IO to NAND media</li>
+        
+      <li>Vectorized IO to NAND media</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/tutorial/nvm_addr_vio.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -393,7 +413,7 @@ vblk <span class="o">{</span>
 vblk-naddrs<span class="o">(</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
  <span class="m">00</span>: <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
-Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.006320
+Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.015684
 
 ** nvm_vblk_write<span class="o">(</span>...<span class="o">)</span>: pmode<span class="o">(</span>DUAL<span class="o">)</span>
 vblk <span class="o">{</span>
@@ -402,8 +422,8 @@ vblk <span class="o">{</span>
 vblk-naddrs<span class="o">(</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
  <span class="m">00</span>: <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
-Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.019177
-Ran nvm_vblk_write, elapsed wall-clock: <span class="m">0</span>.968400
+Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.019323
+Ran nvm_vblk_write, elapsed wall-clock: <span class="m">0</span>.931128
 </pre></div>
 </div>
 <p>What these two commands actually do will be described in the following section
@@ -634,6 +654,9 @@ planes and all sectors are read as in the example above.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -676,7 +699,8 @@ planes and all sectors are read as in the example above.</p>
             VERSION:'0.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

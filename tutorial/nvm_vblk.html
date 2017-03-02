@@ -45,6 +45,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -117,8 +118,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">liblightnvm</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">liblightnvm</a>
+        
       </nav>
 
 
@@ -127,25 +130,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="index.html">Tutorial Introduction</a> &raquo;</li>
-      
-    <li>Virtual Block</li>
+        
+      <li>Virtual Block</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/tutorial/nvm_vblk.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -171,7 +191,8 @@ a virtual block as either a <a class="reference internal" href="#sec-tut-vblk-se
 <a class="reference internal" href="#sec-tut-vblk-line"><span class="std std-ref">Block Line</span></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">C API documentation of the virtual block is available in <span class="xref std std-ref">sec-capi-vblk</span></p>
+<p class="last">C API documentation of the virtual block is available in
+<a class="reference internal" href="../capi/nvm_vblk.html#sec-capi-nvm-vblk"><span class="std std-ref">nvm_vblk - Virtual Block</span></a></p>
 </div>
 <div class="section" id="plane-span">
 <span id="sec-tut-vblk-plane"></span><h2>Plane Span<a class="headerlink" href="#plane-span" title="Permalink to this headline">¶</a></h2>
@@ -192,7 +213,7 @@ vblk <span class="o">{</span>
 vblk-naddrs<span class="o">(</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
  <span class="m">00</span>: <span class="o">(</span>0x0000000000000002<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0002</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
-Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.007003
+Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.007617
 
 ** nvm_vblk_write<span class="o">(</span>...<span class="o">)</span>: pmode<span class="o">(</span>DUAL<span class="o">)</span>
 vblk <span class="o">{</span>
@@ -201,8 +222,8 @@ vblk <span class="o">{</span>
 vblk-naddrs<span class="o">(</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
  <span class="m">00</span>: <span class="o">(</span>0x0000000000000002<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0002</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
-Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.021325
-Ran nvm_vblk_write, elapsed wall-clock: <span class="m">0</span>.959251
+Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.018779
+Ran nvm_vblk_write, elapsed wall-clock: <span class="m">0</span>.975425
 
 ** nvm_vblk_read<span class="o">(</span>...<span class="o">)</span>: pmode<span class="o">(</span>DUAL<span class="o">)</span>
 vblk <span class="o">{</span>
@@ -212,7 +233,7 @@ vblk-naddrs<span class="o">(</span><span class="m">1</span><span class="o">)</sp
  <span class="m">00</span>: <span class="o">(</span>0x0000000000000002<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0002</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
 Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.000012
-Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.134414
+Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.133650
 </pre></div>
 </div>
 </div>
@@ -243,7 +264,7 @@ vblk-naddrs<span class="o">(</span><span class="m">4</span><span class="o">)</sp
  <span class="m">02</span>: <span class="o">(</span>0x0301000000000014<span class="o">){</span> ch<span class="o">(</span><span class="m">03</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">01</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0020</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
  <span class="m">03</span>: <span class="o">(</span>0x0500000000000190<span class="o">){</span> ch<span class="o">(</span><span class="m">05</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0400</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
-Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.027120
+Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.023148
 
 ** nvm_vblk_write<span class="o">(</span>...<span class="o">)</span>: pmode<span class="o">(</span>DUAL<span class="o">)</span>
 vblk <span class="o">{</span>
@@ -255,8 +276,8 @@ vblk-naddrs<span class="o">(</span><span class="m">4</span><span class="o">)</sp
  <span class="m">02</span>: <span class="o">(</span>0x0301000000000014<span class="o">){</span> ch<span class="o">(</span><span class="m">03</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">01</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0020</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
  <span class="m">03</span>: <span class="o">(</span>0x0500000000000190<span class="o">){</span> ch<span class="o">(</span><span class="m">05</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0400</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
-Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.060180
-Ran nvm_vblk_write, elapsed wall-clock: <span class="m">0</span>.976754
+Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.060089
+Ran nvm_vblk_write, elapsed wall-clock: <span class="m">0</span>.975840
 
 ** nvm_vblk_read<span class="o">(</span>...<span class="o">)</span>: pmode<span class="o">(</span>DUAL<span class="o">)</span>
 vblk <span class="o">{</span>
@@ -269,7 +290,7 @@ vblk-naddrs<span class="o">(</span><span class="m">4</span><span class="o">)</sp
  <span class="m">03</span>: <span class="o">(</span>0x0500000000000190<span class="o">){</span> ch<span class="o">(</span><span class="m">05</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0400</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
 Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.000012
-Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.154735
+Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.155845
 </pre></div>
 </div>
 <p>This demonstrates a weak-scaling experiment, increasing the workload
@@ -308,7 +329,7 @@ vblk-naddrs<span class="o">(</span><span class="m">128</span><span class="o">)</
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span> <span class="m">127</span>: <span class="o">(</span>0x0f0700000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">15</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">07</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
-Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.084441
+Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.084381
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_write<span class="o">(</span>...<span class="o">)</span>:
@@ -324,8 +345,8 @@ vblk-naddrs<span class="o">(</span><span class="m">128</span><span class="o">)</
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span> <span class="m">127</span>: <span class="o">(</span>0x0f0700000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">15</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">07</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
-Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.872397
-Ran nvm_vblk_write, elapsed wall-clock: <span class="m">1</span>.505850
+Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.889654
+Ran nvm_vblk_write, elapsed wall-clock: <span class="m">1</span>.512385
 </pre></div>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_vblk_read<span class="o">(</span>...<span class="o">)</span>: pmode<span class="o">(</span>DUAL<span class="o">)</span>
@@ -341,14 +362,17 @@ vblk-naddrs<span class="o">(</span><span class="m">128</span><span class="o">)</
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span> <span class="m">127</span>: <span class="o">(</span>0x0f0700000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">15</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">07</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
-Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.000012
-Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.543311
+Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.000013
+Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.531340
 </pre></div>
 </div>
 </div>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -392,7 +416,8 @@ Ran nvm_vblk_read, elapsed wall-clock: <span class="m">0</span>.543311
             VERSION:'0.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

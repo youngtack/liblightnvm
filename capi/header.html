@@ -45,6 +45,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -117,8 +118,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">liblightnvm</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">liblightnvm</a>
+        
       </nav>
 
 
@@ -127,25 +130,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="index.html">C API</a> &raquo;</li>
-      
-    <li>Public Header</li>
+        
+      <li>Public Header</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/capi/header.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -156,7 +176,7 @@
 <div class="highlight-c"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * User space I/O library for Open-Channel SSDs</span>
 <span class="cm"> *</span>
-<span class="cm"> * Copyright (C) 2015-2017 Javier González &lt;javier@cnexlabs.com&gt;</span>
+<span class="cm"> * Copyright (C) 2015-2017 Javier Gonzáles &lt;javier@cnexlabs.com&gt;</span>
 <span class="cm"> * Copyright (C) 2015-2017 Matias Bjørling &lt;matias@cnexlabs.com&gt;</span>
 <span class="cm"> * Copyright (C) 2015-2017 Simon A. F. Lund &lt;slund@cnexlabs.com&gt;</span>
 <span class="cm"> * All rights reserved.</span>
@@ -200,6 +220,16 @@
 <span class="cp">#define NVM_DEV_PATH_LEN (NVM_DEV_NAME_LEN + 5)</span>
 
 <span class="cp">#define NVM_FLAG_SCRBL 0x200	</span><span class="c1">///&lt; Scrambler ON/OFF: Context sensitive</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Enumeration of cmd back-ends used by liblightnvm</span>
+<span class="cm"> */</span>
+<span class="k">enum</span> <span class="n">nvm_be_id</span> <span class="p">{</span>
+	<span class="n">NVM_BE_ANY</span> <span class="o">=</span> <span class="mh">0x0</span><span class="p">,</span>	<span class="c1">///&lt; Flag for ANY backend</span>
+	<span class="n">NVM_BE_IOCTL</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">,</span>	<span class="c1">///&lt; Flag for the IOCTL backend</span>
+	<span class="n">NVM_BE_SYSFS</span> <span class="o">=</span> <span class="mh">0x2</span><span class="p">,</span>	<span class="c1">///&lt; Flag for the IOCTL + sysfs backend</span>
+<span class="p">};</span>
+<span class="cp">#define NVM_BE_ALL (NVM_BE_IOCTL | NVM_BE_SYSFS)	</span><span class="c1">///&lt; All be identifiers</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Plane-mode access for IO</span>
@@ -777,6 +807,13 @@
 <span class="kt">int</span> <span class="nf">nvm_dev_get_bbts_cached</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
+<span class="cm"> * Returns the backend identifier associated with the given device</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_get_be_id</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+
+<span class="cm">/**</span>
 <span class="cm"> * Set the maximum number of addresses to use for reads, that is, when invoking</span>
 <span class="cm"> * nvm_addr_read</span>
 <span class="cm"> *</span>
@@ -1196,6 +1233,9 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -1238,7 +1278,8 @@
             VERSION:'0.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

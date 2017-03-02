@@ -35,7 +35,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="liblightnvm 0.0.1 documentation" href="../index.html"/>
         <link rel="up" title="C API" href="index.html"/>
-        <link rel="next" title="nvm_ret" href="nvm_ret.html"/>
+        <link rel="next" title="nvm_be" href="nvm_be.html"/>
         <link rel="prev" title="nvm_lba - LBA Interface" href="nvm_lba.html"/> 
 
   
@@ -45,6 +45,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -100,6 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd - Raw Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba - LBA Interface</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Miscellaneous</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nvm_be.html">nvm_be</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nvm_ret.html">nvm_ret</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nvm_ver.html">nvm_ver</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nvm_meta.html">nvm_meta</a></li>
@@ -125,8 +127,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">liblightnvm</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">liblightnvm</a>
+        
       </nav>
 
 
@@ -135,25 +139,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="index.html">C API</a> &raquo;</li>
-      
-    <li>Miscellaneous</li>
+        
+      <li>Miscellaneous</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/capi/misc.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -163,6 +184,10 @@
 <span id="sec-capi-misc"></span><h1>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="nvm_be.html">nvm_be</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nvm_be.html#nvm-be-id">nvm_be_id</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="nvm_ret.html">nvm_ret</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="nvm_ret.html#id1">nvm_ret</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nvm_ret.html#nvm-ret-pr">nvm_ret_pr</a></li>
@@ -196,12 +221,15 @@
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="nvm_ret.html" class="btn btn-neutral float-right" title="nvm_ret" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="nvm_be.html" class="btn btn-neutral float-right" title="nvm_be" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="nvm_lba.html" class="btn btn-neutral" title="nvm_lba - LBA Interface" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -238,7 +266,8 @@
             VERSION:'0.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

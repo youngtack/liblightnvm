@@ -45,6 +45,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -115,8 +116,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">liblightnvm</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">liblightnvm</a>
+        
       </nav>
 
 
@@ -125,25 +128,42 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="index.html">Command-Line Interface</a> &raquo;</li>
-      
-    <li>nvm_dev</li>
+        
+      <li>nvm_dev</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/cli/nvm_dev.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -171,7 +191,7 @@ variables modifying command behavior</p>
 </div>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>** Device information  -- nvm_dev_pr **
 dev <span class="o">{</span>
- verid<span class="o">(</span>0x02<span class="o">)</span>, beid<span class="o">(</span>0x01<span class="o">)</span>,
+ verid<span class="o">(</span>0x02<span class="o">)</span>, be-&gt;id<span class="o">(</span>0x02<span class="o">)</span>,
  path<span class="o">(</span>/dev/nvme0n1<span class="o">)</span>, name<span class="o">(</span>nvme0n1<span class="o">)</span>, fd<span class="o">(</span><span class="m">3</span><span class="o">)</span>,
  ssw<span class="o">(</span><span class="m">12</span><span class="o">)</span>, pmode<span class="o">(</span>DUAL<span class="o">)</span>,
  erase_naddrs_max<span class="o">(</span><span class="m">64</span><span class="o">)</span>, read_naddrs_max<span class="o">(</span><span class="m">64</span><span class="o">)</span>, write_naddrs_max<span class="o">(</span><span class="m">64</span><span class="o">)</span>,
@@ -206,6 +226,9 @@ dev-ppaf_mask <span class="o">{</span>
 </div>
 
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -249,7 +272,8 @@ dev-ppaf_mask <span class="o">{</span>
             VERSION:'0.0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>
