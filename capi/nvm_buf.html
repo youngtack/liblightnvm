@@ -95,6 +95,8 @@
 <li class="toctree-l2"><a class="reference internal" href="nvm_dev.html">nvm_dev - Device Management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nvm_geo.html">nvm_geo - Geometry</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">nvm_buf - Buffer Allocation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-buf-to-file">nvm_buf_to_file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-buf-from-file">nvm_buf_from_file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-buf-alloc">nvm_buf_alloc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-buf-fill">nvm_buf_fill</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-buf-pr">nvm_buf_pr</a></li>
@@ -178,6 +180,48 @@
             
   <div class="section" id="nvm-buf-buffer-allocation">
 <span id="sec-capi-nvm-buf"></span><h1>nvm_buf - Buffer Allocation<a class="headerlink" href="#nvm-buf-buffer-allocation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nvm-buf-to-file">
+<h2>nvm_buf_to_file<a class="headerlink" href="#nvm-buf-to-file" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_buf_to_file">
+<span class="target" id="liblightnvmliblightnvm_8h_1a82f4d705bf4c2b65b78fea2110db57f4"></span>int <code class="descname">nvm_buf_to_file</code><span class="sig-paren">(</span>char *<em>&nbsp;buf</em>, size_t<em>&nbsp;nbytes</em>, const char *<em>&nbsp;path</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_buf_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write content of buffer into file. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>0 on success, -1 on error and errno set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Pointer to the buffer </li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code>: Size of buf </li>
+<li><code class="docutils literal"><span class="pre">path</span></code>: Destination where buffer will be dumped to</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-buf-from-file">
+<h2>nvm_buf_from_file<a class="headerlink" href="#nvm-buf-from-file" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_buf_from_file">
+<span class="target" id="liblightnvmliblightnvm_8h_1ab10d2fe97a51f6c5189438ded36a4697"></span>int <code class="descname">nvm_buf_from_file</code><span class="sig-paren">(</span>char *<em>&nbsp;buf</em>, size_t<em>&nbsp;nbytes</em>, const char *<em>&nbsp;path</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_buf_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read content of file into buffer. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>0 on success, -1 on error and errno set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Pointer to the buffer </li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code>: Size of buf </li>
+<li><code class="docutils literal"><span class="pre">path</span></code>: Source to read from</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
 <div class="section" id="nvm-buf-alloc">
 <h2>nvm_buf_alloc<a class="headerlink" href="#nvm-buf-alloc" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
@@ -248,10 +292,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="nvm_addr.html" class="btn btn-neutral float-right" title="nvm_addr - Addressing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="nvm_addr.html" class="btn btn-neutral float-right" title="nvm_addr - Addressing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nvm_geo.html" class="btn btn-neutral" title="nvm_geo - Geometry" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="nvm_geo.html" class="btn btn-neutral" title="nvm_geo - Geometry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -259,6 +259,9 @@ payload at this point.</p>
 <span class="o">(</span>0x000000020000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">2</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">(</span>0x000000030000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">3</span><span class="o">)</span> <span class="o">}</span>
 nvm_ret <span class="o">{</span> result<span class="o">(</span>0x2<span class="o">)</span>, status<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+nvm_addr_write: Input/output error
+write: Invalid argument
+write: Invalid argument
 </pre></div>
 </div>
 <p>An unexpected write error occured, the constraints are satisfied, so what goes
@@ -413,7 +416,7 @@ vblk <span class="o">{</span>
 vblk-naddrs<span class="o">(</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
  <span class="m">00</span>: <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
-Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.015684
+Ran nvm_vblk_erase, elapsed wall-clock: <span class="m">0</span>.005731
 
 ** nvm_vblk_write<span class="o">(</span>...<span class="o">)</span>: pmode<span class="o">(</span>DUAL<span class="o">)</span>
 vblk <span class="o">{</span>
@@ -422,8 +425,9 @@ vblk <span class="o">{</span>
 vblk-naddrs<span class="o">(</span><span class="m">1</span><span class="o">)</span> <span class="o">{</span>
  <span class="m">00</span>: <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 <span class="o">}</span>
-Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.019323
-Ran nvm_vblk_write, elapsed wall-clock: <span class="m">0</span>.931128
+Ran nvm_buf_alloc, elapsed wall-clock: <span class="m">0</span>.000012
+Ran nvm_buf_fill<span class="p">|</span>nvm_buf_from_file, elapsed wall-clock: <span class="m">0</span>.020306
+Ran nvm_vblk_write, elapsed wall-clock: <span class="m">0</span>.925050
 </pre></div>
 </div>
 <p>What these two commands actually do will be described in the following section
@@ -442,149 +446,32 @@ provided for convenience</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_addr <span class="nb">read</span> /dev/nvme0n1 0x000000000000000a
 </pre></div>
 </div>
-<p>Yielding:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_addr_read<span class="o">(</span>...<span class="o">)</span> : pmode<span class="o">(</span>DUAL<span class="o">)</span>
 <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
 </pre></div>
 </div>
-<p>Setting the environment var <code class="docutils literal"><span class="pre">NVM_CLI_BUF_PR</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">NVM_CLI_BUF_PR</span><span class="o">=</span><span class="s2">&quot;&quot;</span> nvm_addr <span class="nb">read</span> /dev/nvme0n1 0x000000000000000a
+<p>The data read from device can be written to a file system using the <code class="docutils literal"><span class="pre">-o</span> <span class="pre">FILE</span></code>
+option:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_addr <span class="nb">read</span> /dev/nvme0n1 0x000000000000000a -o /tmp/dump.bin
 </pre></div>
 </div>
-<p>Will dump the read payload to stdout:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_addr_read<span class="o">(</span>...<span class="o">)</span> : pmode<span class="o">(</span>DUAL<span class="o">)</span>
 <span class="o">(</span>0x000000000000000a<span class="o">){</span> ch<span class="o">(</span><span class="m">00</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">00</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0010</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
-** Read buffer:
-** NVM_BUF_PR - BEGIN **
-i<span class="o">[</span><span class="m">0</span>,31<span class="o">]</span>:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-i<span class="o">[</span><span class="m">32</span>,63<span class="o">]</span>:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-i<span class="o">[</span><span class="m">64</span>,95<span class="o">]</span>:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-i<span class="o">[</span><span class="m">96</span>,127<span class="o">]</span>:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-i<span class="o">[</span><span class="m">128</span>,159<span class="o">]</span>:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-i<span class="o">[</span><span class="m">160</span>,191<span class="o">]</span>:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-i<span class="o">[</span><span class="m">192</span>,223<span class="o">]</span>:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-i<span class="o">[</span><span class="m">224</span>,255<span class="o">]</span>:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-i<span class="o">[</span><span class="m">256</span>,287<span class="o">]</span>:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-i<span class="o">[</span><span class="m">288</span>,319<span class="o">]</span>:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-i<span class="o">[</span><span class="m">320</span>,351<span class="o">]</span>:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-i<span class="o">[</span><span class="m">352</span>,383<span class="o">]</span>:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-i<span class="o">[</span><span class="m">384</span>,415<span class="o">]</span>:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-i<span class="o">[</span><span class="m">416</span>,447<span class="o">]</span>:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-i<span class="o">[</span><span class="m">448</span>,479<span class="o">]</span>:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-i<span class="o">[</span><span class="m">480</span>,511<span class="o">]</span>:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-i<span class="o">[</span><span class="m">512</span>,543<span class="o">]</span>:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-i<span class="o">[</span><span class="m">544</span>,575<span class="o">]</span>:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-i<span class="o">[</span><span class="m">576</span>,607<span class="o">]</span>:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-i<span class="o">[</span><span class="m">608</span>,639<span class="o">]</span>:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-i<span class="o">[</span><span class="m">640</span>,671<span class="o">]</span>:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-i<span class="o">[</span><span class="m">672</span>,703<span class="o">]</span>:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-i<span class="o">[</span><span class="m">704</span>,735<span class="o">]</span>:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-i<span class="o">[</span><span class="m">736</span>,767<span class="o">]</span>:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-i<span class="o">[</span><span class="m">768</span>,799<span class="o">]</span>:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-i<span class="o">[</span><span class="m">800</span>,831<span class="o">]</span>:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-i<span class="o">[</span><span class="m">832</span>,863<span class="o">]</span>:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-i<span class="o">[</span><span class="m">864</span>,895<span class="o">]</span>:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-i<span class="o">[</span><span class="m">896</span>,927<span class="o">]</span>:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-i<span class="o">[</span><span class="m">928</span>,959<span class="o">]</span>:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-i<span class="o">[</span><span class="m">960</span>,991<span class="o">]</span>:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-i<span class="o">[</span><span class="m">992</span>,1023<span class="o">]</span>:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-i<span class="o">[</span><span class="m">1024</span>,1055<span class="o">]</span>:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-i<span class="o">[</span><span class="m">1056</span>,1087<span class="o">]</span>:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-i<span class="o">[</span><span class="m">1088</span>,1119<span class="o">]</span>:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-i<span class="o">[</span><span class="m">1120</span>,1151<span class="o">]</span>:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-i<span class="o">[</span><span class="m">1152</span>,1183<span class="o">]</span>:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-i<span class="o">[</span><span class="m">1184</span>,1215<span class="o">]</span>:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-i<span class="o">[</span><span class="m">1216</span>,1247<span class="o">]</span>:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-i<span class="o">[</span><span class="m">1248</span>,1279<span class="o">]</span>:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-i<span class="o">[</span><span class="m">1280</span>,1311<span class="o">]</span>:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-i<span class="o">[</span><span class="m">1312</span>,1343<span class="o">]</span>:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-i<span class="o">[</span><span class="m">1344</span>,1375<span class="o">]</span>:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-i<span class="o">[</span><span class="m">1376</span>,1407<span class="o">]</span>:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-i<span class="o">[</span><span class="m">1408</span>,1439<span class="o">]</span>:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-i<span class="o">[</span><span class="m">1440</span>,1471<span class="o">]</span>:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-i<span class="o">[</span><span class="m">1472</span>,1503<span class="o">]</span>:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-i<span class="o">[</span><span class="m">1504</span>,1535<span class="o">]</span>:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-i<span class="o">[</span><span class="m">1536</span>,1567<span class="o">]</span>:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-i<span class="o">[</span><span class="m">1568</span>,1599<span class="o">]</span>:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-i<span class="o">[</span><span class="m">1600</span>,1631<span class="o">]</span>:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-i<span class="o">[</span><span class="m">1632</span>,1663<span class="o">]</span>:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-i<span class="o">[</span><span class="m">1664</span>,1695<span class="o">]</span>:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-i<span class="o">[</span><span class="m">1696</span>,1727<span class="o">]</span>:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-i<span class="o">[</span><span class="m">1728</span>,1759<span class="o">]</span>:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-i<span class="o">[</span><span class="m">1760</span>,1791<span class="o">]</span>:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-i<span class="o">[</span><span class="m">1792</span>,1823<span class="o">]</span>:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-i<span class="o">[</span><span class="m">1824</span>,1855<span class="o">]</span>:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-i<span class="o">[</span><span class="m">1856</span>,1887<span class="o">]</span>:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-i<span class="o">[</span><span class="m">1888</span>,1919<span class="o">]</span>:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-i<span class="o">[</span><span class="m">1920</span>,1951<span class="o">]</span>:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-i<span class="o">[</span><span class="m">1952</span>,1983<span class="o">]</span>:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-i<span class="o">[</span><span class="m">1984</span>,2015<span class="o">]</span>:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-i<span class="o">[</span><span class="m">2016</span>,2047<span class="o">]</span>:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-i<span class="o">[</span><span class="m">2048</span>,2079<span class="o">]</span>:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-i<span class="o">[</span><span class="m">2080</span>,2111<span class="o">]</span>:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-i<span class="o">[</span><span class="m">2112</span>,2143<span class="o">]</span>:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-i<span class="o">[</span><span class="m">2144</span>,2175<span class="o">]</span>:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-i<span class="o">[</span><span class="m">2176</span>,2207<span class="o">]</span>:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-i<span class="o">[</span><span class="m">2208</span>,2239<span class="o">]</span>:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-i<span class="o">[</span><span class="m">2240</span>,2271<span class="o">]</span>:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-i<span class="o">[</span><span class="m">2272</span>,2303<span class="o">]</span>:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-i<span class="o">[</span><span class="m">2304</span>,2335<span class="o">]</span>:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-i<span class="o">[</span><span class="m">2336</span>,2367<span class="o">]</span>:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-i<span class="o">[</span><span class="m">2368</span>,2399<span class="o">]</span>:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-i<span class="o">[</span><span class="m">2400</span>,2431<span class="o">]</span>:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-i<span class="o">[</span><span class="m">2432</span>,2463<span class="o">]</span>:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-i<span class="o">[</span><span class="m">2464</span>,2495<span class="o">]</span>:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-i<span class="o">[</span><span class="m">2496</span>,2527<span class="o">]</span>:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-i<span class="o">[</span><span class="m">2528</span>,2559<span class="o">]</span>:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-i<span class="o">[</span><span class="m">2560</span>,2591<span class="o">]</span>:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-i<span class="o">[</span><span class="m">2592</span>,2623<span class="o">]</span>:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-i<span class="o">[</span><span class="m">2624</span>,2655<span class="o">]</span>:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-i<span class="o">[</span><span class="m">2656</span>,2687<span class="o">]</span>:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-i<span class="o">[</span><span class="m">2688</span>,2719<span class="o">]</span>:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-i<span class="o">[</span><span class="m">2720</span>,2751<span class="o">]</span>:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-i<span class="o">[</span><span class="m">2752</span>,2783<span class="o">]</span>:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-i<span class="o">[</span><span class="m">2784</span>,2815<span class="o">]</span>:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-i<span class="o">[</span><span class="m">2816</span>,2847<span class="o">]</span>:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-i<span class="o">[</span><span class="m">2848</span>,2879<span class="o">]</span>:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-i<span class="o">[</span><span class="m">2880</span>,2911<span class="o">]</span>:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-i<span class="o">[</span><span class="m">2912</span>,2943<span class="o">]</span>:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-i<span class="o">[</span><span class="m">2944</span>,2975<span class="o">]</span>:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-i<span class="o">[</span><span class="m">2976</span>,3007<span class="o">]</span>:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-i<span class="o">[</span><span class="m">3008</span>,3039<span class="o">]</span>:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-i<span class="o">[</span><span class="m">3040</span>,3071<span class="o">]</span>:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-i<span class="o">[</span><span class="m">3072</span>,3103<span class="o">]</span>:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-i<span class="o">[</span><span class="m">3104</span>,3135<span class="o">]</span>:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-i<span class="o">[</span><span class="m">3136</span>,3167<span class="o">]</span>:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-i<span class="o">[</span><span class="m">3168</span>,3199<span class="o">]</span>:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-i<span class="o">[</span><span class="m">3200</span>,3231<span class="o">]</span>:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-i<span class="o">[</span><span class="m">3232</span>,3263<span class="o">]</span>:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-i<span class="o">[</span><span class="m">3264</span>,3295<span class="o">]</span>:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-i<span class="o">[</span><span class="m">3296</span>,3327<span class="o">]</span>:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-i<span class="o">[</span><span class="m">3328</span>,3359<span class="o">]</span>:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-i<span class="o">[</span><span class="m">3360</span>,3391<span class="o">]</span>:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-i<span class="o">[</span><span class="m">3392</span>,3423<span class="o">]</span>:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-i<span class="o">[</span><span class="m">3424</span>,3455<span class="o">]</span>:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-i<span class="o">[</span><span class="m">3456</span>,3487<span class="o">]</span>:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-i<span class="o">[</span><span class="m">3488</span>,3519<span class="o">]</span>:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-i<span class="o">[</span><span class="m">3520</span>,3551<span class="o">]</span>:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-i<span class="o">[</span><span class="m">3552</span>,3583<span class="o">]</span>:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-i<span class="o">[</span><span class="m">3584</span>,3615<span class="o">]</span>:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-i<span class="o">[</span><span class="m">3616</span>,3647<span class="o">]</span>:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-i<span class="o">[</span><span class="m">3648</span>,3679<span class="o">]</span>:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-i<span class="o">[</span><span class="m">3680</span>,3711<span class="o">]</span>:  O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-i<span class="o">[</span><span class="m">3712</span>,3743<span class="o">]</span>:  U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-i<span class="o">[</span><span class="m">3744</span>,3775<span class="o">]</span>:  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-i<span class="o">[</span><span class="m">3776</span>,3807<span class="o">]</span>:  G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-i<span class="o">[</span><span class="m">3808</span>,3839<span class="o">]</span>:  M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-i<span class="o">[</span><span class="m">3840</span>,3871<span class="o">]</span>:  S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-i<span class="o">[</span><span class="m">3872</span>,3903<span class="o">]</span>:  Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-i<span class="o">[</span><span class="m">3904</span>,3935<span class="o">]</span>:  E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-i<span class="o">[</span><span class="m">3936</span>,3967<span class="o">]</span>:  K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-i<span class="o">[</span><span class="m">3968</span>,3999<span class="o">]</span>:  Q R S T U V W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-i<span class="o">[</span><span class="m">4000</span>,4031<span class="o">]</span>:  W X Y Z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-i<span class="o">[</span><span class="m">4032</span>,4063<span class="o">]</span>:  C D E F G H I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-i<span class="o">[</span><span class="m">4064</span>,4095<span class="o">]</span>:  I J K L M N O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-** NVM_BUF_PR - END **
+</pre></div>
+</div>
+<p>The payload is then available by inspection, e.g. with <code class="docutils literal"><span class="pre">hexdump</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>hexdump /tmp/dump.bin -C -n <span class="m">128</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="m">00000000</span>  <span class="m">41</span> <span class="m">42</span> <span class="m">43</span> <span class="m">44</span> <span class="m">45</span> <span class="m">46</span> <span class="m">47</span> <span class="m">48</span>  <span class="m">49</span> 4a 4b 4c 4d 4e 4f <span class="m">50</span>  <span class="p">|</span>ABCDEFGHIJKLMNOP<span class="p">|</span>
+<span class="m">00000010</span>  <span class="m">51</span> <span class="m">52</span> <span class="m">53</span> <span class="m">54</span> <span class="m">55</span> <span class="m">56</span> <span class="m">57</span> <span class="m">58</span>  <span class="m">59</span> 5a <span class="m">41</span> <span class="m">42</span> <span class="m">43</span> <span class="m">44</span> <span class="m">45</span> <span class="m">46</span>  <span class="p">|</span>QRSTUVWXYZABCDEF<span class="p">|</span>
+<span class="m">00000020</span>  <span class="m">47</span> <span class="m">48</span> <span class="m">49</span> 4a 4b 4c 4d 4e  4f <span class="m">50</span> <span class="m">51</span> <span class="m">52</span> <span class="m">53</span> <span class="m">54</span> <span class="m">55</span> <span class="m">56</span>  <span class="p">|</span>GHIJKLMNOPQRSTUV<span class="p">|</span>
+<span class="m">00000030</span>  <span class="m">57</span> <span class="m">58</span> <span class="m">59</span> 5a <span class="m">41</span> <span class="m">42</span> <span class="m">43</span> <span class="m">44</span>  <span class="m">45</span> <span class="m">46</span> <span class="m">47</span> <span class="m">48</span> <span class="m">49</span> 4a 4b 4c  <span class="p">|</span>WXYZABCDEFGHIJKL<span class="p">|</span>
+<span class="m">00000040</span>  4d 4e 4f <span class="m">50</span> <span class="m">51</span> <span class="m">52</span> <span class="m">53</span> <span class="m">54</span>  <span class="m">55</span> <span class="m">56</span> <span class="m">57</span> <span class="m">58</span> <span class="m">59</span> 5a <span class="m">41</span> <span class="m">42</span>  <span class="p">|</span>MNOPQRSTUVWXYZAB<span class="p">|</span>
+<span class="m">00000050</span>  <span class="m">43</span> <span class="m">44</span> <span class="m">45</span> <span class="m">46</span> <span class="m">47</span> <span class="m">48</span> <span class="m">49</span> 4a  4b 4c 4d 4e 4f <span class="m">50</span> <span class="m">51</span> <span class="m">52</span>  <span class="p">|</span>CDEFGHIJKLMNOPQR<span class="p">|</span>
+<span class="m">00000060</span>  <span class="m">53</span> <span class="m">54</span> <span class="m">55</span> <span class="m">56</span> <span class="m">57</span> <span class="m">58</span> <span class="m">59</span> 5a  <span class="m">41</span> <span class="m">42</span> <span class="m">43</span> <span class="m">44</span> <span class="m">45</span> <span class="m">46</span> <span class="m">47</span> <span class="m">48</span>  <span class="p">|</span>STUVWXYZABCDEFGH<span class="p">|</span>
+<span class="m">00000070</span>  <span class="m">49</span> 4a 4b 4c 4d 4e 4f <span class="m">50</span>  <span class="m">51</span> <span class="m">52</span> <span class="m">53</span> <span class="m">54</span> <span class="m">55</span> <span class="m">56</span> <span class="m">57</span> <span class="m">58</span>  <span class="p">|</span>IJKLMNOPQRSTUVWX<span class="p">|</span>
+<span class="m">00000080</span>
 </pre></div>
 </div>
 </div>
@@ -662,10 +549,10 @@ planes and all sectors are read as in the example above.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="nvm_vblk.html" class="btn btn-neutral float-right" title="Virtual Block" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="nvm_vblk.html" class="btn btn-neutral float-right" title="Virtual Block" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nvm_addr.html" class="btn btn-neutral" title="Physical Addressing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="nvm_addr.html" class="btn btn-neutral" title="Physical Addressing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -915,6 +915,28 @@
 <span class="kt">void</span> <span class="nf">nvm_buf_pr</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nbytes</span><span class="p">);</span>
 
 <span class="cm">/**</span>
+<span class="cm"> * Write content of buffer into file</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param buf Pointer to the buffer</span>
+<span class="cm"> * @param nbytes Size of buf</span>
+<span class="cm"> * @param path Destination where buffer will be dumped to</span>
+<span class="cm"> *</span>
+<span class="cm"> * @returns 0 on success, -1 on error and errno set to indicate the error.</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">nvm_buf_to_file</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nbytes</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Read content of file into buffer</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param buf Pointer to the buffer</span>
+<span class="cm"> * @param nbytes Size of buf</span>
+<span class="cm"> * @param path Source to read from</span>
+<span class="cm"> *</span>
+<span class="cm"> * @returns 0 on success, -1 on error and errno set to indicate the error.</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">nvm_buf_from_file</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nbytes</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">);</span>
+
+<span class="cm">/**</span>
 <span class="cm"> * Erase nvm at given addresses</span>
 <span class="cm"> *</span>
 <span class="cm"> * @note</span>
@@ -1241,10 +1263,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../cli/index.html" class="btn btn-neutral float-right" title="Command-Line Interface" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../cli/index.html" class="btn btn-neutral float-right" title="Command-Line Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nvm_bounds.html" class="btn btn-neutral" title="nvm_bounds" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="nvm_bounds.html" class="btn btn-neutral" title="nvm_bounds" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

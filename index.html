@@ -164,14 +164,12 @@ using physical addressing. Command-construction is encapsulated, including
 mapping a general physical addressing format to device specific. Thereby
 allowing the user to focus on performing read/write on the vector space. The
 interface is useful for experimenting with the vectorized I/O as provided by
-Open-Channel SSDs.
-However, the library also support pealing of these abstractions and let the
-user construct and submit &#8220;raw&#8221; commands.</p>
-<p>For application integration, the &#8220;virtual block&#8221; interface provides
-a libc-like <code class="docutils literal"><span class="pre">write</span></code>/<code class="docutils literal"><span class="pre">read</span></code>/<code class="docutils literal"><span class="pre">pread</span></code> interface, encapsulating concerns of
-optimizing command construction for utilization of parallel units on an
-Open-Channel SSD.  A virtual block can be created to span all parallel units or
-a subset thereof.</p>
+Open-Channel SSDs. However, the library also support pealing of these
+abstractions and let the user construct and submit &#8220;raw&#8221; commands.</p>
+<p>For application integration, the &#8220;virtual block&#8221; interface provides a libc-like
+<code class="docutils literal"><span class="pre">write</span></code>/<code class="docutils literal"><span class="pre">read</span></code>/<code class="docutils literal"><span class="pre">pread</span></code> interface, encapsulating concerns of optimizing
+command construction for utilization of parallel units on an Open-Channel SSD.
+A virtual block can be created to span all parallel units or a subset thereof.</p>
 <p>liblightnvm provides access to the user via a public C API, and a command-line
 interface (CLI). The CLI is a thin wrapper around what the C API exposes and is
 intended to provide easy access to what liblightnvm has to offer.</p>
@@ -252,7 +250,7 @@ memories.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="quick_start/index.html" class="btn btn-neutral float-right" title="Quick Start" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="quick_start/index.html" class="btn btn-neutral float-right" title="Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

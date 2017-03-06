@@ -172,20 +172,28 @@
             
   <div class="section" id="nvm-bbt">
 <span id="sec-cli-bbt"></span><h1>nvm_bbt<a class="headerlink" href="#nvm-bbt" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>NVM bad-block-table <span class="o">(</span>nvm_bbt_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span><span class="m">0</span><span class="o">)</span>, minor<span class="o">(</span><span class="m">0</span><span class="o">)</span>, patch<span class="o">(</span><span class="m">1</span><span class="o">)</span> <span class="o">}</span>
+<div class="highlight-none"><div class="highlight"><pre><span></span>NVM bad-block-table (nvm_bbt_*) -- Ver { major(0), minor(0), patch(1) }
+
+Retrieve (get) and modify (set/mark) the bad block table
 
 Usage:
- nvm_bbt        get dev_path ch lun
- nvm_bbt      set_f dev_path ch lun
- nvm_bbt      set_b dev_path ch lun
- nvm_bbt      set_g dev_path ch lun
- nvm_bbt      set_d dev_path ch lun
- nvm_bbt      set_h dev_path ch lun
- nvm_bbt     mark_f dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
- nvm_bbt     mark_b dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
- nvm_bbt     mark_g dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
- nvm_bbt     mark_d dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
- nvm_bbt     mark_h dev_path addr <span class="o">[</span>addr...<span class="o">]</span>
+ nvm_bbt        get dev_path ch lun [-h] [-v]
+ nvm_bbt      set_f dev_path ch lun [-h] [-v]
+ nvm_bbt      set_b dev_path ch lun [-h] [-v]
+ nvm_bbt      set_g dev_path ch lun [-h] [-v]
+ nvm_bbt      set_d dev_path ch lun [-h] [-v]
+ nvm_bbt      set_h dev_path ch lun [-h] [-v]
+ nvm_bbt     mark_f dev_path 0xADDR [0xADDR...] [-h] [-v]
+ nvm_bbt     mark_b dev_path 0xADDR [0xADDR...] [-h] [-v]
+ nvm_bbt     mark_g dev_path 0xADDR [0xADDR...] [-h] [-v]
+ nvm_bbt     mark_d dev_path 0xADDR [0xADDR...] [-h] [-v]
+ nvm_bbt     mark_h dev_path 0xADDR [0xADDR...] [-h] [-v]
+
+Options:
+ -h       Print usage
+ -v       Dump CLI state to stdout
+
+See: http://lightnvm.io/liblightnvm/cli/ for usage examples
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -195,7 +203,7 @@ variables modifying command behavior</p>
 </div>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last">See <a class="reference internal" href="nvm_addr.html#sec-cli-nvm-addr"><span class="std std-ref">nvm_addr</span></a> on how to construct the <code class="docutils literal"><span class="pre">addr</span></code> parameter</p>
+<p class="last">See <a class="reference internal" href="nvm_addr.html#sec-cli-nvm-addr"><span class="std std-ref">nvm_addr</span></a> on how to construct the <code class="docutils literal"><span class="pre">0xADDR</span></code> parameter</p>
 </div>
 <div class="section" id="update-block-state">
 <h2>Update block state<a class="headerlink" href="#update-block-state" title="Permalink to this headline">¶</a></h2>
@@ -267,10 +275,10 @@ bbt <span class="o">{</span>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="nvm_addr.html" class="btn btn-neutral float-right" title="nvm_addr" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="nvm_addr.html" class="btn btn-neutral float-right" title="nvm_addr" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nvm_dev.html" class="btn btn-neutral" title="nvm_dev" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="nvm_dev.html" class="btn btn-neutral" title="nvm_dev" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

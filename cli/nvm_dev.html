@@ -171,10 +171,18 @@
             
   <div class="section" id="nvm-dev">
 <span id="sec-cli-nvm-dev"></span><h1>nvm_dev<a class="headerlink" href="#nvm-dev" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>NVM Device <span class="o">(</span>nvm_dev_*<span class="o">)</span> -- Ver <span class="o">{</span> major<span class="o">(</span><span class="m">0</span><span class="o">)</span>, minor<span class="o">(</span><span class="m">0</span><span class="o">)</span>, patch<span class="o">(</span><span class="m">1</span><span class="o">)</span> <span class="o">}</span>
+<div class="highlight-none"><div class="highlight"><pre><span></span>NVM Device (nvm_dev_*) -- Ver { major(0), minor(0), patch(1) }
+
+Retrieve device information
 
 Usage:
- nvm_dev       info dev_path 
+ nvm_dev       info dev_path [-h] [-v]
+
+Options:
+ -h       Print usage
+ -v       Dump CLI state to stdout
+
+See: http://lightnvm.io/liblightnvm/cli/ for usage examples
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -235,10 +243,10 @@ dev-ppaf_mask <span class="o">{</span>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="nvm_bbt.html" class="btn btn-neutral float-right" title="nvm_bbt" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="nvm_bbt.html" class="btn btn-neutral float-right" title="nvm_bbt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="nvm_env.html" class="btn btn-neutral" title="Environment Variables" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="nvm_env.html" class="btn btn-neutral" title="Environment Variables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
