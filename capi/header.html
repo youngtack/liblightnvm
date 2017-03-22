@@ -233,8 +233,9 @@
 	<span class="n">NVM_BE_ANY</span> <span class="o">=</span> <span class="mh">0x0</span><span class="p">,</span>	<span class="c1">///&lt; Flag for ANY backend</span>
 	<span class="n">NVM_BE_IOCTL</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">,</span>	<span class="c1">///&lt; Flag for the IOCTL backend</span>
 	<span class="n">NVM_BE_SYSFS</span> <span class="o">=</span> <span class="mh">0x2</span><span class="p">,</span>	<span class="c1">///&lt; Flag for the IOCTL + sysfs backend</span>
+	<span class="n">NVM_BE_LBA</span> <span class="o">=</span> <span class="mh">0x4</span><span class="p">,</span>	<span class="c1">///&lt; Flag for the IOCTL + sysfs + LBA backend</span>
 <span class="p">};</span>
-<span class="cp">#define NVM_BE_ALL (NVM_BE_IOCTL | NVM_BE_SYSFS)	</span><span class="c1">///&lt; All be identifiers</span>
+<span class="cp">#define NVM_BE_ALL (NVM_BE_IOCTL | NVM_BE_SYSFS | NVM_BE_LBA)	</span><span class="c1">///&lt; All be identifiers</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Plane-mode access for IO</span>
@@ -1084,6 +1085,24 @@
 <span class="cm"> * @return Physical address on generic-format</span>
 <span class="cm"> */</span>
 <span class="k">struct</span> <span class="n">nvm_addr</span> <span class="nf">nvm_addr_dev2gen</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="n">addr</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Converts a given physical address on device-format to lba-format</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
+<span class="cm"> * @param addr The physical address on device-format to convert</span>
+<span class="cm"> * @return Physical address on lba-format</span>
+<span class="cm"> */</span>
+<span class="kt">uint64_t</span> <span class="nf">nvm_addr_dev2lba</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="n">addr</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Converts a given physical address on device-format to lba-offset-format</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
+<span class="cm"> * @param addr The physical address on device-format to convert</span>
+<span class="cm"> * @return Physical address on lba-offset-format</span>
+<span class="cm"> */</span>
+<span class="kt">uint64_t</span> <span class="nf">nvm_addr_dev2off</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="n">addr</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Converts a given physical address on generic-format to byte offset</span>
