@@ -182,17 +182,17 @@
 Retrieve (get) and modify (set/mark) the bad block table
 
 Usage:
- nvm_bbt        get dev_path ch lun [-h] [-v]
- nvm_bbt      set_f dev_path ch lun [-h] [-v]
- nvm_bbt      set_b dev_path ch lun [-h] [-v]
- nvm_bbt      set_g dev_path ch lun [-h] [-v]
- nvm_bbt      set_d dev_path ch lun [-h] [-v]
- nvm_bbt      set_h dev_path ch lun [-h] [-v]
- nvm_bbt     mark_f dev_path 0xADDR [0xADDR...] [-h] [-v]
- nvm_bbt     mark_b dev_path 0xADDR [0xADDR...] [-h] [-v]
- nvm_bbt     mark_g dev_path 0xADDR [0xADDR...] [-h] [-v]
- nvm_bbt     mark_d dev_path 0xADDR [0xADDR...] [-h] [-v]
- nvm_bbt     mark_h dev_path 0xADDR [0xADDR...] [-h] [-v]
+ nvm_bbt          get dev_path ch lun [-h] [-v]
+ nvm_bbt        set_f dev_path ch lun [-h] [-v]
+ nvm_bbt        set_b dev_path ch lun [-h] [-v]
+ nvm_bbt        set_g dev_path ch lun [-h] [-v]
+ nvm_bbt        set_d dev_path ch lun [-h] [-v]
+ nvm_bbt        set_h dev_path ch lun [-h] [-v]
+ nvm_bbt       mark_f dev_path 0xADDR [0xADDR...] [-h] [-v]
+ nvm_bbt       mark_b dev_path 0xADDR [0xADDR...] [-h] [-v]
+ nvm_bbt       mark_g dev_path 0xADDR [0xADDR...] [-h] [-v]
+ nvm_bbt       mark_d dev_path 0xADDR [0xADDR...] [-h] [-v]
+ nvm_bbt       mark_h dev_path 0xADDR [0xADDR...] [-h] [-v]
 
 Options:
  -h       Print usage
@@ -216,8 +216,8 @@ variables modifying command behavior</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>sudo nvm_bbt mark_g /dev/nvme0n1 0x0102000000000004
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_bbt_mark<span class="o">(</span>...<span class="o">)</span>:
-<span class="o">(</span>0x0102000000000004<span class="o">){</span> ch<span class="o">(</span><span class="m">01</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">02</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0004</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># nvm_bbt_mark</span>
+0x0102000000000004: <span class="o">{</span>ch: <span class="m">01</span>, lun: <span class="m">02</span>, pl: <span class="m">0</span>, blk: <span class="m">0004</span>, pg: <span class="m">000</span>, sec: <span class="m">0</span><span class="o">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -231,40 +231,37 @@ variables modifying command behavior</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>nvm_bbt get /dev/nvme0n1 <span class="m">1</span> <span class="m">2</span>
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>** nvm_bbt_get<span class="o">(</span>...<span class="o">)</span>:
-bbt <span class="o">{</span>
- addr<span class="o">(</span>0x0102000000000000<span class="o">){</span> ch<span class="o">(</span><span class="m">01</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">02</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0000</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">000</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">}</span>
- nblks<span class="o">(</span><span class="m">2040</span><span class="o">)</span>,
- npl_blks<span class="o">(</span><span class="m">1020</span><span class="o">)</span> <span class="o">{</span>
-  blk<span class="o">(</span><span class="m">0000</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">0001</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">0002</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">0003</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">0004</span><span class="o">)</span>: <span class="o">[</span> GBAD<span class="o">(</span><span class="m">2</span><span class="o">)</span> GBAD<span class="o">(</span><span class="m">2</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">0005</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">0006</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">0007</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">0008</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">0009</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># nvm_bbt_get</span>
+bbt:
+  addr: 0x0102000000000000: <span class="o">{</span>ch: <span class="m">01</span>, lun: <span class="m">02</span>, pl: <span class="m">0</span>, blk: <span class="m">0000</span>, pg: <span class="m">000</span>, sec: <span class="m">0</span><span class="o">}</span>
+  nblks: <span class="m">2040</span>
+  npl_blks: <span class="m">1020</span>
+  pl_blks:
+    <span class="m">0000</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">0001</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">0002</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">0003</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">0004</span>: <span class="o">[</span> GBAD<span class="o">(</span><span class="m">2</span><span class="o">)</span>, GBAD<span class="o">(</span><span class="m">2</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">0005</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">0006</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">0007</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">0008</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
 </pre></div>
 </div>
 <div class="highlight-none"><div class="highlight"><pre><span></span>... output for entries 10 to 1013 omitted for brevity ...
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>  blk<span class="o">(</span><span class="m">1014</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">1015</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">1016</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">1017</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">1018</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
-  blk<span class="o">(</span><span class="m">1019</span><span class="o">)</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
- <span class="o">}</span>,
- tnotfree<span class="o">(</span><span class="m">4</span><span class="o">)</span> <span class="o">{</span>
-  nbad<span class="o">(</span><span class="m">1</span><span class="o">)</span>,
-  ngbad<span class="o">(</span><span class="m">1</span><span class="o">)</span>,
-  ndmrk<span class="o">(</span><span class="m">0</span><span class="o">)</span>,
-  nhmrk<span class="o">(</span><span class="m">0</span><span class="o">)</span>
- <span class="o">}</span>
-<span class="o">}</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>    <span class="m">1013</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">1014</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">1015</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">1016</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">1017</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">1018</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+    <span class="m">1019</span>: <span class="o">[</span> FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span>, FREE<span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="o">]</span>
+  nbad: <span class="m">1</span>
+  gbad: <span class="m">1</span>
+  ndmrk: <span class="m">0</span>
+  nhmrk: <span class="m">0</span>
 </pre></div>
 </div>
 </div>

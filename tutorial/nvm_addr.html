@@ -190,7 +190,7 @@ location within the device geometry down to the granularity of a sector.</p>
 </pre></div>
 </div>
 <p>Yielding:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">(</span>0x04010003000a00c8<span class="o">){</span> ch<span class="o">(</span><span class="m">04</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">01</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0200</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">010</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">3</span><span class="o">)</span> <span class="o">}</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>0x04010003000a00c8: <span class="o">{</span>ch: <span class="m">04</span>, lun: <span class="m">01</span>, pl: <span class="m">0</span>, blk: <span class="m">0200</span>, pg: <span class="m">010</span>, sec: <span class="m">3</span><span class="o">}</span>
 </pre></div>
 </div>
 <p>The above hexadecimal-value can be given to any CLI command taking an <code class="docutils literal"><span class="pre">0xADDR</span></code>
@@ -218,8 +218,8 @@ device format using:</p>
 </pre></div>
 </div>
 <p>Yielding:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>gen-addr<span class="o">(</span>0x04010003000a00c8<span class="o">){</span> ch<span class="o">(</span><span class="m">04</span><span class="o">)</span>, lun<span class="o">(</span><span class="m">01</span><span class="o">)</span>, pl<span class="o">(</span><span class="m">0</span><span class="o">)</span>, blk<span class="o">(</span><span class="m">0200</span><span class="o">)</span>, pg<span class="o">(</span><span class="m">010</span><span class="o">)</span>, sec<span class="o">(</span><span class="m">3</span><span class="o">)</span> <span class="o">}</span>
-dev-addr<span class="o">(</span>0x00000000084c8053<span class="o">)</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>gen: 0x04010003000a00c8: <span class="o">{</span>ch: <span class="m">04</span>, lun: <span class="m">01</span>, pl: <span class="m">0</span>, blk: <span class="m">0200</span>, pg: <span class="m">010</span>, sec: <span class="m">3</span><span class="o">}</span>
+dev: 0x00000000084c8053
 </pre></div>
 </div>
 <div class="admonition note">

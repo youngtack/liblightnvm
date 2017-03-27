@@ -179,37 +179,52 @@ working with physical addressing. Device information is obtained by invoking:</p
 </pre></div>
 </div>
 <p>Which will yield device information as shown below:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>** Device information  -- nvm_dev_pr **
-dev <span class="o">{</span>
- verid<span class="o">(</span>0x02<span class="o">)</span>, be-&gt;id<span class="o">(</span>0x02<span class="o">)</span>,
- path<span class="o">(</span>/dev/nvme0n1<span class="o">)</span>, name<span class="o">(</span>nvme0n1<span class="o">)</span>, fd<span class="o">(</span><span class="m">3</span><span class="o">)</span>,
- ssw<span class="o">(</span><span class="m">12</span><span class="o">)</span>, pmode<span class="o">(</span>DUAL<span class="o">)</span>,
- erase_naddrs_max<span class="o">(</span><span class="m">64</span><span class="o">)</span>, read_naddrs_max<span class="o">(</span><span class="m">64</span><span class="o">)</span>, write_naddrs_max<span class="o">(</span><span class="m">64</span><span class="o">)</span>,
- meta_mode<span class="o">(</span><span class="m">0</span><span class="o">)</span>,
- bbts_cached<span class="o">(</span><span class="m">0</span><span class="o">)</span>
-<span class="o">}</span>,
-dev-geo <span class="o">{</span>
- nchannels<span class="o">(</span><span class="m">16</span><span class="o">)</span>, nluns<span class="o">(</span><span class="m">8</span><span class="o">)</span>, nplanes<span class="o">(</span><span class="m">2</span><span class="o">)</span>,
- nblocks<span class="o">(</span><span class="m">1020</span><span class="o">)</span>, npages<span class="o">(</span><span class="m">512</span><span class="o">)</span>, nsectors<span class="o">(</span><span class="m">4</span><span class="o">)</span>,
- page_nbytes<span class="o">(</span><span class="m">16384</span><span class="o">)</span>, sector_nbytes<span class="o">(</span><span class="m">4096</span><span class="o">)</span>, meta_nbytes<span class="o">(</span><span class="m">16</span><span class="o">)</span>,
- tbytes<span class="o">(</span>2190433320960b:2088960Mb<span class="o">)</span>,
-<span class="o">}</span>
-dev-ppaf <span class="o">{</span>
-  ch_off<span class="o">(</span><span class="m">25</span><span class="o">)</span>,  ch_len<span class="o">(</span><span class="m">04</span><span class="o">)</span>,
- lun_off<span class="o">(</span><span class="m">22</span><span class="o">)</span>, lun_len<span class="o">(</span><span class="m">03</span><span class="o">)</span>,
-  pl_off<span class="o">(</span><span class="m">02</span><span class="o">)</span>,  pl_len<span class="o">(</span><span class="m">01</span><span class="o">)</span>,
- blk_off<span class="o">(</span><span class="m">12</span><span class="o">)</span>, blk_len<span class="o">(</span><span class="m">10</span><span class="o">)</span>,
-  pg_off<span class="o">(</span><span class="m">03</span><span class="o">)</span>,  pg_len<span class="o">(</span><span class="m">09</span><span class="o">)</span>,
- sec_off<span class="o">(</span><span class="m">00</span><span class="o">)</span>, sec_len<span class="o">(</span><span class="m">02</span><span class="o">)</span>,
-<span class="o">}</span>
-dev-ppaf_mask <span class="o">{</span>
-  ch<span class="o">(</span><span class="m">0000000000000000000000000000000000011110000000000000000000000000</span><span class="o">)</span>,
- lun<span class="o">(</span><span class="m">0000000000000000000000000000000000000001110000000000000000000000</span><span class="o">)</span>,
-  pl<span class="o">(</span><span class="m">0000000000000000000000000000000000000000000000000000000000000100</span><span class="o">)</span>,
- blk<span class="o">(</span><span class="m">0000000000000000000000000000000000000000001111111111000000000000</span><span class="o">)</span>,
-  pg<span class="o">(</span><span class="m">0000000000000000000000000000000000000000000000000000111111111000</span><span class="o">)</span>,
- sec<span class="o">(</span><span class="m">0000000000000000000000000000000000000000000000000000000000000011</span><span class="o">)</span>
-<span class="o">}</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Device information -- nvm_dev_pr</span>
+dev:
+  verid: 0x02
+  be_id: 0x02
+  name: <span class="s1">&#39;nvme0n1&#39;</span>
+  path: <span class="s1">&#39;/dev/nvme0n1&#39;</span>
+  fd: <span class="m">3</span>
+  ssw: <span class="m">12</span>
+  pmode: <span class="s1">&#39;DUAL&#39;</span>
+  erase_naddrs_max: <span class="m">64</span>
+  read_naddrs_max: <span class="m">64</span>
+  write_naddrs_max: <span class="m">64</span>
+  meta_mode: <span class="m">0</span>
+  bbts_cached: <span class="m">0</span>
+dev_geo:
+  nchannels: <span class="m">16</span>
+  nluns: <span class="m">8</span>
+  nplanes: <span class="m">2</span>
+  nblocks: <span class="m">1020</span>
+  npages: <span class="m">512</span>
+  nsectors: <span class="m">4</span>
+  page_nbytes: <span class="m">16384</span>
+  sector_nbytes: <span class="m">4096</span>
+  meta_nbytes: <span class="m">16</span>
+  tbytes: <span class="m">2190433320960</span>
+  tmbytes: <span class="m">2088960</span>
+dev_ppaf:
+  ch_off: <span class="m">25</span>
+  ch_len: <span class="m">04</span>
+  lun_off: <span class="m">22</span>
+  lun_len: <span class="m">03</span>
+  pl_off: <span class="m">02</span>
+  pl_len: <span class="m">01</span>
+  blk_off: <span class="m">12</span>
+  blk_len: <span class="m">10</span>
+  pg_off: <span class="m">03</span>
+  pg_len: <span class="m">09</span>
+  sec_off: <span class="m">00</span>
+  sec_len: <span class="m">02</span>
+dev_ppaf_mask:
+  ch:  <span class="s1">&#39;0000000000000000000000000000000000011110000000000000000000000000&#39;</span>
+  lun: <span class="s1">&#39;0000000000000000000000000000000000000001110000000000000000000000&#39;</span>
+  pl:  <span class="s1">&#39;0000000000000000000000000000000000000000000000000000000000000100&#39;</span>
+  blk: <span class="s1">&#39;0000000000000000000000000000000000000000001111111111000000000000&#39;</span>
+  pg:  <span class="s1">&#39;0000000000000000000000000000000000000000000000000000111111111000&#39;</span>
+  sec: <span class="s1">&#39;0000000000000000000000000000000000000000000000000000000000000011&#39;</span>
 </pre></div>
 </div>
 <p>The parts involved from the C API are: <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> to obtain a device
