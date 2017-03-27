@@ -768,6 +768,15 @@
 <span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_spec_ppaf_nand</span> <span class="o">*</span><span class="nf">nvm_dev_get_ppaf</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
+<span class="cm"> * Returns the ppa-format mask of the given device</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
+<span class="cm"> * @return On success, ppa-format mask is returned</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+<span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_spec_ppaf_nand_mask</span> <span class="o">*</span><span class="nf">nvm_dev_get_ppaf_mask</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+
+<span class="cm">/**</span>
 <span class="cm"> * Set the default plane-mode for the given device</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
