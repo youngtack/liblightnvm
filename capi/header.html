@@ -218,6 +218,7 @@
 
 <span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;liblightnvm_spec.h&gt;</span><span class="cp"></span>
 
 <span class="cp">#define NVM_NADDR_MAX 64</span>
 
@@ -245,35 +246,6 @@
 	<span class="n">NVM_FLAG_PMODE_DUAL</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">,</span>	<span class="c1">///&lt; Dual-plane (NVM_IO_DUAL_ACCESS)</span>
 	<span class="n">NVM_FLAG_PMODE_QUAD</span> <span class="o">=</span> <span class="mh">0x2</span>	<span class="c1">///&lt; Quad-plane (NVM_IO_QUAD_ACCESS)</span>
 <span class="p">};</span>
-
-<span class="cm">/**</span>
-<span class="cm"> * Encoding descriptor for physical address format for NAND</span>
-<span class="cm"> */</span>
-<span class="k">struct</span> <span class="n">spec_ppaf_nand</span> <span class="p">{</span>
-	<span class="k">union</span> <span class="p">{</span>
-		<span class="k">struct</span> <span class="p">{</span>
-			<span class="kt">uint8_t</span> <span class="n">ch_off</span><span class="p">;</span>		<span class="c1">///&lt; Offset in bits for channel</span>
-			<span class="kt">uint8_t</span> <span class="n">ch_len</span><span class="p">;</span>		<span class="c1">///&lt; Nr. of bits repr. channel</span>
-			<span class="kt">uint8_t</span> <span class="n">lun_off</span><span class="p">;</span>	<span class="c1">///&lt; Offset in bits for LUN</span>
-			<span class="kt">uint8_t</span> <span class="n">lun_len</span><span class="p">;</span>	<span class="c1">///&lt; Nr. of bits repr. LUN</span>
-			<span class="kt">uint8_t</span> <span class="n">pl_off</span><span class="p">;</span>		<span class="c1">///&lt; Offset in bits for plane</span>
-			<span class="kt">uint8_t</span> <span class="n">pl_len</span><span class="p">;</span>		<span class="c1">///&lt; Nr. of bits repr. plane</span>
-			<span class="kt">uint8_t</span> <span class="n">blk_off</span><span class="p">;</span>	<span class="c1">///&lt; Offset in bits for block</span>
-			<span class="kt">uint8_t</span> <span class="n">blk_len</span><span class="p">;</span>	<span class="c1">///&lt; Nr. of bits repr. block</span>
-			<span class="kt">uint8_t</span> <span class="n">pg_off</span><span class="p">;</span>		<span class="c1">///&lt; Offset in bits for page</span>
-			<span class="kt">uint8_t</span> <span class="n">pg_len</span><span class="p">;</span>		<span class="c1">///&lt; Nr. of bits repr. page</span>
-			<span class="kt">uint8_t</span> <span class="n">sec_off</span><span class="p">;</span>	<span class="c1">///&lt; Offset in bits for sector</span>
-			<span class="kt">uint8_t</span> <span class="n">sec_len</span><span class="p">;</span>	<span class="c1">///&lt; Nr. of bits repr. sector</span>
-			<span class="kt">uint8_t</span> <span class="n">rsvd</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
-		<span class="p">}</span> <span class="n">n</span><span class="p">;</span>
-
-		<span class="cm">/**</span>
-<span class="cm">		* Address format formed as anonymous consecutive fields</span>
-<span class="cm">		*/</span>
-		<span class="kt">uint8_t</span> <span class="n">a</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
-	<span class="p">};</span>
-<span class="p">};</span>
-
 <span class="cp">#define NVM_FLAG_DEFAULT (NVM_FLAG_PMODE_SNGL | NVM_FLAG_SCRBL);</span>
 
 <span class="cm">/**</span>
@@ -727,7 +699,6 @@
 <span class="cm"> */</span>
 <span class="kt">void</span> <span class="nf">nvm_bbt_pr</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_bbt</span> <span class="o">*</span><span class="n">bbt</span><span class="p">);</span>
 
-
 <span class="cm">/**</span>
 <span class="cm"> * Prints a humanly readable representation of the given bad-block-table state</span>
 <span class="cm"> */</span>
@@ -779,7 +750,6 @@
 <span class="cm"> */</span>
 <span class="kt">int</span> <span class="nf">nvm_dev_get_pmode</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
-
 <span class="cm">/**</span>
 <span class="cm"> * Returns the file-descriptor associated with the given device</span>
 <span class="cm"> *</span>
@@ -795,7 +765,7 @@
 <span class="cm"> * @return On success, ppa-format is returned</span>
 <span class="cm"> *</span>
 <span class="cm"> */</span>
-<span class="k">const</span> <span class="k">struct</span> <span class="n">spec_ppaf_nand</span> <span class="o">*</span><span class="nf">nvm_dev_get_ppaf</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_spec_ppaf_nand</span> <span class="o">*</span><span class="nf">nvm_dev_get_ppaf</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Set the default plane-mode for the given device</span>
