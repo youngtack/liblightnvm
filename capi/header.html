@@ -736,19 +736,18 @@
 <span class="kt">void</span> <span class="nf">nvm_dev_close</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * Prints information about the device associated with the given handle</span>
+<span class="cm"> * Prints misc. device attribute associated with the given handle</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
 <span class="cm"> */</span>
-<span class="kt">void</span> <span class="nf">nvm_dev_pr</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">nvm_dev_attr_pr</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * Returns the default plane_mode of the given device</span>
+<span class="cm"> * Prints all information about the device associated with the given handle</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
-<span class="cm"> * @return On success, pmode flag is returned</span>
 <span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">nvm_dev_get_pmode</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">nvm_dev_pr</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Returns the file-descriptor associated with the given device</span>
@@ -756,25 +755,48 @@
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
 <span class="cm"> * @return On success, file descriptor is returned</span>
 <span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">nvm_dev_get_fd</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_get_fd</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * Returns the ppa-format of the given device</span>
+<span class="cm"> * Returns the name associated with the given device</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
-<span class="cm"> * @return On success, ppa-format is returned</span>
-<span class="cm"> *</span>
+<span class="cm"> * @return On success, string is returned. On error, NULL is returned.</span>
 <span class="cm"> */</span>
-<span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_spec_ppaf_nand</span> <span class="o">*</span><span class="nf">nvm_dev_get_ppaf</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">nvm_dev_get_name</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * Returns the ppa-format mask of the given device</span>
+<span class="cm"> * Returns the path associated with the given device</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
-<span class="cm"> * @return On success, ppa-format mask is returned</span>
-<span class="cm"> *</span>
+<span class="cm"> * @return On success, string is returned. On error, NULL is returned.</span>
 <span class="cm"> */</span>
-<span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_spec_ppaf_nand_mask</span> <span class="o">*</span><span class="nf">nvm_dev_get_ppaf_mask</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">nvm_dev_get_path</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Returns the NVME namespace identifier of the given device</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
+<span class="cm"> *</span>
+<span class="cm"> * @return On success, NVME namespace identifier is returned.</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_get_nsid</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Returns the verid of the given device</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
+<span class="cm"> * @return On success, verid is returned</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_get_verid</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Returns the default plane_mode of the given device</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
+<span class="cm"> * @return On success, pmode flag is returned</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_get_pmode</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Set the default plane-mode for the given device</span>
@@ -787,12 +809,22 @@
 <span class="kt">int</span> <span class="nf">nvm_dev_set_pmode</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pmode</span><span class="p">);</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * Returns the verid of the given device</span>
+<span class="cm"> * Returns the ppa-format of the given device</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
-<span class="cm"> * @return On success, verid is returned</span>
+<span class="cm"> * @return On success, ppa-format is returned</span>
+<span class="cm"> *</span>
 <span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">nvm_dev_get_verid</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_spec_ppaf_nand</span> <span class="o">*</span><span class="nf">nvm_dev_get_ppaf</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Returns the ppa-format mask of the given device</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
+<span class="cm"> * @return On success, ppa-format mask is returned</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+<span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_spec_ppaf_nand_mask</span> <span class="o">*</span><span class="nf">nvm_dev_get_ppaf_mask</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Returns the &#39;meta-mode&#39; of the given device</span>
@@ -800,22 +832,16 @@
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
 <span class="cm"> * @return On success, meta-mode is returned</span>
 <span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">nvm_dev_get_meta_mode</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_get_meta_mode</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * Set the default meta mode</span>
-<span class="cm"> *</span>
-<span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">nvm_dev_set_meta_mode</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">,</span> <span class="kt">int</span> <span class="n">meta_mode</span><span class="p">);</span>
-
-<span class="cm">/**</span>
-<span class="cm"> * Returns the NVME namespace identifier of the given device</span>
+<span class="cm"> * Set the default &#39;meta-mode&#39; of the given device</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
-<span class="cm"> *</span>
-<span class="cm"> * @return On success, NVME namespace identifier is returned.</span>
+<span class="cm"> * @returns On success, 0 is returned. On error, -1 is returned and errno set to</span>
+<span class="cm"> * indicate the error.</span>
 <span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">nvm_dev_get_nsid</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_set_meta_mode</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">,</span> <span class="kt">int</span> <span class="n">meta_mode</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Returns the maximum number of addresses to use when sending erases to device.</span>
@@ -823,7 +849,7 @@
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
 <span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">nvm_dev_get_erase_naddrs_max</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_get_erase_naddrs_max</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Returns whether caching is enabled for bad-block-tables on the device.</span>
@@ -834,14 +860,14 @@
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
 <span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">nvm_dev_get_bbts_cached</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_get_bbts_cached</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Returns the backend identifier associated with the given device</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
 <span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">nvm_dev_get_be_id</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_get_be_id</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Set the maximum number of addresses to use for reads, that is, when invoking</span>
@@ -849,7 +875,7 @@
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
 <span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">nvm_dev_get_read_naddrs_max</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_get_read_naddrs_max</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Set the maximum number of addresses to use for writes, that is, when invoking</span>
@@ -857,7 +883,7 @@
 <span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
 <span class="cm"> */</span>
-<span class="kt">int</span> <span class="nf">nvm_dev_get_write_naddrs_max</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">nvm_dev_get_write_naddrs_max</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Set the maximum number of addresses to use for erases, that is, when invoking</span>
@@ -912,7 +938,7 @@
 <span class="cm"> *</span>
 <span class="cm"> * @returns The geometry (struct nvm_geo) of given device handle</span>
 <span class="cm"> */</span>
-<span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_geo</span> <span class="o">*</span><span class="nf">nvm_dev_get_geo</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
+<span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_geo</span> <span class="o">*</span><span class="nf">nvm_dev_get_geo</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_dev</span> <span class="o">*</span><span class="n">dev</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Allocate a buffer aligned to match the given geometry</span>
