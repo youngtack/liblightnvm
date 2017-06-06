@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nvm_buf - Buffer Allocation &mdash; liblightnvm 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="liblightnvm 0.0.1 documentation" href="../index.html"/>
+        <link rel="up" title="C API" href="index.html"/>
+        <link rel="next" title="nvm_addr - Addressing" href="nvm_addr.html"/>
+        <link rel="prev" title="nvm_geo - Geometry" href="nvm_geo.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> liblightnvm
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/index.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prereqs/index.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nvm_dev.html">nvm_dev - Device Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_geo.html">nvm_geo - Geometry</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">nvm_buf - Buffer Allocation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-buf-to-file">nvm_buf_to_file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-buf-from-file">nvm_buf_from_file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-buf-alloc">nvm_buf_alloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-buf-fill">nvm_buf_fill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-buf-pr">nvm_buf_pr</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_addr.html">nvm_addr - Addressing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">nvm_bbt - Bad-Block-Table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">nvm_vblk - Virtual Block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd - Raw Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba - LBA Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="header.html">Public Header</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">Command-Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../refs/index.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">liblightnvm</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">C API</a> &raquo;</li>
+        
+      <li>nvm_buf - Buffer Allocation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/capi/nvm_buf.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="nvm-buf-buffer-allocation">
+<span id="sec-capi-nvm-buf"></span><h1>nvm_buf - Buffer Allocation<a class="headerlink" href="#nvm-buf-buffer-allocation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nvm-buf-to-file">
+<h2>nvm_buf_to_file<a class="headerlink" href="#nvm-buf-to-file" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_buf_to_file">
+<span class="target" id="liblightnvmliblightnvm_8h_1a82f4d705bf4c2b65b78fea2110db57f4"></span>int <code class="descname">nvm_buf_to_file</code><span class="sig-paren">(</span>char *<em>&nbsp;buf</em>, size_t<em>&nbsp;nbytes</em>, const char *<em>&nbsp;path</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_buf_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write content of buffer into file. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>0 on success, -1 on error and errno set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Pointer to the buffer </li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code>: Size of buf </li>
+<li><code class="docutils literal"><span class="pre">path</span></code>: Destination where buffer will be dumped to</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-buf-from-file">
+<h2>nvm_buf_from_file<a class="headerlink" href="#nvm-buf-from-file" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_buf_from_file">
+<span class="target" id="liblightnvmliblightnvm_8h_1ab10d2fe97a51f6c5189438ded36a4697"></span>int <code class="descname">nvm_buf_from_file</code><span class="sig-paren">(</span>char *<em>&nbsp;buf</em>, size_t<em>&nbsp;nbytes</em>, const char *<em>&nbsp;path</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_buf_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read content of file into buffer. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>0 on success, -1 on error and errno set to indicate the error. </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Pointer to the buffer </li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code>: Size of buf </li>
+<li><code class="docutils literal"><span class="pre">path</span></code>: Source to read from</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-buf-alloc">
+<h2>nvm_buf_alloc<a class="headerlink" href="#nvm-buf-alloc" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_buf_alloc">
+<span class="target" id="liblightnvmliblightnvm_8h_1afc8ae47b17cfb871ea0abd60de7f521a"></span>void* <code class="descname">nvm_buf_alloc</code><span class="sig-paren">(</span>const struct  <a class="reference internal" href="nvm_geo.html#c.nvm_geo" title="nvm_geo">nvm_geo</a>  *<em>&nbsp;geo</em>, size_t<em>&nbsp;nbytes</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_buf_alloc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allocate a buffer aligned to match the given geometry. </p>
+<p><dl class="docutils">
+<dt><strong>Note</strong></dt>
+<dd>nbytes must be greater than zero and a multiple of minimal granularity</dd>
+<dt><strong>Return</strong></dt>
+<dd>A pointer to the allocated memory. On error: NULL is returned and <code class="docutils literal"><span class="pre">errno</span></code> set appropriatly </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">geo</span></code>: The geometry to get alignment information from </li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code>: The size of the allocated buffer in bytes</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-buf-fill">
+<h2>nvm_buf_fill<a class="headerlink" href="#nvm-buf-fill" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_buf_fill">
+<span class="target" id="liblightnvmliblightnvm_8h_1a16df329c7ba7ab06558e99ba50b28ec9"></span>void <code class="descname">nvm_buf_fill</code><span class="sig-paren">(</span>char *<em>&nbsp;buf</em>, size_t<em>&nbsp;nbytes</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_buf_fill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills <code class="docutils literal"><span class="pre">buf</span></code> with chars A-Z. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Pointer to the buffer to fill </li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code>: Amount of bytes to fill in buf </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-buf-pr">
+<h2>nvm_buf_pr<a class="headerlink" href="#nvm-buf-pr" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_buf_pr">
+<span class="target" id="liblightnvmliblightnvm_8h_1ab2d8c2634a332e3ca32055b17ef7b83e"></span>void <code class="descname">nvm_buf_pr</code><span class="sig-paren">(</span>char *<em>&nbsp;buf</em>, size_t<em>&nbsp;nbytes</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_buf_pr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints <code class="docutils literal"><span class="pre">buf</span></code> to stdout. </p>
+<p><dl class="docutils">
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">buf</span></code>: Pointer to the buffer to print </li>
+<li><code class="docutils literal"><span class="pre">nbytes</span></code>: Amount of bytes of buf to print </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="nvm_addr.html" class="btn btn-neutral float-right" title="nvm_addr - Addressing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="nvm_geo.html" class="btn btn-neutral" title="nvm_geo - Geometry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, LightNVM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
