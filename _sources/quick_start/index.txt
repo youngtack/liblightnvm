@@ -15,7 +15,7 @@ Assuming that you have met the :ref:`sec-prereqs`, and running Ubuntu Linux
 
 Or install using deb-packages:
 
-.. code-block: bash
+.. code-block:: bash
 
   echo "deb https://dl.bintray.com/openchannelssd/debs xenial main" | sudo tee -a /etc/apt/sources.list
   sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61

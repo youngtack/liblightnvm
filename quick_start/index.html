@@ -176,6 +176,12 @@ make dev
 </pre></div>
 </div>
 <p>Or install using deb-packages:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;deb https://dl.bintray.com/openchannelssd/debs xenial main&quot;</span> <span class="p">|</span> sudo tee -a /etc/apt/sources.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+sudo apt-get update
+sudo apt-get install liblightnvm-dev liblightnvm-lib liblightnvm-cli
+</pre></div>
+</div>
 <p>With the library installed, try the following examples of the <a class="reference internal" href="../capi/index.html#sec-c-api"><span>C API</span></a>
 and <a class="reference internal" href="../cli/index.html#sec-cli"><span>Command-Line Interface</span></a>.</p>
 <div class="section" id="api-hello-open-channel-ssd">
