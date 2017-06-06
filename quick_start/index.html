@@ -169,13 +169,13 @@
   <div class="section" id="quick-start">
 <span id="sec-quick-start"></span><h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
 <p>Assuming that you have met the <a class="reference internal" href="../prereqs/index.html#sec-prereqs"><span>Prerequisites</span></a>, and running Ubuntu Linux
-(16.04/xenial), here is what you need to take liblightnvm for a spin:</p>
+(16.04/xenial), then build and install liblightnvm for source:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/OpenChannelSSD/liblightnvm.git
 <span class="nb">cd</span> liblightnvm
 make dev
 </pre></div>
 </div>
-<p>Or install using deb-packages:</p>
+<p>Or, install from deb-packages:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;deb https://dl.bintray.com/openchannelssd/debs xenial main&quot;</span> <span class="p">|</span> sudo tee -a /etc/apt/sources.list
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
 sudo apt-get update
