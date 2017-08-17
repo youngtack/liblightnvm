@@ -183,11 +183,11 @@
 <h2>nvm_lba_pread<a class="headerlink" href="#nvm-lba-pread" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="c.nvm_lba_pread">
-<span class="target" id="liblightnvmliblightnvm_8h_1a61f4b316bb5d1b434d2c73ad82e48c10"></span>ssize_t <code class="descname">nvm_lba_pread</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, off_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_lba_pread" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvm_8h_1a61f4b316bb5d1b434d2c73ad82e48c10"></span>ssize_t <code class="descname">nvm_lba_pread</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, off_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_lba_pread" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read up to <code class="docutils literal"><span class="pre">count</span></code> bytes from the given <code class="docutils literal"><span class="pre">device</span></code> starting at the given <code class="docutils literal"><span class="pre">offset</span></code> into the given buffer starting at <code class="docutils literal"><span class="pre">buf</span></code>. </p>
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
-<dd>This is equivalent to <code class="docutils literal"><span class="pre">pread</span></code>/<code class="docutils literal"><span class="pre">pwrite</span></code> except it takes the opaque <code class="docutils literal"><span class="pre">struct</span> <a class="reference internal" href="nvm_dev.html#liblightnvmstructnvm__dev"><span><span class="pre">nvm_dev</span></span></a> <span class="pre">*</span></code> instead of a file descriptor </dd>
+<dd>This is equivalent to <code class="docutils literal"><span class="pre">pread</span></code>/<code class="docutils literal"><span class="pre">pwrite</span></code> except it takes the opaque <code class="docutils literal"><span class="pre">struct</span> <a class="reference internal" href="nvm_dev.html#structnvm__dev"><span><span class="pre">nvm_dev</span></span></a> <span class="pre">*</span></code> instead of a file descriptor </dd>
 </dl>
 </p>
 </dd></dl>
@@ -197,11 +197,11 @@
 <h2>nvm_lba_pwrite<a class="headerlink" href="#nvm-lba-pwrite" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="c.nvm_lba_pwrite">
-<span class="target" id="liblightnvmliblightnvm_8h_1ac594de405f8d471266acf536417250ce"></span>ssize_t <code class="descname">nvm_lba_pwrite</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, off_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_lba_pwrite" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="liblightnvm_8h_1ac594de405f8d471266acf536417250ce"></span>ssize_t <code class="descname">nvm_lba_pwrite</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="nvm_dev.html#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, const void *<em>&nbsp;buf</em>, size_t<em>&nbsp;count</em>, off_t<em>&nbsp;offset</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_lba_pwrite" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write up to <code class="docutils literal"><span class="pre">count</span></code> bytes from the buffer starting at <code class="docutils literal"><span class="pre">buf</span></code> to the given device <code class="docutils literal"><span class="pre">dev</span></code> at given <code class="docutils literal"><span class="pre">offset</span></code>. </p>
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
-<dd>This is equivalent to <code class="docutils literal"><span class="pre">pread</span></code>/<code class="docutils literal"><span class="pre">pwrite</span></code> except it takes the opaque <code class="docutils literal"><span class="pre">struct</span> <a class="reference internal" href="nvm_dev.html#liblightnvmstructnvm__dev"><span><span class="pre">nvm_dev</span></span></a> <span class="pre">*</span></code> instead of a file descriptor </dd>
+<dd>This is equivalent to <code class="docutils literal"><span class="pre">pread</span></code>/<code class="docutils literal"><span class="pre">pwrite</span></code> except it takes the opaque <code class="docutils literal"><span class="pre">struct</span> <a class="reference internal" href="nvm_dev.html#structnvm__dev"><span><span class="pre">nvm_dev</span></span></a> <span class="pre">*</span></code> instead of a file descriptor </dd>
 </dl>
 </p>
 </dd></dl>

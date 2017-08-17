@@ -1303,18 +1303,40 @@
 <span class="kt">size_t</span> <span class="nf">nvm_vblk_get_nbytes</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_vblk</span> <span class="o">*</span><span class="n">vblk</span><span class="p">);</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * Retrieve the current cursor position for read to the virtual block</span>
+<span class="cm"> * Retrieve the read cursor position for the given virtual block</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param vblk The entity to retrieve information from</span>
 <span class="cm"> */</span>
 <span class="kt">size_t</span> <span class="nf">nvm_vblk_get_pos_read</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_vblk</span> <span class="o">*</span><span class="n">vblk</span><span class="p">);</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * Retrieve the current cursor position for writes to the virtual block</span>
+<span class="cm"> * Retrieve the write cursor position for the given virtual block</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param vblk The entity to retrieve information from</span>
 <span class="cm"> */</span>
 <span class="kt">size_t</span> <span class="nf">nvm_vblk_get_pos_write</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_vblk</span> <span class="o">*</span><span class="n">vblk</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Set the read cursor position for the given virtual block</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param vblk The vblk to change </span>
+<span class="cm"> * @param pos The new read cursor</span>
+<span class="cm"> *</span>
+<span class="cm"> * @returns On success, 0 is returned. On error, -1 is returned and `errno` set</span>
+<span class="cm"> * to indicate the error</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">nvm_vblk_set_pos_read</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_vblk</span> <span class="o">*</span><span class="n">vblk</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">pos</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Set the write cursor position for the given virtual block</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param vblk The vblk to change</span>
+<span class="cm"> * @param pos The new write cursor</span>
+<span class="cm"> *</span>
+<span class="cm"> * @returns On success, 0 is returned. On error, -1 is returned and `errno` set</span>
+<span class="cm"> * to indicate the error</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">nvm_vblk_set_pos_write</span><span class="p">(</span><span class="k">struct</span> <span class="n">nvm_vblk</span> <span class="o">*</span><span class="n">vblk</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">pos</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Print the virtual block in a humanly readable form</span>
