@@ -117,6 +117,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-get-nbytes">nvm_vblk_get_nbytes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-get-pos-read">nvm_vblk_get_pos_read</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-get-pos-write">nvm_vblk_get_pos_write</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-set-pos-read">nvm_vblk_set_pos_read</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvm-vblk-set-pos-write">nvm_vblk_set_pos_write</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd - Raw Commands</a></li>
@@ -493,6 +495,46 @@
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">vblk</span></code>: The entity to retrieve information from </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-set-pos-read">
+<h2>nvm_vblk_set_pos_read<a class="headerlink" href="#nvm-vblk-set-pos-read" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_vblk_set_pos_read">
+<span class="target" id="liblightnvm_8h_1a3da89ae4e65a37e9186d26a5cd5ce7ff"></span>int <code class="descname">nvm_vblk_set_pos_read</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em>, size_t<em>&nbsp;pos</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_set_pos_read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the read cursor position for the given virtual block. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success, 0 is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">vblk</span></code>: The vblk to change </li>
+<li><code class="docutils literal"><span class="pre">pos</span></code>: The new read cursor</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nvm-vblk-set-pos-write">
+<h2>nvm_vblk_set_pos_write<a class="headerlink" href="#nvm-vblk-set-pos-write" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.nvm_vblk_set_pos_write">
+<span class="target" id="liblightnvm_8h_1a21d24d5190b579ef1fa6c368aa23b470"></span>int <code class="descname">nvm_vblk_set_pos_write</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_vblk" title="nvm_vblk">nvm_vblk</a>  *<em>&nbsp;vblk</em>, size_t<em>&nbsp;pos</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_vblk_set_pos_write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the write cursor position for the given virtual block. </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>On success, 0 is returned. On error, -1 is returned and <code class="docutils literal"><span class="pre">errno</span></code> set to indicate the error </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal"><span class="pre">vblk</span></code>: The vblk to change </li>
+<li><code class="docutils literal"><span class="pre">pos</span></code>: The new write cursor</li>
 </ul>
 </dd>
 </dl>

@@ -511,12 +511,14 @@
 <dt id="c.nvm_dev_set_meta_mode">
 <span class="target" id="liblightnvm_8h_1a718098e61ba492a1750321480a5fe382"></span>int <code class="descname">nvm_dev_set_meta_mode</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.nvm_dev" title="nvm_dev">nvm_dev</a>  *<em>&nbsp;dev</em>, int<em>&nbsp;meta_mode</em><span class="sig-paren">)</span><a class="headerlink" href="#c.nvm_dev_set_meta_mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the default &#8216;meta-mode&#8217; of the given device. </p>
+<p>The meta-mode is a setting used by the <a class="reference internal" href="nvm_vblk.html#structnvm__vblk"><span>nvm_vblk</span></a> interface to write pseudo-meta data to the out-of-bound area.</p>
 <p><dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>On success, 0 is returned. On error, -1 is returned and errno set to indicate the error. </dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal"><span class="pre">dev</span></code>: Device handle obtained with <code class="docutils literal"><span class="pre">nvm_dev_open</span></code> </li>
+<li><code class="docutils literal"><span class="pre">meta_mode</span></code>: One of: NVM_META_MODE_[NONE|ALPHA|CONST]</li>
 </ul>
 </dd>
 </dl>

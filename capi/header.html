@@ -842,7 +842,12 @@
 <span class="cm">/**</span>
 <span class="cm"> * Set the default &#39;meta-mode&#39; of the given device</span>
 <span class="cm"> *</span>
+<span class="cm"> * The meta-mode is a setting used by the nvm_vblk interface to write</span>
+<span class="cm"> * pseudo-meta data to the out-of-bound area.</span>
+<span class="cm"> *</span>
 <span class="cm"> * @param dev Device handle obtained with `nvm_dev_open`</span>
+<span class="cm"> * @param meta_mode One of: NVM_META_MODE_[NONE|ALPHA|CONST]</span>
+<span class="cm"> *</span>
 <span class="cm"> * @returns On success, 0 is returned. On error, -1 is returned and errno set to</span>
 <span class="cm"> * indicate the error.</span>
 <span class="cm"> */</span>
