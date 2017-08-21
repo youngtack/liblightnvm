@@ -981,6 +981,14 @@
 <span class="kt">void</span> <span class="nf">nvm_buf_fill</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nbytes</span><span class="p">);</span>
 
 <span class="cm">/**</span>
+<span class="cm"> * Free the given buffer, calling regular &quot;free&quot; on the buffer might fail</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param buf Pointer to the buffer to fill</span>
+<span class="cm"> * @param nbytes Amount of bytes to fill in buf</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">nvm_buf_free</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">);</span>
+
+<span class="cm">/**</span>
 <span class="cm"> * Prints `buf` to stdout</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param buf Pointer to the buffer to print</span>
