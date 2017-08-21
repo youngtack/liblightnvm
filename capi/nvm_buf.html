@@ -231,7 +231,9 @@
 <dd><p>Allocate a buffer aligned to match the given geometry. </p>
 <p><dl class="docutils">
 <dt><strong>Note</strong></dt>
-<dd>nbytes must be greater than zero and a multiple of minimal granularity</dd>
+<dd><p class="first">nbytes must be greater than zero and a multiple of minimal granularity </p>
+<p class="last">Free the buffer using nvm_buf_free</p>
+</dd>
 <dt><strong>Return</strong></dt>
 <dd>A pointer to the allocated memory. On error: NULL is returned and <code class="docutils literal"><span class="pre">errno</span></code> set appropriatly </dd>
 <dt><strong>Parameters</strong></dt>

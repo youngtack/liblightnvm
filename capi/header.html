@@ -963,6 +963,8 @@
 <span class="cm"> *</span>
 <span class="cm"> * @note</span>
 <span class="cm"> * nbytes must be greater than zero and a multiple of minimal granularity</span>
+<span class="cm"> * @note</span>
+<span class="cm"> * Free the buffer using nvm_buf_free</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param geo The geometry to get alignment information from</span>
 <span class="cm"> * @param nbytes The size of the allocated buffer in bytes</span>
@@ -971,6 +973,20 @@
 <span class="cm"> * `errno` set appropriatly</span>
 <span class="cm"> */</span>
 <span class="kt">void</span> <span class="o">*</span><span class="nf">nvm_buf_alloc</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_geo</span> <span class="o">*</span><span class="n">geo</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nbytes</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Allocate a buffer of the given size with the given alignment</span>
+<span class="cm"> *</span>
+<span class="cm"> * @note</span>
+<span class="cm"> * Free the buffer using nvm_buf_free</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param alignment The alignment in bytes</span>
+<span class="cm"> * @param nbytes The size of the buffer in bytes</span>
+<span class="cm"> *</span>
+<span class="cm"> * @returns A pointer to the allocated memory. On error: NULL is returned and</span>
+<span class="cm"> * `errno` set appropriatly</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="o">*</span><span class="nf">nvm_buf_alloca</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">alignment</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nbytes</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Fills `buf` with chars A-Z</span>
@@ -986,7 +1002,7 @@
 <span class="cm"> * @param buf Pointer to the buffer to fill</span>
 <span class="cm"> * @param nbytes Amount of bytes to fill in buf</span>
 <span class="cm"> */</span>
-<span class="kt">void</span> <span class="nf">nvm_buf_free</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">nvm_buf_free</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">buf</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Prints `buf` to stdout</span>
