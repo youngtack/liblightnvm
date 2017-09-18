@@ -101,7 +101,6 @@
 <li class="toctree-l2"><a class="reference internal" href="nvm_bbt.html">nvm_bbt - Bad-Block-Table</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nvm_vblk.html">nvm_vblk - Virtual Block</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nvm_cmd.html">nvm_cmd - Raw Commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nvm_lba.html">nvm_lba - LBA Interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="misc.html">Miscellaneous</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="">Public Header</a></li>
 </ul>
@@ -213,7 +212,17 @@
 <span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span>
 <span class="cp">#endif</span>
 
+<span class="cp">#include</span> <span class="cpf">&lt;inttypes.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#ifdef _WIN32</span>
+<span class="cp">#include</span> <span class="cpf">&lt;Windows.h&gt;</span><span class="cp"></span>
+<span class="k">typedef</span> <span class="n">SSIZE_T</span> <span class="kt">ssize_t</span><span class="p">;</span>
+<span class="cp">#else</span>
+<span class="k">typedef</span> <span class="kt">int</span> <span class="n">HANDLE</span><span class="p">;</span>
+<span class="cp">#endif</span>
+
 <span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;liblightnvm_spec.h&gt;</span><span class="cp"></span>
 
@@ -232,6 +241,7 @@
 	<span class="n">NVM_BE_IOCTL</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">,</span>	<span class="c1">///&lt; Flag for the IOCTL backend</span>
 	<span class="n">NVM_BE_SYSFS</span> <span class="o">=</span> <span class="mh">0x2</span><span class="p">,</span>	<span class="c1">///&lt; Flag for the IOCTL + sysfs backend</span>
 	<span class="n">NVM_BE_LBA</span> <span class="o">=</span> <span class="mh">0x4</span><span class="p">,</span>	<span class="c1">///&lt; Flag for the IOCTL + sysfs + LBA backend</span>
+	<span class="n">NVM_BE_WIOCTL</span> <span class="o">=</span> <span class="mh">0x8</span><span class="p">,</span>	<span class="c1">///&lt; Flag for the Windows IOCTL backend</span>
 <span class="p">};</span>
 <span class="cp">#define NVM_BE_ALL (NVM_BE_IOCTL | NVM_BE_SYSFS | NVM_BE_LBA)	</span><span class="c1">///&lt; All be identifiers</span>
 
@@ -955,6 +965,8 @@
 <span class="cm"> *</span>
 <span class="cm"> * @note</span>
 <span class="cm"> * nbytes must be greater than zero and a multiple of minimal granularity</span>
+<span class="cm"> * @note</span>
+<span class="cm"> * Free the buffer using nvm_buf_free</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param geo The geometry to get alignment information from</span>
 <span class="cm"> * @param nbytes The size of the allocated buffer in bytes</span>
@@ -965,12 +977,34 @@
 <span class="kt">void</span> <span class="o">*</span><span class="nf">nvm_buf_alloc</span><span class="p">(</span><span class="k">const</span> <span class="k">struct</span> <span class="n">nvm_geo</span> <span class="o">*</span><span class="n">geo</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nbytes</span><span class="p">);</span>
 
 <span class="cm">/**</span>
+<span class="cm"> * Allocate a buffer of the given size with the given alignment</span>
+<span class="cm"> *</span>
+<span class="cm"> * @note</span>
+<span class="cm"> * Free the buffer using nvm_buf_free</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param alignment The alignment in bytes</span>
+<span class="cm"> * @param nbytes The size of the buffer in bytes</span>
+<span class="cm"> *</span>
+<span class="cm"> * @returns A pointer to the allocated memory. On error: NULL is returned and</span>
+<span class="cm"> * `errno` set appropriatly</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="o">*</span><span class="nf">nvm_buf_alloca</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">alignment</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nbytes</span><span class="p">);</span>
+
+<span class="cm">/**</span>
 <span class="cm"> * Fills `buf` with chars A-Z</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param buf Pointer to the buffer to fill</span>
 <span class="cm"> * @param nbytes Amount of bytes to fill in buf</span>
 <span class="cm"> */</span>
 <span class="kt">void</span> <span class="nf">nvm_buf_fill</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">nbytes</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Free the given buffer, calling regular &quot;free&quot; on the buffer might fail</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param buf Pointer to the buffer to fill</span>
+<span class="cm"> * @param nbytes Amount of bytes to fill in buf</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">nvm_buf_free</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">buf</span><span class="p">);</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Prints `buf` to stdout</span>
