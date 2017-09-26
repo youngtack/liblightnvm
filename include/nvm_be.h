@@ -95,5 +95,6 @@ int nvm_be_populate(struct nvm_dev *dev, int (*vadmin)(struct nvm_dev *, struct 
 extern struct nvm_be nvm_be_ioctl;
 extern struct nvm_be nvm_be_sysfs;
 extern struct nvm_be nvm_be_lba;
+extern struct nvm_be nvm_be_spdk;
 
 #endif /* __INTERNAL_NVM_BE_H */
