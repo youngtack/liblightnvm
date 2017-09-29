@@ -13,13 +13,13 @@ do
 		;;
 	info)
 		echo "## Running nvm_dev info"
-		NVM_CLI_BE_ID="0x8" sudo nvm_dev info "traddr:0000:01:00.0"
+		sudo nvm_dev info "traddr:0000:01:00.0"
 		#NVM_CLI_BE_ID="0x8" sudo nvm_dev info "traddr:0000:02:00.0"
 		#NVM_CLI_BE_ID="0x8" sudo nvm_dev info FOO
 		;;
 	vgrnd)
 		echo "## Running nvm_dev info (with algrind)"
-		NVM_CLI_BE_ID="0x8" sudo valgrind nvm_dev info "traddr:0000:01:00.0"
+		sudo valgrind nvm_dev info "traddr:0000:01:00.0"
 		;;
 	*)
 		break
