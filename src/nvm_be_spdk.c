@@ -57,45 +57,7 @@ struct nvm_be nvm_be_spdk = {
 #define NVM_BE_SPDK_QPAIR_MAX 128
 #define NVM_BE_SPDK_DMA_ALIGNMENT 0x1000
 
-struct nvm_be_spdk_state {
-	struct spdk_nvme_transport_id trid;
-	struct spdk_env_opts opts;
-	struct spdk_nvme_ctrlr *ctrlr;
-	struct spdk_nvme_ns *ns;
-	uint16_t nsid;
-	struct spdk_nvme_qpair *qpair;
-	int outstanding_admin;
-	int outstanding_qpair[NVM_BE_SPDK_QPAIR_MAX];
-	int attached;
-};
-
-static void cpl_admin(void *cb_arg, const struct spdk_nvme_cpl *cpl)
-{
-	struct nvm_be_spdk_state *state = cb_arg;
-
-	if (spdk_nvme_cpl_is_error(cpl)) {
-		NVM_DEBUG("FAILED completing cmd");
-	} else {
-		NVM_DEBUG("SUCCES completing cmd");
-	}
-
-	--(state->outstanding_admin);
-}
-
-static void cpl_qpair(void *cb_arg, const struct spdk_nvme_cpl *cpl)
-{
-	struct nvm_be_spdk_state *state = cb_arg;
-
-	if (spdk_nvme_cpl_is_error(cpl)) {
-		NVM_DEBUG("FAILED completing cmd");
-	} else {
-		NVM_DEBUG("SUCCES completing cmd");
-	}
-
-	--(state->outstanding_qpair[0]);
-}
-
-struct lnvm_cmd {
+struct nvm_be_spdk_lnvm_cmd {
 	uint8_t opcode;
 	uint8_t flags;
 	uint16_t cid;
@@ -113,12 +75,46 @@ struct lnvm_cmd {
 	uint32_t cdw15;
 };
 
+struct nvm_be_spdk_state {
+	struct spdk_nvme_transport_id trid;
+	struct spdk_env_opts opts;
+	struct spdk_nvme_ctrlr *ctrlr;
+	struct spdk_nvme_ns *ns;
+	uint16_t nsid;
+	struct spdk_nvme_qpair *qpair;
+	int outstanding_admin;
+	int outstanding_qpair;
+	int attached;
+};
+
+static void cpl_admin(void *cb_arg, const struct spdk_nvme_cpl *cpl)
+{
+	struct nvm_be_spdk_state *state = cb_arg;
+
+	if (spdk_nvme_cpl_is_error(cpl)) {
+		NVM_DEBUG("FAILED: spdk_nvme_cpl_is_error");
+	}
+
+	--(state->outstanding_admin);
+}
+
+static void cpl_qpair(void *cb_arg, const struct spdk_nvme_cpl *cpl)
+{
+	struct nvm_be_spdk_state *state = cb_arg;
+
+	if (spdk_nvme_cpl_is_error(cpl)) {
+		NVM_DEBUG("FAILED: spdk_nvme_cpl_is_error");
+	}
+
+	--(state->outstanding_qpair);
+}
+
 static inline int nvm_be_spdk_command(struct nvm_dev *dev, struct nvm_cmd *cmd,
 				      struct nvm_ret *ret)
 {
 	struct nvm_be_spdk_state *state = dev->be_state;
 	struct spdk_nvme_cmd nvme_cmd = { 0 };
-	struct lnvm_cmd *lnvm_cmd = (void*)&cmd;
+	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&cmd;
 	size_t ppalist_len = 0;
 	void *ppalist = NULL;
 	size_t payload_len = 0;
@@ -193,7 +189,17 @@ static inline int nvm_be_spdk_command(struct nvm_dev *dev, struct nvm_cmd *cmd,
 			lnvm_cmd->ppas = cmd->vuser.ppa_list;
 		}
 
-		// TODO: Send of command and wait for cpl
+		if (spdk_nvme_ctrlr_cmd_io_raw(state->ctrlr, state->qpair,
+					       lnvm_cmd, payload, payload_len,
+					       cpl_qpair, state)) {
+			NVM_DEBUG("FAILED: submitting IO");
+
+			return -1;
+		}
+		++(state->outstanding_qpair);
+
+		while(state->outstanding_qpair)
+			spdk_nvme_qpair_process_completions(state->qpair, 0);
 
 		break;
 
@@ -266,8 +272,11 @@ void nvm_be_spdk_close(struct nvm_dev *dev)
 		return;
 
 	state = dev->be_state;
-	if (state->ctrlr)
+	if (state->ctrlr) {
+		if (state->qpair)
+			spdk_nvme_ctrlr_free_io_qpair(state->qpair);
 		spdk_nvme_detach(state->ctrlr);
+	}
 
 	// TODO: What about qpairs?
 
