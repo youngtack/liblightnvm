@@ -168,23 +168,18 @@ static bool probe_cb(void *cb_ctx, const struct spdk_nvme_transport_id *trid,
 	return !state->attached;
 }
 
+/**
+ * Sets up the nvm_be_spdk_state{ns, nsid, ctrlr, attached} given via the
+ * cb_ctx using the first available name-space.
+ */
 static void attach_cb(void *cb_ctx, const struct spdk_nvme_transport_id *trid,
 		      struct spdk_nvme_ctrlr *ctrlr,
 		      const struct spdk_nvme_ctrlr_opts *opts)
 {
-	const struct spdk_nvme_ctrlr_data *cdata = spdk_nvme_ctrlr_get_data(ctrlr);
-	int num_ns = spdk_nvme_ctrlr_get_num_ns(ctrlr);
 	struct nvm_be_spdk_state *state = (struct nvm_be_spdk_state*)cb_ctx;
+	int num_ns = spdk_nvme_ctrlr_get_num_ns(ctrlr);
 
-	state->ctrlr = ctrlr;
-
-	/*
-	 * Each controller has one or more namespaces. The controller's IDENTIFY
-	 * data tells us how many namespaces exist on the controller.
-	 *
-	 * NOTE: namespace IDs start at 1, not 0.
-	 * NOTE: We use the first available namespace
-	 */
+	// NOTE: namespace IDs start at 1, not 0.
 	for (int nsid = 1; nsid <= num_ns; nsid++) {
 		struct spdk_nvme_ns *ns = NULL;
 		
@@ -200,17 +195,11 @@ static void attach_cb(void *cb_ctx, const struct spdk_nvme_transport_id *trid,
 		
 		state->ns = ns;
 		state->nsid = nsid;
+		state->ctrlr = ctrlr;
+		state->attached = 1;
+
 		break;
 	}
-
-	if (state->ctrlr && state->ns && state->nsid) {
-		state->attached = 1;
-		return;
-	}
-
-	state->ctrlr = NULL;
-	state->ns = NULL;
-	state->nsid = 0;
 }
 
 void nvm_be_spdk_close(struct nvm_dev *dev)
