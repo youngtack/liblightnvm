@@ -28,6 +28,8 @@
 #ifndef NVM_BE_SPDK_ENABLED
 #include <liblightnvm.h>
 #include <nvm_be.h>
+#include <nvm_utils.h>
+
 struct nvm_be nvm_be_spdk = {
 	.id = NVM_BE_SPDK,
 
@@ -113,13 +115,20 @@ static inline int nvm_be_spdk_command(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	case NVM_S12_OPC_SET_BBT:
 	case NVM_S12_OPC_GET_BBT:
 
-		buf = spdk_dma_zmalloc(0x1000, 0x1000, NULL);
 		buf_len = 0x1000;
+		buf = spdk_dma_zmalloc(buf_len, 0x1000, NULL);
+		if (!buf) {
+			NVM_DEBUG("FAILED: spdk_dma_zmalloc");
 
-		if (spdk_nvme_ctrlr_cmd_admin_raw(state->ctrlr, &nvme_cmd, buf, buf_len,
-						  cpl_admin, state)) {
-			NVM_DEBUG("admin command failed");
+			return -1;
+		}
+
+		if (spdk_nvme_ctrlr_cmd_admin_raw(state->ctrlr, &nvme_cmd, buf,
+						  buf_len, cpl_admin, state)) {
+			NVM_DEBUG("FAILED: spdk_nvme_ctrlr_cmd_admin_raw");
 			spdk_dma_free(buf);
+
+			return -1;
 		}
 		++(state->outstanding_admin);
 
@@ -127,6 +136,7 @@ static inline int nvm_be_spdk_command(struct nvm_dev *dev, struct nvm_cmd *cmd,
 			spdk_nvme_ctrlr_process_admin_completions(state->ctrlr);
 
 		memcpy((void*)cmd->vadmin.addr, buf, buf_len);
+
 		spdk_dma_free(buf);
 
 		break;
@@ -135,10 +145,10 @@ static inline int nvm_be_spdk_command(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		NVM_DEBUG("admin command failed")
 
 		errno = ENOSYS;
-		return NULL;
+		return -1;
 	}
 
-	return NULL;
+	return 0;
 }
 
 /**
@@ -205,25 +215,18 @@ static void attach_cb(void *cb_ctx, const struct spdk_nvme_transport_id *trid,
 
 void nvm_be_spdk_close(struct nvm_dev *dev)
 {
-	if (!dev)
+	struct nvm_be_spdk_state *state = NULL;
+
+	if (!(dev && dev->be_state))
 		return;
 
-	if (!dev->be_state) {
-		free(dev);
-		return;
-	}
+	state = dev->be_state;
+	if (state->ctrlr)
+		spdk_nvme_detach(state->ctrlr);
 
-	{
-		struct nvm_be_spdk_state *state = dev->be_state;
+	// TODO: What about qpairs?
 
-		// TODO: Tear down qpair?
-
-		if (state->ctrlr)
-			spdk_nvme_detach(state->ctrlr);
-
-		free(dev->be_state);
-		free(dev);
-	}
+	free(state);
 }
 
 struct nvm_dev *nvm_be_spdk_open(const char *dev_path, int flags)
@@ -264,13 +267,15 @@ struct nvm_dev *nvm_be_spdk_open(const char *dev_path, int flags)
 
 	err = spdk_nvme_transport_id_parse(&state->trid, dev_path);
 	if (err) {
-		NVM_DEBUG("FAILED parsing dev_path: %s, err: %d", dev_path, err);
 		errno = -err;
+
+		NVM_DEBUG("FAILED parsing dev_path: %s, err: %d", dev_path, err);
+		nvm_be_spdk_close(dev);
 		return NULL;
 	}
 
 	/*
-	 * Start the SPDK NVMe enumeration process. probe_cb will be called for
+	 * Start the SPDK NVMe enumeration process. robe_cb will be called for
 	 * each NVMe controller found, giving our application a choice on
 	 * whether to attach to each controller. attach_cb will then be called
 	 * for each controller after the SPDK NVMe driver has completed
