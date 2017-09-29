@@ -55,6 +55,7 @@ struct nvm_be nvm_be_spdk = {
 #include <nvm_debug.h>
 
 #define NVM_BE_SPDK_QPAIR_MAX 128
+#define NVM_BE_SPDK_DMA_ALIGNMENT 0x1000
 
 struct nvm_be_spdk_state {
 	struct spdk_nvme_transport_id trid;
@@ -94,13 +95,34 @@ static void cpl_qpair(void *cb_arg, const struct spdk_nvme_cpl *cpl)
 	--(state->outstanding_qpair[0]);
 }
 
+struct lnvm_cmd {
+	uint8_t opcode;
+	uint8_t flags;
+	uint16_t cid;
+	uint32_t nsid;
+	uint32_t cdw2;
+	uint32_t cdw3;
+	uint64_t mptr;
+	uint64_t prp1;
+	uint64_t prp2;
+	uint64_t ppas;
+	uint16_t nppas;
+	uint16_t control;
+	uint32_t cdw13;
+	uint32_t cdw14;
+	uint32_t cdw15;
+};
+
 static inline int nvm_be_spdk_command(struct nvm_dev *dev, struct nvm_cmd *cmd,
 				      struct nvm_ret *ret)
 {
 	struct nvm_be_spdk_state *state = dev->be_state;
 	struct spdk_nvme_cmd nvme_cmd = { 0 };
-	void *buf = NULL;
-	size_t buf_len = 0;
+	struct lnvm_cmd *lnvm_cmd = (void*)&cmd;
+	size_t ppalist_len = 0;
+	void *ppalist = NULL;
+	size_t payload_len = 0;
+	void *payload = NULL;
 
 	if (ret) {
 		ret->status = 0;
@@ -115,18 +137,19 @@ static inline int nvm_be_spdk_command(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	case NVM_S12_OPC_SET_BBT:
 	case NVM_S12_OPC_GET_BBT:
 
-		buf_len = 0x1000;
-		buf = spdk_dma_zmalloc(buf_len, 0x1000, NULL);
-		if (!buf) {
+		payload_len = 0x1000;
+		payload = spdk_dma_zmalloc(payload_len,
+					   NVM_BE_SPDK_DMA_ALIGNMENT, NULL);
+		if (!payload) {
 			NVM_DEBUG("FAILED: spdk_dma_zmalloc");
 
 			return -1;
 		}
 
-		if (spdk_nvme_ctrlr_cmd_admin_raw(state->ctrlr, &nvme_cmd, buf,
-						  buf_len, cpl_admin, state)) {
+		if (spdk_nvme_ctrlr_cmd_admin_raw(state->ctrlr, &nvme_cmd, payload,
+						  payload_len, cpl_admin, state)) {
 			NVM_DEBUG("FAILED: spdk_nvme_ctrlr_cmd_admin_raw");
-			spdk_dma_free(buf);
+			spdk_dma_free(payload);
 
 			return -1;
 		}
@@ -135,9 +158,42 @@ static inline int nvm_be_spdk_command(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		while(state->outstanding_admin)
 			spdk_nvme_ctrlr_process_admin_completions(state->ctrlr);
 
-		memcpy((void*)cmd->vadmin.addr, buf, buf_len);
+		memcpy((void*)cmd->vadmin.addr, payload, payload_len);
 
-		spdk_dma_free(buf);
+		spdk_dma_free(payload);
+
+		break;
+
+	case NVM_S12_OPC_WRITE:
+		NVM_DEBUG("FAILED: write not implemented")
+
+		errno = ENOSYS;
+		return -1;
+
+	case NVM_S12_OPC_READ:
+		NVM_DEBUG("FAILED: read not implemented")
+
+		errno = ENOSYS;
+		return -1;
+
+	case NVM_S12_OPC_ERASE:
+
+		lnvm_cmd->nppas = cmd->vuser.nppas;
+		if (lnvm_cmd->nppas) {
+			ppalist_len = (lnvm_cmd->nppas + 1) * sizeof(uint64_t);
+			ppalist = spdk_dma_zmalloc(ppalist_len,
+						   NVM_BE_SPDK_DMA_ALIGNMENT, NULL);
+			if (!ppalist) {
+				NVM_DEBUG("FAILED: spdk_dma_zmalloc(ppalist)");
+				return -1;
+			}
+
+			lnvm_cmd->ppas = (uint64_t)ppalist;
+		} else {
+			lnvm_cmd->ppas = cmd->vuser.ppa_list;
+		}
+
+		// TODO: Send of command and wait for cpl
 
 		break;
 
