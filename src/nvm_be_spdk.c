@@ -46,6 +46,7 @@ struct nvm_be nvm_be_spdk = {
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <omp.h>
 #include <spdk/stdinc.h>
 #include <spdk/nvme.h>
 #include <spdk/env.h>
@@ -113,10 +114,15 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 				     struct nvm_ret *ret)
 {
 	struct nvm_be_spdk_state *state = dev->be_state;
-	struct spdk_nvme_cmd nvme_cmd = { 0 };
+
+	size_t ppalist_len = 0;
+	void *ppalist = NULL;
 
 	size_t payload_len = 0x0;
 	void *payload = NULL;
+
+	struct spdk_nvme_cmd nvme_cmd = { 0 };
+	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&nvme_cmd;
 
 	if (ret) {
 		ret->status = 0;
@@ -126,10 +132,24 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	nvme_cmd.opc = cmd->vadmin.opcode;
 	nvme_cmd.nsid = state->nsid;
 
+	// Open-Channel SSD specific address list
+	lnvm_cmd->nppas = cmd->vadmin.nppas;
+	if (lnvm_cmd->nppas) {
+		ppalist_len = (lnvm_cmd->nppas + 1) * sizeof(uint64_t);
+		ppalist = spdk_dma_zmalloc(ppalist_len,
+					   NVM_BE_SPDK_DMA_ALIGNMENT, NULL);
+		if (!ppalist) {
+			NVM_DEBUG("FAILED: spdk_dma_zmalloc(ppalist)");
+			return -1;
+		}
+
+		lnvm_cmd->ppas = (uint64_t)ppalist;
+	} else {
+		lnvm_cmd->ppas = cmd->vuser.ppa_list;
+	}
+
 	switch(cmd->vadmin.opcode) {
 	case NVM_S12_OPC_GET_BBT:
-		// TODO: Set the ppalist and nppas
-
 	case NVM_S12_OPC_IDF:
 		payload_len = cmd->vadmin.data_len;
 
@@ -170,6 +190,9 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		spdk_dma_free(payload);
 	}
 
+	if (lnvm_cmd->nppas)
+		spdk_dma_free(ppalist);
+
 	return 0;
 }
 
@@ -177,22 +200,24 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 				    struct nvm_ret *ret)
 {
 	struct nvm_be_spdk_state *state = dev->be_state;
+
 	size_t ppalist_len = 0;
 	void *ppalist = NULL;
+
 	size_t payload_len = 0;
 	void *payload = NULL;
+
 	struct spdk_nvme_cmd nvme_cmd = { 0 };
 	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&nvme_cmd;
+
+	int tid = omp_get_thread_num();
 
 	if (ret) {
 		ret->status = 0;
 		ret->result = 0;
 	}
 
-	if (!(state->ns && state->qpair && state->ctrlr)) {
-		errno = EINVAL;
-		return -1;
-	}
+	NVM_DEBUG("tid: %d", tid);
 
 	/**
 	 * Setup NVMe command
@@ -230,10 +255,20 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 			memcpy(payload, (void*)cmd->vuser.addr, payload_len);
 	}
 
+	// TODO: Set the control flags correctly
+
 	/**
 	 * Submit NVMe command
 	 */
 	++(state->outstanding_qpair);
+	if (spdk_nvme_ctrlr_cmd_io_raw(state->ctrlr, state->qpair, &nvme_cmd,
+				       payload, payload_len, cpl_qpair, state)) {
+		NVM_DEBUG("FAILED: submitting IO");
+
+		--(state->outstanding_qpair);
+		return -1;
+	}
+	/*
 	if (spdk_nvme_ns_cmd_read(state->ns, state->qpair, payload, 0, 1,
 				  cpl_qpair, state, 0)) {
 		NVM_DEBUG("FAILED: submitting IO");
@@ -241,6 +276,7 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		--(state->outstanding_qpair);
 		return -1;
 	}
+	*/
 
 	// Wait for it to finish
 	do {
