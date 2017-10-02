@@ -2,7 +2,7 @@
 
 NVM_DEV="traddr:0000:01:00.0"
 
-select TASK in unbind build idf bbt_get bbt_set erase;
+select TASK in unbind build idf bbt_get bbt_set erase wr rd;
 do
 	case $TASK in
 	unbind)
@@ -29,13 +29,14 @@ do
 		echo "## Running nvm_addr erase $NVM_DEV"
 		sudo valgrind nvm_vblk line_erase $NVM_DEV 0 0 0 0 0
 		;;
-	write)
+	wr)
 		echo "## Running nvm_addr write $NVM_DEV"
 		sudo nvm_vblk line_write $NVM_DEV 0 0 0 0 0
 		;;
-	read)
-		echo "## Running nvm_addr read $NVM_DEV"
-		sudo nvm_vblk line_read $NVM_DEV 0 0 0 0 0
+	rd)
+		echo "## Running nvm_addr read $NVM_DEV 0x0"
+		#sudo nvm_addr read $NVM_DEV 0x0
+		sudo gdb nvm_addr
 		;;
 	*)
 		break
