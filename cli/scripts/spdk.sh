@@ -2,14 +2,14 @@
 
 NVM_DEV="traddr:0000:01:00.0"
 
-select TASK in build debug idf bbt_get bbt_set erase;
+select TASK in unbind build idf bbt_get bbt_set erase;
 do
 	case $TASK in
-	build)
-		echo "## Building liblightnvm"
-		make spdk
+	unbind)
+		echo "## Unbinding NVMe devices"
+		sudo /opt/spdk/scripts/setup.sh
 		;;
-	debug)
+	build)
 		echo "## Building liblightnvm"
 		make debug spdk
 		;;
@@ -19,7 +19,7 @@ do
 		;;
 	bbt_get)
 		echo "## Running nvm_bbt get $NVM_DEV"
-		sudo nvm_bbt get $NVM_DEV
+		sudo valgrind nvm_bbt get $NVM_DEV 0 0
 		;;
 	bbt_set)
 		echo "## Running nvm_bbt set $NVM_DEV"
