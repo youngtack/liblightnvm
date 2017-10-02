@@ -172,7 +172,7 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 }
 
 static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
-				      struct nvm_ret *ret)
+				    struct nvm_ret *ret)
 {
 	struct nvm_be_spdk_state *state = dev->be_state;
 	const struct nvm_geo *geo = nvm_dev_get_geo(dev);
@@ -209,9 +209,20 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		lnvm_cmd->ppas = cmd->vuser.ppa_list;
 	}
 
+	if (cmd->vuser.data_len) {
+		payload_len = cmd->vuser.data_len;
+		payload = spdk_dma_zmalloc(payload_len,
+					   NVM_BE_SPDK_DMA_ALIGNMENT, NULL);
+		if (!payload) {
+			NVM_DEBUG("FAILED: spdk_dma_zmallo(payload)");
+			return -1;
+		}
+	}
+
 	switch(cmd->vuser.opcode) {
 	case NVM_S12_OPC_WRITE:
-
+		memcpy(payload, (void*)cmd->vuser.addr, payload_len);
+		break;
 
 	case NVM_S12_OPC_READ:
 	case NVM_S12_OPC_ERASE:
@@ -235,6 +246,20 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 
 	while(state->outstanding_qpair)
 		spdk_nvme_qpair_process_completions(state->qpair, 0);
+
+	switch(cmd->vuser.opcode) {
+	case NVM_S12_OPC_READ:
+		memcpy((void*)cmd->vuser.addr, payload, payload_len);
+
+	case NVM_S12_OPC_WRITE:
+		spdk_dma_free(payload);
+
+	case NVM_S12_OPC_ERASE:
+		spdk_dma_free(ppalist);
+
+	default:
+		break;
+	}
 
 	return 0;
 }
