@@ -27,7 +27,15 @@ do
 		;;
 	erase)
 		echo "## Running nvm_addr erase $NVM_DEV"
-		sudo nvm_addr erase $NVM_DEV 0x0
+		sudo nvm_vblk line_erase $NVM_DEV 0 0 0 0 0
+		;;
+	write)
+		echo "## Running nvm_addr write $NVM_DEV"
+		sudo nvm_vblk line_write $NVM_DEV 0 0 0 0 0
+		;;
+	read)
+		echo "## Running nvm_addr read $NVM_DEV"
+		sudo nvm_vblk line_read $NVM_DEV 0 0 0 0 0
 		;;
 	*)
 		break
