@@ -128,29 +128,26 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	nvme_cmd.nsid = state->nsid;
 
 	switch(cmd->vadmin.opcode) {
+	case NVM_S12_OPC_GET_BBT:
+		// TODO: Set the ppalist and nppas
+
 	case NVM_S12_OPC_IDF:
-		payload_len = 0x1000;
+		payload_len = cmd->vadmin.data_len;
+
+		payload = spdk_dma_zmalloc(payload_len,
+					   NVM_BE_SPDK_DMA_ALIGNMENT, NULL);
+		if (!payload) {
+			NVM_DEBUG("FAILED: spdk_dma_zmalloc");
+			return -1;
+		}
 		break;
 
 	case NVM_S12_OPC_SET_BBT:
-		payload_len = 0x0;
-		break;
-
-	case NVM_S12_OPC_GET_BBT:
-		payload_len = 0x1000;
 		break;
 
 	default:
 		NVM_DEBUG("FAILED: vadmin.opcode: %d", cmd->vadmin.opcode);
 		errno = ENOSYS;
-		return -1;
-	}
-
-	payload = spdk_dma_zmalloc(payload_len,
-				   NVM_BE_SPDK_DMA_ALIGNMENT, NULL);
-	if (!payload) {
-		NVM_DEBUG("FAILED: spdk_dma_zmalloc");
-
 		return -1;
 	}
 
@@ -166,10 +163,10 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	while(state->outstanding_admin)
 		spdk_nvme_ctrlr_process_admin_completions(state->ctrlr);
 
-	if (payload_len)
+	if (payload_len) {
 		memcpy((void*)cmd->vadmin.addr, payload, payload_len);
-
-	spdk_dma_free(payload);
+		spdk_dma_free(payload);
+	}
 
 	return 0;
 }
