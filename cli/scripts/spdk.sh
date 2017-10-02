@@ -35,8 +35,7 @@ do
 		;;
 	rd)
 		echo "## Running nvm_addr read $NVM_DEV 0x0"
-		#sudo nvm_addr read $NVM_DEV 0x0
-		sudo gdb nvm_addr
+		sudo nvm_addr read $NVM_DEV 0x0
 		;;
 	*)
 		break
