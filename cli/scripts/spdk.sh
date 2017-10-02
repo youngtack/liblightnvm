@@ -27,7 +27,7 @@ do
 		;;
 	erase)
 		echo "## Running nvm_addr erase $NVM_DEV"
-		sudo nvm_vblk line_erase $NVM_DEV 0 0 0 0 0
+		sudo valgrind nvm_vblk line_erase $NVM_DEV 0 0 0 0 0
 		;;
 	write)
 		echo "## Running nvm_addr write $NVM_DEV"
