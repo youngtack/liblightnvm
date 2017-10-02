@@ -110,14 +110,13 @@ static void cpl_qpair(void *cb_arg, const struct spdk_nvme_cpl *cpl)
 }
 
 static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
-				     nvm_ret *ret)
+				     struct nvm_ret *ret)
 {
 	struct nvm_be_spdk_state *state = dev->be_state;
 	struct spdk_nvme_cmd nvme_cmd = { 0 };
 	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&cmd;
 
-	void *ppalist = NULL;
-	size_t payload_len = 0;
+	size_t payload_len = 0x0;
 	void *payload = NULL;
 
 	if (ret) {
@@ -125,10 +124,28 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		ret->result = 0;
 	}
 
-	nvme_cmd.opc = cmd->vuser.opcode;
+	nvme_cmd.opc = cmd->vadmin.opcode;
 	nvme_cmd.nsid = state->nsid;
 
-	payload_len = 0x1000;
+	switch(cmd->vadmin.opcode) {
+	case NVM_S12_OPC_IDF:
+		payload_len = 0x1000;
+		break;
+
+	case NVM_S12_OPC_SET_BBT:
+		payload_len = 0x0;
+		break;
+
+	case NVM_S12_OPC_GET_BBT:
+		payload_len = 0x1000;
+		break;
+
+	default:
+		NVM_DEBUG("FAILED: vadmin.opcode: %d", cmd->vadmin.opcode);
+		errno = ENOSYS;
+		return -1;
+	}
+
 	payload = spdk_dma_zmalloc(payload_len,
 				   NVM_BE_SPDK_DMA_ALIGNMENT, NULL);
 	if (!payload) {
@@ -149,14 +166,15 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	while(state->outstanding_admin)
 		spdk_nvme_ctrlr_process_admin_completions(state->ctrlr);
 
-	memcpy((void*)cmd->vadmin.addr, payload, payload_len);
+	if (payload_len)
+		memcpy((void*)cmd->vadmin.addr, payload, payload_len);
 
 	spdk_dma_free(payload);
 
 	return 0;
 }
 
-static inline int nvm_be_spdk_command(struct nvm_dev *dev, struct nvm_cmd *cmd,
+static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 				      struct nvm_ret *ret)
 {
 	struct nvm_be_spdk_state *state = dev->be_state;
@@ -242,8 +260,8 @@ static bool probe_cb(void *cb_ctx, const struct spdk_nvme_transport_id *trid,
 }
 
 /**
- * Sets up the nvm_be_spdk_state{ns, nsid, ctrlr, attached} given via the
- * cb_ctx using the first available name-space.
+ * Sets up the nvm_be_spdk_state{ns, nsid, ctrlr, attached} given via the cb_ctx
+ * using the first available name-space.
  */
 static void attach_cb(void *cb_ctx, const struct spdk_nvme_transport_id *trid,
 		      struct spdk_nvme_ctrlr *ctrlr,
@@ -289,8 +307,6 @@ void nvm_be_spdk_close(struct nvm_dev *dev)
 		spdk_nvme_detach(state->ctrlr);
 	}
 
-	// TODO: What about qpairs?
-
 	free(state);
 }
 
@@ -315,9 +331,9 @@ struct nvm_dev *nvm_be_spdk_open(const char *dev_path, int flags)
 	dev->be_state = state;
 
 	/*
-	 * SPDK relies on an abstraction around the local environment
-	 * named env that handles memory allocation and PCI device operations.
-	 * This library must be initialized first.
+	 * SPDK relies on an abstraction around the local environment named env
+	 * that handles memory allocation and PCI device operations.  This
+	 * library must be initialized first.
 	 */
 	spdk_env_opts_init(&(state->opts));
 	state->opts.name = "liblightnvm";
@@ -325,8 +341,8 @@ struct nvm_dev *nvm_be_spdk_open(const char *dev_path, int flags)
 	spdk_env_init(&(state->opts));
 
 	/*
-	 * Parse the dev_path into transport_id so we can use it to compare
-	 * to the probed controller
+	 * Parse the dev_path into transport_id so we can use it to compare to
+	 * the probed controller
 	 */
 	state->trid.trtype = SPDK_NVME_TRANSPORT_PCIE;
 
@@ -366,7 +382,7 @@ struct nvm_dev *nvm_be_spdk_open(const char *dev_path, int flags)
 		return NULL;
 	}
 
-	err = nvm_be_populate(dev, nvm_be_spdk_command);
+	err = nvm_be_populate(dev, nvm_be_spdk_vadmin);
 	if (err) {
 		NVM_DEBUG("FAILED: nvm_be_populate, err(%d)", err);
 		nvm_be_spdk_close(dev);
@@ -382,11 +398,11 @@ struct nvm_be nvm_be_spdk = {
 	.open = nvm_be_spdk_open,
 	.close = nvm_be_spdk_close,
 
-	.user = nvm_be_spdk_command,
-	.admin = nvm_be_spdk_command,
+	.user = nvm_be_nosys_user,
+	.admin = nvm_be_nosys_admin,
 
-	.vuser = nvm_be_spdk_command,
-	.vadmin = nvm_be_spdk_command,
+	.vuser = nvm_be_spdk_vuser,
+	.vadmin = nvm_be_spdk_vadmin,
 };
 #endif
 
