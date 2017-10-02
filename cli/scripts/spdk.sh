@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-select TASK in build debug info erase vgrnd;
+NVM_DEV="traddr:0000:01:00.0"
+
+select TASK in build debug idf bbt_get bbt_set erase;
 do
 	case $TASK in
 	build)
@@ -11,19 +13,21 @@ do
 		echo "## Building liblightnvm"
 		make debug spdk
 		;;
-	info)
-		echo "## Running nvm_dev info"
-		sudo nvm_dev info "traddr:0000:01:00.0"
-		#NVM_CLI_BE_ID="0x8" sudo nvm_dev info "traddr:0000:02:00.0"
-		#NVM_CLI_BE_ID="0x8" sudo nvm_dev info FOO
+	idf)
+		echo "## Running nvm_dev info $NVM_DEV"
+		sudo nvm_dev info $NVM_DEV
+		;;
+	bbt_get)
+		echo "## Running nvm_bbt get $NVM_DEV"
+		sudo nvm_bbt get $NVM_DEV
+		;;
+	bbt_set)
+		echo "## Running nvm_bbt set $NVM_DEV"
+		sudo nvm_bbt mark_b $NVM_DEV 0x0
 		;;
 	erase)
-		echo "## Running nvm_addr erase"
-		sudo nvm_addr erase "traddr:0000:01:00.0" 0x0
-		;;
-	vgrnd)
-		echo "## Running nvm_dev info (with algrind)"
-		sudo valgrind nvm_dev info "traddr:0000:01:00.0"
+		echo "## Running nvm_addr erase $NVM_DEV"
+		sudo nvm_addr erase $NVM_DEV 0x0
 		;;
 	*)
 		break
