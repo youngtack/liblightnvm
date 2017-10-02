@@ -177,16 +177,12 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 				    struct nvm_ret *ret)
 {
 	struct nvm_be_spdk_state *state = dev->be_state;
-	const struct nvm_geo *geo = nvm_dev_get_geo(dev);
-
-	struct spdk_nvme_cmd nvme_cmd = { 0 };
-	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&nvme_cmd;
-
 	size_t ppalist_len = 0;
 	void *ppalist = NULL;
-
 	size_t payload_len = 0;
 	void *payload = NULL;
+	struct spdk_nvme_cmd nvme_cmd = { 0 };
+	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&nvme_cmd;
 
 	if (ret) {
 		ret->status = 0;
@@ -198,9 +194,13 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		return -1;
 	}
 
+	/**
+	 * Setup NVMe command
+	 */
 	nvme_cmd.opc = cmd->vuser.opcode;
 	nvme_cmd.nsid = state->nsid;
 
+	// Open-Channel SSD specific address list
 	lnvm_cmd->nppas = cmd->vuser.nppas;
 	if (lnvm_cmd->nppas) {
 		ppalist_len = (lnvm_cmd->nppas + 1) * sizeof(uint64_t);
@@ -216,6 +216,7 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		lnvm_cmd->ppas = cmd->vuser.ppa_list;
 	}
 
+	// Allocate and transfer PAYLAOD / DATA / PRP1 + PRP2
 	if (cmd->vuser.data_len) {
 		payload_len = cmd->vuser.data_len;
 		payload = spdk_dma_zmalloc(payload_len,
@@ -224,49 +225,39 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 			NVM_DEBUG("FAILED: spdk_dma_zmallo(payload)");
 			return -1;
 		}
+
+		if (cmd->vuser.opcode == NVM_S12_OPC_WRITE)
+			memcpy(payload, (void*)cmd->vuser.addr, payload_len);
 	}
 
-	switch(cmd->vuser.opcode) {
-	case NVM_S12_OPC_WRITE:
-		memcpy(payload, (void*)cmd->vuser.addr, payload_len);
-		break;
-
-	case NVM_S12_OPC_READ:
-	case NVM_S12_OPC_ERASE:
-		break;
-
-	default:
-		NVM_DEBUG("unsupported vuser.opcode: %d", cmd->vuser.opcode);
-
-		errno = ENOSYS;
-		return -1;
-	}
-
+	/**
+	 * Submit NVMe command
+	 */
 	++(state->outstanding_qpair);
-	if (spdk_nvme_ns_cmd_read(state->ns, state->qpair, payload, 0, 1, cpl_qpair, state, 0)) {
+	if (spdk_nvme_ns_cmd_read(state->ns, state->qpair, payload, 0, 1,
+				  cpl_qpair, state, 0)) {
 		NVM_DEBUG("FAILED: submitting IO");
 
 		--(state->outstanding_qpair);
-		return -1;	
+		return -1;
 	}
 
+	// Wait for it to finish
 	do {
 		spdk_nvme_qpair_process_completions(state->qpair, 0);
 	} while (state->outstanding_qpair);
 
-	switch(cmd->vuser.opcode) {
-	case NVM_S12_OPC_READ:
-		memcpy((void*)cmd->vuser.addr, payload, payload_len);
+	// Transfer and de-allocate PAYLOAD / DATA / PRP1 + PRP2
+	if (cmd->vuser.data_len) {
+		if (cmd->vuser.opcode == NVM_S12_OPC_READ)
+			memcpy((void*)cmd->vuser.addr, payload, payload_len);
 
-	case NVM_S12_OPC_WRITE:
 		spdk_dma_free(payload);
-
-	case NVM_S12_OPC_ERASE:
-		spdk_dma_free(ppalist);
-
-	default:
-		break;
 	}
+
+	// De-allocate Open-Channel SSD specific address list
+	if (cmd->vuser.nppas)
+		spdk_dma_free(ppalist);
 
 	return 0;
 }
