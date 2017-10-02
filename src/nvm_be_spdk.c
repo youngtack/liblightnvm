@@ -114,7 +114,6 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 {
 	struct nvm_be_spdk_state *state = dev->be_state;
 	struct spdk_nvme_cmd nvme_cmd = { 0 };
-	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&cmd;
 
 	size_t payload_len = 0x0;
 	void *payload = NULL;
@@ -151,17 +150,20 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		return -1;
 	}
 
+	++(state->outstanding_admin);
 	if (spdk_nvme_ctrlr_cmd_admin_raw(state->ctrlr, &nvme_cmd, payload,
 					  payload_len, cpl_admin, state)) {
+		--(state->outstanding_admin);
+
 		NVM_DEBUG("FAILED: spdk_nvme_ctrlr_cmd_admin_raw");
 		spdk_dma_free(payload);
 
 		return -1;
 	}
-	++(state->outstanding_admin);
 
-	while(state->outstanding_admin)
+	do {
 		spdk_nvme_ctrlr_process_admin_completions(state->ctrlr);
+	} while (state->outstanding_admin);
 
 	if (payload_len) {
 		memcpy((void*)cmd->vadmin.addr, payload, payload_len);
@@ -178,7 +180,7 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	const struct nvm_geo *geo = nvm_dev_get_geo(dev);
 
 	struct spdk_nvme_cmd nvme_cmd = { 0 };
-	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&cmd;
+	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&nvme_cmd;
 
 	size_t ppalist_len = 0;
 	void *ppalist = NULL;
@@ -189,6 +191,11 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	if (ret) {
 		ret->status = 0;
 		ret->result = 0;
+	}
+
+	if (!(state->ns && state->qpair && state->ctrlr)) {
+		errno = EINVAL;
+		return -1;
 	}
 
 	nvme_cmd.opc = cmd->vuser.opcode;
@@ -235,17 +242,17 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		return -1;
 	}
 
-	if (spdk_nvme_ctrlr_cmd_io_raw(state->ctrlr, state->qpair,
-				       &nvme_cmd, payload, payload_len,
-				       cpl_qpair, state)) {
+	++(state->outstanding_qpair);
+	if (spdk_nvme_ns_cmd_read(state->ns, state->qpair, payload, 0, 1, cpl_qpair, state, 0)) {
 		NVM_DEBUG("FAILED: submitting IO");
 
-		return -1;
+		--(state->outstanding_qpair);
+		return -1;	
 	}
-	++(state->outstanding_qpair);
 
-	while(state->outstanding_qpair)
+	do {
 		spdk_nvme_qpair_process_completions(state->qpair, 0);
+	} while (state->outstanding_qpair);
 
 	switch(cmd->vuser.opcode) {
 	case NVM_S12_OPC_READ:
@@ -270,7 +277,7 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 static bool probe_cb(void *cb_ctx, const struct spdk_nvme_transport_id *trid,
 		     struct spdk_nvme_ctrlr_opts *opts)
 {
-	struct nvm_be_spdk_state *state = (struct nvm_be_spdk_state*)cb_ctx;
+	struct nvm_be_spdk_state *state = cb_ctx;
 
 	if (spdk_nvme_transport_id_compare(&state->trid, trid)) {
 		NVM_DEBUG("trid->traddr: %s != state->trid.traddr: %s",
@@ -289,7 +296,7 @@ static void attach_cb(void *cb_ctx, const struct spdk_nvme_transport_id *trid,
 		      struct spdk_nvme_ctrlr *ctrlr,
 		      const struct spdk_nvme_ctrlr_opts *opts)
 {
-	struct nvm_be_spdk_state *state = (struct nvm_be_spdk_state*)cb_ctx;
+	struct nvm_be_spdk_state *state = cb_ctx;
 	int num_ns = spdk_nvme_ctrlr_get_num_ns(ctrlr);
 
 	// NOTE: namespace IDs start at 1, not 0.
@@ -358,10 +365,11 @@ struct nvm_dev *nvm_be_spdk_open(const char *dev_path, int flags)
 	 * library must be initialized first.
 	 */
 	spdk_env_opts_init(&(state->opts));
+	
 	state->opts.name = "liblightnvm";
 	state->opts.shm_id = 0;
 	spdk_env_init(&(state->opts));
-
+	
 	/*
 	 * Parse the dev_path into transport_id so we can use it to compare to
 	 * the probed controller
@@ -386,9 +394,14 @@ struct nvm_dev *nvm_be_spdk_open(const char *dev_path, int flags)
 	 */
 	err = spdk_nvme_probe(&state->trid, state, probe_cb, attach_cb, NULL);
 	if (err) {
-		NVM_DEBUG("FAILED: spdk_nvme_probe(...)");
-		nvm_be_spdk_close(dev);
-		return NULL;
+		NVM_DEBUG("FAILED: spdk_nvme_probe(...) -- retrying...");
+
+		err = spdk_nvme_probe(&state->trid, state, probe_cb, attach_cb, NULL);
+		if (err) {
+			NVM_DEBUG("FAILED: spdk_nvme_probe(...)");
+			nvm_be_spdk_close(dev);
+			return NULL;
+		}
 	}
 
 	if (!state->attached) {
@@ -410,6 +423,8 @@ struct nvm_dev *nvm_be_spdk_open(const char *dev_path, int flags)
 		nvm_be_spdk_close(dev);
 		return NULL;
 	}
+
+	NVM_DEBUG("Good to go!");
 
 	return dev;
 }
