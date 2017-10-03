@@ -97,6 +97,7 @@ struct nvm_be_spdk_state {
 	struct spdk_nvme_ctrlr *ctrlr;
 	struct spdk_nvme_ns *ns;
 	uint16_t nsid;
+	int nqpairs;
 	struct spdk_nvme_qpair *qpair[NVM_BE_SPDK_QPAIR_MAX];
 	int admin_outstanding;
 	int attached;
@@ -159,7 +160,7 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 					NVM_BE_SPDK_DMA_ALIGNMENT,
 					&ppas_phys);
 		if (!ppas) {
-			NVM_DEBUG("FAILED: spdk_dma_zmalloc(ppas)");
+			NVM_DEBUG("FAILED: spdk_dma_malloc(ppas)");
 			return -1;
 		}
 		
@@ -174,10 +175,10 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	case NVM_S12_OPC_IDF:
 		payload_len = cmd->vadmin.data_len;
 
-		payload = spdk_dma_zmalloc(payload_len,
+		payload = spdk_dma_malloc(payload_len,
 					   NVM_BE_SPDK_DMA_ALIGNMENT, NULL);
 		if (!payload) {
-			NVM_DEBUG("FAILED: spdk_dma_zmalloc");
+			NVM_DEBUG("FAILED: spdk_dma_malloc");
 			return -1;
 		}
 		break;
@@ -269,10 +270,10 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	// Allocate and transfer PAYLOAD / DATA / PRP1 + PRP2
 	if (cmd->vuser.data_len) {
 		payload_len = cmd->vuser.data_len;
-		payload = spdk_dma_zmalloc(payload_len,
+		payload = spdk_dma_malloc(payload_len,
 					   NVM_BE_SPDK_DMA_ALIGNMENT, NULL);
 		if (!payload) {
-			NVM_DEBUG("FAILED: spdk_dma_zmallo(payload)");
+			NVM_DEBUG("FAILED: spdk_dma_malloc(payload)");
 			return -1;
 		}
 
@@ -372,7 +373,7 @@ void nvm_be_spdk_close(struct nvm_dev *dev)
 
 	state = dev->be_state;
 	if (state->ctrlr) {
-		for (int i = 0; i < NVM_BE_SPDK_QPAIR_MAX; ++i)
+		for (int i = 0; i < state->nqpairs; ++i)
 			if (state->qpair[i])
 				spdk_nvme_ctrlr_free_io_qpair(state->qpair[i]);
 		spdk_nvme_detach(state->ctrlr);
@@ -452,7 +453,10 @@ struct nvm_dev *nvm_be_spdk_open(const char *dev_path, int flags)
 		return NULL;
 	}
 
-	for (int i = 0; i < NVM_BE_SPDK_QPAIR_MAX; ++i) {
+	// Allocate qpairs
+	state->nqpairs = NVM_BE_SPDK_QPAIR_MAX;
+	//state->nqpairs = omp_get_max_threads();
+	for (int i = 0; i < state->nqpairs; ++i) {
 		state->qpair[i] = spdk_nvme_ctrlr_alloc_io_qpair(state->ctrlr,
 								 NULL, 0);
 
