@@ -45,6 +45,7 @@ struct nvm_be nvm_be_spdk = {
 #else
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 #include <errno.h>
 #include <omp.h>
 #include <spdk/stdinc.h>
@@ -59,22 +60,36 @@ struct nvm_be nvm_be_spdk = {
 #define NVM_BE_SPDK_DMA_ALIGNMENT 0x1000
 
 struct nvm_be_spdk_lnvm_cmd {
-	uint8_t opcode;
-	uint8_t flags;
-	uint16_t cid;
-	uint32_t nsid;
-	uint32_t cdw2;
-	uint32_t cdw3;
-	uint64_t mptr;
-	uint64_t prp1;
+	/* dword 0 */
+	uint16_t opc	: 8;	/* opcode */
+	uint16_t flags	: 2;	/* fused operation */
+	uint16_t rsvd1	: 6;
+	uint16_t cid;		/* command identifier */
+
+	/* dword 1 */
+	uint32_t nsid;		/* namespace identifer */
+
+	/* dword 2-3 */
+	uint32_t rsvd2;
+	uint32_t rsvd3;
+
+	/* dword 4-5 */
+	uint64_t mptr;		/* metadata pointer */
+
+	/* dword 6-9 */
+	uint64_t prp1;		/* PRP entries */
 	uint64_t prp2;
-	uint64_t ppas;
+	
+	/* dword 10-11 */
+	uint64_t ppas;		/* Address list */
 	uint16_t nppas;
 	uint16_t control;
+
 	uint32_t cdw13;
 	uint32_t cdw14;
 	uint32_t cdw15;
 };
+static_assert(sizeof(struct nvm_be_spdk_lnvm_cmd) == 64, "Incorrect size");
 
 struct nvm_be_spdk_state {
 	struct spdk_nvme_transport_id trid;
@@ -129,8 +144,8 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		ret->result = 0;
 	}
 
-	nvme_cmd.opc = cmd->vadmin.opcode;
-	nvme_cmd.nsid = state->nsid;
+	lnvm_cmd->opc = cmd->vadmin.opcode;
+	lnvm_cmd->nsid = state->nsid;
 
 	// Open-Channel SSD specific address list
 	lnvm_cmd->nppas = cmd->vadmin.nppas;
@@ -142,10 +157,11 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 			NVM_DEBUG("FAILED: spdk_dma_zmalloc(ppalist)");
 			return -1;
 		}
-
+		
+		memcpy((void*)ppalist, (void*)cmd->vadmin.ppa_list, ppalist_len);
 		lnvm_cmd->ppas = (uint64_t)ppalist;
 	} else {
-		lnvm_cmd->ppas = cmd->vuser.ppa_list;
+		lnvm_cmd->ppas = cmd->vadmin.ppa_list;
 	}
 
 	switch(cmd->vadmin.opcode) {
@@ -210,20 +226,20 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	struct spdk_nvme_cmd nvme_cmd = { 0 };
 	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&nvme_cmd;
 
-	int tid = omp_get_thread_num();
-
 	if (ret) {
 		ret->status = 0;
 		ret->result = 0;
 	}
 
-	NVM_DEBUG("tid: %d", tid);
+	NVM_DEBUG("tid: %d", omp_get_thread_num());
 
 	/**
 	 * Setup NVMe command
 	 */
-	nvme_cmd.opc = cmd->vuser.opcode;
-	nvme_cmd.nsid = state->nsid;
+	lnvm_cmd->opc = cmd->vuser.opcode;
+	lnvm_cmd->nsid = state->nsid;
+
+	lnvm_cmd->control = cmd->vuser.control;
 
 	// Open-Channel SSD specific address list
 	lnvm_cmd->nppas = cmd->vuser.nppas;
@@ -235,13 +251,14 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 			NVM_DEBUG("FAILED: spdk_dma_zmalloc(ppalist)");
 			return -1;
 		}
-
+		
+		memcpy((void*)ppalist, (void*)cmd->vuser.ppa_list, ppalist_len);
 		lnvm_cmd->ppas = (uint64_t)ppalist;
 	} else {
 		lnvm_cmd->ppas = cmd->vuser.ppa_list;
 	}
 
-	// Allocate and transfer PAYLAOD / DATA / PRP1 + PRP2
+	// Allocate and transfer PAYLOAD / DATA / PRP1 + PRP2
 	if (cmd->vuser.data_len) {
 		payload_len = cmd->vuser.data_len;
 		payload = spdk_dma_zmalloc(payload_len,
@@ -255,7 +272,7 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 			memcpy(payload, (void*)cmd->vuser.addr, payload_len);
 	}
 
-	// TODO: Set the control flags correctly
+	//spdk_nvme_ns_cmd_read
 
 	/**
 	 * Submit NVMe command
@@ -268,15 +285,6 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		--(state->outstanding_qpair);
 		return -1;
 	}
-	/*
-	if (spdk_nvme_ns_cmd_read(state->ns, state->qpair, payload, 0, 1,
-				  cpl_qpair, state, 0)) {
-		NVM_DEBUG("FAILED: submitting IO");
-
-		--(state->outstanding_qpair);
-		return -1;
-	}
-	*/
 
 	// Wait for it to finish
 	do {
