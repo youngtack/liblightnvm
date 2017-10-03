@@ -56,7 +56,7 @@ struct nvm_be nvm_be_spdk = {
 #include <nvm_dev.h>
 #include <nvm_debug.h>
 
-#define NVM_BE_SPDK_QPAIR_MAX 128
+#define NVM_BE_SPDK_QPAIR_MAX 64
 #define NVM_BE_SPDK_DMA_ALIGNMENT 0x1000
 
 struct nvm_be_spdk_lnvm_cmd {
@@ -97,10 +97,13 @@ struct nvm_be_spdk_state {
 	struct spdk_nvme_ctrlr *ctrlr;
 	struct spdk_nvme_ns *ns;
 	uint16_t nsid;
-	struct spdk_nvme_qpair *qpair;
-	int outstanding_admin;
-	int outstanding_qpair;
+	struct spdk_nvme_qpair *qpair[NVM_BE_SPDK_QPAIR_MAX];
+	int admin_outstanding;
 	int attached;
+};
+
+struct nvm_be_spdk_submission {
+	int completed;
 };
 
 static void cpl_admin(void *cb_arg, const struct spdk_nvme_cpl *cpl)
@@ -111,18 +114,18 @@ static void cpl_admin(void *cb_arg, const struct spdk_nvme_cpl *cpl)
 		NVM_DEBUG("FAILED: spdk_nvme_cpl_is_error");
 	}
 
-	--(state->outstanding_admin);
+	--(state->admin_outstanding);
 }
 
 static void cpl_qpair(void *cb_arg, const struct spdk_nvme_cpl *cpl)
 {
-	struct nvm_be_spdk_state *state = cb_arg;
+	struct nvm_be_spdk_submission *sub = cb_arg;
 
 	if (spdk_nvme_cpl_is_error(cpl)) {
 		NVM_DEBUG("FAILED: spdk_nvme_cpl_is_error");
 	}
 
-	--(state->outstanding_qpair);
+	sub->completed = 1;
 }
 
 static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
@@ -188,10 +191,10 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		return -1;
 	}
 
-	++(state->outstanding_admin);
+	++(state->admin_outstanding);
 	if (spdk_nvme_ctrlr_cmd_admin_raw(state->ctrlr, &nvme_cmd, payload,
 					  payload_len, cpl_admin, state)) {
-		--(state->outstanding_admin);
+		--(state->admin_outstanding);
 
 		NVM_DEBUG("FAILED: spdk_nvme_ctrlr_cmd_admin_raw");
 		spdk_dma_free(payload);
@@ -201,7 +204,7 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 
 	do {
 		spdk_nvme_ctrlr_process_admin_completions(state->ctrlr);
-	} while (state->outstanding_admin);
+	} while (state->admin_outstanding);
 
 	if (payload_len) {
 		memcpy((void*)cmd->vadmin.addr, payload, payload_len);
@@ -229,12 +232,14 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	struct spdk_nvme_cmd nvme_cmd = { 0 };
 	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&nvme_cmd;
 
+	struct nvm_be_spdk_submission sub = { 0 };
+
+	int tid = omp_get_thread_num();
+
 	if (ret) {
 		ret->status = 0;
 		ret->result = 0;
 	}
-
-	NVM_DEBUG("tid: %d", omp_get_thread_num());
 
 	/**
 	 * Setup NVMe command
@@ -278,19 +283,19 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	/**
 	 * Submit NVMe command
 	 */
-	++(state->outstanding_qpair);
-	if (spdk_nvme_ctrlr_cmd_io_raw(state->ctrlr, state->qpair, &nvme_cmd,
-				       payload, payload_len, cpl_qpair, state)) {
+	if (spdk_nvme_ctrlr_cmd_io_raw(state->ctrlr, state->qpair[tid],
+				       &nvme_cmd, payload, payload_len,
+				       cpl_qpair, &sub)) {
 		NVM_DEBUG("FAILED: submitting IO");
 
-		--(state->outstanding_qpair);
+		sub.completed = 1;
 		return -1;
 	}
 
 	// Wait for it to finish
 	do {
-		spdk_nvme_qpair_process_completions(state->qpair, 0);
-	} while (state->outstanding_qpair);
+		spdk_nvme_qpair_process_completions(state->qpair[tid], 0);
+	} while (!sub.completed);
 
 	// Transfer and de-allocate PAYLOAD / DATA / PRP1 + PRP2
 	if (cmd->vuser.data_len) {
@@ -367,8 +372,9 @@ void nvm_be_spdk_close(struct nvm_dev *dev)
 
 	state = dev->be_state;
 	if (state->ctrlr) {
-		if (state->qpair)
-			spdk_nvme_ctrlr_free_io_qpair(state->qpair);
+		for (int i = 0; i < NVM_BE_SPDK_QPAIR_MAX; ++i)
+			if (state->qpair[i])
+				spdk_nvme_ctrlr_free_io_qpair(state->qpair[i]);
 		spdk_nvme_detach(state->ctrlr);
 	}
 
@@ -446,11 +452,15 @@ struct nvm_dev *nvm_be_spdk_open(const char *dev_path, int flags)
 		return NULL;
 	}
 
-	state->qpair = spdk_nvme_ctrlr_alloc_io_qpair(state->ctrlr, NULL, 0);
-	if (!state->qpair) {
-		NVM_DEBUG("FAILED: allocating IO qpair");
-		nvm_be_spdk_close(dev);
-		return NULL;
+	for (int i = 0; i < NVM_BE_SPDK_QPAIR_MAX; ++i) {
+		state->qpair[i] = spdk_nvme_ctrlr_alloc_io_qpair(state->ctrlr,
+								 NULL, 0);
+
+		if (!state->qpair[i]) {
+			NVM_DEBUG("FAILED: allocating IO qpair");
+			nvm_be_spdk_close(dev);
+			return NULL;
+		}
 	}
 
 	err = nvm_be_populate(dev, nvm_be_spdk_vadmin);
