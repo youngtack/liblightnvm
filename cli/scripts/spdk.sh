@@ -2,7 +2,7 @@
 
 NVM_DEV="traddr:0000:01:00.0"
 
-select TASK in unbind build idf bbt_get bbt_set erase wr rd vblk_erase vblk_wr vblk_rd;
+select TASK in unbind build idf bbt_get bbt_set erase wr rd blk_e blk_w blk_r line_e line_w line_r;
 do
 	case $TASK in
 	unbind)
@@ -39,19 +39,34 @@ do
 		sudo nvm_addr read $NVM_DEV 0x0 -o /tmp/addr.bin
 		;;
 
-	vblk_erase)
+	blk_e)
 		echo "## Running nvm_vblk erase $NVM_DEV 0x0"
 		sudo nvm_vblk erase $NVM_DEV 0x0
 		;;
 
-	vblk_wr)
+	blk_w)
 		echo "## Running nvm_vblk write $NVM_DEV 0x0"
 		sudo nvm_vblk write $NVM_DEV 0x0
 		;;
 
-	vblk_rd)
+	blk_r)
 		echo "## Running nvm_vblk read $NVM_DEV 0x0"
 		sudo nvm_vblk read $NVM_DEV 0x0 -o /tmp/vblk.bin
+		;;
+
+	line_e)
+		echo "## Running nvm_vblk line_erase $NVM_DEV 0 15 0 7 0"
+		sudo nvm_vblk line_erase $NVM_DEV 0 15 0 7 0
+		;;
+
+	line_w)
+		echo "## Running nvm_vblk line_write $NVM_DEV 0 15 0 7 0"
+		sudo nvm_vblk line_write $NVM_DEV 0 15 0 7 0
+		;;
+
+	line_r)
+		echo "## Running nvm_vblk line_read $NVM_DEV 0 15 0 7 0"
+		sudo nvm_vblk line_read $NVM_DEV 0 15 0 7 0
 		;;
 
 	*)
