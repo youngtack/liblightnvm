@@ -130,11 +130,12 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 {
 	struct nvm_be_spdk_state *state = dev->be_state;
 
-	size_t ppalist_len = 0;
-	void *ppalist = NULL;
+	void *ppas = NULL;
+	size_t ppas_len = 0;
+	uint64_t ppas_phys = 0;
 
-	size_t payload_len = 0x0;
 	void *payload = NULL;
+	size_t payload_len = 0;
 
 	struct spdk_nvme_cmd nvme_cmd = { 0 };
 	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&nvme_cmd;
@@ -150,16 +151,17 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	// Open-Channel SSD specific address list
 	lnvm_cmd->nppas = cmd->vadmin.nppas;
 	if (lnvm_cmd->nppas) {
-		ppalist_len = (lnvm_cmd->nppas + 1) * sizeof(uint64_t);
-		ppalist = spdk_dma_zmalloc(ppalist_len,
-					   NVM_BE_SPDK_DMA_ALIGNMENT, NULL);
-		if (!ppalist) {
-			NVM_DEBUG("FAILED: spdk_dma_zmalloc(ppalist)");
+		ppas_len = (lnvm_cmd->nppas + 1) * sizeof(uint64_t);
+		ppas = spdk_dma_zmalloc(ppas_len,
+					NVM_BE_SPDK_DMA_ALIGNMENT,
+					&ppas_phys);
+		if (!ppas) {
+			NVM_DEBUG("FAILED: spdk_dma_zmalloc(ppas)");
 			return -1;
 		}
 		
-		memcpy((void*)ppalist, (void*)cmd->vadmin.ppa_list, ppalist_len);
-		lnvm_cmd->ppas = (uint64_t)ppalist;
+		memcpy((void*)ppas, (void*)cmd->vadmin.ppa_list, ppas_len);
+		lnvm_cmd->ppas = ppas_phys;
 	} else {
 		lnvm_cmd->ppas = cmd->vadmin.ppa_list;
 	}
@@ -207,7 +209,7 @@ static inline int nvm_be_spdk_vadmin(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	}
 
 	if (lnvm_cmd->nppas)
-		spdk_dma_free(ppalist);
+		spdk_dma_free(ppas);
 
 	return 0;
 }
@@ -217,11 +219,12 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 {
 	struct nvm_be_spdk_state *state = dev->be_state;
 
-	size_t ppalist_len = 0;
-	void *ppalist = NULL;
+	void *ppas = NULL;
+	size_t ppas_len = 0;
+	uint64_t ppas_phys = 0;
 
-	size_t payload_len = 0;
 	void *payload = NULL;
+	size_t payload_len = 0;
 
 	struct spdk_nvme_cmd nvme_cmd = { 0 };
 	struct nvm_be_spdk_lnvm_cmd *lnvm_cmd = (void*)&nvme_cmd;
@@ -238,22 +241,22 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 	 */
 	lnvm_cmd->opc = cmd->vuser.opcode;
 	lnvm_cmd->nsid = state->nsid;
-
 	lnvm_cmd->control = cmd->vuser.control;
 
 	// Open-Channel SSD specific address list
 	lnvm_cmd->nppas = cmd->vuser.nppas;
 	if (lnvm_cmd->nppas) {
-		ppalist_len = (lnvm_cmd->nppas + 1) * sizeof(uint64_t);
-		ppalist = spdk_dma_zmalloc(ppalist_len,
-					   NVM_BE_SPDK_DMA_ALIGNMENT, NULL);
-		if (!ppalist) {
-			NVM_DEBUG("FAILED: spdk_dma_zmalloc(ppalist)");
+		ppas_len = (lnvm_cmd->nppas + 1) * sizeof(uint64_t);
+		ppas = spdk_dma_zmalloc(ppas_len,
+					   NVM_BE_SPDK_DMA_ALIGNMENT,
+					   &ppas_phys);
+		if (!ppas) {
+			NVM_DEBUG("FAILED: spdk_dma_zmalloc(ppas)");
 			return -1;
 		}
 		
-		memcpy((void*)ppalist, (void*)cmd->vuser.ppa_list, ppalist_len);
-		lnvm_cmd->ppas = (uint64_t)ppalist;
+		memcpy((void*)ppas, (void*)cmd->vuser.ppa_list, ppas_len);
+		lnvm_cmd->ppas = ppas_phys;
 	} else {
 		lnvm_cmd->ppas = cmd->vuser.ppa_list;
 	}
@@ -271,8 +274,6 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 		if (cmd->vuser.opcode == NVM_S12_OPC_WRITE)
 			memcpy(payload, (void*)cmd->vuser.addr, payload_len);
 	}
-
-	//spdk_nvme_ns_cmd_read
 
 	/**
 	 * Submit NVMe command
@@ -301,7 +302,7 @@ static inline int nvm_be_spdk_vuser(struct nvm_dev *dev, struct nvm_cmd *cmd,
 
 	// De-allocate Open-Channel SSD specific address list
 	if (cmd->vuser.nppas)
-		spdk_dma_free(ppalist);
+		spdk_dma_free(ppas);
 
 	return 0;
 }
